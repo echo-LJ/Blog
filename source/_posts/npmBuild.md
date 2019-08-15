@@ -84,12 +84,12 @@ module.exports = {
 ```
 <!--test.vue-->
 <template>
-  <div class="xr-test" @click="handleClick">{{ num }}</div>
+  <div class="echojoy-test" @click="handleClick">{{ num }}</div>
 </template>
 
 <script>
 export default {
-  name: 'XrTest', // 这个名字很重要，它就是未来的标签名<xr-test></xr-test>，坑了我一下
+  name: 'EchojoyTest',
   data () {
     return {
       num: 0
@@ -103,8 +103,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.xr-test {
+<style >
+.echojoy-test {
   width: 100px;
   height: 100px;
   line-height: 100px;
@@ -116,53 +116,57 @@ export default {
 }
 </style>
 
+
 ```
 
-应该都能看懂吧，不过多解释。⚠️这里主要强调一点，就是 name 这个名字尤为重要，我就在这个坑里呆了挺久。首先它是必须要写的，为啥呢，你可以把它理解为 id，具有唯一标识组件的作用，将来我们可是要通过这个 name 来找到和判定这是什么组件，所以你写的所有组件应该是不重名的；其次这个 name 就是我们最终的标签名，比如这里我们的 name 是 `XrTest`，到时候我们写的标签就长这样 `<xr-test></xr-test>`，就像 Element 一样，name 是 `ElButton`，用的时候就是 `<el-button></el-button>`。
+应该都能看懂吧，不过多解释。⚠️这里主要强调一点，就是 name 这个名字尤为重要，我就在这个坑里呆了挺久。首先它是必须要写的，为啥呢，你可以把它理解为 id，具有唯一标识组件的作用，将来我们可是要通过这个 name 来找到和判定这是什么组件，所以你写的所有组件应该是不重名的；其次这个 name 就是我们最终的标签名，比如这里我们的 name 是 `EchojoyTest`，到时候我们写的标签就长这样 `<echojoy-test></echojoy-test>`，就像 Element 一样，name 是 `ElButton`，用的时候就是 `<el-button></el-button>`。
 
 ## 暴露组件
 
 让我们在 packages/test 下面新建一个 index.js 文件，具体代码如下：
 
 ```
-// 为组件提供 install 方法，供组件对外按需引入
-import XrTest from './src/test'
-XrTest.install = Vue => {
-  Vue.component(XrTest.name, XrTest)
+// 对外提供对组件的引用，注意组件必须声明 name
+import EchojoyTest from './src/test'
+// 为组件提供 install 安装方法，供按需引入
+EchojoyTest.install = Vue => {
+  Vue.component(EchojoyTest.name, EchojoyTest)
 }
-export default XrTest
+export default EchojoyTest
 
 ```
 
 这步的精髓就在于给组件扩展一个 install 方法，至于为什么要扩展这个方法，文章开头已经说到了，是因为 `Vue.use()` 的需要，use 会默认调用 install 方法安装，仅此而已。接着我们在 packages 下面也新建一个 index.js 文件，注意和上面那个 index.js 区别开，上面那个是针对单个组件安装的，这个是针对所有组件全局安装的，先看代码：
 
 ```
-import XrTest from './test'
-// 所有组件列表
+import EchojoyTest from './test'
+// 存储组件列表
 const components = [
-  XrTest
+  EchojoyTest
 ]
-// 定义 install 方法，接收 Vue 作为参数
+// 定义 install 方法，接收 Vue 作为参数。如果使用 use 注册插件，则所有的组件都将被注册
 const install = function (Vue) {
-  // 判断是否安装，安装过就不继续往下执行
+  // 判断是否安装
   if (install.installed) return
   install.installed = true
-  // 遍历注册所有组件
+  // 遍历注册全局组件
   components.map(component => Vue.component(component.name, component))
   // 下面这个写法也可以
   // components.map(component => Vue.use(component))
 }
 
-// 检测到 Vue 才执行，毕竟我们是基于 Vue 的
+// 判断是否是直接引入文件
 if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue)
 }
 
 export default {
+  // 导出的对象必须具有 install，才能被 Vue.use() 方法安装
   install,
-  // 所有组件，必须具有 install，才能使用 Vue.use()
+  // 以下是具体的组件列表
   ...components
 }
+
 
 ```
 
