@@ -7,19 +7,21 @@ tags: js
 Author: Echo
 Time: 2019-08-21 15:36:08
 
+
+
 ## 引言
 几乎在每一本JS相关的书籍中，都会说JS是`单线程`的，JS是通过`事件队列(Event Loop)`的方式来实现异步回调的。 对很多初学JS的人来说，根本搞不清楚单线程的JS为什么拥有 `异步`的能力，所以，我试图从`进程`、`线程`的角度来解释这个问题。
 ## CPU
-[图片上传失败...(image-ed3695-1566372886000)]
+![image](https://user-gold-cdn.xitu.io/2019/8/20/16caca3ddada3a3d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
 计算机的核心是`CPU`，它承担了所有的计算任务。
 它就像一座工厂，时刻在运行。
 ## 进程
-[图片上传失败...(image-d146c9-1566372886000)]
+![image](https://user-gold-cdn.xitu.io/2019/8/20/16caca3ddb1e54c7?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
 
 假定工厂的电力有限，一次只能供给一个车间使用。也就是说，一个车间开工的时候，其他车间都必须停工。背后的含义就是，单个CPU一次只能运行一个任务。
 `进程`就好比工厂的车间，它代表CPU所能处理的单个任务。 `进程`之间相互独立，任一时刻，CPU总是运行一个`进程`，其他`进程`处于非运行状态。 CPU使用时间片轮转进度算法(这是个什么算法？？？？)来实现同时运行多个`进程`。
 ## 线程
-[图片上传失败...(image-7adc10-1566372886000)]
+![image](https://user-gold-cdn.xitu.io/2019/8/20/16caca3ddb0197b8?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
 一个车间里，可以有很多工人，共享车间所有的资源，他们协同完成一个任务。
 `线程`就好比车间里的工人，一个`进程`可以包括多个`线程`，多个`线程`共享`进程`资源。
 ## CPU、进程、线程之间的关系
@@ -34,7 +36,7 @@ Time: 2019-08-21 15:36:08
 而每一个应用程序都会分别有很多的功能模块，这些功能模块实际上是通过`子进程`来实现的。
 对于这种子进程的扩展方式，我们可以称这个应用程序是多进程的。
 而对于浏览器来说，浏览器就是`多进程`的，我在Chrome浏览器中打开了多个tab，然后打开windows控制管理器：
-[图片上传失败...(image-a5bb1-1566372886000)]
+![image](https://user-gold-cdn.xitu.io/2019/8/21/16cb1f0a851c86b9?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
 如上图，我们可以看到一个Chrome浏览器启动了好多个进程。
 
 总结一下：
@@ -101,7 +103,7 @@ Time: 2019-08-21 15:36:08
 * 同步任务都在JS引擎线程上执行，形成一个`执行栈`
 * 事件触发线程管理一个`任务队列`，异步任务触发条件达成，将回调事件放到`任务队列`中
 * `执行栈`中所有同步任务执行完毕，此时JS引擎线程空闲，系统会读取`任务队列`，将可运行的异步任务回调事件添加到`执行栈`中，开始执行
-[图片上传失败...(image-e49523-1566372886000)]
+![image](https://user-gold-cdn.xitu.io/2019/8/21/16cb1d70e5120bea?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
 
 在前端开发中我们会通过`setTimeout/setInterval`来指定定时任务，会通过`XHR/fetch`发送网络请求， 接下来简述一下`setTimeout/setInterval`和`XHR/fetch`到底做了什么事
 
@@ -112,7 +114,7 @@ Time: 2019-08-21 15:36:08
 当代码执行到`XHR/fetch`时，实际上是`JS引擎线程`通知`异步http请求线程`，发送一个网络请求，并制定请求完成后的回调事件， 而`异步http请求线程`在接收到这个消息后，会在请求成功后，将回调事件放入到由`事件触发线程`所管理的`事件队列`中。
 
 当我们的同步任务执行完，`JS引擎线程`会询问`事件触发线程`，在`事件队列`中是否有待执行的回调函数，如果有就会加入到执行栈中交给`JS引擎线程`执行
-[图片上传失败...(image-397ecb-1566372886000)]
+![image](https://user-gold-cdn.xitu.io/2019/8/21/16cb1d7433f29c46?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
 再用代码来解释一下：
 ```
 let timerCallback = function() {
@@ -228,5 +230,4 @@ setTimeout(() => {
 ![image](https://user-gold-cdn.xitu.io/2019/8/21/16cb1d7bb4bd9fd2?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
 
 参考链接：https://juejin.im/post/5d5b4c2df265da03dd3d73e5
-
 

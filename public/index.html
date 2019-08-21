@@ -86,10 +86,10 @@
       
         <p>Author: Echo<br>Time: 2019-08-21 15:36:08</p>
 <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>几乎在每一本JS相关的书籍中，都会说JS是<code>单线程</code>的，JS是通过<code>事件队列(Event Loop)</code>的方式来实现异步回调的。 对很多初学JS的人来说，根本搞不清楚单线程的JS为什么拥有 <code>异步</code>的能力，所以，我试图从<code>进程</code>、<code>线程</code>的角度来解释这个问题。</p>
-<h2 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h2><p>[图片上传失败…(image-ed3695-1566372886000)]<br>计算机的核心是<code>CPU</code>，它承担了所有的计算任务。<br>它就像一座工厂，时刻在运行。</p>
-<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p>[图片上传失败…(image-d146c9-1566372886000)]</p>
+<h2 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h2><p><img src="https://user-gold-cdn.xitu.io/2019/8/20/16caca3ddada3a3d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="image"><br>计算机的核心是<code>CPU</code>，它承担了所有的计算任务。<br>它就像一座工厂，时刻在运行。</p>
+<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p><img src="https://user-gold-cdn.xitu.io/2019/8/20/16caca3ddb1e54c7?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="image"></p>
 <p>假定工厂的电力有限，一次只能供给一个车间使用。也就是说，一个车间开工的时候，其他车间都必须停工。背后的含义就是，单个CPU一次只能运行一个任务。<br><code>进程</code>就好比工厂的车间，它代表CPU所能处理的单个任务。 <code>进程</code>之间相互独立，任一时刻，CPU总是运行一个<code>进程</code>，其他<code>进程</code>处于非运行状态。 CPU使用时间片轮转进度算法(这是个什么算法？？？？)来实现同时运行多个<code>进程</code>。</p>
-<h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><p>[图片上传失败…(image-7adc10-1566372886000)]<br>一个车间里，可以有很多工人，共享车间所有的资源，他们协同完成一个任务。<br><code>线程</code>就好比车间里的工人，一个<code>进程</code>可以包括多个<code>线程</code>，多个<code>线程</code>共享<code>进程</code>资源。</p>
+<h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><p><img src="https://user-gold-cdn.xitu.io/2019/8/20/16caca3ddb0197b8?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="image"><br>一个车间里，可以有很多工人，共享车间所有的资源，他们协同完成一个任务。<br><code>线程</code>就好比车间里的工人，一个<code>进程</code>可以包括多个<code>线程</code>，多个<code>线程</code>共享<code>进程</code>资源。</p>
 <h2 id="CPU、进程、线程之间的关系"><a href="#CPU、进程、线程之间的关系" class="headerlink" title="CPU、进程、线程之间的关系"></a>CPU、进程、线程之间的关系</h2><p>从上文我们已经简单了解了CPU、进程、线程，简单汇总一下。</p>
 <ul>
 <li><code>进程</code>是cpu资源分配的最小单位（是能拥有资源和独立运行的最小单位）</li>
@@ -97,7 +97,7 @@
 <li>不同<code>进程</code>之间也可以通信，不过代价较大</li>
 <li><code>单线程</code>与<code>多线程</code>，都是指在一个<code>进程</code>内的单和多<h2 id="浏览器是多进程的"><a href="#浏览器是多进程的" class="headerlink" title="浏览器是多进程的"></a>浏览器是多进程的</h2></li>
 </ul>
-<p>我们已经知道了<code>CPU</code>、<code>进程</code>、<code>线程</code>之间的关系，对于计算机来说，每一个应用程序都是一个<code>进程</code>，<br>而每一个应用程序都会分别有很多的功能模块，这些功能模块实际上是通过<code>子进程</code>来实现的。<br>对于这种子进程的扩展方式，我们可以称这个应用程序是多进程的。<br>而对于浏览器来说，浏览器就是<code>多进程</code>的，我在Chrome浏览器中打开了多个tab，然后打开windows控制管理器：<br>[图片上传失败…(image-a5bb1-1566372886000)]<br>如上图，我们可以看到一个Chrome浏览器启动了好多个进程。</p>
+<p>我们已经知道了<code>CPU</code>、<code>进程</code>、<code>线程</code>之间的关系，对于计算机来说，每一个应用程序都是一个<code>进程</code>，<br>而每一个应用程序都会分别有很多的功能模块，这些功能模块实际上是通过<code>子进程</code>来实现的。<br>对于这种子进程的扩展方式，我们可以称这个应用程序是多进程的。<br>而对于浏览器来说，浏览器就是<code>多进程</code>的，我在Chrome浏览器中打开了多个tab，然后打开windows控制管理器：<br><img src="https://user-gold-cdn.xitu.io/2019/8/21/16cb1f0a851c86b9?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="image"><br>如上图，我们可以看到一个Chrome浏览器启动了好多个进程。</p>
 <p>总结一下：</p>
 <ul>
 <li>浏览器是多进程的</li>
@@ -186,13 +186,13 @@
 <li>JS 分为同步任务和异步任务</li>
 <li>同步任务都在JS引擎线程上执行，形成一个<code>执行栈</code></li>
 <li>事件触发线程管理一个<code>任务队列</code>，异步任务触发条件达成，将回调事件放到<code>任务队列</code>中</li>
-<li><code>执行栈</code>中所有同步任务执行完毕，此时JS引擎线程空闲，系统会读取<code>任务队列</code>，将可运行的异步任务回调事件添加到<code>执行栈</code>中，开始执行<br>[图片上传失败…(image-e49523-1566372886000)]</li>
+<li><code>执行栈</code>中所有同步任务执行完毕，此时JS引擎线程空闲，系统会读取<code>任务队列</code>，将可运行的异步任务回调事件添加到<code>执行栈</code>中，开始执行<br><img src="https://user-gold-cdn.xitu.io/2019/8/21/16cb1d70e5120bea?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="image"></li>
 </ul>
 <p>在前端开发中我们会通过<code>setTimeout/setInterval</code>来指定定时任务，会通过<code>XHR/fetch</code>发送网络请求， 接下来简述一下<code>setTimeout/setInterval</code>和<code>XHR/fetch</code>到底做了什么事</p>
 <p>我们知道，不管是<code>setTimeout/setInterval</code>和<code>XHR/fetch</code>代码，在这些代码执行时， 本身是同步任务，而其中的回调函数才是异步任务。</p>
 <p>当代码执行到<code>setTimeout/setInterval</code>时，实际上是JS引擎线程通知定时触发器线程，间隔一个时间后，会触发一个回调事件， 而<code>定时触发器线程</code>在接收到这个消息后，会在等待的时间后，将回调事件放入到由<code>事件触发线程</code>所管理的<code>事件队列</code>中。</p>
 <p>当代码执行到<code>XHR/fetch</code>时，实际上是<code>JS引擎线程</code>通知<code>异步http请求线程</code>，发送一个网络请求，并制定请求完成后的回调事件， 而<code>异步http请求线程</code>在接收到这个消息后，会在请求成功后，将回调事件放入到由<code>事件触发线程</code>所管理的<code>事件队列</code>中。</p>
-<p>当我们的同步任务执行完，<code>JS引擎线程</code>会询问<code>事件触发线程</code>，在<code>事件队列</code>中是否有待执行的回调函数，如果有就会加入到执行栈中交给<code>JS引擎线程</code>执行<br>[图片上传失败…(image-397ecb-1566372886000)]<br>再用代码来解释一下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">let timerCallback = function() &#123;</span><br><span class="line">  console.log(&apos;wait one second&apos;);</span><br><span class="line">&#125;;</span><br><span class="line">let httpCallback = function() &#123;</span><br><span class="line">  console.log(&apos;get server data success&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 同步任务</span><br><span class="line">console.log(&apos;hello&apos;);</span><br><span class="line">// 同步任务</span><br><span class="line">// 通知定时器线程 1s 后将 timerCallback 交由事件触发线程处理</span><br><span class="line">// 1s 后事件触发线程将 timerCallback 加入到事件队列中</span><br><span class="line">setTimeout(timerCallback,1000);</span><br><span class="line">// 同步任务</span><br><span class="line">// 通知异步http请求线程发送网络请求，请求成功后将 httpCallback 交由事件触发线程处理</span><br><span class="line">// 请求成功后事件触发线程将 httpCallback 加入到事件队列中</span><br><span class="line">$.get(&apos;www.xxxx.com&apos;,httpCallback);</span><br><span class="line">// 同步任务</span><br><span class="line">console.log(&apos;world&apos;);</span><br><span class="line">//...</span><br><span class="line">// 所有同步任务执行完后</span><br><span class="line">// 询问事件触发线程在事件事件队列中是否有需要执行的回调函数</span><br><span class="line">// 如果没有，一直询问，直到有为止</span><br><span class="line">// 如果有，将回调事件加入执行栈中，开始执行回调代码</span><br></pre></td></tr></table></figure></p>
+<p>当我们的同步任务执行完，<code>JS引擎线程</code>会询问<code>事件触发线程</code>，在<code>事件队列</code>中是否有待执行的回调函数，如果有就会加入到执行栈中交给<code>JS引擎线程</code>执行<br><img src="https://user-gold-cdn.xitu.io/2019/8/21/16cb1d7433f29c46?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="image"><br>再用代码来解释一下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">let timerCallback = function() &#123;</span><br><span class="line">  console.log(&apos;wait one second&apos;);</span><br><span class="line">&#125;;</span><br><span class="line">let httpCallback = function() &#123;</span><br><span class="line">  console.log(&apos;get server data success&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 同步任务</span><br><span class="line">console.log(&apos;hello&apos;);</span><br><span class="line">// 同步任务</span><br><span class="line">// 通知定时器线程 1s 后将 timerCallback 交由事件触发线程处理</span><br><span class="line">// 1s 后事件触发线程将 timerCallback 加入到事件队列中</span><br><span class="line">setTimeout(timerCallback,1000);</span><br><span class="line">// 同步任务</span><br><span class="line">// 通知异步http请求线程发送网络请求，请求成功后将 httpCallback 交由事件触发线程处理</span><br><span class="line">// 请求成功后事件触发线程将 httpCallback 加入到事件队列中</span><br><span class="line">$.get(&apos;www.xxxx.com&apos;,httpCallback);</span><br><span class="line">// 同步任务</span><br><span class="line">console.log(&apos;world&apos;);</span><br><span class="line">//...</span><br><span class="line">// 所有同步任务执行完后</span><br><span class="line">// 询问事件触发线程在事件事件队列中是否有需要执行的回调函数</span><br><span class="line">// 如果没有，一直询问，直到有为止</span><br><span class="line">// 如果有，将回调事件加入执行栈中，开始执行回调代码</span><br></pre></td></tr></table></figure></p>
 <p>总结一下：</p>
 <ul>
 <li>JS引擎线程只执行执行栈中的事件</li>
@@ -228,10 +228,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/21/JS-thread/" data-id="cjzky8ew9000988kciqi27t52" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/21/JS-thread/" data-id="cjzkyhdt600095gkcg26d1mwq" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js-thread/">js-thread</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
 
     </footer>
   </div>
@@ -319,10 +319,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/19/request/" data-id="cjzky8evs000388kcoint1n0k" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/19/request/" data-id="cjzkyhdsn00035gkc9j40lffs" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js-axis/">js-axis</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
 
     </footer>
   </div>
@@ -408,7 +408,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/15/message-comp/" data-id="cjzky8ewb000a88kcwq6cpptd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/15/message-comp/" data-id="cjzkyhdt7000a5gkc6vw86kq6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
@@ -495,7 +495,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/14/nodeBasics/" data-id="cjzky8ewd000c88kcvja52jsl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/14/nodeBasics/" data-id="cjzkyhdta000c5gkciq7ugt09" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
@@ -604,7 +604,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/26/npmBuild/" data-id="cjzky8ewe000d88kc4yw7uuc3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/26/npmBuild/" data-id="cjzkyhdtc000e5gkcjuewlxyz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li></ul>
@@ -654,7 +654,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/24/hexoDeplayBug/" data-id="cjzky8evl000188kcmc4dwgs4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/24/hexoDeplayBug/" data-id="cjzkyhdsc00005gkcwvyujq9p" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog-hexo/">blog-hexo</a></li></ul>
@@ -728,7 +728,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/24/blogInit/" data-id="cjzky8evh000088kc1h0vbhhy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/24/blogInit/" data-id="cjzkyhdsj00015gkc5p5d6no1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog-hexo/">blog-hexo</a></li></ul>
@@ -752,7 +752,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-hexo/">blog-hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js-axis/">js-axis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js-thread/">js-thread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-hexo/">blog-hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li></ul>
     </div>
   </div>
 
@@ -762,7 +762,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/blog-hexo/" style="font-size: 20px;">blog-hexo</a> <a href="/tags/js-axis/" style="font-size: 10px;">js-axis</a> <a href="/tags/js-thread/" style="font-size: 10px;">js-thread</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a>
+      <a href="/tags/blog-hexo/" style="font-size: 20px;">blog-hexo</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a>
     </div>
   </div>
 
