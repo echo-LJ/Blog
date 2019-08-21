@@ -1,7 +1,7 @@
 ---
 title: 从多线程到Event Loop全面梳理
 date: 2019-08-21 15:36:08
-tags: js-thread
+tags: js
 ---
 
 Author: Echo
