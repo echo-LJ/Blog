@@ -1,7 +1,7 @@
 ---
 title: message-comp
 date: 2019-08-15 16:05:21
-tags:
+tags: vue
 ---
 Author: Echo
 Time: 2019-08-15 16:05:21

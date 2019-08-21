@@ -1,7 +1,7 @@
 ---
 title: 关于前端请求的那些事
 date: 2019-08-19 14:05:42
-tags:
+tags: js-axis
 ---
 
 Author: Echo

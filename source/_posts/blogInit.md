@@ -1,7 +1,7 @@
 ---
 title: 教你快速搭建个人博客
 date: 2019-07-24 14:44:05
-tags:
+tags: blog-hexo
 ---
 
 # 基于HEXO博客框架和Github搭建个人博客简单教程

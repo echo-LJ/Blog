@@ -1,7 +1,7 @@
 ---
 title: hexo deplay出错
 date: 2019-07-24 15:28:39
-tags:
+tags: blog-hexo
 ---
 
 Author: Echo

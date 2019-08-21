@@ -1,7 +1,7 @@
 ---
 title: npm 部署自己的组件库
 date: 2019-07-26 14:18:53
-tags:
+tags: npm 
 ---
 Author: Echo
 Time: 2019-07-24 15:28:39
