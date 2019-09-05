@@ -12,24 +12,37 @@ https://cn.vuejs.org/v2/guide/ssr.html
 
 * 将华清的组件库和可视化大屏整理成组件库和项目汇总
 
-* 为什么封装axios-》看一下现在项目中是如何封装的
 * 看一下process.env.NODE_ENV是怎么回事 https://www.jb51.net/article/126838.htm
 
+* 前端express模拟数据库。
 
 * 看一下vant是什么组件库
 
+* 看一下媛媛的代理
+
+* 整理一下storybook组件库& 思路
+
+* 发布组件到npm上
+* 整理一下发布npm组件库的思路
+
+* 看一下vant是什么组件库
+
+* 看一下前端工程化
+
 * hexo发布的文章怎么折叠起来
+* hexo怎么将草稿变成发布文章
 
 
 
 学习顺序：
-看一下前端面试题 打卡 1天
-看一下vue源码    打卡 2天 https://zhuanlan.zhihu.com/p/36030216
-了解 axios： 打卡 1天(完成)
-了解proxy: 打卡 1天
-了解一下webpack相关配置   打卡 0天
-了解一下express   打卡 0天
-看一下前端工程化  打卡 0天
+
+* 看一下前端面试题 打卡 1天
+* 看一下vue源码    打卡 2天 https://zhuanlan.zhihu.com/p/36030216
+* 了解 axios： 打卡 1天(完成)
+* 了解proxy: 打卡 1天
+* 了解一下webpack相关配置   打卡 0天
+* 了解一下express   打卡 0天
+* 看一下前端工程化  打卡 0天
 
 
 
