@@ -1,7 +1,7 @@
 ---
 title: Promise
 date: 2019-08-26 10:44:24
-tags:
+tags: es6
 ---
 
 Author: Echo

@@ -1,10 +1,9 @@
 ---
-title: vueTitle
+title: vue相关面试题
 date: 2019-09-03 10:10:37
-tags:
+tags: vue
 ---
 
-# vue相关面试题
 Author: Echo
 Time: 2019-09-03 10:10:37
 
@@ -82,7 +81,9 @@ vm.$listeners
 详细：
 包含了父作用域中的 (不含 .native 修饰器的) v-on 事件监听器。它可以通过 v-on="$listeners" 传入内部组件——在创建更高层次的组件时非常有用。
 ```
+##### 4.Vue2.6+新全局API：Vue.observable()
 
 ### 子组件访问父组件数据（除了props）
 * 使用$parent属性
 * 通过$attrs传递属性
+* Vue2.6+新全局API：Vue.observable()
