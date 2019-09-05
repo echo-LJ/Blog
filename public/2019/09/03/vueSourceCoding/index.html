@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>了解vue源码 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Author: EchoTime: 2019-09-03 09:47:57 new Vue()做了什么？new关键字代表实例化一个对象, 而Vue实际上是一个类, 源码位置是/src/core/instance/index.js12345678function Vue (options) &amp;#123;  if (process.env.NODE_ENV !== &amp;apos;production&amp;a">
+<meta name="keywords" content="vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="了解vue源码">
+<meta property="og:url" content="http://yoursite.com/2019/09/03/vueSourceCoding/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Author: EchoTime: 2019-09-03 09:47:57 new Vue()做了什么？new关键字代表实例化一个对象, 而Vue实际上是一个类, 源码位置是/src/core/instance/index.js12345678function Vue (options) &amp;#123;  if (process.env.NODE_ENV !== &amp;apos;production&amp;a">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/3/25/169b418d400ff0b7?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<meta property="og:updated_time" content="2019-09-04T08:59:13.527Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="了解vue源码">
+<meta name="twitter:description" content="Author: EchoTime: 2019-09-03 09:47:57 new Vue()做了什么？new关键字代表实例化一个对象, 而Vue实际上是一个类, 源码位置是/src/core/instance/index.js12345678function Vue (options) &amp;#123;  if (process.env.NODE_ENV !== &amp;apos;production&amp;a">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2019/3/25/169b418d400ff0b7?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-vueSourceCoding" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/09/03/vueSourceCoding/" class="article-date">
+  <time datetime="2019-09-03T01:47:57.000Z" itemprop="datePublished">2019-09-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      了解vue源码
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Author: Echo<br>Time: 2019-09-03 09:47:57</p>
+<h2 id="new-Vue-做了什么？"><a href="#new-Vue-做了什么？" class="headerlink" title="new Vue()做了什么？"></a>new Vue()做了什么？</h2><p>new关键字代表实例化一个对象, 而Vue实际上是一个类, 源码位置是<br><code>/src/core/instance/index.js</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function Vue (options) &#123;</span><br><span class="line">  if (process.env.NODE_ENV !== &apos;production&apos; &amp;&amp;</span><br><span class="line">    !(this instanceof Vue)</span><br><span class="line">  ) &#123;</span><br><span class="line">    warn(&apos;Vue is a constructor and should be called with the `new` keyword&apos;)</span><br><span class="line">  &#125;</span><br><span class="line">  this._init(options)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>接着我们跳转追踪至<code>this._init()</code>，即<code>Vue.prototype._init</code>,位于<code>src\core\instance\init.js</code>.<br>在<code>_init()</code>方法的内部有一系列 <code>init*</code> 的方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Vue.prototype._init = function (options?: Object) &#123;</span><br><span class="line">    const vm: Component = this</span><br><span class="line">    // ...忽略，从第45行看起</span><br><span class="line">    if (process.env.NODE_ENV !== &apos;production&apos;) &#123;</span><br><span class="line">      initProxy(vm)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      vm._renderProxy = vm</span><br><span class="line">    &#125;</span><br><span class="line">    // expose real self</span><br><span class="line">    vm._self = vm</span><br><span class="line">    initLifecycle(vm)</span><br><span class="line">    initEvents(vm)</span><br><span class="line">    initRender(vm)</span><br><span class="line">    callHook(vm, &apos;beforeCreate&apos;)</span><br><span class="line">    initInjections(vm) // resolve injections before data/props</span><br><span class="line">    initState(vm)</span><br><span class="line">    initProvide(vm) // resolve provide after data/props</span><br><span class="line">    callHook(vm, &apos;created&apos;)</span><br><span class="line">    // ...忽略</span><br><span class="line">    if (vm.$options.el) &#123;</span><br><span class="line">      vm.$mount(vm.$options.el)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>统一概述一遍new Vue()时做了什么处理:</p>
+<ul>
+<li><code>initProxy</code>，作用域代理，拦截组件内访问其它组件的数据。(支持Proxy且处于开发环境下, 对未声明就使用的属性进行提示)</li>
+<li><code>initLifecycle</code>（初始生命周期）, 建立父子组件关系，在当前实例上添加一些属性和生命周期标识。如:$children、$refs、_isMounted等。</li>
+<li><code>initEvents</code>，用来存放除@hook:生命周期钩子名称=”绑定的函数”事件的对象。如:$on、$emit等。</li>
+<li><code>initRender</code>，用于初始化$slots、$attrs、$listeners</li>
+<li><code>initInjections</code>，初始化inject，一般用于更深层次的组件通信，相当于加强版的props。用于组件库开发较多。</li>
+<li><code>initState</code>，是很多选项初始化的汇总，包括:props、methods、data、computed 和 watch 等。</li>
+<li><code>initProvide</code>，初始化provide。</li>
+<li><code>vm.$mount</code>，挂载实例。</li>
+</ul>
+<h2 id="什么阶段才能访问DOM？"><a href="#什么阶段才能访问DOM？" class="headerlink" title="什么阶段才能访问DOM？"></a>什么阶段才能访问DOM？</h2><p>这个回答可以从beforeCreate以及 created 的调用时机谈起，我们根据上面的概述，来简化下代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">callHook(vm, &apos;beforeCreate&apos;)</span><br><span class="line">// 初始化 inject</span><br><span class="line">// 初始化 props、methods、data、computed、watch和挂载元素$el(都为undefined)</span><br><span class="line">// 初始化 provide</span><br><span class="line">callHook(vm, &apos;created&apos;)</span><br><span class="line">// 挂载实例 vm.$mount(vm.$options.el)</span><br><span class="line">// vue实例的数据对象data有了</span><br></pre></td></tr></table></figure></p>
+<p>所以当面试官问你:</p>
+<ul>
+<li>beforeCreate以及 created 调用时，哪些数据能用与否？</li>
+<li>什么阶段才能访问DOM？</li>
+<li>为什么created之后才挂载实例？</li>
+</ul>
+<h2 id="谈谈你对Vue的生命周期的理解？"><a href="#谈谈你对Vue的生命周期的理解？" class="headerlink" title="谈谈你对Vue的生命周期的理解？"></a>谈谈你对Vue的生命周期的理解？</h2><p>生命周期函数解释说明（图片）：<a href="https://img2018.cnblogs.com/blog/1475079/201810/1475079-20181015102951341-1694919323.png" target="_blank" rel="noopener">https://img2018.cnblogs.com/blog/1475079/201810/1475079-20181015102951341-1694919323.png</a></p>
+<h5 id="理解"><a href="#理解" class="headerlink" title="理解:"></a>理解:</h5><p>每个 Vue 实例在被创建时都要经过一系列的初始化过程——例如，需要设置数据监听、编译模板、将实例挂载到 DOM 并在数据变化时更新 DOM 等。同时在这个过程中也会运行一些叫做 生命周期钩子 的函数，这给了用户在不同阶段添加自己的代码的机会</p>
+<h5 id="生命周期的几个阶段"><a href="#生命周期的几个阶段" class="headerlink" title="生命周期的几个阶段:"></a>生命周期的几个阶段:</h5><ol>
+<li>created/mounted/updated/destroyed，以及对应的before钩子。分别是创建=&gt;挂载=&gt;更新=&gt;销毁</li>
+</ol>
+<ul>
+<li>beforeCreate &amp; created 看上一题</li>
+<li><p>beforeMount &amp; mounted</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">callHook(vm, &apos;beforeMount&apos;)</span><br><span class="line">// vue实例的$el和data都初始化完成， 挂载之前为虚拟的dom节点，</span><br><span class="line">callHook(vm, &apos;mounted&apos;)</span><br><span class="line">// vue实例挂载完成，data.message成功渲染</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>beforeUpdate &amp; updated</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data变化会触发beforeUpdate和updated方法</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>beforeDestroy &amp; destroyed</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">callHook(vm, &apos;destroyed&apos;)</span><br><span class="line">// data的改变不会再触发周期函数</span><br><span class="line">// vue实例已经解除了事件监听以及和dom的绑定，但是dom结构依然存在。</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>深入理解源码:</p>
+<ol start="2">
+<li>Vue源码中定义了一个mergeHook函数来遍历一个常量数组LIFECYCLE_HOOKS，该数组实际上是由与生命周期钩子同名的字符串组成的数组。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// v2.6.10 最新版</span><br><span class="line">var LIFECYCLE_HOOKS = [</span><br><span class="line">    &apos;beforeCreate&apos;,</span><br><span class="line">    &apos;created&apos;,</span><br><span class="line">    &apos;beforeMount&apos;,</span><br><span class="line">    &apos;mounted&apos;,</span><br><span class="line">    &apos;beforeUpdate&apos;,</span><br><span class="line">    &apos;updated&apos;,</span><br><span class="line">    &apos;beforeDestroy&apos;,</span><br><span class="line">    &apos;destroyed&apos;,</span><br><span class="line">    &apos;activated&apos;,</span><br><span class="line">    &apos;deactivated&apos;,</span><br><span class="line">    &apos;errorCaptured&apos;,</span><br><span class="line">    // v2.6+ </span><br><span class="line">    &apos;serverPrefetch&apos; //看下一题</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>于是，你可以答多<code>activated &amp; deactivated</code>（keep-alive 组件激活/停用）、<code>errorCaptured</code>（v2.5 以上版本有的一个钩子，用于处理错误）这三个。</p>
+<hr>
+<h2 id="生命周期钩子的合并策略"><a href="#生命周期钩子的合并策略" class="headerlink" title="生命周期钩子的合并策略"></a>生命周期钩子的合并策略</h2><p><a href="https://www.cnblogs.com/xweizi/p/10572281.html" target="_blank" rel="noopener">https://www.cnblogs.com/xweizi/p/10572281.html</a></p>
+<hr>
+<p>单独抽出一天来处理</p>
+<h2 id="新生命周期钩子：serverPrefetch是什么？"><a href="#新生命周期钩子：serverPrefetch是什么？" class="headerlink" title="新生命周期钩子：serverPrefetch是什么？"></a>新生命周期钩子：serverPrefetch是什么？</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// v2.6.10的变化</span><br></pre></td></tr></table></figure>
+<p>可以看到，<code>serverPrefetch</code>前身是<code>ssrPrefetch</code>。顾名思义，这是用来处理ssr的。允许我们在渲染过程中“等待”异步数据。可在任何组件中使用，而不仅仅是路由组件。<br><img src="https://user-gold-cdn.xitu.io/2019/3/25/169b418d400ff0b7?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="image"><br>这里我们贴出一段官方例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Item.vue --&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div v-if=&quot;item&quot;&gt;&#123;&#123; item.title &#125;&#125;&lt;/div&gt;</span><br><span class="line">  &lt;div v-else&gt;...&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  computed: &#123;</span><br><span class="line">    item () &#123;</span><br><span class="line">      return this.$store.state.items[this.$route.params.id]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  serverPrefetch () &#123;</span><br><span class="line">    return this.fetchItem()</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted () &#123;</span><br><span class="line">    if (!this.item) &#123;</span><br><span class="line">      this.fetchItem()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    fetchItem () &#123;</span><br><span class="line">      // return the Promise from the action</span><br><span class="line">      return this.$store.dispatch(&apos;fetchItem&apos;, this.$route.params.id)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Vue-router-路由模式有几种？"><a href="#Vue-router-路由模式有几种？" class="headerlink" title="Vue-router 路由模式有几种？"></a>Vue-router 路由模式有几种？</h2><p>三种 “hash” | “history” | “abstract”，一般人只知道两种”hash” | “history”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// 源码：</span><br><span class="line"></span><br><span class="line">switch (mode) &#123;</span><br><span class="line">  case &apos;history&apos;:</span><br><span class="line">    this.history = new HTML5History(this, options.base)</span><br><span class="line">    break</span><br><span class="line">  case &apos;hash&apos;:</span><br><span class="line">    this.history = new HashHistory(this, options.base, this.fallback)</span><br><span class="line">    break</span><br><span class="line">  case &apos;abstract&apos;:</span><br><span class="line">    this.history = new AbstractHistory(this, options.base)</span><br><span class="line">    break</span><br><span class="line">  default:</span><br><span class="line">    if (process.env.NODE_ENV !== &apos;production&apos;) &#123;</span><br><span class="line">      assert(false, `invalid mode: $&#123;mode&#125;`)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="mode"><a href="#mode" class="headerlink" title="mode"></a>mode</h5><ul>
+<li>类型: string</li>
+<li>默认值: “hash” (浏览器环境) | “abstract” (Node.js 环境)</li>
+<li>可选值: “hash” | “history” | “abstract”</li>
+</ul>
+<p>配置路由模式:</p>
+<ul>
+<li>hash: 使用 URL hash 值来作路由。支持所有浏览器，包括不支持 HTML5 History Api 的浏览器。</li>
+<li>history: 依赖 HTML5 History API 和服务器配置。查看 HTML5 History 模式。</li>
+<li>abstract: 支持所有 JavaScript 运行环境，如 Node.js 服务器端。如果发现没有浏览器的 API，路由会自动强制进入这个模式.</li>
+</ul>
+<h6 id="路由模式解析"><a href="#路由模式解析" class="headerlink" title="路由模式解析"></a>路由模式解析</h6><p>对于Vue 这类渐进式前端开发框架，为了构建SPA（单页面应用），需要引入前端路由系统，这也就是Vue-router存在的意义.</p>
+<p>前端路由的核心，就在于——— 改变视图的同时不会向后端发出请求<br><code>浏览器对页面的访问是无状态的，所以我们在切换不同的页面时都会重新进行请求。
+实际运用vue和vue-router开发就会发现，在切换页面时是没有重新请求的，使用起来就好像页面是有状态的。
+其实是借助浏览器的History API来实现的，可以使页面跳转而不刷新，页面的状态就维持在浏览器中了。</code></p>
+<p>.</p>
+<ul>
+<li>vue-router: hash</li>
+</ul>
+<p>hash模式中url带有#号，修改成history模式，url中的#自动就去除了。</p>
+<p>hash模式背后的原理是onhashchange事件，可以在window对象上监听这个事件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">window.onhashchange = function(event)&#123;</span><br><span class="line">    console.log(event.oldURL, event.newURL);</span><br><span class="line">    let hash = location.hash.slice(1)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>hash模式下，仅hash符号之前的内容会被包含在请求中,如 <a href="http://www.abc.com" target="_blank" rel="noopener">http://www.abc.com</a>, 因此对于后端来说，即使没有做到对路由的全覆盖，也不会返回404错误,因此改变hash不会重新加载页面.</p>
+<ul>
+<li>vue-router: history<br>随着history api的到来，前端路由开始进化了，前面的hashchange，你只能改变#后面的url片段，而history api则给了前端完全的自由。<br>　history api可以分为两大部分：切换和修改</li>
+</ul>
+<ol>
+<li>切换历史状态</li>
+</ol>
+<p>包括back、forward、go三个方法，对应浏览器的前进，后退，跳转操作，有同学说了，(谷歌)浏览器只有前进和后退，没有跳转，嗯，在前进后退上长按鼠标，会出来所有当前窗口的历史记录，从而可以跳转：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">history.go(-2);//后退两次</span><br><span class="line">history.go(2);//前进两次</span><br><span class="line">history.back(); //后退</span><br><span class="line">hsitory.forward(); //前进</span><br></pre></td></tr></table></figure></p>
+<p><code>坑1：此处有一个开发的坑：在我们项目中，开发人员会在某个详情页面按钮上绑定history.go(-1)用来进入详情的主页面，
+有时测试人员会直接输入url进入详情页，这样点击按钮就会出现问题，跳转的就不是项目中的主页面，就会是浏览器历史记录中的上一页</code></p>
+<ol start="2">
+<li>修改历史状态<br>包括了pushState、replaceState两个方法，这两个方法接收三个参数：stateObj，title，url<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">history.pushState(stateObj，title，url)</span><br><span class="line">window.onpopstate = function(event)&#123;</span><br><span class="line">    console.log(event.state)</span><br><span class="line">    if(event.state &amp;&amp; event.state.color === &apos;red&apos;)&#123;</span><br><span class="line">        document.body.style.color = &apos;red&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><code>坑2：通过history api，我们丢掉了丑陋的#，但是它也有个毛病：不怕前进，不怕后退，就怕刷新，f5，（如果后端没有准备的话），因为刷新是实实在在地去请求服务器的。在hash模式下，前端路由修改的是#中的信息，而浏览器请求时是不带它玩的，所以没有问题。但是在history下，你可以自由的修改path，当刷新时，如果服务器中没有相应的响应或者资源，会分分钟刷出一个404来。</code></p>
+<ol start="3">
+<li>popstate实现history路由拦截，监听页面返回事件<br>当活动历史记录条目更改时，将触发popstate事件</li>
+</ol>
+<ul>
+<li><p>如果被激活的历史记录条目是通过对  history.pushState()  的调用创建的，或者受到对  history.replaceState()  的调用的影响，popstate事件的state属性包含历史条目的状态对象的副本。</p>
+</li>
+<li><p>需要注意的是调用  history.pushState()  或  history.replaceState()  用来在浏览历史中添加或修改记录，不会触发popstate事件；</p>
+<p>　　只有在做出浏览器动作时，才会触发该事件，如用户点击浏览器的回退按钮（或者在Javascript代码中调用history.back()）</p>
+</li>
+<li>vue-router: abstract<br>abstract模式是使用一个不依赖于浏览器的浏览历史虚拟管理后端。</li>
+</ul>
+<p>根据平台差异可以看出，在 Weex 环境中只支持使用 abstract 模式。 不过，vue-router 自身会对环境做校验，如果发现没有浏览器的 API，vue-router 会自动强制进入 abstract 模式，所以 在使用 vue-router 时只要不写 mode 配置即可，默认会在浏览器环境中使用 hash 模式，在移动端原生环境中使用 abstract 模式</p>
+<h2 id="谈谈你对keep-alive的了解"><a href="#谈谈你对keep-alive的了解" class="headerlink" title="谈谈你对keep-alive的了解"></a>谈谈你对keep-alive的了解</h2><p>先贴一个常规回答：<br>`<br>keep-alive是 Vue 内置的一个组件，可以使被包含的组件保留状态，或避免重新渲染。<br>在vue 2.1.0 版本之后，keep-alive新加入了两个属性: include(包含的组件缓存) 与 exclude(排除的组件不缓存，优先级大于include) 。</p>
+<p><keep-alive> 是一个抽象组件：它自身不会渲染一个 DOM 元素，也不会出现在父组件链中。<br>`</keep-alive></p>
+<p><code>然后你可以开始骚了：</code></p>
+<ol>
+<li><p><code>&lt;keep-alive&gt;</code>是 Vue 源码中实现的一个全局抽象组件，通过自定义 <code>render</code> 函数并且利用了<code>插槽</code>来实现数据缓存和更新。它的定义在<code>src/core/components/keep-alive.js</code> 中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  name: &apos;keep-alive&apos;,</span><br><span class="line">  abstract: true,</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>所有的抽象组件是通过定义abstract选项来声明的。抽象组件不渲染真实DOM，且不会出现在父子关系的路径上（initLifecycle会忽略抽象组件），相关代码片段：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if (parent &amp;&amp; !options.abstract) &#123;</span><br><span class="line">  // abstract 即 `ptions.abstract`</span><br><span class="line">  // while 循环查找第一个非抽象的父组件</span><br><span class="line">  while (parent.$options.abstract &amp;&amp; parent.$parent) &#123;</span><br><span class="line">    parent = parent.$parent</span><br><span class="line">  &#125;</span><br><span class="line">  parent.$children.push(vm)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>3.在 2.2.0 及其更高版本中，activated 和 deactivated 将会在 <keep-alive> 树内的所有嵌套组件中触发。</keep-alive></p>
+<h2 id="vue源码中内置的组件？"><a href="#vue源码中内置的组件？" class="headerlink" title="vue源码中内置的组件？"></a>vue源码中内置的组件？</h2><ul>
+<li>component</li>
+<li>transition</li>
+<li>transition-group</li>
+<li>keep-alive</li>
+<li>slot<h2 id="了解Vue2-6-新全局API：Vue-observable-吗？"><a href="#了解Vue2-6-新全局API：Vue-observable-吗？" class="headerlink" title="了解Vue2.6+新全局API：Vue.observable()吗？"></a>了解Vue2.6+新全局API：Vue.observable()吗？</h2>Vue2.6+新的全局API是Vue.observable(),它的使用方式：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 准备个文件store.js - /store/store.js</span><br><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line"></span><br><span class="line">export const store = Vue.observable(&#123; count: 0 &#125;)  //定义一个变量</span><br><span class="line">export const mutations = &#123;  //定义一个方法，将来在组件中调用这个方法从而能改变上面的变量count值</span><br><span class="line">  setCount (count) &#123;</span><br><span class="line">    store.count = count</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>返回的对象可以直接用于<code>渲染函数</code>和<code>计算属性</code>内，并且会在发生改变时触发相应的更新。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;p&gt;你点+-，看我能不能根据状态去动态改变&lt;/p&gt;</span><br><span class="line">        &lt;label for=&quot;bookNum&quot;&gt;数量&lt;/label&gt;</span><br><span class="line">        &lt;button @click=&quot;setCount(count+1)&quot;&gt;+&lt;/button&gt;</span><br><span class="line">        &lt;span&gt;&#123;&#123;count&#125;&#125;&lt;/span&gt;</span><br><span class="line">        &lt;button @click=&quot;setCount(count-1)&quot;&gt;-&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import &#123; store, mutations &#125; from &apos;../store/store&apos; // Vue2.6新增API Observable</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  name: &apos;Add&apos;,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    count () &#123;</span><br><span class="line">      return store.count //用于去渲染之前Observable中定义的变量count</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    setCount: mutations.setCount</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>整篇文章主要参考链接：<a href="https://juejin.im/post/5c959f74f265da610c068fa8" target="_blank" rel="noopener">https://juejin.im/post/5c959f74f265da610c068fa8</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/09/03/vueSourceCoding/" data-id="ck06fun82000yr8kcpn45n3g6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/09/03/vueTitle/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          vue相关面试题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/09/02/webTitle/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">前端面试题整理</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-hexo/">blog-hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/blog-hexo/" style="font-size: 15px;">blog-hexo</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/web/" style="font-size: 10px;">web</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/09/03/jsTitle/">js相关面试题整理</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/03/vueTitle/">vue相关面试题</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/03/vueSourceCoding/">了解vue源码</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/02/webTitle/">前端面试题整理</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/26/promise/">Promise</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
