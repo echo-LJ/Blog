@@ -33,6 +33,8 @@ https://cn.vuejs.org/v2/guide/ssr.html
 * hexo怎么将草稿变成发布文章
 
 
+* 请求接口会出现unhandled promise rejection，更改一下http.js
+
 
 学习顺序：
 
