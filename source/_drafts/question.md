@@ -29,11 +29,17 @@ https://cn.vuejs.org/v2/guide/ssr.html
 
 * 看一下前端工程化
 
+* js实现虚拟的dom树
+* vue源码数据怎么触发数据更新
+* 了解骨架屏
+
 * hexo发布的文章怎么折叠起来
 * hexo怎么将草稿变成发布文章
 
-
+ 
 * 请求接口会出现unhandled promise rejection，更改一下http.js
+
+* 了解一下deep,样式穿透。
 
 
 学习顺序：
