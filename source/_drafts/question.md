@@ -18,7 +18,9 @@ https://cn.vuejs.org/v2/guide/ssr.html
 
 * 看一下媛媛的代理
 
-* 整理一下storybook组件库& 思路
+
+
+* 整理一下storybook组件库 & 思路
 
 * 发布组件到npm上
 * 整理一下发布npm组件库的思路
@@ -33,8 +35,6 @@ https://cn.vuejs.org/v2/guide/ssr.html
 * hexo发布的文章怎么折叠起来
 * hexo怎么将草稿变成发布文章
 
- 
-* 请求接口会出现unhandled promise rejection，更改一下http.js
 
 * 了解一下deep,样式穿透。
 
