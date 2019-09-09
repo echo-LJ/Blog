@@ -16,8 +16,6 @@ https://cn.vuejs.org/v2/guide/ssr.html
 
 * 前端express模拟数据库。
 
-* 看一下vant是什么组件库
-
 * 看一下媛媛的代理
 
 * 整理一下storybook组件库& 思路
@@ -25,7 +23,6 @@ https://cn.vuejs.org/v2/guide/ssr.html
 * 发布组件到npm上
 * 整理一下发布npm组件库的思路
 
-* 看一下vant是什么组件库
 
 * 看一下前端工程化
 
