@@ -7,6 +7,9 @@ tags:
 * `webTitle`: HTTP response报文结构是怎样的
 * `vueSourceCoding`:看一下这个https://www.cnblogs.com/zhuzhenwei918/p/9266407.html 百度搜索一下`vue serverPrefetch`& https://zhuanlan.zhihu.com/p/25936718
 
+eval $(ssh-agent -s)
+ssh-add ~/.ssh/lujing163
+
 https://ssr.vuejs.org/zh/
 https://cn.vuejs.org/v2/guide/ssr.html
 
