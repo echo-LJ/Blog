@@ -1,5 +1,5 @@
 ---
-title: message-comp
+title: 模拟element-ui写message组件思路
 date: 2019-08-15 16:05:21
 tags: vue
 ---

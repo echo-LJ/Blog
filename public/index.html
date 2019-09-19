@@ -62,6 +62,279 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-cssTitle" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/09/19/cssTitle/" class="article-date">
+  <time datetime="2019-09-19T03:27:51.000Z" itemprop="datePublished">2019-09-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/19/cssTitle/">cssTitle</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Author: Echo<br>Time: 2019-09-19 15:46:24</p>
+<h2 id="1-什么是-BFC机制"><a href="#1-什么是-BFC机制" class="headerlink" title="1.什么是 BFC机制"></a>1.什么是 BFC机制</h2><p>BFC(Block Formatting Context)，块级格式化上下文，是一个独立的渲染区域，让处于 BFC 内部的元素与外部的元素相互隔离，使内外元素的定位不会相互影响。</p>
+<ul>
+<li>触发条件 (以下任意一条)</li>
+</ul>
+<ol>
+<li>float的值不为none</li>
+<li>overflow的值不为visible</li>
+<li>display的值为table-cell、tabble-caption和inline-block之一</li>
+<li>position的值不为static或则releative中的任何一个<br><code>在IE下, Layout,可通过zoom:1 触发</code></li>
+</ol>
+<ul>
+<li>BFC布局与普通文档流布局区别:</li>
+</ul>
+<h6 id="BFC布局规则"><a href="#BFC布局规则" class="headerlink" title="BFC布局规则:"></a>BFC布局规则:</h6><ol>
+<li>浮动的元素会被父级计算高度(父级元素触发了BFC)</li>
+<li>非浮动元素不会覆盖浮动元素的位置(非浮动元素触发了BFC)</li>
+<li>margin不会传递给父级(父级触发BFC)</li>
+<li>属于同一个BFC的两个相邻元素上下margin会重叠</li>
+<li>普通文档流布局: 浮动的元素是不会被父级计算高度</li>
+<li>非浮动元素会覆盖浮动元素的位置</li>
+<li>margin会传递给父级元素</li>
+<li>两个相邻元素上下的margin会重叠</li>
+</ol>
+<ul>
+<li>开发中的应用</li>
+</ul>
+<ol>
+<li>阻止margin重叠</li>
+<li>可以包含浮动元素 —— 清除内部浮动(清除浮动的原理是两个 div都位于同一个 BFC 区域之中)</li>
+<li>自适应两栏布局</li>
+<li>可以阻止元素被浮动元素覆盖</li>
+</ol>
+<h2 id="2-CSS3中新增的选择器以及属性"><a href="#2-CSS3中新增的选择器以及属性" class="headerlink" title="2. CSS3中新增的选择器以及属性"></a>2. CSS3中新增的选择器以及属性</h2><p>这里只是列出来, 具体的使用,请查看我的关于css3新增选择器与属性文章</p>
+<ul>
+<li>属性选择器</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属性选择器</th>
+<th style="text-align:right">含义描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E[att^=”val”]</td>
+<td style="text-align:right">属性att的值以”val”开头的元素</td>
+</tr>
+<tr>
+<td>E[att$=”val”]</td>
+<td style="text-align:right">属性att的值以”val”结尾的元素</td>
+</tr>
+<tr>
+<td>E[att*=”val”]</td>
+<td style="text-align:right">属性att的值包含”val”字符串的元素</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>结构伪类选择器<br>选择器    含义描述<br>E:root    匹配文档的根元素，对于HTML文档，就是HTML元素<br>E:nth-child(n)    匹配其父元素的第n个子元素，第一个编号为1<br>E:nth-last-child(n)    匹配其父元素的倒数第n个子元素，第一个编号为1<br>E:nth-of-type(n)    与:nth-child()作用类似，但是仅匹配使用同种标签的元素<br>E:nth-last-of-type(n)    与:nth-last-child() 作用类似，但是仅匹配使用同种标签的元素<br>E:last-child    匹配父元素的最后一个子元素，等同于:nth-last-child(1)<br>E:first-of-type    匹配父元素下使用同种标签的第一个子元素，等同于:nth-of-type(1)<br>E:last-of-type    匹配父元素下使用同种标签的最后一个子元素，等同于:nth-last-of-type(1)<br>E:only-child    匹配父元素下仅有的一个子元素，等同于:first-child:last-child或 :nth-child(1):nth-last-child(1)<br>E:only-of-type    匹配父元素下使用同种标签的唯一一个子元素，等同于:first-of-type:last-of-type或 :nth-of-type(1):nth-last-of-type(1)<br>E:empty    匹配一个不包含任何子元素的元素，注意，文本节点也被看作子元素<br>css3新增属性<br>属性    含义描述    兼容<br>transition    设置过渡效果<br>transform    变换效果(移动、缩放、转动、拉长或拉伸)<br>animation    动画效果<br>box-shadow    阴影效果    FF3.5, Safari 4, Chrome 3<br>text-shadow    文本阴影    FF 3.5, Opera 10, Safari 4, Chrome 3<br>border-colors    为边框设置多种颜色    FF3+<br>boder-image    图片边框    FF 3.5, Safari 4, Chrome 3<br>text-overflow    文本截断    IE6+, Safari4, Chrome3, Opera10<br>word-wrap    自动换行    IE6+, FF 3.5, Safari 4, Chrome 3<br>border-radius    圆角边框    FF 3+, Safari 4 , Chrome 3<br>opacity    不透明度    all<br>box-sizing    控制盒模型的组成模式    FF3+, Opera 10, Safari 4, Chrome 3<br>outline    外边框    FF3+, safari 4, chrome 3, opera 10<br>background-size    不指定背景图片的尺寸    safari 4, chrome 3, opera 10<br>background-origin    指定背景图片从哪里开始显示    safari 4, chrome 3, FF 3+<br>background-clip    指定背景图片从什么位置开始裁切    safari 4, chrome 3<br>rgba    基于r,g,b三个颜色通道来设置颜色值, 通过a来设置透明度    safari 4, chrome 3, FF3, opera 10</li>
+</ul>
+<ol start="3">
+<li>居中布局</li>
+</ol>
+<p>水平居中<br>行内元素: text-align:center<br>块级元素: margin:0 auto<br>绝对定位和移动: absolute + transform<br>绝对定位和负边距: absolute + margin<br>flex布局: flex + justify-content:center<br>垂直居中<br>子元素为单行文本: line-height:height<br>absolute + transform<br>flex + align-items:center<br>table: display:table-cell; vertical-align: middle<br>利用position和top和负margin<br>水平垂直居中</p>
+<ol>
+<li><p>已知元素宽高:绝对定位+margin:auto:<br>div{<br>   width: 200px;<br>   height: 200px;<br>   background: green;</p>
+<p>   position:absolute;<br>   left:0;<br>   top: 0;<br>   bottom: 0;<br>   right: 0;<br>   margin: auto;<br>}</p>
+</li>
+<li><p>已知元素宽高:  绝对定位+负margin<br>div{<br>   width: 200px;<br>   height: 200px;<br>   background: green;</p>
+<p>   position:absolute;<br>   left:0;<br>   top: 0;<br>   bottom: 0;<br>   right: 0;<br>   margin: auto;<br>}</p>
+</li>
+<li><p>absolute+transform<br>div{<br>  width: 200px;<br>  height: 200px;<br>  background: green;</p>
+<p>  position:absolute;<br>  left:50%;    /<em> 定位父级的50% </em>/<br>  top:50%;<br>  transform: translate(-50%,-50%); /<em>自己的50% </em>/<br>}</p>
+</li>
+</ol>
+<p>4.flex + justify-content + align-items<br>.box{<br>   height:600px;</p>
+<p>   display:flex;<br>   justify-content:center;  //子元素水平居中<br>   align-items:center;      //子元素垂直居中<br>     /<em> aa只要三句话就可以实现不定宽高水平垂直居中。</em>/<br>    }<br>  .box&gt;div{<br>    background: green;<br>    width: 200px;<br>    height: 200px;<br>  }</p>
+<ol start="4">
+<li>清除浮动有哪些方法, 各有什么优缺点</li>
+</ol>
+<p>使用clear属性的空元素 在浮动元素后使用一个空元素如<div class="clear"></div>，并在CSS中赋予.clear{clear:both;}属性即可清理浮动。亦可使用<br class="clear">或<hr class="clear">来进行清理。<br>优点: 简单, 写少量代码, 兼容性也好 缺点: 添加无语义html元素, 不利于代码语义化, 后期维护成本大<br>使用css的overflow属性 给浮动元素的容器添加overflow:hidden;或overflow:auto;可以清除浮动，另外在 IE6 中还需要触发 hasLayout ，例如为父元素设置容器宽高或设置zoom:1。在添加overflow属性后，浮动元素又回到了容器层，把容器高度撑起，达到了清理浮动的效果。<br>优点: 简单, 代码少, 浏览器支持好 缺点: 不能和position配合使用, 因为超出的尺寸会被隐藏overflow:hidden<br>使用CSS的:after伪元素 结合 :after 伪元素（注意这不是伪类，而是伪元素，代表一个元素之后最近的元素）和 IEhack ，可以完美兼容当前主流的各大浏览器，这里的 IEhack 指的是触发 hasLayout。给浮动元素的容器添加一个    clearfix 的class，然后给这个class添加一个:after伪元素实现元素末尾添加一个看不见的块元素（Block element）清理浮动。通过CSS伪元素在容器的内部元素最后添加了一个看不见的空格”020”或点”.”，并且赋予clear属性来清除浮动。需要注意的是为了IE6和IE7浏览器，要给clearfix这个class添加一条zoom:1;触发haslayout。<br>优点: 浏览器支持好，不容易出现怪问题（目前：大型网站都有使用，如：腾迅，网易，新浪等等） 缺点: 代码多，要两句代码结合使用，才能让主流浏览器都支持<br>给父级元素设置高度<br>简单, 代码少,好掌握 缺点: 只适用于高度固定的布局</p>
+<ol start="5">
+<li>用纯CSS创建一个三角形的原理是什么</li>
+</ol>
+<p>之前写三角形, 都是直接记住代码,没有探究原因,我也是直到有一次面试时,面试大哥让我说说css创建三角形的原理,我就……回来就赶紧翻资料.接下来我就将当时我理解的过程列举出来:</p>
+<ol>
+<li>写一个我们最熟悉的 border应用<br>.box{<br> width:100px;<br> height:100px;<br> border: 3px solid;<br> border-color:#1b93fb #1bfb24 #efad48 #ef4848;<br>}<br>效果如下:</li>
+<li><p>接下来,我们将border值增大<br>.box{<br> width:100px;<br> height:100px;<br> border: 50px solid;<br> border-color:#1b93fb #1bfb24 #efad48 #ef4848;<br>}<br>很容易发现, border渲染并不是正方形, 而是梯形的.</p>
+</li>
+<li><p>在增大border的基础下, 此时我们将盒子宽高变成0,会产生什么效果呢!<br>.box{<br> width:0px;<br> height:0px;<br> border: 50px solid;<br> border-color:#1b93fb #1bfb24 #efad48 #ef4848;<br>}<br>四个三角形拼合成的矩形呈现在我们眼前,那如如果我们只想要一个三角形, 我们是不是可以设想将其他三个设为不可见;</p>
+</li>
+<li><p>设置透明, 隐藏其中三个三角形<br>.box{<br> width:0px;<br> height:0px;<br> border: 50px solid;<br> border-color:transparent transparent transparent #ef4848;<br>}<br>三角形这样就出来, 有木有很简单, 当然我们也可以采用逆向思维来写这个效果, 就是先将所有边框设为透明, 然后需要哪边再对其设置颜色, 效果是一样的<br>.box{<br> width:0px;<br> height:0px;<br> border: 50px solid transparent;<br> border-left:50px solid #ef4848;<br>}</p>
+</li>
+</ol>
+<p>这样给面试你的人讲,讲明白应该不是问题., 重点就是要理解border的应用</p>
+<ol start="6">
+<li>实现三栏布局有哪些方法, 分别描述一下</li>
+</ol>
+<p>三栏布局，顾名思义就是两边固定，中间自适应。三栏布局在开发十分常见，那么什么是三栏布局？即左右模块固定宽度，中间模块随浏览器变化自适应，想要完成的最终效果如下图所示：下面列出四种实现方式, 在开发中可以根据实际需求选择适合自己的方法进行编码:</p>
+<p>Flex 布局</p>
+<style>
+.container{
+  display:flex;
+  justify-content: center;
+  height: 200px;
+  background: #eee;
+}
+.left {
+   width: 200px;
+   background-color: red;
+   height: 100%;
+ }
+.main {
+    background-color: yellow;
+    flex: 1;
+}
+.right {
+    width: 200px;
+    background-color: green;
+}
+</style>
+<div class="container">
+  <div class="left">1</div>
+  <div class="main">2</div>
+  <div class="right">3</div>
+</div>
+简单实用，现在比较流行的方案，但是需要考虑浏览器的兼容性。
+
+绝对定位布局
+<style>
+.container {
+  position: relative;
+  background:#eee;
+  height:200px;
+    }
+.main {
+  height: 200px;
+  margin: 0 120px;
+  background-color: yellow;
+    }
+.left {
+  position: absolute;
+  width: 100px;
+  height: 200px;
+  left: 0;
+  top: 0;
+  background-color: red;
+    }
+.right {
+  position: absolute;
+  width: 100px;
+  height: 200px;
+  background-color: green;
+  right: 0;
+  top: 0;
+}
+</style>
+
+<div class="container"><br>  <div class="left">1</div><br>  <div class="main">2</div><br>  <div class="right">3</div><br></div><br>这种方案也简单实用, 并且可以将 <div class="main"></div>元素放到第一位,使得主要内容优先加载!<br><br>双飞翼布局<br><style><br>.content {<br>  float: left;<br>  width: 100%;<br>}<br>.main {<br>  height: 200px;<br>  margin-left: 110px;<br>  margin-right: 220px;<br>  background-color: yellow;<br>}<br>.left {<br>  float: left;<br>  height: 200px;<br>  width: 100px;<br>  margin-left: -100%;<br>  background-color: red;<br>}<br>.right {<br>  width: 200px;<br>  height: 200px;<br>  float: right;<br>  margin-left: -200px;<br>  background-color: green;<br>}<br><br></style><br><div class="content"><br>  <div class="main"></div><br></div><br><div class="left"></div><br><div class="right"></div>
+
+
+<p>圣杯布局</p>
+<style>
+.container {
+  margin-left: 120px;
+  margin-right: 220px;
+}
+.main {
+  float: left;
+  width: 100%;
+  height: 300px;
+  background-color: yellow;
+}
+.left {
+  float: left;
+  width: 100px;
+  height: 300px;
+  margin-left: -100%;
+  position: relative;
+  left: -120px;
+  background-color: blue;
+}
+.right {
+  float: left;
+  width: 200px;
+  height: 300px;
+  margin-left: -200px;
+  position: relative;
+  right: -220px;
+  background-color: green;
+}
+</style>
+<div class="container">
+  <div class="main"></div>
+  <div class="left"></div>
+  <div class="right"></div>
+</div>
+圣杯布局和双飞翼布局解决问题的方案在前一半是相同的，也就是三栏全部float浮动，但左右两栏加上负margin让其跟中间栏div并排，以形成三栏布局。
+
+
+7. css3实现0.5px的细线
+
+<style>
+.line {
+    position: relative;
+}
+.line:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #000000;
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+}
+</style>
+
+<div class="line"></div>
+
+
+<ol start="8">
+<li>link 与 @import 的区别</li>
+</ol>
+<p>从属关系区别<br>@import是 CSS 提供的语法规则，只有导入样式表的作用；link是HTML提供的标签，不仅可以加载 CSS 文件，还可以定义 RSS、rel 连接属性等<br>加载顺序区别<br>加载页面时，link标签引入的 CSS 被同时加载；@import引入的 CSS 将在页面加载完毕后被加载。<br>兼容性区别<br>@import是 CSS2.1 才有的语法，故只可在 IE5+ 才能识别；link标签作为 HTML 元素，不存在兼容性问题。<br>DOM可控性区别<br>可以通过 JS 操作 DOM ，插入link标签来改变样式；由于DOM方法是基于文档的，无法使用@import的方式插入样式。<br>css部分就整理到这里, 小伙伴们面试还有什么经常遇到的,可以在评论区给我留言, 我有时间就整理出来, IT(挨踢)都是一大家, 方便你我他</p>
+<ol start="9">
+<li>开发中为什么要初始化css样式</li>
+</ol>
+<p>因为浏览器的兼容问题，不同浏览器对有些标签的默认值是不同的，如果没对CSS初始化往往会出现浏览器之间的页面显示差异。</p>
+<ol start="10">
+<li>CSS优化、提高性能的方法有哪些</li>
+</ol>
+<p>尽量将样式写在单独的css文件里面，在head元素中引用 将代码写成单独的css文件有几点好处：<br>内容和样式分离，易于管理和维护<br>减少页面体积<br>css文件可以被缓存、重用，维护成本降低<br>不使用@import<br>避免使用复杂的选择器，层级越少越好 建议选择器的嵌套最好不要超过三层，比如：<br>精简页面的样式文件，去掉不用的样式<br>利用CSS继承减少代码量<br>避免！important，可以选择其他选择器</p>
+<p>参考链接：<a href="http://www.pinlue.com/article/2019/05/2002/158990051021.html" target="_blank" rel="noopener">http://www.pinlue.com/article/2019/05/2002/158990051021.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/09/19/cssTitle/" data-id="ck0qeegzq000sw8kclw61oloo" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-jsTitle" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/09/03/jsTitle/" class="article-date">
@@ -104,7 +377,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/03/jsTitle/" data-id="ck07rcosc000b1okcpkowzrue" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/03/jsTitle/" data-id="ck0qeegyc0000w8kc0gyq1vo0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
@@ -158,7 +431,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/03/vueTitle/" data-id="ck07rcosf000d1okc9l7zjrnd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/03/vueTitle/" data-id="ck0qeegzg000ow8kcf8vkalxs" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
@@ -312,13 +585,57 @@
 </li>
 </ul>
 <p>返回的对象可以直接用于<code>渲染函数</code>和<code>计算属性</code>内，并且会在发生改变时触发相应的更新。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;p&gt;你点+-，看我能不能根据状态去动态改变&lt;/p&gt;</span><br><span class="line">        &lt;label for=&quot;bookNum&quot;&gt;数量&lt;/label&gt;</span><br><span class="line">        &lt;button @click=&quot;setCount(count+1)&quot;&gt;+&lt;/button&gt;</span><br><span class="line">        &lt;span&gt;&#123;&#123;count&#125;&#125;&lt;/span&gt;</span><br><span class="line">        &lt;button @click=&quot;setCount(count-1)&quot;&gt;-&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import &#123; store, mutations &#125; from &apos;../store/store&apos; // Vue2.6新增API Observable</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  name: &apos;Add&apos;,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    count () &#123;</span><br><span class="line">      return store.count //用于去渲染之前Observable中定义的变量count</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    setCount: mutations.setCount</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="了解Vue数据绑定原理？"><a href="#了解Vue数据绑定原理？" class="headerlink" title="了解Vue数据绑定原理？"></a>了解Vue数据绑定原理？</h2><p>参考Vue.js官网介绍响应式原理图，我们进行分析：</p>
+<p>这张图比较清晰地展示了整个流程，首先通过一次渲染操作触发Data的getter（这里保证只有视图中需要被用到的data才会触发getter）进行依赖收集，这时候其实Watcher与data可以看成一种被绑定的状态（实际上是data的闭包中有一个Deps订阅者，在修改的时候会通知所有的Watcher观察者），在data发生变化的时候会触发它的setter，setter通知Watcher，Watcher进行回调通知组件重新渲染的函数，之后根据diff算法来决定是否发生视图的更新。<br>Vue在初始化组件数据时，在生命周期的beforeCreate与created钩子函数之间实现了对data、props、computed、methods、events以及watch的处理。</p>
+<p>Vue在初始化组件数据时，在生命周期的<code>beforeCreate</code>与<code>created</code>钩子函数之间实现了对<code>data、props、computed、methods、events</code>以及<code>watch</code>的处理.</p>
+<ul>
+<li>initData<br>参考源码instance下的state.js文件</li>
+</ul>
+<p>initData主要是初始化data中的数据，将数据进行observe，监听数据的变化，其他的监视原理一致，这里以data为例。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">function initData (vm: Component) &#123;  </span><br><span class="line">  /*得到data数据*/</span><br><span class="line">  let data = vm.$options.data</span><br><span class="line">  data = vm._data = typeof data === &apos;function&apos; ? getData(data, vm) : data || &#123;&#125; </span><br><span class="line">  /*判断是否是对象*/</span><br><span class="line">  if (!isPlainObject(data)) &#123;</span><br><span class="line">    data = &#123;&#125;</span><br><span class="line">    process.env.NODE_ENV !== &apos;production&apos; &amp;&amp; warn(&apos;data functions should return an object:\n&apos; +&apos;https://vuejs.org/v2/guide/components.html#data-Must-Be-a-Function&apos;, vm)</span><br><span class="line">  &#125;  </span><br><span class="line">  // proxy data on instance</span><br><span class="line">  /*遍历data对象*/</span><br><span class="line">  const keys = Object.keys(data)</span><br><span class="line">  const props = vm.$options.props</span><br><span class="line">  let i = keys.length</span><br><span class="line">  //遍历data中的数据</span><br><span class="line">  while (i--) &#123;</span><br><span class="line">    /*保证data中的key不与props中的key重复，props优先，如果有冲突会产生warning*/    if (props &amp;&amp; hasOwn(props, keys[i])) &#123;</span><br><span class="line">      process.env.NODE_ENV !== &apos;production&apos; &amp;&amp; warn(`The data property &quot;$&#123;keys[i]&#125;&quot; is already declared as a prop. ` +`Use prop default value instead.`,vm)</span><br><span class="line">    &#125; else if (!isReserved(keys[i])) &#123;</span><br><span class="line">      /*判断是否是保留字段*/</span><br><span class="line">      /*这里是我们前面讲过的代理，将data上面的属性代理到了vm实例上*/</span><br><span class="line">      proxy(vm, `_data`, keys[i])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  // observe data</span><br><span class="line">  /*从这里开始我们要observe了，开始对数据进行绑定，这里有尤大大的注释asRootData，这步作为根数据，下面会进行递归observe进行对深层对象的绑定。*/  </span><br><span class="line">  observe(data, true /* asRootData */)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>其实这段代码主要做了两件事，一是将_data上面的数据代理到vm上，另一件事通过observe将所有数据(data对象中的深层次数据，以及props)变成observable。</p>
+<ul>
+<li>proxy<br>接下来看一下proxy代理。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/*添加代理*/</span><br><span class="line">export function proxy (target: Object, sourceKey: string, key: string) &#123;</span><br><span class="line">  sharedPropertyDefinition.get = function proxyGetter () &#123;</span><br><span class="line">    return this[sourceKey][key]</span><br><span class="line">  &#125;</span><br><span class="line">  sharedPropertyDefinition.set = function proxySetter (val) &#123;</span><br><span class="line">    this[sourceKey][key] = val</span><br><span class="line">  &#125;</span><br><span class="line">  Object.defineProperty(target, key, sharedPropertyDefinition)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过proxy函数将data上面的数据代理到vm上，这样就可以用app.text代替app._data.text了。</p>
+<ul>
+<li>observe<br>参考源码文件在core文件下oberver的index.js文件中</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Attempt to create an observer instance for a value,</span><br><span class="line"> * returns the new observer if successfully observed,</span><br><span class="line"> * or the existing observer if the value already has one.</span><br><span class="line"> */</span><br><span class="line"> /*</span><br><span class="line"> 尝试创建一个Observer实例（__ob__），如果成功创建Observer实例则返回新的Observer实例，如果已有Observer实例则返回现有的Observer实例。</span><br><span class="line"> */</span><br><span class="line">export function observe (value: any, asRootData: ?boolean): Observer | void &#123;</span><br><span class="line">  /*判断是否是一个对象*/</span><br><span class="line">  if (!isObject(value)) &#123;</span><br><span class="line">    return</span><br><span class="line">  &#125;</span><br><span class="line">  let ob: Observer | void</span><br><span class="line"></span><br><span class="line">  /*这里用__ob__这个属性来判断是否已经有Observer实例，如果没有Observer实例则会新建一个Observer实例并赋值给__ob__这个属性，如果已有Observer实例则直接返回该Observer实例*/</span><br><span class="line">  if (hasOwn(value, &apos;__ob__&apos;) &amp;&amp; value.__ob__ instanceof Observer) &#123;</span><br><span class="line">    ob = value.__ob__</span><br><span class="line">  &#125; else if (</span><br><span class="line"></span><br><span class="line">    /*这里的判断是为了确保value是单纯的对象，而不是函数或者是Regexp等情况。*/</span><br><span class="line">    observerState.shouldConvert &amp;&amp;</span><br><span class="line">    !isServerRendering() &amp;&amp;</span><br><span class="line">    (Array.isArray(value) || isPlainObject(value)) &amp;&amp;</span><br><span class="line">    Object.isExtensible(value) &amp;&amp;</span><br><span class="line">    !value._isVue</span><br><span class="line">  ) &#123;</span><br><span class="line">    ob = new Observer(value)</span><br><span class="line">  &#125;</span><br><span class="line">  if (asRootData &amp;&amp; ob) &#123;</span><br><span class="line"></span><br><span class="line">    /*如果是根数据则计数，后面Observer中的observe的asRootData非true*/</span><br><span class="line">    ob.vmCount++</span><br><span class="line">  &#125;</span><br><span class="line">  return ob</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Vue的响应式数据都会有一个<strong>ob</strong>的属性作为标记，里面存放了该属性的观察器，也就是Observer的实例，防止重复绑定。</p>
+<ul>
+<li>Observer<br>Observer的作用就是遍历对象的所有属性将其进行双向绑定。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Observer class that are attached to each observed</span><br><span class="line"> * object. Once attached, the observer converts target</span><br><span class="line"> * object&apos;s property keys into getter/setters that</span><br><span class="line"> * collect dependencies and dispatches updates.</span><br><span class="line"> */</span><br><span class="line">export class  &#123;</span><br><span class="line">  value: any;</span><br><span class="line">  dep: Dep;</span><br><span class="line">  vmCount: number; // number of vms that has this object as root $data</span><br><span class="line"></span><br><span class="line">  constructor (value: any) &#123;</span><br><span class="line">    this.value = value</span><br><span class="line">    this.dep = new Dep()</span><br><span class="line">    this.vmCount = 0</span><br><span class="line"></span><br><span class="line">    /*</span><br><span class="line">    将Observer实例绑定到data的__ob__属性上面去，之前说过observe的时候会先检测是否已经有__ob__对象存放Observer实例了，def方法定义可以参考https://github.com/vuejs/vue/blob/dev/src/core/util/lang.js#L16</span><br><span class="line">    */</span><br><span class="line">    def(value, &apos;__ob__&apos;, this)</span><br><span class="line">    if (Array.isArray(value)) &#123;</span><br><span class="line"></span><br><span class="line">      /*</span><br><span class="line">          如果是数组，将修改后可以截获响应的数组方法替换掉该数组的原型中的原生方法，达到监听数组数据变化响应的效果。</span><br><span class="line">          这里如果当前浏览器支持__proto__属性，则直接覆盖当前数组对象原型上的原生数组方法，如果不支持该属性，则直接覆盖数组对象的原型。</span><br><span class="line">      */</span><br><span class="line">      const augment = hasProto</span><br><span class="line">        ? protoAugment  /*直接覆盖原型的方法来修改目标对象*/</span><br><span class="line">        : copyAugment   /*定义（覆盖）目标对象或数组的某一个方法*/</span><br><span class="line">      augment(value, arrayMethods, arrayKeys)</span><br><span class="line"></span><br><span class="line">      /*如果是数组则需要遍历数组的每一个成员进行observe*/</span><br><span class="line">      this.observeArray(value)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line"></span><br><span class="line">      /*如果是对象则直接walk进行绑定*/</span><br><span class="line">      this.walk(value)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * Walk through each property and convert them into</span><br><span class="line">   * getter/setters. This method should only be called when</span><br><span class="line">   * value type is Object.</span><br><span class="line">   */</span><br><span class="line">  walk (obj: Object) &#123;</span><br><span class="line">    const keys = Object.keys(obj)</span><br><span class="line"></span><br><span class="line">    /*walk方法会遍历对象的每一个属性进行defineReactive绑定*/</span><br><span class="line">    for (let i = 0; i &lt; keys.length; i++) &#123;</span><br><span class="line">      defineReactive(obj, keys[i], obj[keys[i]])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * Observe a list of Array items.</span><br><span class="line">   */</span><br><span class="line">  observeArray (items: Array&lt;any&gt;) &#123;</span><br><span class="line"></span><br><span class="line">    /*数组需要便利每一个成员进行observe*/</span><br><span class="line">    for (let i = 0, l = items.length; i &lt; l; i++) &#123;</span><br><span class="line">      observe(items[i])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Observer为数据加上响应式属性进行双向绑定。如果是对象则进行深度遍历，为每一个子对象都绑定上方法，如果是数组则为每一个成员都绑定上方法。<br>如果是修改一个数组的成员，该成员是一个对象，那只需要递归对数组的成员进行双向绑定即可。<br>但这时候出现了一个问题，？如果我们进行pop、push等操作的时候，push进去的对象根本没有进行过双向绑定，更别说pop了，那么我们如何监听数组的这些变化呢？</p>
+<p>Vue.js提供的方法是重写 <code>push、pop、shift、unshift、splice、sort、reverse</code>这七个数组方法。修改数组原型方法的代码可以参考observer/array.js。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * not type checking this file because flow doesn&apos;t play well with</span><br><span class="line"> * dynamically accessing methods on Array prototype</span><br><span class="line"> */</span><br><span class="line"></span><br><span class="line">import &#123; def &#125; from &apos;../util/index&apos;</span><br><span class="line"></span><br><span class="line">/*取得原生数组的原型*/</span><br><span class="line">const arrayProto = Array.prototype</span><br><span class="line">/*创建一个新的数组对象，修改该对象上的数组的七个方法，防止污染原生数组方法*/</span><br><span class="line">export const arrayMethods = Object.create(arrayProto)</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Intercept mutating methods and emit events</span><br><span class="line"> */</span><br><span class="line"> /*这里重写了数组的这些方法，在保证不污染原生数组原型的情况下重写数组的这些方法，截获数组的成员发生的变化，执行原生数组操作的同时dep通知关联的所有观察者进行响应式处理*/</span><br><span class="line">;[</span><br><span class="line">  &apos;push&apos;,</span><br><span class="line">  &apos;pop&apos;,</span><br><span class="line">  &apos;shift&apos;,</span><br><span class="line">  &apos;unshift&apos;,</span><br><span class="line">  &apos;splice&apos;,</span><br><span class="line">  &apos;sort&apos;,</span><br><span class="line">  &apos;reverse&apos;</span><br><span class="line">]</span><br><span class="line">.forEach(function (method) &#123;</span><br><span class="line">  // cache original method</span><br><span class="line">  /*将数组的原生方法缓存起来，后面要调用*/</span><br><span class="line">  const original = arrayProto[method]</span><br><span class="line">  def(arrayMethods, method, function mutator () &#123;</span><br><span class="line">    // avoid leaking arguments:</span><br><span class="line">    // http://jsperf.com/closure-with-arguments</span><br><span class="line">    let i = arguments.length</span><br><span class="line">    const args = new Array(i)</span><br><span class="line">    while (i--) &#123;</span><br><span class="line">      args[i] = arguments[i]</span><br><span class="line">    &#125;</span><br><span class="line">    /*调用原生的数组方法*/</span><br><span class="line">    const result = original.apply(this, args)</span><br><span class="line"></span><br><span class="line">    /*数组新插入的元素需要重新进行observe才能响应式*/</span><br><span class="line">    const ob = this.__ob__</span><br><span class="line">    let inserted</span><br><span class="line">    switch (method) &#123;</span><br><span class="line">      case &apos;push&apos;:</span><br><span class="line">        inserted = args</span><br><span class="line">        break</span><br><span class="line">      case &apos;unshift&apos;:</span><br><span class="line">        inserted = args</span><br><span class="line">        break</span><br><span class="line">      case &apos;splice&apos;:</span><br><span class="line">        inserted = args.slice(2)</span><br><span class="line">        break</span><br><span class="line">    &#125;</span><br><span class="line">    if (inserted) ob.observeArray(inserted)</span><br><span class="line">      </span><br><span class="line">    // notify change</span><br><span class="line">    /*dep通知所有注册的观察者进行响应式处理*/</span><br><span class="line">    ob.dep.notify()</span><br><span class="line">    return result</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>从数组的原型新建一个Object.create(arrayProto)对象，通过修改此原型可以保证原生数组方法不被污染。如果当前浏览器支持<strong>proto</strong>这个属性的话就可以直接覆盖该属性则使数组对象具有了重写后的数组方法。</p>
+<p>如果没有该属性的浏览器，则必须通过遍历def所有需要重写的数组方法，这种方法效率较低，所以优先使用第一种。</p>
+<p>在保证不污染不覆盖数组原生方法添加监听，主要做了两个操作，第一是通知所有注册的观察者进行响应式处理，第二是如果是添加成员的操作，需要对新成员进行observe。</p>
+<p>但是修改了数组的原生方法以后我们还是没法像原生数组一样直接通过数组的下标或者设置length来修改数组，Vue.js提供了$set()及$remove()方法。</p>
+<ul>
+<li>Watcher</li>
+</ul>
+<p>Watcher是一个观察者对象。依赖收集以后Watcher对象会被保存在Deps中，数据变动的时候会由于Deps通知Watcher实例，然后由Watcher实例回调cb进行实图的更新。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br></pre></td><td class="code"><pre><span class="line">export default class Watcher &#123;</span><br><span class="line">  vm: Component;</span><br><span class="line">  expression: string;</span><br><span class="line">  cb: Function;</span><br><span class="line">  id: number;</span><br><span class="line">  deep: boolean;</span><br><span class="line">  user: boolean;</span><br><span class="line">  lazy: boolean;</span><br><span class="line">  sync: boolean;</span><br><span class="line">  dirty: boolean;</span><br><span class="line">  active: boolean;</span><br><span class="line">  deps: Array&lt;Dep&gt;;</span><br><span class="line">  newDeps: Array&lt;Dep&gt;;</span><br><span class="line">  depIds: ISet;</span><br><span class="line">  newDepIds: ISet;</span><br><span class="line">  getter: Function;</span><br><span class="line">  value: any;</span><br><span class="line"></span><br><span class="line">  constructor (</span><br><span class="line">    vm: Component,</span><br><span class="line">    expOrFn: string | Function,</span><br><span class="line">    cb: Function,</span><br><span class="line">    options?: Object</span><br><span class="line">  ) &#123;</span><br><span class="line">    this.vm = vm</span><br><span class="line">    /*_watchers存放订阅者实例*/</span><br><span class="line">    vm._watchers.push(this)</span><br><span class="line">    // options</span><br><span class="line">    if (options) &#123;</span><br><span class="line">      this.deep = !!options.deep</span><br><span class="line">      this.user = !!options.user</span><br><span class="line">      this.lazy = !!options.lazy</span><br><span class="line">      this.sync = !!options.sync</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      this.deep = this.user = this.lazy = this.sync = false</span><br><span class="line">    &#125;</span><br><span class="line">    this.cb = cb</span><br><span class="line">    this.id = ++uid // uid for batching</span><br><span class="line">    this.active = true</span><br><span class="line">    this.dirty = this.lazy // for lazy watchers</span><br><span class="line">    this.deps = []</span><br><span class="line">    this.newDeps = []</span><br><span class="line">    this.depIds = new Set()</span><br><span class="line">    this.newDepIds = new Set()</span><br><span class="line">    this.expression = process.env.NODE_ENV !== &apos;production&apos;</span><br><span class="line">      ? expOrFn.toString()</span><br><span class="line">      : &apos;&apos;</span><br><span class="line">    // parse expression for getter</span><br><span class="line">    /*把表达式expOrFn解析成getter*/</span><br><span class="line">    if (typeof expOrFn === &apos;function&apos;) &#123;</span><br><span class="line">      this.getter = expOrFn</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      this.getter = parsePath(expOrFn)</span><br><span class="line">      if (!this.getter) &#123;</span><br><span class="line">        this.getter = function () &#123;&#125;</span><br><span class="line">        process.env.NODE_ENV !== &apos;production&apos; &amp;&amp; warn(</span><br><span class="line">          `Failed watching path: &quot;$&#123;expOrFn&#125;&quot; ` +</span><br><span class="line">          &apos;Watcher only accepts simple dot-delimited paths. &apos; +</span><br><span class="line">          &apos;For full control, use a function instead.&apos;,</span><br><span class="line">          vm</span><br><span class="line">        )</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    this.value = this.lazy</span><br><span class="line">      ? undefined</span><br><span class="line">      : this.get()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * Evaluate the getter, and re-collect dependencies.</span><br><span class="line">   */</span><br><span class="line">   /*获得getter的值并且重新进行依赖收集*/</span><br><span class="line">  get () &#123;</span><br><span class="line">    /*将自身watcher观察者实例设置给Dep.target，用以依赖收集。*/</span><br><span class="line">    pushTarget(this)</span><br><span class="line">    let value</span><br><span class="line">    const vm = this.vm</span><br><span class="line"></span><br><span class="line">    /*</span><br><span class="line">      执行了getter操作，看似执行了渲染操作，其实是执行了依赖收集。</span><br><span class="line">      在将Dep.target设置为自生观察者实例以后，执行getter操作。</span><br><span class="line">      譬如说现在的的data中可能有a、b、c三个数据，getter渲染需要依赖a跟c，</span><br><span class="line">      那么在执行getter的时候就会触发a跟c两个数据的getter函数，</span><br><span class="line">      在getter函数中即可判断Dep.target是否存在然后完成依赖收集，</span><br><span class="line">      将该观察者对象放入闭包中的Dep的subs中去。</span><br><span class="line">    */</span><br><span class="line">    if (this.user) &#123;</span><br><span class="line">      try &#123;</span><br><span class="line">        value = this.getter.call(vm, vm)</span><br><span class="line">      &#125; catch (e) &#123;</span><br><span class="line">        handleError(e, vm, `getter for watcher &quot;$&#123;this.expression&#125;&quot;`)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      value = this.getter.call(vm, vm)</span><br><span class="line">    &#125;</span><br><span class="line">    // &quot;touch&quot; every property so they are all tracked as</span><br><span class="line">    // dependencies for deep watching</span><br><span class="line">    /*如果存在deep，则触发每个深层对象的依赖，追踪其变化*/</span><br><span class="line">    if (this.deep) &#123;</span><br><span class="line">      /*递归每一个对象或者数组，触发它们的getter，使得对象或数组的每一个成员都被依赖收集，形成一个“深（deep）”依赖关系*/</span><br><span class="line">      traverse(value)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /*将观察者实例从target栈中取出并设置给Dep.target*/</span><br><span class="line">    popTarget()</span><br><span class="line">    this.cleanupDeps()</span><br><span class="line">    return value</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * Add a dependency to this directive.</span><br><span class="line">   */</span><br><span class="line">   /*添加一个依赖关系到Deps集合中*/</span><br><span class="line">  addDep (dep: Dep) &#123;</span><br><span class="line">    const id = dep.id</span><br><span class="line">    if (!this.newDepIds.has(id)) &#123;</span><br><span class="line">      this.newDepIds.add(id)</span><br><span class="line">      this.newDeps.push(dep)</span><br><span class="line">      if (!this.depIds.has(id)) &#123;</span><br><span class="line">        dep.addSub(this)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * Clean up for dependency collection.</span><br><span class="line">   */</span><br><span class="line">   /*清理依赖收集*/</span><br><span class="line">  cleanupDeps () &#123;</span><br><span class="line">    /*移除所有观察者对象*/</span><br><span class="line">    let i = this.deps.length</span><br><span class="line">    while (i--) &#123;</span><br><span class="line">      const dep = this.deps[i]</span><br><span class="line">      if (!this.newDepIds.has(dep.id)) &#123;</span><br><span class="line">        dep.removeSub(this)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    let tmp = this.depIds</span><br><span class="line">    this.depIds = this.newDepIds</span><br><span class="line">    this.newDepIds = tmp</span><br><span class="line">    this.newDepIds.clear()</span><br><span class="line">    tmp = this.deps</span><br><span class="line">    this.deps = this.newDeps</span><br><span class="line">    this.newDeps = tmp</span><br><span class="line">    this.newDeps.length = 0</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * Subscriber interface.</span><br><span class="line">   * Will be called when a dependency changes.</span><br><span class="line">   */</span><br><span class="line">   /*</span><br><span class="line">      调度者接口，当依赖发生改变的时候进行回调。</span><br><span class="line">   */</span><br><span class="line">  update () &#123;</span><br><span class="line">    /* istanbul ignore else */</span><br><span class="line">    if (this.lazy) &#123;</span><br><span class="line">      this.dirty = true</span><br><span class="line">    &#125; else if (this.sync) &#123;</span><br><span class="line">      /*同步则执行run直接渲染视图*/</span><br><span class="line">      this.run()</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      /*异步推送到观察者队列中，由调度者调用。*/</span><br><span class="line">      queueWatcher(this)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * Scheduler job interface.</span><br><span class="line">   * Will be called by the scheduler.</span><br><span class="line">   */</span><br><span class="line">   /*</span><br><span class="line">      调度者工作接口，将被调度者回调。</span><br><span class="line">    */</span><br><span class="line">  run () &#123;</span><br><span class="line">    if (this.active) &#123;</span><br><span class="line">      const value = this.get()</span><br><span class="line">      if (</span><br><span class="line">        value !== this.value ||</span><br><span class="line">        // Deep watchers and watchers on Object/Arrays should fire even</span><br><span class="line">        // when the value is the same, because the value may</span><br><span class="line">        // have mutated.</span><br><span class="line">        /*</span><br><span class="line">            即便值相同，拥有Deep属性的观察者以及在对象／数组上的观察者应该被触发更新，因为它们的值可能发生改变。</span><br><span class="line">        */</span><br><span class="line">        isObject(value) ||</span><br><span class="line">        this.deep</span><br><span class="line">      ) &#123;</span><br><span class="line">        // set new value</span><br><span class="line">        const oldValue = this.value</span><br><span class="line">        /*设置新的值*/</span><br><span class="line">        this.value = value</span><br><span class="line"></span><br><span class="line">        /*触发回调渲染视图*/</span><br><span class="line">        if (this.user) &#123;</span><br><span class="line">          try &#123;</span><br><span class="line">            this.cb.call(this.vm, value, oldValue)</span><br><span class="line">          &#125; catch (e) &#123;</span><br><span class="line">            handleError(e, this.vm, `callback for watcher &quot;$&#123;this.expression&#125;&quot;`)</span><br><span class="line">          &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          this.cb.call(this.vm, value, oldValue)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * Evaluate the value of the watcher.</span><br><span class="line">   * This only gets called for lazy watchers.</span><br><span class="line">   */</span><br><span class="line">   /*获取观察者的值*/</span><br><span class="line">  evaluate () &#123;</span><br><span class="line">    this.value = this.get()</span><br><span class="line">    this.dirty = false</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * Depend on all deps collected by this watcher.</span><br><span class="line">   */</span><br><span class="line">   /*收集该watcher的所有deps依赖*/</span><br><span class="line">  depend () &#123;</span><br><span class="line">    let i = this.deps.length</span><br><span class="line">    while (i--) &#123;</span><br><span class="line">      this.deps[i].depend()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * Remove self from all dependencies&apos; subscriber list.</span><br><span class="line">   */</span><br><span class="line">   /*将自身从所有依赖收集订阅列表删除*/</span><br><span class="line">  teardown () &#123;</span><br><span class="line">    if (this.active) &#123;</span><br><span class="line">      // remove self from vm&apos;s watcher list</span><br><span class="line">      // this is a somewhat expensive operation so we skip it</span><br><span class="line">      // if the vm is being destroyed.</span><br><span class="line">      /*从vm实例的观察者列表中将自身移除，由于该操作比较耗费资源，所以如果vm实例正在被销毁则跳过该步骤。*/</span><br><span class="line">      if (!this.vm._isBeingDestroyed) &#123;</span><br><span class="line">        remove(this.vm._watchers, this)</span><br><span class="line">      &#125;</span><br><span class="line">      let i = this.deps.length</span><br><span class="line">      while (i--) &#123;</span><br><span class="line">        this.deps[i].removeSub(this)</span><br><span class="line">      &#125;</span><br><span class="line">      this.active = false</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Dep</li>
+</ul>
+<p>来看看Dep类。其实Dep就是一个发布者，可以订阅多个观察者，依赖收集之后Deps中会存在一个或多个Watcher对象，在数据变更的时候通知所有的Watcher。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * A dep is an observable that can have multiple</span><br><span class="line"> * directives subscribing to it.</span><br><span class="line"> */</span><br><span class="line">export default class Dep &#123;</span><br><span class="line">  static target: ?Watcher;</span><br><span class="line">  id: number;</span><br><span class="line">  subs: Array&lt;Watcher&gt;;</span><br><span class="line"></span><br><span class="line">  constructor () &#123;</span><br><span class="line">    this.id = uid++</span><br><span class="line">    this.subs = []</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /*添加一个观察者对象*/</span><br><span class="line">  addSub (sub: Watcher) &#123;</span><br><span class="line">    this.subs.push(sub)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /*移除一个观察者对象*/</span><br><span class="line">  removeSub (sub: Watcher) &#123;</span><br><span class="line">    remove(this.subs, sub)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /*依赖收集，当存在Dep.target的时候添加观察者对象*/</span><br><span class="line">  depend () &#123;</span><br><span class="line">    if (Dep.target) &#123;</span><br><span class="line">      Dep.target.addDep(this)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /*通知所有订阅者*/</span><br><span class="line">  notify () &#123;</span><br><span class="line">    // stabilize the subscriber list first</span><br><span class="line">    const subs = this.subs.slice()</span><br><span class="line">    for (let i = 0, l = subs.length; i &lt; l; i++) &#123;</span><br><span class="line">      subs[i].update()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// the current target watcher being evaluated.</span><br><span class="line">// this is globally unique because there could be only one</span><br><span class="line">// watcher being evaluated at any time.</span><br><span class="line">Dep.target = null</span><br><span class="line">/*依赖收集完需要将Dep.target设为null，防止后面重复添加依赖。*/</span><br></pre></td></tr></table></figure>
+<ul>
+<li>defineReactive</li>
+</ul>
+<p>接下来是defineReactive。defineReactive的作用是通过Object.defineProperty为数据定义上getter\setter方法，进行依赖收集后闭包中的Deps会存放Watcher对象。<br>触发setter改变数据的时候会通知Deps订阅者通知所有的Watcher观察者对象进行试图的更新。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Define a reactive property on an Object.</span><br><span class="line"> */</span><br><span class="line">export function defineReactive (</span><br><span class="line">  obj: Object,</span><br><span class="line">  key: string,</span><br><span class="line">  val: any,</span><br><span class="line">  customSetter?: Function</span><br><span class="line">) &#123;</span><br><span class="line">  /*在闭包中定义一个dep对象*/</span><br><span class="line">  const dep = new Dep()</span><br><span class="line"></span><br><span class="line">  const property = Object.getOwnPropertyDescriptor(obj, key)</span><br><span class="line">  if (property &amp;&amp; property.configurable === false) &#123;</span><br><span class="line">    return</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /*如果之前该对象已经预设了getter以及setter函数则将其取出来，新定义的getter/setter中会将其执行，保证不会覆盖之前已经定义的getter/setter。*/</span><br><span class="line">  // cater for pre-defined getter/setters</span><br><span class="line">  const getter = property &amp;&amp; property.get</span><br><span class="line">  const setter = property &amp;&amp; property.set</span><br><span class="line"></span><br><span class="line">  /*对象的子对象递归进行observe并返回子节点的Observer对象*/</span><br><span class="line">  let childOb = observe(val)</span><br><span class="line">  Object.defineProperty(obj, key, &#123;</span><br><span class="line">    enumerable: true,</span><br><span class="line">    configurable: true,</span><br><span class="line">    get: function reactiveGetter () &#123;</span><br><span class="line"></span><br><span class="line">      /*如果原本对象拥有getter方法则执行*/</span><br><span class="line">      const value = getter ? getter.call(obj) : val</span><br><span class="line">      if (Dep.target) &#123;</span><br><span class="line"></span><br><span class="line">        /*进行依赖收集*/</span><br><span class="line">        dep.depend()</span><br><span class="line">        if (childOb) &#123;</span><br><span class="line"></span><br><span class="line">          /*子对象进行依赖收集，其实就是将同一个watcher观察者实例放进了两个depend中，一个是正在本身闭包中的depend，另一个是子元素的depend*/</span><br><span class="line">          childOb.dep.depend()</span><br><span class="line">        &#125;</span><br><span class="line">        if (Array.isArray(value)) &#123;</span><br><span class="line"></span><br><span class="line">          /*是数组则需要对每一个成员都进行依赖收集，如果数组的成员还是数组，则递归。*/</span><br><span class="line">          dependArray(value)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      return value</span><br><span class="line">    &#125;,</span><br><span class="line">    set: function reactiveSetter (newVal) &#123;</span><br><span class="line"></span><br><span class="line">      /*通过getter方法获取当前值，与新值进行比较，一致则不需要执行下面的操作*/</span><br><span class="line">      const value = getter ? getter.call(obj) : val</span><br><span class="line">      /* eslint-disable no-self-compare */</span><br><span class="line">      if (newVal === value || (newVal !== newVal &amp;&amp; value !== value)) &#123;</span><br><span class="line">        return</span><br><span class="line">      &#125;</span><br><span class="line">      /* eslint-enable no-self-compare */</span><br><span class="line">      if (process.env.NODE_ENV !== &apos;production&apos; &amp;&amp; customSetter) &#123;</span><br><span class="line">        customSetter()</span><br><span class="line">      &#125;</span><br><span class="line">      if (setter) &#123;</span><br><span class="line"></span><br><span class="line">        /*如果原本对象拥有setter方法则执行setter*/</span><br><span class="line">        setter.call(obj, newVal)</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        val = newVal</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      /*新的值需要重新进行observe，保证数据响应式*/</span><br><span class="line">      childOb = observe(newVal)</span><br><span class="line"></span><br><span class="line">      /*dep对象通知所有的观察者*/</span><br><span class="line">      dep.notify()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
-<p>整篇文章主要参考链接：<a href="https://juejin.im/post/5c959f74f265da610c068fa8" target="_blank" rel="noopener">https://juejin.im/post/5c959f74f265da610c068fa8</a></p>
+<p>整篇文章主要参考链接：<a href="https://juejin.im/post/5c959f74f265da610c068fa8" target="_blank" rel="noopener">https://juejin.im/post/5c959f74f265da610c068fa8</a><br>源码解析参考链接：<a href="https://github.com/answershuto/learnVue" target="_blank" rel="noopener">https://github.com/answershuto/learnVue</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/03/vueSourceCoding/" data-id="ck07rcot2000w1okcbngrynpo" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/03/vueSourceCoding/" data-id="ck0qeeh0i001aw8kc45d6avze" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
@@ -576,7 +893,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/02/webTitle/" data-id="ck07rcotj00141okclxr2kv1o" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/02/webTitle/" data-id="ck0qeeh0d0017w8kcklnbc9mb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
@@ -811,7 +1128,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/26/promise/" data-id="ck07rcote00111okctrolox8c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/26/promise/" data-id="ck0qeeh080014w8kcikef3lpq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6/">es6</a></li></ul>
@@ -989,7 +1306,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/21/JS-thread/" data-id="ck07rcosv000p1okc5naw62i8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/21/JS-thread/" data-id="ck0qeegzr000tw8kcv11hkji9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
@@ -1080,7 +1397,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/19/request/" data-id="ck07rcosd000c1okcb46qfvsp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/19/request/" data-id="ck0qeegyr0005w8kcopvpt21n" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
@@ -1169,7 +1486,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/15/message-comp/" data-id="ck07rcosx000q1okcduma9bts" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/15/message-comp/" data-id="ck0qeegzs000uw8kcwasiycoi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
@@ -1256,119 +1573,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/14/nodeBasics/" data-id="ck07rcosz000s1okcciazf92n" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/14/nodeBasics/" data-id="ck0qeegzu000ww8kcp5x50f5x" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-npmBuild" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/07/26/npmBuild/" class="article-date">
-  <time datetime="2019-07-26T06:18:53.000Z" itemprop="datePublished">2019-07-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/26/npmBuild/">npm 部署自己的组件库</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Author: Echo<br>Time: 2019-07-24 15:28:39</p>
-<h1 id="基于-vue-cli-打造属于自己的-UI-库"><a href="#基于-vue-cli-打造属于自己的-UI-库" class="headerlink" title="基于 vue-cli 打造属于自己的 UI 库"></a>基于 vue-cli 打造属于自己的 UI 库</h1><h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><h2 id="知识前置"><a href="#知识前置" class="headerlink" title="知识前置"></a>知识前置</h2><p>我们可能习惯了在一个 vue 里面引入组件的方式，所以先这里要巩固一下全局引入组件的方式。举个栗子🌰，一般我们的用法是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import Loading from &apos;../components/loading&apos;</span><br><span class="line">// 方法一：name 是组件的名字</span><br><span class="line">Vue.component(Loading.name, Loading)</span><br><span class="line">// 方法二：前提是 Loading 有提供 install 这个方法</span><br><span class="line">Vue.use(Loading);</span><br></pre></td></tr></table></figure></p>
-<h1 id="基于vue-cli3打造组件库"><a href="#基于vue-cli3打造组件库" class="headerlink" title="基于vue-cli3打造组件库"></a>基于vue-cli3打造组件库</h1><h1 id="搭建目录"><a href="#搭建目录" class="headerlink" title="搭建目录"></a>搭建目录</h1><h4 id="快速创建项目"><a href="#快速创建项目" class="headerlink" title="快速创建项目"></a>快速创建项目</h4><ul>
-<li>vue-cli3<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue create projectName</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="修改目录结构"><a href="#修改目录结构" class="headerlink" title="修改目录结构"></a>修改目录结构</h3><ul>
-<li>把 src 目录名字改成 examples，这是用于展示组件示例的</li>
-<li>在根目录下新建一个 packages 文件夹，这是用来放组件的<br><img src="/images/1.png" alt="1ll.png"><br> 你可能会问为什么要建这样的目录结构，问得好，原因很简单，因为别人是这样做的，所以借鉴（模仿）罗。。。我们可以看到 Element 的源码也是这样的结构：<br>当我们水平不够的时候，模仿是一种强大的学习能力👏。</li>
-</ul>
-<h3 id="添加配置文件"><a href="#添加配置文件" class="headerlink" title="添加配置文件"></a>添加配置文件</h3><p>小改了一下目录之后，你会惊奇的发现项目运行不了了。没关系，这很正常，毕竟 src 都不见了，路径啥的肯定得报错。所以现在我们来解决这个问题。 在根目录下新建一个 vue.config.js 文件（新项目是没有这个文件的），并写入以下内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&apos;path&apos;)</span><br><span class="line">module.exports = &#123;</span><br><span class="line">  // 修改 pages 入口</span><br><span class="line">  pages: &#123;</span><br><span class="line">    index: &#123;</span><br><span class="line">      entry: &apos;examples/main.js&apos;, // 入口</span><br><span class="line">      template: &apos;public/index.html&apos;, // 模板</span><br><span class="line">      filename: &apos;index.html&apos; // 输出文件</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  // 扩展 webpack 配置</span><br><span class="line">  chainWebpack: config =&gt; &#123;</span><br><span class="line">    // @ 默认指向 src 目录，这里要改成 examples</span><br><span class="line">    // 另外也可以新增一个 ~ 指向 packages</span><br><span class="line">    config.resolve.alias</span><br><span class="line">      .set(&apos;@&apos;, path.resolve(&apos;examples&apos;))</span><br><span class="line">      .set(&apos;~&apos;, path.resolve(&apos;packages&apos;))</span><br><span class="line"></span><br><span class="line">    // 把 packages 和 examples 加入编译，因为新增的文件默认是不被 webpack 处理的</span><br><span class="line">    config.module</span><br><span class="line">      .rule(&apos;js&apos;)</span><br><span class="line">      .include.add(/packages/).end()</span><br><span class="line">      .include.add(/examples/).end()</span><br><span class="line">      .use(&apos;babel&apos;)</span><br><span class="line">      .loader(&apos;babel-loader&apos;)</span><br><span class="line">      .tap(options =&gt; &#123;</span><br><span class="line">        // 修改它的选项...</span><br><span class="line">        return options</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上面的注释应该都写的挺明了，主要就是修改别名、修改入口文件以及把新文件加入 webpack 编译这几个步骤。然后我们再运行一下程序就可以跑得通了。至于为什么这么配置、或者怎么配置，不了解的同学可以去 <a href="https://link.juejin.im/?target=https%3A%2F%2Fcli.vuejs.org%2Fzh%2Fconfig%2F%23%25E5%2585%25A8%25E5%25B1%2580-cli-%25E9%2585%258D%25E7%25BD%25AE" target="_blank" rel="noopener">Vue Cli</a> 官网看下，上面写的是清清楚楚、明明白白，然而我也只是懂那么一两个配置而已😭😭😭，还没学会 webpack 的套路，因为常常是用的时候看一眼，一阵子不用就又忘了，没办法🤷‍♀️脑子不行。</p>
-<h2 id="编写组件"><a href="#编写组件" class="headerlink" title="编写组件"></a>编写组件</h2><p>一个组件库没有组件怎么行呢，所以我们要先写个 test 组件（你可以随便写，这不重要）。ok👌，我们先在 packages 目录下新建一个 test 文件夹，再在 test 文件夹下下面新建一个 src 文件夹，在 src 文件夹下面新建一个 test.vue 组件，大概长下面这样子👇：</p>
-<p><img src="/images/2.png" alt="1ll.png"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--test.vue--&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;echojoy-test&quot; @click=&quot;handleClick&quot;&gt;&#123;&#123; num &#125;&#125;&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &apos;EchojoyTest&apos;,</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      num: 0</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    handleClick () &#123;</span><br><span class="line">      this.num++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style &gt;</span><br><span class="line">.echojoy-test &#123;</span><br><span class="line">  width: 100px;</span><br><span class="line">  height: 100px;</span><br><span class="line">  line-height: 100px;</span><br><span class="line">  border-radius: 50%;</span><br><span class="line">  font-size: 30px;</span><br><span class="line">  text-align: center;</span><br><span class="line">  background: #24292e;</span><br><span class="line">  color: white;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-<p>应该都能看懂吧，不过多解释。⚠️这里主要强调一点，就是 name 这个名字尤为重要，我就在这个坑里呆了挺久。首先它是必须要写的，为啥呢，你可以把它理解为 id，具有唯一标识组件的作用，将来我们可是要通过这个 name 来找到和判定这是什么组件，所以你写的所有组件应该是不重名的；其次这个 name 就是我们最终的标签名，比如这里我们的 name 是 <code>EchojoyTest</code>，到时候我们写的标签就长这样 <code>&lt;echojoy-test&gt;&lt;/echojoy-test&gt;</code>，就像 Element 一样，name 是 <code>ElButton</code>，用的时候就是 <code>&lt;el-button&gt;&lt;/el-button&gt;</code>。</p>
-<h2 id="暴露组件"><a href="#暴露组件" class="headerlink" title="暴露组件"></a>暴露组件</h2><p>让我们在 packages/test 下面新建一个 index.js 文件，具体代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 对外提供对组件的引用，注意组件必须声明 name</span><br><span class="line">import EchojoyTest from &apos;./src/test&apos;</span><br><span class="line">// 为组件提供 install 安装方法，供按需引入</span><br><span class="line">EchojoyTest.install = Vue =&gt; &#123;</span><br><span class="line">  Vue.component(EchojoyTest.name, EchojoyTest)</span><br><span class="line">&#125;</span><br><span class="line">export default EchojoyTest</span><br></pre></td></tr></table></figure>
-<p>这步的精髓就在于给组件扩展一个 install 方法，至于为什么要扩展这个方法，文章开头已经说到了，是因为 <code>Vue.use()</code> 的需要，use 会默认调用 install 方法安装，仅此而已。接着我们在 packages 下面也新建一个 index.js 文件，注意和上面那个 index.js 区别开，上面那个是针对单个组件安装的，这个是针对所有组件全局安装的，先看代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">import EchojoyTest from &apos;./test&apos;</span><br><span class="line">// 存储组件列表</span><br><span class="line">const components = [</span><br><span class="line">  EchojoyTest</span><br><span class="line">]</span><br><span class="line">// 定义 install 方法，接收 Vue 作为参数。如果使用 use 注册插件，则所有的组件都将被注册</span><br><span class="line">const install = function (Vue) &#123;</span><br><span class="line">  // 判断是否安装</span><br><span class="line">  if (install.installed) return</span><br><span class="line">  install.installed = true</span><br><span class="line">  // 遍历注册全局组件</span><br><span class="line">  components.map(component =&gt; Vue.component(component.name, component))</span><br><span class="line">  // 下面这个写法也可以</span><br><span class="line">  // components.map(component =&gt; Vue.use(component))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 判断是否是直接引入文件</span><br><span class="line">if (typeof window !== &apos;undefined&apos; &amp;&amp; window.Vue) &#123;</span><br><span class="line">  install(window.Vue)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  // 导出的对象必须具有 install，才能被 Vue.use() 方法安装</span><br><span class="line">  install,</span><br><span class="line">  // 以下是具体的组件列表</span><br><span class="line">  ...components</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这步的主要作用就是统一导出所有组件及暴露 install 方法。之前的 index.js 只是安装单个组件，而现在这个 index.js 是循环安装所有组件，具体使用就看你是不是要按需引用了。这里给个目录结构方便大家观看：</p>
-<p><img src="/images/3.png" alt="1ll.png"></p>
-<p>因为这步挺重要的，所以建议好好停下来理解消化一下🤔。。。<br>当然你可能会问道，为什么这样建目录？还能什么原因，因为 Element 是这样（如下图），所以我们这样写，仅此而已。</p>
-<h2 id="组件测试"><a href="#组件测试" class="headerlink" title="组件测试"></a>组件测试</h2><p>ok，组件写完了，接下来我们就在 examples 下面测试一下，看看能不能引用成功。 首先在 examples 下的 main.js 中引入刚刚写好的包，就像下面这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import EchojoyUI from &apos;./../packages&apos;</span><br><span class="line">Vue.use(EchojoyUI);</span><br></pre></td></tr></table></figure></p>
-<p>然后把 examples/components下面的 HelloWorld里面的内容删了，写入自己标签组件，就像下面这样：</p>
-<p><img src="/images/11.png" alt="1ll.png"></p>
-<p>好了，最后让我们运行一下项目 <code>npm run  serve</code>，看看效果，嗯，还凑合吧。</p>
-<h2 id="库模式打包"><a href="#库模式打包" class="headerlink" title="库模式打包"></a>库模式打包</h2><p>在 vue-cli3 中我们通过以下命令可以将一个单独的入口打包成一个库：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// target: 默认为构建应用，改为 lib 即可启用构建库模式</span><br><span class="line">// name: 输出文件名</span><br><span class="line">// dest: 输出目录，默认为 dist，这里我们改为 lib</span><br><span class="line">// entry: 入口文件路径</span><br><span class="line">vue-cli-service build --target lib --name lib [entry]</span><br></pre></td></tr></table></figure>
-<p>要注意的是在库模式中，打包出来的库中是不包含 Vue 的。 然后我们修改一下 package.json 文件，就像下面这样：</p>
-<p><img src="/images/5.png" alt="1ll.png"></p>
-<p>接着执行 <code>npm run lib</code> 就能生成库啦，看看左侧的目录是不是多了个 lib 文件夹，那个就是我们要发布的东西。<br><img src="/images/6.png" alt="1ll.png"></p>
-<p>补充下，lib 目录下面的 js 之所以有好几种，是因为有两种规范（common 和 umd）、是否压缩（min）和映射（map）的区别，暂且知道有这么回事就行，不用深究。</p>
-<h2 id="发布到npm"><a href="#发布到npm" class="headerlink" title="发布到npm"></a>发布到npm</h2><p>万事俱备，只欠发布。</p>
-<ol>
-<li>完善一下 README.md 文档，这个随便写两句就好</li>
-<li>修改一下 package.json 文件：</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123; </span><br><span class="line">  &quot;name&quot;: &quot;echojoy-ui&quot;,</span><br><span class="line">  &quot;version&quot;: &quot;0.1.0&quot;,</span><br><span class="line">  &quot;private&quot;: true,</span><br><span class="line">  &quot;description&quot;: &quot;基于 vue-cli3 的 UI 组件库&quot;,</span><br><span class="line">  &quot;main&quot;: &quot;lib/xr-ui.umd.min.js&quot;,</span><br><span class="line">  &quot;keywords&quot;: &quot;echojoy-ui&quot;,</span><br><span class="line">  &quot;private&quot;: false,</span><br><span class="line">  &quot;license&quot;: &quot;MIT&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>在根目录下新建一个 .npmignore 文件，内容和 .gitignore 差不多：</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"># 这是复制 .gitignore 里面的</span><br><span class="line">.DS_Store</span><br><span class="line">node_modules</span><br><span class="line">/dist</span><br><span class="line"></span><br><span class="line"># local env files</span><br><span class="line">.env.local</span><br><span class="line">.env.*.local</span><br><span class="line"></span><br><span class="line"># Log files</span><br><span class="line">npm-debug.log*</span><br><span class="line">yarn-debug.log*</span><br><span class="line">yarn-error.log*</span><br><span class="line"></span><br><span class="line"># Editor directories and files</span><br><span class="line">.idea</span><br><span class="line">.vscode</span><br><span class="line">*.suo</span><br><span class="line">*.ntvs*</span><br><span class="line">*.njsproj</span><br><span class="line">*.sln</span><br><span class="line">*.sw*</span><br><span class="line"></span><br><span class="line"># 以下是新增的</span><br><span class="line"># 要忽略目录和指定文件</span><br><span class="line">examples/</span><br><span class="line">packages/</span><br><span class="line">public/</span><br><span class="line">vue.config.js</span><br><span class="line">babel.config.js</span><br><span class="line">*.map</span><br><span class="line">*.html</span><br></pre></td></tr></table></figure>
-<p>最后执行 <code>npm login</code> 登入 npm 账号，再执行 <code>npm publish</code> 发布即可，就这么简单的两步就可以，过一会在 npm 上就能搜到了。当然前提是你有个 npm 账号，没有的话去注册一个吧，很 easy 的，然后还要搜下你的 npm 包名是否有人用，有的话就换一个。</p>
-<h2 id="小试牛刀"><a href="#小试牛刀" class="headerlink" title="小试牛刀"></a>小试牛刀</h2><p>终于，历尽千辛万苦，我们可以引用自己写的库拉，想想就牛叉。别激动，让我们试验一下，用 <code>vue create echojoy-ui-use</code> 另起一个新项目，然后 <code>npm i echojoy-ui -S</code>，可以在 node_modules 里面看到我们的包大概长这样：<br><img src="/images/7.png" alt="1ll.png"></p>
-<p>然后在 main.js 引入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import EchojoyUI from &quot;echojoy-ui&quot;;</span><br><span class="line">import &quot;echojoy-ui/lib/echojoy-ui.css&quot;;</span><br><span class="line">Vue.use(EchojoyUI);</span><br></pre></td></tr></table></figure>
-<p>这样我们就能在页面中引入组件啦，哈哈哈哈，贼开心，喜上眉梢。。。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;echojoy-test&gt;&lt;/echojoy-test&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="vue-cli3（vue-cli2）"><a href="#vue-cli3（vue-cli2）" class="headerlink" title="! vue-cli3（vue-cli2）"></a>! vue-cli3（vue-cli2）</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue init webpack projectName</span><br></pre></td></tr></table></figure>
-<p><img src="/images/8.png" alt="1ll.png"></p>
-<h4 id="启动项目"><a href="#启动项目" class="headerlink" title="启动项目"></a>启动项目</h4><p><code>npm run dev</code><br><img src="/images/9.png" alt="1ll.png"><br>浏览器输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8080</span><br></pre></td></tr></table></figure></p>
-<h4 id="编写组件-1"><a href="#编写组件-1" class="headerlink" title="编写组件"></a>编写组件</h4><p>在src的components新建组件limit：即文件夹<code>EchoLimit</code>-&gt;文件<code>index.vue</code> + 文件<code>index+css</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">// index.vue</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;echo-limit-container&quot; v-if=&quot;visible === false&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;echo-limit-container-inner&quot;&gt;</span><br><span class="line">      &lt;span class=&quot;echo-limit-text&quot;&gt;</span><br><span class="line">        &#123;&#123;limitTip&#125;&#125;</span><br><span class="line">      &lt;/span&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    visible: &#123;</span><br><span class="line">      type: Boolean,</span><br><span class="line">      default: false</span><br><span class="line">    &#125;,</span><br><span class="line">    limitTip: &#123;</span><br><span class="line">      type: String,</span><br><span class="line">      default: &apos;没有权限！！&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  name: &quot;EchoLimit&quot; // 这个名字很重要，它就是未来的标签名&lt;echo-limit&gt;&lt;/echo-limit&gt;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">  @import &quot;./index&quot;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure></p>
-<p>⚠️这里主要强调一点，就是 name 这个名字尤为重要，你可以把它理解为 id，具有唯一标识组件的作用，将来我们可是要通过这个 name 来找到和判定这是什么组件，所以你写的所有组件应该是不重名的；其次这个 name 就是我们最终的标签名，比如这里我们的 name 是 EchoLimit，到时候我们写的标签就长这样 <echo-limit></echo-limit>，就像 Element 一样，name 是 ElButton，用的时候就是 <el-button></el-button>。</p>
-<h4 id="暴露组件-1"><a href="#暴露组件-1" class="headerlink" title="暴露组件"></a>暴露组件</h4><ul>
-<li>注册单个组件</li>
-</ul>
-<p>在 components 的 EchoLimit下面新建一个 index.js 文件，具体代码如下：<br>// 为组件提供 install 方法，供组件对外按需引入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import EchoLimit from &quot;./EchoLimit/index.vue&quot;;</span><br><span class="line">EchoLimit.install = Vue =&gt; &#123;</span><br><span class="line">  Vue.component(EchoLimit.name, EchoLimit);</span><br><span class="line">&#125;;</span><br><span class="line">export default EchoLimit;</span><br></pre></td></tr></table></figure></p>
-<p>这步的精髓就在于给组件扩展一个 install 方法，至于为什么要扩展这个方法，文章开头已经说到了，是因为 Vue.use() 的需要，use 会默认调用 install 方法安装。</p>
-<ul>
-<li>注册全局组件<br>让我们在 components 下面新建一个 index.js 文件，具体代码如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">// index.js</span><br><span class="line">import EchoLimit from &apos;./EchoLimit&apos;</span><br><span class="line">// 所有组件列表</span><br><span class="line">const components = [</span><br><span class="line">  EchoLimit</span><br><span class="line">]</span><br><span class="line">// 定义 install 方法，接收 Vue 作为参数</span><br><span class="line">const install = function (Vue) &#123;</span><br><span class="line">  // 判断是否安装，安装过就不继续往下执行</span><br><span class="line">  if (install.installed) return</span><br><span class="line">  install.installed = true</span><br><span class="line">  // 遍历注册所有组件</span><br><span class="line">  components.map(component =&gt; Vue.component(component.name, component))</span><br><span class="line">  // 下面这个写法也可以</span><br><span class="line">  // components.map(component =&gt; Vue.use(component))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 检测到 Vue 才执行，毕竟我们是基于 Vue 的</span><br><span class="line">if (typeof window !== &apos;undefined&apos; &amp;&amp; window.Vue) &#123;</span><br><span class="line">  install(window.Vue)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(components[0].name) // 控制台输出组件的name,方便引用组件</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  install,</span><br><span class="line">  // 所有组件，必须具有 install，才能使用 Vue.use()</span><br><span class="line">  ...components</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>目录结构方便大家观看：<br><img src="/images/4.png" alt="1ll.png"></p>
-<h4 id="组件测试-1"><a href="#组件测试-1" class="headerlink" title="组件测试"></a>组件测试</h4><p>ok，组件写完了，接下来我们就在 HelloWorld.vue下面测试一下，看看能不能引用成功。 首先在 src下的 main.js 中引入刚刚写好的包，如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import EchoUI from &apos;./components&apos;</span><br><span class="line">Vue.use(EchoUI)</span><br></pre></td></tr></table></figure>
-<p>在 HelloWorld.vue中引入组件EchoLimit.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;EchoLimit&gt;&lt;/EchoLimit&gt;</span><br><span class="line">     &lt;echo-limit&gt;&lt;/echo-limit&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/echo-limit&gt;</span><br></pre></td></tr></table></figure></p>
-<p>运行项目<code>npm run dev</code>,会发现成功了！！!<br><img src="/images/10.png" alt="1ll.png"></p>
-<p>过程同上！！！！！！！！！</p>
-<p>参考 连接：<a href="https://www.jianshu.com/p/41cc796488df" target="_blank" rel="noopener">https://www.jianshu.com/p/41cc796488df</a><br>参考 链接：<a href="https://juejin.im/post/5c95c61f6fb9a070c40acf65" target="_blank" rel="noopener">https://juejin.im/post/5c95c61f6fb9a070c40acf65</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/26/npmBuild/" data-id="ck07rcot1000u1okcv099h0ez" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li></ul>
 
     </footer>
   </div>
@@ -1425,6 +1633,10 @@
       <ul>
         
           <li>
+            <a href="/2019/09/19/cssTitle/">cssTitle</a>
+          </li>
+        
+          <li>
             <a href="/2019/09/03/jsTitle/">js相关面试题整理</a>
           </li>
         
@@ -1438,10 +1650,6 @@
         
           <li>
             <a href="/2019/09/02/webTitle/">前端面试题整理</a>
-          </li>
-        
-          <li>
-            <a href="/2019/08/26/promise/">Promise</a>
           </li>
         
       </ul>
