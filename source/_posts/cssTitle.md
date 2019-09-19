@@ -159,7 +159,7 @@ css3新增属性
     height: 200px;
   }
 ```
-##4. 清除浮动有哪些方法, 各有什么优缺点
+## 4. 清除浮动有哪些方法, 各有什么优缺点
 
 * 使用clear属性的空元素 
   在浮动元素后使用一个空元素如<div class="clear"></div>，并在CSS中赋予.clear{clear:both;}属性即可清理浮动。亦可使用<br class="clear" />或<hr class="clear" />来进行清理。

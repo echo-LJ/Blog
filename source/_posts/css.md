@@ -1,7 +1,7 @@
 ---
-title: CSS面试题汇总
-date: 2019-09-19 20:01:01
-tags:
+title: 前端css相关面试题汇总
+date: 2019-09-19 20:53:19
+tags: 前端面试题
 ---
 
 ##### 什么是 BFC机制
@@ -14,3 +14,4 @@ tags:
 ##### link 与 @import 的区别
 ##### 开发中为什么要初始化css样式
 
+答案参考链接：https://lujinggirl.github.io/2019/09/19/cssTitle/
