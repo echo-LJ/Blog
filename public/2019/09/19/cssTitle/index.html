@@ -3,18 +3,19 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>cssTitle | Hexo</title>
+  <title>css相关面试题 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Author: EchoTime: 2019-09-19 15:46:24 1.什么是 BFC机制BFC(Block Formatting Context)，块级格式化上下文，是一个独立的渲染区域，让处于 BFC 内部的元素与外部的元素相互隔离，使内外元素的定位不会相互影响。  触发条件 (以下任意一条)   float的值不为none overflow的值不为visible display的值为">
+<meta name="keywords" content="css">
 <meta property="og:type" content="article">
-<meta property="og:title" content="cssTitle">
+<meta property="og:title" content="css相关面试题">
 <meta property="og:url" content="http://yoursite.com/2019/09/19/cssTitle/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Author: EchoTime: 2019-09-19 15:46:24 1.什么是 BFC机制BFC(Block Formatting Context)，块级格式化上下文，是一个独立的渲染区域，让处于 BFC 内部的元素与外部的元素相互隔离，使内外元素的定位不会相互影响。  触发条件 (以下任意一条)   float的值不为none overflow的值不为visible display的值为">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-19T07:46:50.388Z">
+<meta property="og:updated_time" content="2019-09-19T11:59:13.631Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="cssTitle">
+<meta name="twitter:title" content="css相关面试题">
 <meta name="twitter:description" content="Author: EchoTime: 2019-09-19 15:46:24 1.什么是 BFC机制BFC(Block Formatting Context)，块级格式化上下文，是一个独立的渲染区域，让处于 BFC 内部的元素与外部的元素相互隔离，使内外元素的定位不会相互影响。  触发条件 (以下任意一条)   float的值不为none overflow的值不为visible display的值为">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -78,7 +79,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      cssTitle
+      css相关面试题
     </h1>
   
 
@@ -119,8 +120,7 @@
 <li>自适应两栏布局</li>
 <li>可以阻止元素被浮动元素覆盖</li>
 </ol>
-<h2 id="2-CSS3中新增的选择器以及属性"><a href="#2-CSS3中新增的选择器以及属性" class="headerlink" title="2. CSS3中新增的选择器以及属性"></a>2. CSS3中新增的选择器以及属性</h2><p>这里只是列出来, 具体的使用,请查看我的关于css3新增选择器与属性文章</p>
-<ul>
+<h2 id="2-CSS3中新增的选择器以及属性"><a href="#2-CSS3中新增的选择器以及属性" class="headerlink" title="2. CSS3中新增的选择器以及属性"></a>2. CSS3中新增的选择器以及属性</h2><ul>
 <li>属性选择器</li>
 </ul>
 <table>
@@ -146,110 +146,273 @@
 </tbody>
 </table>
 <ul>
-<li>结构伪类选择器<br>选择器    含义描述<br>E:root    匹配文档的根元素，对于HTML文档，就是HTML元素<br>E:nth-child(n)    匹配其父元素的第n个子元素，第一个编号为1<br>E:nth-last-child(n)    匹配其父元素的倒数第n个子元素，第一个编号为1<br>E:nth-of-type(n)    与:nth-child()作用类似，但是仅匹配使用同种标签的元素<br>E:nth-last-of-type(n)    与:nth-last-child() 作用类似，但是仅匹配使用同种标签的元素<br>E:last-child    匹配父元素的最后一个子元素，等同于:nth-last-child(1)<br>E:first-of-type    匹配父元素下使用同种标签的第一个子元素，等同于:nth-of-type(1)<br>E:last-of-type    匹配父元素下使用同种标签的最后一个子元素，等同于:nth-last-of-type(1)<br>E:only-child    匹配父元素下仅有的一个子元素，等同于:first-child:last-child或 :nth-child(1):nth-last-child(1)<br>E:only-of-type    匹配父元素下使用同种标签的唯一一个子元素，等同于:first-of-type:last-of-type或 :nth-of-type(1):nth-last-of-type(1)<br>E:empty    匹配一个不包含任何子元素的元素，注意，文本节点也被看作子元素<br>css3新增属性<br>属性    含义描述    兼容<br>transition    设置过渡效果<br>transform    变换效果(移动、缩放、转动、拉长或拉伸)<br>animation    动画效果<br>box-shadow    阴影效果    FF3.5, Safari 4, Chrome 3<br>text-shadow    文本阴影    FF 3.5, Opera 10, Safari 4, Chrome 3<br>border-colors    为边框设置多种颜色    FF3+<br>boder-image    图片边框    FF 3.5, Safari 4, Chrome 3<br>text-overflow    文本截断    IE6+, Safari4, Chrome3, Opera10<br>word-wrap    自动换行    IE6+, FF 3.5, Safari 4, Chrome 3<br>border-radius    圆角边框    FF 3+, Safari 4 , Chrome 3<br>opacity    不透明度    all<br>box-sizing    控制盒模型的组成模式    FF3+, Opera 10, Safari 4, Chrome 3<br>outline    外边框    FF3+, safari 4, chrome 3, opera 10<br>background-size    不指定背景图片的尺寸    safari 4, chrome 3, opera 10<br>background-origin    指定背景图片从哪里开始显示    safari 4, chrome 3, FF 3+<br>background-clip    指定背景图片从什么位置开始裁切    safari 4, chrome 3<br>rgba    基于r,g,b三个颜色通道来设置颜色值, 通过a来设置透明度    safari 4, chrome 3, FF3, opera 10</li>
+<li>结构伪类选择器</li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>选择器</th>
+<th style="text-align:right">含义描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E:root</td>
+<td style="text-align:right">匹配文档的根元素，对于HTML文档，就是HTML元素</td>
+</tr>
+<tr>
+<td>E:nth-child(n)</td>
+<td style="text-align:right">匹配其父元素的第n个子元素，第一个编号为1</td>
+</tr>
+<tr>
+<td>E:nth-last-child(n)</td>
+<td style="text-align:right">匹配其父元素的倒数第n个子元素，第一个编号为1</td>
+</tr>
+<tr>
+<td>E:nth-of-type(n)</td>
+<td style="text-align:right">与:nth-child()作用类似，但是仅匹配使用同种标签的元素</td>
+</tr>
+<tr>
+<td>E:nth-last-of-type(n)</td>
+<td style="text-align:right">与:nth-last-child() 作用类似，但是仅匹配使用同种标签的元素</td>
+</tr>
+<tr>
+<td>E:last-child</td>
+<td style="text-align:right">匹配父元素的最后一个子元素，等同于:nth-last-child(1)</td>
+</tr>
+<tr>
+<td>E:first-of-type</td>
+<td style="text-align:right">匹配父元素下使用同种标签的第一个子元素，等同于:nth-of-type(1)</td>
+</tr>
+<tr>
+<td>E:last-of-type</td>
+<td style="text-align:right">匹配父元素下使用同种标签的最后一个子元素，等同于:nth-last-of-type(1)</td>
+</tr>
+<tr>
+<td>E:only-child</td>
+<td style="text-align:right">匹配父元素下仅有的一个子元素，等同于:first-child:last-child或 :nth-child(1):nth-last-child(1)</td>
+</tr>
+<tr>
+<td>E:only-of-type</td>
+<td style="text-align:right">匹配父元素下使用同种标签的唯一一个子元素，等同于:first-of-type:last-of-type或 :nth-of-type(1):nth-last-of-type(1)</td>
+</tr>
+<tr>
+<td>E:empty</td>
+<td style="text-align:right">匹配一个不包含任何子元素的元素，注意，文本节点也被看作子元素</td>
+</tr>
+</tbody>
+</table>
+<p>css3新增属性</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th style="text-align:right">含义描述</th>
+<th style="text-align:right">兼容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>transition</td>
+<td style="text-align:right">设置过渡效果</td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td>transform</td>
+<td style="text-align:right">变换效果(移动、缩放、转动、拉长或拉伸)</td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td>animation</td>
+<td style="text-align:right">动画效果</td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td>box-shadow</td>
+<td style="text-align:right">阴影效果</td>
+<td style="text-align:right">FF3.5, Safari 4, Chrome 3</td>
+</tr>
+<tr>
+<td>text-shadow</td>
+<td style="text-align:right">文本阴影</td>
+<td style="text-align:right">FF 3.5, Opera 10, Safari 4, Chrome 3</td>
+</tr>
+<tr>
+<td>border-colors</td>
+<td style="text-align:right">为边框设置多种颜色</td>
+<td style="text-align:right">FF3+</td>
+</tr>
+<tr>
+<td>boder-image</td>
+<td style="text-align:right">图片边框</td>
+<td style="text-align:right">FF 3.5, Safari 4, Chrome 3</td>
+</tr>
+<tr>
+<td>text-overflow</td>
+<td style="text-align:right">文本截断</td>
+<td style="text-align:right">IE6+, Safari4, Chrome3, Opera10</td>
+</tr>
+<tr>
+<td>word-wrap</td>
+<td style="text-align:right">自动换行</td>
+<td style="text-align:right">IE6+, FF 3.5, Safari 4, Chrome 3</td>
+</tr>
+<tr>
+<td>border-radius</td>
+<td style="text-align:right">圆角边框</td>
+<td style="text-align:right">FF 3+, Safari 4 , Chrome 3</td>
+</tr>
+<tr>
+<td>opacity</td>
+<td style="text-align:right">不透明度</td>
+<td style="text-align:right">all</td>
+</tr>
+<tr>
+<td>box-sizing</td>
+<td style="text-align:right">控制盒模型的组成模式</td>
+<td style="text-align:right">FF3+, Opera 10, Safari 4, Chrome 3</td>
+</tr>
+<tr>
+<td>outline</td>
+<td style="text-align:right">外边框</td>
+<td style="text-align:right">FF3+, safari 4, chrome 3, opera 10</td>
+</tr>
+<tr>
+<td>background-size</td>
+<td style="text-align:right">不指定背景图片的尺寸</td>
+<td style="text-align:right">safari 4, chrome 3, opera 10</td>
+</tr>
+<tr>
+<td>background-origin</td>
+<td style="text-align:right">指定背景图片从哪里开始显示</td>
+<td style="text-align:right">safari 4, chrome 3, FF 3+</td>
+</tr>
+<tr>
+<td>background-clip</td>
+<td style="text-align:right">指定背景图片从什么位置开始裁切</td>
+<td style="text-align:right">safari 4, chrome 3</td>
+</tr>
+<tr>
+<td>rgba</td>
+<td style="text-align:right">基于r,g,b三个颜色通道来设置颜色值, 通过a来设置透明度</td>
+<td style="text-align:right">safari 4, chrome 3, FF3, opera 10</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-居中布局"><a href="#3-居中布局" class="headerlink" title="3. 居中布局"></a>3. 居中布局</h2><ul>
+<li>水平居中</li>
+</ul>
+<ol>
+<li>行内元素: text-align:center</li>
+<li>块级元素: margin:0 auto</li>
+<li>绝对定位和移动: absolute + transform</li>
+<li>绝对定位和负边距: absolute + margin</li>
+<li>flex布局: flex + justify-content:center</li>
+</ol>
+<ul>
+<li>垂直居中</li>
+</ul>
+<ol>
+<li>子元素为单行文本: line-height:height;<pre><code>absolute + transform;
+flex + align-items:center;
+table: display:table-cell; vertical-align: middle;
+</code></pre></li>
+<li>利用position和top和负margin</li>
+</ol>
+<ul>
+<li>水平垂直居中</li>
+</ul>
+<ol>
+<li><p>已知元素宽高:绝对定位+margin:auto:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> div&#123;</span><br><span class="line">    width: 200px;</span><br><span class="line">    height: 200px;</span><br><span class="line">    background: green;</span><br><span class="line"></span><br><span class="line">    position:absolute;</span><br><span class="line">    left:0;</span><br><span class="line">    top: 0;</span><br><span class="line">    bottom: 0;</span><br><span class="line">    right: 0;</span><br><span class="line">    margin: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>已知元素宽高:  绝对定位+负margin</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> div&#123;</span><br><span class="line">    width: 200px;</span><br><span class="line">    height: 200px;</span><br><span class="line">    background: green;</span><br><span class="line"></span><br><span class="line">    position:absolute;</span><br><span class="line">    left:0;</span><br><span class="line">    top: 0;</span><br><span class="line">    bottom: 0;</span><br><span class="line">    right: 0;</span><br><span class="line">    margin: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>absolute+transform</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">div&#123;</span><br><span class="line">  width: 200px;</span><br><span class="line">  height: 200px;</span><br><span class="line">  background: green;</span><br><span class="line"></span><br><span class="line">  position:absolute;</span><br><span class="line">  left:50%;    /* 定位父级的50% */</span><br><span class="line">  top:50%;</span><br><span class="line">  transform: translate(-50%,-50%); /*自己的50% */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>4.flex + justify-content + align-items<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">.box&#123;</span><br><span class="line">   height:600px;</span><br><span class="line"></span><br><span class="line">   display:flex;</span><br><span class="line">   justify-content:center;  //子元素水平居中</span><br><span class="line">   align-items:center;      //子元素垂直居中</span><br><span class="line">     /* aa只要三句话就可以实现不定宽高水平垂直居中。*/</span><br><span class="line">    &#125;</span><br><span class="line">  .box&gt;div&#123;</span><br><span class="line">    background: green;</span><br><span class="line">    width: 200px;</span><br><span class="line">    height: 200px;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>##4. 清除浮动有哪些方法, 各有什么优缺点</p>
+<ul>
+<li>使用clear属性的空元素<br>在浮动元素后使用一个空元素如<div class="clear"></div>，并在CSS中赋予.clear{clear:both;}属性即可清理浮动。亦可使用<br class="clear">或<hr class="clear">来进行清理。</li>
+</ul>
+<p>优点: 简单, 写少量代码, 兼容性也好 缺点: 添加无语义html元素, 不利于代码语义化, 后期维护成本大</p>
+<ul>
+<li>使用css的overflow属性<br>给浮动元素的容器添加overflow:hidden;或overflow:auto;可以清除浮动，另外在 IE6 中还需要触发 hasLayout ，例如为父元素设置容器宽高或设置zoom:1。在添加overflow属性后，浮动元素又回到了容器层，把容器高度撑起，达到了清理浮动的效果。</li>
+</ul>
+<p>优点: 简单, 代码少, 浏览器支持好 缺点: 不能和position配合使用, 因为超出的尺寸会被隐藏overflow:hidden</p>
+<ul>
+<li>使用CSS的:after伪元素 结合 :after 伪元素<br>（注意这不是伪类，而是伪元素，代表一个元素之后最近的元素）和 IEhack ，可以完美兼容当前主流的各大浏览器，这里的 IEhack 指的是触发 hasLayout。给浮动元素的容器添加一个    clearfix 的class，然后给这个class添加一个:after伪元素实现元素末尾添加一个看不见的块元素（Block element）清理浮动。通过CSS伪元素在容器的内部元素最后添加了一个看不见的空格”020”或点”.”，并且赋予clear属性来清除浮动。需要注意的是为了IE6和IE7浏览器，要给clearfix这个class添加一条zoom:1;触发haslayout。</li>
+</ul>
+<p>优点: 浏览器支持好，不容易出现怪问题（目前：大型网站都有使用，如：腾迅，网易，新浪等等） 缺点: 代码多，要两句代码结合使用，才能让主流浏览器都支持<br>给父级元素设置高度<br>简单, 代码少,好掌握 缺点: 只适用于高度固定的布局</p>
+<h2 id="5-用纯CSS创建一个三角形的原理是什么"><a href="#5-用纯CSS创建一个三角形的原理是什么" class="headerlink" title="5. 用纯CSS创建一个三角形的原理是什么"></a>5. 用纯CSS创建一个三角形的原理是什么</h2><p>之前写三角形, 都是直接记住代码,没有探究原因,我也是直到有一次面试时,面试大哥让我说说css创建三角形的原理,我就……回来就赶紧翻资料.接下来我就将当时我理解的过程列举出来:</p>
+<ol>
+<li>写一个我们最熟悉的 border应用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.box&#123;</span><br><span class="line">	width:100px;</span><br><span class="line">	height:100px;</span><br><span class="line">	border: 3px solid;</span><br><span class="line">	border-color:#1b93fb #1bfb24 #efad48 #ef4848;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>效果如下:</p>
+<ol start="2">
+<li>接下来,我们将border值增大<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.box&#123;</span><br><span class="line">	width:100px;</span><br><span class="line">	height:100px;</span><br><span class="line">	border: 50px solid;</span><br><span class="line">	border-color:#1b93fb #1bfb24 #efad48 #ef4848;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>很容易发现, border渲染并不是正方形, 而是梯形的.</p>
 <ol start="3">
-<li>居中布局</li>
-</ol>
-<p>水平居中<br>行内元素: text-align:center<br>块级元素: margin:0 auto<br>绝对定位和移动: absolute + transform<br>绝对定位和负边距: absolute + margin<br>flex布局: flex + justify-content:center<br>垂直居中<br>子元素为单行文本: line-height:height<br>absolute + transform<br>flex + align-items:center<br>table: display:table-cell; vertical-align: middle<br>利用position和top和负margin<br>水平垂直居中</p>
-<ol>
-<li><p>已知元素宽高:绝对定位+margin:auto:<br>div{<br>   width: 200px;<br>   height: 200px;<br>   background: green;</p>
-<p>   position:absolute;<br>   left:0;<br>   top: 0;<br>   bottom: 0;<br>   right: 0;<br>   margin: auto;<br>}</p>
-</li>
-<li><p>已知元素宽高:  绝对定位+负margin<br>div{<br>   width: 200px;<br>   height: 200px;<br>   background: green;</p>
-<p>   position:absolute;<br>   left:0;<br>   top: 0;<br>   bottom: 0;<br>   right: 0;<br>   margin: auto;<br>}</p>
-</li>
-<li><p>absolute+transform<br>div{<br>  width: 200px;<br>  height: 200px;<br>  background: green;</p>
-<p>  position:absolute;<br>  left:50%;    /<em> 定位父级的50% </em>/<br>  top:50%;<br>  transform: translate(-50%,-50%); /<em>自己的50% </em>/<br>}</p>
+<li>在增大border的基础下, 此时我们将盒子宽高变成0,会产生什么效果呢!<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.box&#123;</span><br><span class="line">	width:0px;</span><br><span class="line">	height:0px;</span><br><span class="line">	border: 50px solid;</span><br><span class="line">	border-color:#1b93fb #1bfb24 #efad48 #ef4848;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>4.flex + justify-content + align-items<br>.box{<br>   height:600px;</p>
-<p>   display:flex;<br>   justify-content:center;  //子元素水平居中<br>   align-items:center;      //子元素垂直居中<br>     /<em> aa只要三句话就可以实现不定宽高水平垂直居中。</em>/<br>    }<br>  .box&gt;div{<br>    background: green;<br>    width: 200px;<br>    height: 200px;<br>  }</p>
+<p>四个三角形拼合成的矩形呈现在我们眼前,那如如果我们只想要一个三角形, 我们是不是可以设想将其他三个设为不可见;</p>
 <ol start="4">
-<li>清除浮动有哪些方法, 各有什么优缺点</li>
-</ol>
-<p>使用clear属性的空元素 在浮动元素后使用一个空元素如<div class="clear"></div>，并在CSS中赋予.clear{clear:both;}属性即可清理浮动。亦可使用<br class="clear">或<hr class="clear">来进行清理。<br>优点: 简单, 写少量代码, 兼容性也好 缺点: 添加无语义html元素, 不利于代码语义化, 后期维护成本大<br>使用css的overflow属性 给浮动元素的容器添加overflow:hidden;或overflow:auto;可以清除浮动，另外在 IE6 中还需要触发 hasLayout ，例如为父元素设置容器宽高或设置zoom:1。在添加overflow属性后，浮动元素又回到了容器层，把容器高度撑起，达到了清理浮动的效果。<br>优点: 简单, 代码少, 浏览器支持好 缺点: 不能和position配合使用, 因为超出的尺寸会被隐藏overflow:hidden<br>使用CSS的:after伪元素 结合 :after 伪元素（注意这不是伪类，而是伪元素，代表一个元素之后最近的元素）和 IEhack ，可以完美兼容当前主流的各大浏览器，这里的 IEhack 指的是触发 hasLayout。给浮动元素的容器添加一个    clearfix 的class，然后给这个class添加一个:after伪元素实现元素末尾添加一个看不见的块元素（Block element）清理浮动。通过CSS伪元素在容器的内部元素最后添加了一个看不见的空格”020”或点”.”，并且赋予clear属性来清除浮动。需要注意的是为了IE6和IE7浏览器，要给clearfix这个class添加一条zoom:1;触发haslayout。<br>优点: 浏览器支持好，不容易出现怪问题（目前：大型网站都有使用，如：腾迅，网易，新浪等等） 缺点: 代码多，要两句代码结合使用，才能让主流浏览器都支持<br>给父级元素设置高度<br>简单, 代码少,好掌握 缺点: 只适用于高度固定的布局</p>
-<ol start="5">
-<li>用纯CSS创建一个三角形的原理是什么</li>
-</ol>
-<p>之前写三角形, 都是直接记住代码,没有探究原因,我也是直到有一次面试时,面试大哥让我说说css创建三角形的原理,我就……回来就赶紧翻资料.接下来我就将当时我理解的过程列举出来:</p>
-<ol>
-<li>写一个我们最熟悉的 border应用<br>.box{<br> width:100px;<br> height:100px;<br> border: 3px solid;<br> border-color:#1b93fb #1bfb24 #efad48 #ef4848;<br>}<br>效果如下:</li>
-<li><p>接下来,我们将border值增大<br>.box{<br> width:100px;<br> height:100px;<br> border: 50px solid;<br> border-color:#1b93fb #1bfb24 #efad48 #ef4848;<br>}<br>很容易发现, border渲染并不是正方形, 而是梯形的.</p>
-</li>
-<li><p>在增大border的基础下, 此时我们将盒子宽高变成0,会产生什么效果呢!<br>.box{<br> width:0px;<br> height:0px;<br> border: 50px solid;<br> border-color:#1b93fb #1bfb24 #efad48 #ef4848;<br>}<br>四个三角形拼合成的矩形呈现在我们眼前,那如如果我们只想要一个三角形, 我们是不是可以设想将其他三个设为不可见;</p>
-</li>
-<li><p>设置透明, 隐藏其中三个三角形<br>.box{<br> width:0px;<br> height:0px;<br> border: 50px solid;<br> border-color:transparent transparent transparent #ef4848;<br>}<br>三角形这样就出来, 有木有很简单, 当然我们也可以采用逆向思维来写这个效果, 就是先将所有边框设为透明, 然后需要哪边再对其设置颜色, 效果是一样的<br>.box{<br> width:0px;<br> height:0px;<br> border: 50px solid transparent;<br> border-left:50px solid #ef4848;<br>}</p>
+<li>设置透明, 隐藏其中三个三角形<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> .box&#123;</span><br><span class="line">	width:0px;</span><br><span class="line">	height:0px;</span><br><span class="line">	border: 50px solid;</span><br><span class="line">	border-color:transparent transparent transparent #ef4848;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
+<p>三角形这样就出来, 有木有很简单, 当然我们也可以采用逆向思维来写这个效果, 就是先将所有边框设为透明, 然后需要哪边再对其设置颜色, 效果是一样的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.box&#123;</span><br><span class="line">	width:0px;</span><br><span class="line">	height:0px;</span><br><span class="line">	border: 50px solid transparent;</span><br><span class="line">	border-left:50px solid #ef4848;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>这样给面试你的人讲,讲明白应该不是问题., 重点就是要理解border的应用</p>
-<ol start="6">
-<li>实现三栏布局有哪些方法, 分别描述一下</li>
-</ol>
-<p>三栏布局，顾名思义就是两边固定，中间自适应。三栏布局在开发十分常见，那么什么是三栏布局？即左右模块固定宽度，中间模块随浏览器变化自适应，想要完成的最终效果如下图所示：下面列出四种实现方式, 在开发中可以根据实际需求选择适合自己的方法进行编码:</p>
-<p>Flex 布局</p>
+<h2 id="6-实现三栏布局有哪些方法-分别描述一下"><a href="#6-实现三栏布局有哪些方法-分别描述一下" class="headerlink" title="6. 实现三栏布局有哪些方法, 分别描述一下"></a>6. 实现三栏布局有哪些方法, 分别描述一下</h2><p>三栏布局，顾名思义就是两边固定，中间自适应。三栏布局在开发十分常见，那么什么是三栏布局？即左右模块固定宽度，中间模块随浏览器变化自适应，想要完成的最终效果如下图所示：下面列出四种实现方式, 在开发中可以根据实际需求选择适合自己的方法进行编码:</p>
+<ul>
+<li>Flex 布局<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">.container&#123;</span><br><span class="line">  display:flex;</span><br><span class="line">  justify-content: center;</span><br><span class="line">  height: 200px;</span><br><span class="line">  background: #eee;</span><br><span class="line">&#125;</span><br><span class="line">.left &#123;</span><br><span class="line">   width: 200px;</span><br><span class="line">   background-color: red;</span><br><span class="line">   height: 100%;</span><br><span class="line"> &#125;</span><br><span class="line">.main &#123;</span><br><span class="line">    background-color: yellow;</span><br><span class="line">    flex: 1;</span><br><span class="line">&#125;</span><br><span class="line">.right &#123;</span><br><span class="line">    width: 200px;</span><br><span class="line">    background-color: green;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div class=&quot;container&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;left&quot;&gt;1&lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;main&quot;&gt;2&lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;right&quot;&gt;3&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>简单实用，现在比较流行的方案，但是需要考虑浏览器的兼容性。</p>
+<ul>
+<li>绝对定位布局<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">.container &#123;</span><br><span class="line">  position: relative;</span><br><span class="line">  background:#eee;</span><br><span class="line">  height:200px;</span><br><span class="line">	&#125;</span><br><span class="line">.main &#123;</span><br><span class="line">  height: 200px;</span><br><span class="line">  margin: 0 120px;</span><br><span class="line">  background-color: yellow;</span><br><span class="line">	&#125;</span><br><span class="line">.left &#123;</span><br><span class="line">  position: absolute;</span><br><span class="line">  width: 100px;</span><br><span class="line">  height: 200px;</span><br><span class="line">  left: 0;</span><br><span class="line">  top: 0;</span><br><span class="line">  background-color: red;</span><br><span class="line">	&#125;</span><br><span class="line">.right &#123;</span><br><span class="line">  position: absolute;</span><br><span class="line">  width: 100px;</span><br><span class="line">  height: 200px;</span><br><span class="line">  background-color: green;</span><br><span class="line">  right: 0;</span><br><span class="line">  top: 0;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br><span class="line">&lt;div class=&quot;container&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;left&quot;&gt;1&lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;main&quot;&gt;2&lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;right&quot;&gt;3&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">```* </span><br><span class="line">这种方案也简单实用, 并且可以将 &lt;div class=&quot;main&quot;&gt;&lt;/div&gt;元素放到第一位,使得主要内容优先加载!</span><br><span class="line"></span><br><span class="line">双飞翼布局</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 <style>
-.container{
-  display:flex;
-  justify-content: center;
-  height: 200px;
-  background: #eee;
+.content {
+  float: left;
+  width: 100%;
 }
-.left {
-   width: 200px;
-   background-color: red;
-   height: 100%;
- }
-.main {
-    background-color: yellow;
-    flex: 1;
-}
-.right {
-    width: 200px;
-    background-color: green;
-}
-</style>
-<div class="container">
-  <div class="left">1</div>
-  <div class="main">2</div>
-  <div class="right">3</div>
-</div>
-简单实用，现在比较流行的方案，但是需要考虑浏览器的兼容性。
-
-绝对定位布局
-<style>
-.container {
-  position: relative;
-  background:#eee;
-  height:200px;
-    }
 .main {
   height: 200px;
-  margin: 0 120px;
+  margin-left: 110px;
+  margin-right: 220px;
   background-color: yellow;
-    }
-.left {
-  position: absolute;
-  width: 100px;
-  height: 200px;
-  left: 0;
-  top: 0;
-  background-color: red;
-    }
-.right {
-  position: absolute;
-  width: 100px;
-  height: 200px;
-  background-color: green;
-  right: 0;
-  top: 0;
 }
+.left {
+  float: left;
+  height: 200px;
+  width: 100px;
+  margin-left: -100%;
+  background-color: red;
+}
+.right {
+  width: 200px;
+  height: 200px;
+  float: right;
+  margin-left: -200px;
+  background-color: green;
+}    
+
 </style>
+<div class="content">
+  <div class="main"></div>
+</div>
+<div class="left"></div>
+<div class="right"></div>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* 圣杯布局</span><br></pre></td></tr></table></figure>
 
-<div class="container"><br>  <div class="left">1</div><br>  <div class="main">2</div><br>  <div class="right">3</div><br></div><br>这种方案也简单实用, 并且可以将 <div class="main"></div>元素放到第一位,使得主要内容优先加载!<br><br>双飞翼布局<br><style><br>.content {<br>  float: left;<br>  width: 100%;<br>}<br>.main {<br>  height: 200px;<br>  margin-left: 110px;<br>  margin-right: 220px;<br>  background-color: yellow;<br>}<br>.left {<br>  float: left;<br>  height: 200px;<br>  width: 100px;<br>  margin-left: -100%;<br>  background-color: red;<br>}<br>.right {<br>  width: 200px;<br>  height: 200px;<br>  float: right;<br>  margin-left: -200px;<br>  background-color: green;<br>}<br><br></style><br><div class="content"><br>  <div class="main"></div><br></div><br><div class="left"></div><br><div class="right"></div>
-
-
-<p>圣杯布局</p>
 <style>
 .container {
   margin-left: 120px;
@@ -285,10 +448,7 @@
   <div class="left"></div>
   <div class="right"></div>
 </div>
-圣杯布局和双飞翼布局解决问题的方案在前一半是相同的，也就是三栏全部float浮动，但左右两栏加上负margin让其跟中间栏div并排，以形成三栏布局。
-
-
-7. css3实现0.5px的细线
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">圣杯布局和双飞翼布局解决问题的方案在前一半是相同的，也就是三栏全部float浮动，但左右两栏加上负margin让其跟中间栏div并排，以形成三栏布局。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 7. css3实现0.5px的细线</span><br></pre></td></tr></table></figure>
 
 <style>
 .line {
@@ -307,29 +467,36 @@
 }
 </style>
 
-<div class="line"></div>
-
-
-<ol start="8">
-<li>link 与 @import 的区别</li>
-</ol>
-<p>从属关系区别<br>@import是 CSS 提供的语法规则，只有导入样式表的作用；link是HTML提供的标签，不仅可以加载 CSS 文件，还可以定义 RSS、rel 连接属性等<br>加载顺序区别<br>加载页面时，link标签引入的 CSS 被同时加载；@import引入的 CSS 将在页面加载完毕后被加载。<br>兼容性区别<br>@import是 CSS2.1 才有的语法，故只可在 IE5+ 才能识别；link标签作为 HTML 元素，不存在兼容性问题。<br>DOM可控性区别<br>可以通过 JS 操作 DOM ，插入link标签来改变样式；由于DOM方法是基于文档的，无法使用@import的方式插入样式。<br>css部分就整理到这里, 小伙伴们面试还有什么经常遇到的,可以在评论区给我留言, 我有时间就整理出来, IT(挨踢)都是一大家, 方便你我他</p>
-<ol start="9">
-<li>开发中为什么要初始化css样式</li>
-</ol>
+<p><div class="line"></div><br><code>`</code></p>
+<h2 id="8-link-与-import-的区别"><a href="#8-link-与-import-的区别" class="headerlink" title="8. link 与 @import 的区别"></a>8. link 与 @import 的区别</h2><ul>
+<li>从属关系区别<br>@import是 CSS 提供的语法规则，只有导入样式表的作用；link是HTML提供的标签，不仅可以加载 CSS 文件，还可以定义 RSS、rel 连接属性等</li>
+<li>加载顺序区别<br>加载页面时，link标签引入的 CSS 被同时加载；@import引入的 CSS 将在页面加载完毕后被加载。</li>
+<li>兼容性区别<br>@import是 CSS2.1 才有的语法，故只可在 IE5+ 才能识别；link标签作为 HTML 元素，不存在兼容性问题。<br>DOM可控性区别<br>可以通过 JS 操作 DOM ，插入link标签来改变样式；由于DOM方法是基于文档的，无法使用@import的方式插入样式。<br>css部分就整理到这里, 小伙伴们面试还有什么经常遇到的,可以在评论区给我留言, 我有时间就整理出来, IT(挨踢)都是一大家, 方便你我他<h2 id="9-开发中为什么要初始化css样式"><a href="#9-开发中为什么要初始化css样式" class="headerlink" title="9. 开发中为什么要初始化css样式"></a>9. 开发中为什么要初始化css样式</h2></li>
+</ul>
 <p>因为浏览器的兼容问题，不同浏览器对有些标签的默认值是不同的，如果没对CSS初始化往往会出现浏览器之间的页面显示差异。</p>
 <ol start="10">
 <li>CSS优化、提高性能的方法有哪些</li>
 </ol>
-<p>尽量将样式写在单独的css文件里面，在head元素中引用 将代码写成单独的css文件有几点好处：<br>内容和样式分离，易于管理和维护<br>减少页面体积<br>css文件可以被缓存、重用，维护成本降低<br>不使用@import<br>避免使用复杂的选择器，层级越少越好 建议选择器的嵌套最好不要超过三层，比如：<br>精简页面的样式文件，去掉不用的样式<br>利用CSS继承减少代码量<br>避免！important，可以选择其他选择器</p>
+<p>尽量将样式写在单独的css文件里面，在head元素中引用 将代码写成单独的css文件有几点好处：</p>
+<ul>
+<li>内容和样式分离，易于管理和维护</li>
+<li>减少页面体积</li>
+<li>css文件可以被缓存、重用，维护成本降低</li>
+<li>不使用@import</li>
+<li>避免使用复杂的选择器，层级越少越好 建议选择器的嵌套最好不要超过三层，比如：<br>精简页面的样式文件，去掉不用的样式</li>
+<li>利用CSS继承减少代码量</li>
+<li>避免！important，可以选择其他选择器</li>
+</ul>
 <p>参考链接：<a href="http://www.pinlue.com/article/2019/05/2002/158990051021.html" target="_blank" rel="noopener">http://www.pinlue.com/article/2019/05/2002/158990051021.html</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/19/cssTitle/" data-id="ck0qeegzq000sw8kclw61oloo" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/19/cssTitle/" data-id="ck0qo7ju4000vwgkcmay19z4z" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
+
     </footer>
   </div>
   
@@ -337,9 +504,9 @@
 <nav id="article-nav">
   
   
-    <a href="/2019/09/03/jsTitle/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/09/03/vueTitle/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">js相关面试题整理</div>
+      <div class="article-nav-title">vue相关面试题</div>
     </a>
   
 </nav>
@@ -358,7 +525,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-hexo/">blog-hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-hexo/">blog-hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a></li></ul>
     </div>
   </div>
 
@@ -368,7 +535,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/blog-hexo/" style="font-size: 15px;">blog-hexo</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/js/" style="font-size: 20px;">js</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/web/" style="font-size: 10px;">web</a>
+      <a href="/tags/blog-hexo/" style="font-size: 15px;">blog-hexo</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/web/" style="font-size: 10px;">web</a>
     </div>
   </div>
 
@@ -390,11 +557,7 @@
       <ul>
         
           <li>
-            <a href="/2019/09/19/cssTitle/">cssTitle</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/03/jsTitle/">js相关面试题整理</a>
+            <a href="/2019/09/19/cssTitle/">css相关面试题</a>
           </li>
         
           <li>
@@ -407,6 +570,10 @@
         
           <li>
             <a href="/2019/09/02/webTitle/">前端面试题整理</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/26/promise/">Promise</a>
           </li>
         
       </ul>
