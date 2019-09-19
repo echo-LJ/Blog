@@ -3,7 +3,7 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Hexo</title>
+  <title>echo-blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
@@ -61,6 +61,164 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-web" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/09/19/web/" class="article-date">
+  <time datetime="2019-09-19T12:53:29.000Z" itemprop="datePublished">2019-09-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/19/web/">前端面试题汇总</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="页面从输入URL到页面加载显示完成，这个过程中都发生了什么？"><a href="#页面从输入URL到页面加载显示完成，这个过程中都发生了什么？" class="headerlink" title="页面从输入URL到页面加载显示完成，这个过程中都发生了什么？"></a>页面从输入URL到页面加载显示完成，这个过程中都发生了什么？</h5><h5 id="浏览器工作原理"><a href="#浏览器工作原理" class="headerlink" title="浏览器工作原理"></a>浏览器工作原理</h5><h5 id="浏览器内核"><a href="#浏览器内核" class="headerlink" title="浏览器内核"></a>浏览器内核</h5><h5 id="常见的浏览器内核有哪些？"><a href="#常见的浏览器内核有哪些？" class="headerlink" title="常见的浏览器内核有哪些？"></a>常见的浏览器内核有哪些？</h5><h5 id="cookies，sessionStorage-和-localStorage-的区别？"><a href="#cookies，sessionStorage-和-localStorage-的区别？" class="headerlink" title="cookies，sessionStorage 和 localStorage 的区别？"></a>cookies，sessionStorage 和 localStorage 的区别？</h5><h5 id="页面访问cookie的限制条件"><a href="#页面访问cookie的限制条件" class="headerlink" title="页面访问cookie的限制条件"></a>页面访问cookie的限制条件</h5><h5 id="实现浏览器内多个标签页之间的通信"><a href="#实现浏览器内多个标签页之间的通信" class="headerlink" title="实现浏览器内多个标签页之间的通信"></a>实现浏览器内多个标签页之间的通信</h5><h5 id="页面可见性（Page-Visibility-API）-可以有哪些用途"><a href="#页面可见性（Page-Visibility-API）-可以有哪些用途" class="headerlink" title="页面可见性（Page Visibility API） 可以有哪些用途"></a>页面可见性（Page Visibility API） 可以有哪些用途</h5><h5 id="网页验证码是做什么的，是为了解决什么安全问题"><a href="#网页验证码是做什么的，是为了解决什么安全问题" class="headerlink" title="网页验证码是做什么的，是为了解决什么安全问题"></a>网页验证码是做什么的，是为了解决什么安全问题</h5><h5 id="为什么利用多个域名来存储网站资源"><a href="#为什么利用多个域名来存储网站资源" class="headerlink" title="为什么利用多个域名来存储网站资源"></a>为什么利用多个域名来存储网站资源</h5><h5 id="一个页面上有大量的图片，加载很慢，你有哪些方法优化这些图片的加载，给用户更好的体验"><a href="#一个页面上有大量的图片，加载很慢，你有哪些方法优化这些图片的加载，给用户更好的体验" class="headerlink" title="一个页面上有大量的图片，加载很慢，你有哪些方法优化这些图片的加载，给用户更好的体验"></a>一个页面上有大量的图片，加载很慢，你有哪些方法优化这些图片的加载，给用户更好的体验</h5><h5 id="以前端角度出发做好SEO（搜索引擎）需要考虑什么？"><a href="#以前端角度出发做好SEO（搜索引擎）需要考虑什么？" class="headerlink" title="以前端角度出发做好SEO（搜索引擎）需要考虑什么？"></a>以前端角度出发做好SEO（搜索引擎）需要考虑什么？</h5><h5 id="前端性能优化"><a href="#前端性能优化" class="headerlink" title="前端性能优化"></a>前端性能优化</h5><h5 id="webSocket如何兼容低浏览器"><a href="#webSocket如何兼容低浏览器" class="headerlink" title="webSocket如何兼容低浏览器"></a>webSocket如何兼容低浏览器</h5><h5 id="web开发中会话跟踪的方法"><a href="#web开发中会话跟踪的方法" class="headerlink" title="web开发中会话跟踪的方法"></a>web开发中会话跟踪的方法</h5><h5 id="HTTP-method"><a href="#HTTP-method" class="headerlink" title="HTTP method"></a>HTTP method</h5><h5 id="HTTP状态码及其含义"><a href="#HTTP状态码及其含义" class="headerlink" title="HTTP状态码及其含义"></a>HTTP状态码及其含义</h5><h5 id="什么是同源：协议相同-域名相同-端口相同"><a href="#什么是同源：协议相同-域名相同-端口相同" class="headerlink" title="什么是同源：协议相同 域名相同 端口相同"></a>什么是同源：协议相同 域名相同 端口相同</h5><p>答案参考链接：<a href="https://lujinggirl.github.io/2019/09/02/webTitle/" target="_blank" rel="noopener">https://lujinggirl.github.io/2019/09/02/webTitle/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/09/19/web/" data-id="ck0qpat10000d04kc09o54b7l" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端面试题/">前端面试题</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-css" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/09/19/css/" class="article-date">
+  <time datetime="2019-09-19T12:53:19.000Z" itemprop="datePublished">2019-09-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/19/css/">前端css相关面试题汇总</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="什么是-BFC机制"><a href="#什么是-BFC机制" class="headerlink" title="什么是 BFC机制"></a>什么是 BFC机制</h5><h5 id="CSS3中新增的选择器以及属性"><a href="#CSS3中新增的选择器以及属性" class="headerlink" title="CSS3中新增的选择器以及属性"></a>CSS3中新增的选择器以及属性</h5><h5 id="居中布局"><a href="#居中布局" class="headerlink" title="居中布局"></a>居中布局</h5><h5 id="清除浮动有哪些方法-各有什么优缺点"><a href="#清除浮动有哪些方法-各有什么优缺点" class="headerlink" title="清除浮动有哪些方法, 各有什么优缺点"></a>清除浮动有哪些方法, 各有什么优缺点</h5><h5 id="用纯CSS创建一个三角形的原理是什么"><a href="#用纯CSS创建一个三角形的原理是什么" class="headerlink" title="用纯CSS创建一个三角形的原理是什么"></a>用纯CSS创建一个三角形的原理是什么</h5><h5 id="实现三栏布局有哪些方法-分别描述一下"><a href="#实现三栏布局有哪些方法-分别描述一下" class="headerlink" title="实现三栏布局有哪些方法, 分别描述一下"></a>实现三栏布局有哪些方法, 分别描述一下</h5><h5 id="css3实现0-5px的细线"><a href="#css3实现0-5px的细线" class="headerlink" title="css3实现0.5px的细线"></a>css3实现0.5px的细线</h5><h5 id="link-与-import-的区别"><a href="#link-与-import-的区别" class="headerlink" title="link 与 @import 的区别"></a>link 与 @import 的区别</h5><h5 id="开发中为什么要初始化css样式"><a href="#开发中为什么要初始化css样式" class="headerlink" title="开发中为什么要初始化css样式"></a>开发中为什么要初始化css样式</h5><p>答案参考链接：<a href="https://lujinggirl.github.io/2019/09/19/cssTitle/" target="_blank" rel="noopener">https://lujinggirl.github.io/2019/09/19/cssTitle/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/09/19/css/" data-id="ck0qpat0c000004kcb7ec72dx" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端面试题/">前端面试题</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-vue" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/09/19/vue/" class="article-date">
+  <time datetime="2019-09-19T12:50:06.000Z" itemprop="datePublished">2019-09-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/19/vue/">vue相关面试题汇总</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="孙子组件或更深层次的组件通信（除了props和vuex的其他用法）"><a href="#孙子组件或更深层次的组件通信（除了props和vuex的其他用法）" class="headerlink" title="孙子组件或更深层次的组件通信（除了props和vuex的其他用法）"></a>孙子组件或更深层次的组件通信（除了props和vuex的其他用法）</h5><h5 id="子组件访问父组件数据（除了props）"><a href="#子组件访问父组件数据（除了props）" class="headerlink" title="子组件访问父组件数据（除了props）"></a>子组件访问父组件数据（除了props）</h5><p>答案参考链接：<a href="https://lujinggirl.github.io/2019/09/03/vueTitle/" target="_blank" rel="noopener">https://lujinggirl.github.io/2019/09/03/vueTitle/</a></p>
+<h5 id="new-Vue-做了什么？"><a href="#new-Vue-做了什么？" class="headerlink" title="new Vue()做了什么？"></a>new Vue()做了什么？</h5><h5 id="什么阶段才能访问DOM？"><a href="#什么阶段才能访问DOM？" class="headerlink" title="什么阶段才能访问DOM？"></a>什么阶段才能访问DOM？</h5><h5 id="谈谈你对Vue的生命周期的理解？"><a href="#谈谈你对Vue的生命周期的理解？" class="headerlink" title="谈谈你对Vue的生命周期的理解？"></a>谈谈你对Vue的生命周期的理解？</h5><h5 id="生命周期钩子的合并策略"><a href="#生命周期钩子的合并策略" class="headerlink" title="生命周期钩子的合并策略"></a>生命周期钩子的合并策略</h5><h5 id="新生命周期钩子：serverPrefetch是什么？"><a href="#新生命周期钩子：serverPrefetch是什么？" class="headerlink" title="新生命周期钩子：serverPrefetch是什么？"></a>新生命周期钩子：serverPrefetch是什么？</h5><h5 id="Vue-router-路由模式有几种？"><a href="#Vue-router-路由模式有几种？" class="headerlink" title="Vue-router 路由模式有几种？"></a>Vue-router 路由模式有几种？</h5><h5 id="谈谈你对keep-alive的了解"><a href="#谈谈你对keep-alive的了解" class="headerlink" title="谈谈你对keep-alive的了解"></a>谈谈你对keep-alive的了解</h5><h5 id="vue源码中内置的组件？"><a href="#vue源码中内置的组件？" class="headerlink" title="vue源码中内置的组件？"></a>vue源码中内置的组件？</h5><h5 id="了解Vue2-6-新全局API：Vue-observable-吗？"><a href="#了解Vue2-6-新全局API：Vue-observable-吗？" class="headerlink" title="了解Vue2.6+新全局API：Vue.observable()吗？"></a>了解Vue2.6+新全局API：Vue.observable()吗？</h5><h5 id="了解Vue数据绑定原理？"><a href="#了解Vue数据绑定原理？" class="headerlink" title="了解Vue数据绑定原理？"></a>了解Vue数据绑定原理？</h5><p>答案参考链接：<a href="https://lujinggirl.github.io/2019/09/03/vueSourceCoding/" target="_blank" rel="noopener">https://lujinggirl.github.io/2019/09/03/vueSourceCoding/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/09/19/vue/" data-id="ck0qpat0v000804kcy4r2gjt6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端面试题/">前端面试题</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-js" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/09/19/js/" class="article-date">
+  <time datetime="2019-09-19T12:45:32.000Z" itemprop="datePublished">2019-09-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/19/js/">前端js相关面试题汇总</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h4><p>答案参考链接：<a href="https://lujinggirl.github.io/2019/08/26/promise/" target="_blank" rel="noopener">https://lujinggirl.github.io/2019/08/26/promise/</a></p>
+<h4 id="宏任务、微任务"><a href="#宏任务、微任务" class="headerlink" title="宏任务、微任务"></a>宏任务、微任务</h4><p>答案参考链接：<a href="https://lujinggirl.github.io/2019/08/21/JS-thread/" target="_blank" rel="noopener">https://lujinggirl.github.io/2019/08/21/JS-thread/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/09/19/js/" data-id="ck0qpat0r000404kchhvtjez4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端面试题/">前端面试题</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-cssTitle" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -331,8 +489,7 @@ table: display:table-cell; vertical-align: middle;
 </li>
 </ol>
 <p>4.flex + justify-content + align-items<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">.box&#123;</span><br><span class="line">   height:600px;</span><br><span class="line"></span><br><span class="line">   display:flex;</span><br><span class="line">   justify-content:center;  //子元素水平居中</span><br><span class="line">   align-items:center;      //子元素垂直居中</span><br><span class="line">     /* aa只要三句话就可以实现不定宽高水平垂直居中。*/</span><br><span class="line">    &#125;</span><br><span class="line">  .box&gt;div&#123;</span><br><span class="line">    background: green;</span><br><span class="line">    width: 200px;</span><br><span class="line">    height: 200px;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
-<p>##4. 清除浮动有哪些方法, 各有什么优缺点</p>
-<ul>
+<h2 id="4-清除浮动有哪些方法-各有什么优缺点"><a href="#4-清除浮动有哪些方法-各有什么优缺点" class="headerlink" title="4. 清除浮动有哪些方法, 各有什么优缺点"></a>4. 清除浮动有哪些方法, 各有什么优缺点</h2><ul>
 <li>使用clear属性的空元素<br>在浮动元素后使用一个空元素如<div class="clear"></div>，并在CSS中赋予.clear{clear:both;}属性即可清理浮动。亦可使用<br class="clear">或<hr class="clear">来进行清理。</li>
 </ul>
 <p>优点: 简单, 写少量代码, 兼容性也好 缺点: 添加无语义html元素, 不利于代码语义化, 后期维护成本大</p>
@@ -489,7 +646,7 @@ table: display:table-cell; vertical-align: middle;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/19/cssTitle/" data-id="ck0qobmjh000w88kck3ifuy5b" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/19/cssTitle/" data-id="ck0qpat1s000z04kc2sgxlrjs" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
@@ -543,7 +700,7 @@ table: display:table-cell; vertical-align: middle;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/03/vueTitle/" data-id="ck0qobmj1000l88kcthqcetim" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/03/vueTitle/" data-id="ck0qpat0x000a04kce0po0dij" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
@@ -747,7 +904,7 @@ table: display:table-cell; vertical-align: middle;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/03/vueSourceCoding/" data-id="ck0qobmkb001e88kclx30vfs6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/03/vueSourceCoding/" data-id="ck0qpat2n001i04kci9lx6p4p" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
@@ -1005,7 +1162,7 @@ table: display:table-cell; vertical-align: middle;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/02/webTitle/" data-id="ck0qobmk6001b88kcfgxmt11v" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/02/webTitle/" data-id="ck0qpat2j001f04kciakvm4is" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
@@ -1240,7 +1397,7 @@ table: display:table-cell; vertical-align: middle;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/26/promise/" data-id="ck0qobmk0001888kcsz2qaiv9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/26/promise/" data-id="ck0qpat2d001c04kczadn6xvg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6/">es6</a></li></ul>
@@ -1418,386 +1575,10 @@ table: display:table-cell; vertical-align: middle;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/21/JS-thread/" data-id="ck0qobmjg000v88kcdtqjys9k" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/21/JS-thread/" data-id="ck0qpat1r000y04kcweqk10lr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-request" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/08/19/request/" class="article-date">
-  <time datetime="2019-08-19T06:05:42.000Z" itemprop="datePublished">2019-08-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/19/request/">关于前端请求的那些事</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Author: Echo<br>Time: 2019-08-19 14:05:42</p>
-<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>前端是一个快速发展的领域，而在前端的技术栈当中，前端请求又是最见的一个领域，通过请求接口数据，才能将一个静态的页面动态化。本文将以前端发展的时间轴来逐一分析前端请求的技术演变及其优劣。</p>
-<h2 id="XMLHttpRequest"><a href="#XMLHttpRequest" class="headerlink" title="XMLHttpRequest"></a>XMLHttpRequest</h2><p>XMLHttpRequest是最早出现的与服务器交换数据的方案，有了XMLHttpRequest,开发者终于可以在不重新加载页面的情况下更新网页，可以在页面加载后请求接受以及发送数据。而所有的浏览器均支持获取XMLHttpRequest对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var xhr = new XMLHttpRequest(); //获取XMLHttpRequest对象</span><br></pre></td></tr></table></figure></p>
-<p>由于浏览器的兼容性，各个浏览器对于创建XMLHttpRequest的方法不同，以下是兼容方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var xhr;</span><br><span class="line">if (window.XMLHttpRequest) &#123; // Mozilla, Safari...</span><br><span class="line">  xhr = new XMLHttpRequest();</span><br><span class="line">&#125; else if (window.ActiveXObject) &#123; // IE</span><br><span class="line">  try &#123;</span><br><span class="line">    xhr = new ActiveXObject(&apos;Msxml2.XMLHTTP&apos;);</span><br><span class="line">  &#125; catch (e) &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">      xhr = new ActiveXObject(&apos;Microsoft.XMLHTTP&apos;);  //IE5,6</span><br><span class="line">    &#125; catch (e) &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>使用XMLHttpRequest发起一个get请求<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// get请求</span><br><span class="line">xhr.open(&quot;GET&quot;,&quot;test1.txt&quot;,true);</span><br><span class="line">xhr.send();</span><br></pre></td></tr></table></figure></p>
-<p>完整的post请求代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">var xhr;</span><br><span class="line">if (window.XMLHttpRequest) &#123; // Mozilla, Safari...</span><br><span class="line">  xhr = new XMLHttpRequest();</span><br><span class="line">&#125; else if (window.ActiveXObject) &#123; // IE</span><br><span class="line">  try &#123;</span><br><span class="line">    xhr = new ActiveXObject(&apos;Msxml2.XMLHTTP&apos;);</span><br><span class="line">  &#125; catch (e) &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">      xhr = new ActiveXObject(&apos;Microsoft.XMLHTTP&apos;);</span><br><span class="line">    &#125; catch (e) &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if (xhr) &#123;</span><br><span class="line">  xhr.onreadystatechange = onReadyStateChange;</span><br><span class="line">  xhr.open(&apos;POST&apos;, &apos;/api&apos;, true);</span><br><span class="line">  // 设置 Content-Type 为 application/x-www-form-urlencoded</span><br><span class="line">  // 以表单的形式传递数据</span><br><span class="line">  xhr.setRequestHeader(&apos;Content-Type&apos;, &apos;application/x-www-form-urlencoded&apos;);</span><br><span class="line">  xhr.send(&apos;username=admin&amp;password=root&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// onreadystatechange 方法</span><br><span class="line">function onReadyStateChange() &#123;</span><br><span class="line">  // 该函数会被调用四次</span><br><span class="line">  if (xhr.readyState === 4 &amp;&amp;xhr.status === 200) &#123;</span><br><span class="line">    console.log(&apos;执行成功&apos;);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    console.log(&apos;执行出错&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="Jquery-Ajax"><a href="#Jquery-Ajax" class="headerlink" title="Jquery Ajax"></a>Jquery Ajax</h2><p>说到Jquery，这是一个时代，几乎统治了前端10年有余，彻底解决了UI层与数据层交互的问题，直到三大框架(Angular/React/Vue）的出现，前端进入MVVM浪潮。而Ajax将XHR进行封装，让开发者可以更加便捷方便进行使用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;   //标准写法</span><br><span class="line">   type: &apos;POST&apos;,</span><br><span class="line">   url: url,</span><br><span class="line">   data: data,</span><br><span class="line">   dataType: dataType,</span><br><span class="line">   success: function () &#123;&#125;,</span><br><span class="line">   error: function () &#123;&#125;</span><br><span class="line">&#125;);</span><br><span class="line">$.get(url,function()&#123;&#125;); //get请求</span><br><span class="line">$.post(url,body,function()&#123;&#125;); //post请求</span><br><span class="line">$.getJSON(url,function()&#123;&#125;);  //get请求从服务器加载Json编码</span><br></pre></td></tr></table></figure></p>
-<h4 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h4><ul>
-<li>对原生XHR的封装</li>
-<li>针对MVC的编程</li>
-<li>完美的兼容性</li>
-<li>支持jsonp<h4 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h4></li>
-<li>不符合MVVM</li>
-<li>异步模型不够现代，不支持链式，代码可读性差</li>
-<li>整个Jquery太大，引入成本过高</li>
-</ul>
-<h2 id="Fetch"><a href="#Fetch" class="headerlink" title="Fetch"></a>Fetch</h2><p>fetch其实是一个新世界，脱离XHR，完全是基于Promise的异步处理机制，使用起来会比ajax更加简单。<br>使用fetch的代码会相比xhr来说更具有条理性。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fetch(url).then(function(response) &#123;</span><br><span class="line">  return response.json();</span><br><span class="line">&#125;).then(function(data) &#123;</span><br><span class="line">  console.log(data);</span><br><span class="line">&#125;).catch(function(e) &#123;</span><br><span class="line">  console.log(&quot;Oops, error&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>在使用ES6的箭头函数后<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fetch(url).then(response =&gt; response.json())</span><br><span class="line">  .then(data =&gt; console.log(data))</span><br><span class="line">  .catch(e =&gt; console.log(&quot;Oops, error&quot;, e))</span><br></pre></td></tr></table></figure></p>
-<p>优点：</p>
-<ul>
-<li>更加底层，提供的API丰富（request, response）</li>
-<li>语法简单，脱离了XHR，基于ES新的Promise设计</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li>兼容性比较凄惨，低级别浏览器均不支持，需要实现fetch的polyfill了。思路其实很简单，就是判断浏览器是否支持原生的fetch，不支持的话，就仍然使用XMLHttpRequest的方式实现，同时结合Promise来进行封装。常见的polyfill就有：<code>es6-promise</code>,<code>babel-polyfill</code>,<code>fetch-ie8</code>等</li>
-<li>不支持jsonp，可以引入<code>fetch-jsonp</code></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">安装 npm install fetch-jsonp --save-dev</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 使用 </span><br><span class="line">fetchJsonp(url, &#123;</span><br><span class="line"> timeout: 3000, jsonpCallback: &apos;callback&apos; </span><br><span class="line">&#125;).then(function(response) &#123; </span><br><span class="line">  console.log(response.json()); </span><br><span class="line">&#125;).catch(function(e) &#123; </span><br><span class="line">  console.log(e) </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>没有拦截器，需要额外再封装一层或者<code>fetch-interceptor</code></li>
-<li>默认不带cookie，需要添加配置</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fetch(url,&#123;</span><br><span class="line">  credentials: &apos;include&apos;  </span><br><span class="line">  //include表示cookie既可同域，也可跨域，‘same-origin’表示只可同域</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>没有abort，不支持timeout超时处理<br>可以用Promise.race()实现，Promise.race(iterable) 方法返回一个Promise对象，只要 iterable 中任意一个Promise 被 resolve 或者 reject 后，外部的Promise 就会以相同的值被 resolve 或者 reject。</li>
-<li>无法获取progress状态<br>Fetch中的Response.body 中实现了getReader()方法用于读取原始字节流, 该字节流可以循环读取.<h2 id="Axios"><a href="#Axios" class="headerlink" title="Axios"></a>Axios</h2>axios也是比较新的网络请求的类库，并且被尤雨溪尤大推荐，已成为VUE的网络请求标配，也是十分的火爆。它本身也是对原生XHR的封装。</li>
-<li>支持node，创建http请求</li>
-<li>支持Promise API</li>
-<li>客户端防止CSRF：每个请求带一个cookie拿到的key</li>
-<li>拦截请求和响应</li>
-<li>可取消请求<br>兼容性上虽然axios本质上也是对原生XHR的封装，但是它也依赖原生ES6 Promise的实现，和fetch一样需要polyfill的兼容。<h4 id="安装"><a href="#安装" class="headerlink" title="安装:"></a>安装:</h4></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//npm</span><br><span class="line">npm install axios</span><br><span class="line"></span><br><span class="line">//cdn</span><br><span class="line">&lt;script src=&quot;https://unpkg.com/axios/dist/axios.min.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="基本使用如下："><a href="#基本使用如下：" class="headerlink" title="基本使用如下："></a>基本使用如下：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">axios(&#123;</span><br><span class="line">    method: &apos;GET&apos;,</span><br><span class="line">    url: url,</span><br><span class="line">&#125;)</span><br><span class="line">.then(res =&gt; &#123;console.log(res)&#125;)</span><br><span class="line">.catch(err =&gt; &#123;console.log(err)&#125;)</span><br><span class="line"></span><br><span class="line">// get请求</span><br><span class="line">axios.get(url)</span><br><span class="line">  .then(function (response) &#123;</span><br><span class="line">    console.log(response);</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(function (error) &#123;</span><br><span class="line">    console.log(error);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">// post请求</span><br><span class="line">axios.post（‘/user’, &#123;</span><br><span class="line">    name: &apos;Jerry&apos;,</span><br><span class="line">    lastName: &apos;Liang&apos;</span><br><span class="line">  &#125;)</span><br><span class="line">  .then(function (response) &#123;</span><br><span class="line">    console.log(response);</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(function (error) &#123;</span><br><span class="line">    console.log(error);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
-<h2 id="如何选择（个人理解，仅供参考）"><a href="#如何选择（个人理解，仅供参考）" class="headerlink" title="如何选择（个人理解，仅供参考）"></a>如何选择（个人理解，仅供参考）<a href="https://qianduan.group/posts/5bebe26f9fd64d5a7458a932#-" target="_blank" rel="noopener"></a></h2><ol>
-<li>首先可以肯定的是，如果你的代码依旧是基于Jquery，那毫无疑问，ajax就是你最好的选择。</li>
-<li>如果你使用的是任意MVVM框架，建议无脑使用axios，fetch在实际项目使用中，需要各种的封装和异常处理，并非开箱即用，而axios可以做到直接替换$.ajax。</li>
-<li>如果就是要使用fetch，那相信你也一定能封装成自己的一套最佳实践。</li>
-</ol>
-<p>参考：<a href="https://qianduan.group/posts/5bebe26f9fd64d5a7458a932" target="_blank" rel="noopener">https://qianduan.group/posts/5bebe26f9fd64d5a7458a932</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/19/request/" data-id="ck0qobmj2000m88kcgmsbvnce" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-message-comp" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/08/15/message-comp/" class="article-date">
-  <time datetime="2019-08-15T08:05:21.000Z" itemprop="datePublished">2019-08-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/15/message-comp/">模拟element-ui写message组件思路</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Author: Echo<br>Time: 2019-08-15 16:05:21</p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在平时的开发过程中，我们总是先写好一个组件，然后在需要的页面中用 <code>import</code> 引入即可，但如果是下面这种类型的组件呢👇</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/11846892-a36600e65a733412?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
-<p>上面这种类型的浮层提示有一个很大的特点，就是使用频率特别高，几乎每个页面都会用到它，于是乎我们就要在每个页面中去引入该组件，并且在每个页面都得通过一个变量来控制它的显隐，这显然不是我们想要的🙅。。。那我们想要的是什么样呢🤔？用过一些 UI 框架的同学们应该知道有这样一种用法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">this.$message(&#123;</span><br><span class="line">    duration: 3000,</span><br><span class="line">    content: &apos;这是一条消息提示&apos;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>没错，就是这么简单的一句话就万事大吉了（就是用 js 调用组件而已啦🧐）。那这种效果究竟是怎么实现的呢？今天就让我们来（手把手🤝 ）一探究竟吧！</p>
-<h2 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h2><p>不知道小伙伴们有没有用过 <code>Vue.extend()</code> 这个东东，反正我是很少碰过，印象不深，所以这里我们先来短暂了解一下 <code>Vue.extend()</code> 主要是用来干嘛的。先来个官方说明（不多的，坚持下）：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/11846892-562ca3309f3120c7?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
-<p>没怎么看懂？😴没关系，不重要，你只要记住（加少许理解）以下用法即可：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 导入以往的普通组件</span><br><span class="line">import Main from &apos;./main.vue&apos;;</span><br><span class="line">// 用 Vue.extend 创建组件的模板（构造函数）</span><br><span class="line">let mainConstructor = Vue.extend(Main);</span><br><span class="line">// 实例化组件</span><br><span class="line">let instance = new mainConstructor();</span><br><span class="line">// 挂载到相应的元素上</span><br><span class="line">instance.$mount(&apos;#app&apos;);</span><br></pre></td></tr></table></figure>
-<p>不知道你看懂没有，上面的 <code>Vue.extend(Main)</code> 就是一个基于 main.vue 的组件模板（构造函数），<code>instance</code> 是实例化的组件，<code>$mount()</code> 是手动挂载的意思。其中 <code>Vue.extend()</code> 和 <code>$mount()</code> 就是我们通过 js 调用、渲染并挂载组件的精髓所在，相当于早前的 <code>createElement</code> 和 <code>appendChild</code>，有异曲同工之效。这个点需要我们好好熟悉一下，所以你可以先停下来屡屡思路🤔。<br>补充一下🤐：<code>$mount()</code> 里面如果没有参数，说明组件只是渲染了但还没有挂载到页面上，如果有正确的（元素）参数则直接挂载到元素下面。</p>
-<h2 id="写一个-message-组件"><a href="#写一个-message-组件" class="headerlink" title="写一个 message 组件"></a>写一个 message 组件</h2><p>js 调用归调用，最原始的组件还是要有的，只是我们不通过 <code>import</code> 来引入到页面中而已。ok，我们就以最开始的那个 message图片来简单写一下这个 vue 组件（element-ui中的message 和 alert 也是一样的）。这里就直接上代码啦，毕竟它的结构简单到爆了，也不是本章节的重点：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- message.vue --&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;echojoy-message&quot; &gt;</span><br><span class="line">    &lt;p&gt;服务器错误，请稍后重试&lt;/p&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &quot;EchojoyMessage&quot;,</span><br><span class="line">  </span><br><span class="line">  mounted() &#123;</span><br><span class="line">    setTimeout(() =&gt; &#123;</span><br><span class="line">        // 3s 后通过父级移除子元素的方式来移除该组件实例和 DOM 节点</span><br><span class="line">        this.$destroy(true);</span><br><span class="line">        this.$el.parentNode.removeChild(this.$el);</span><br><span class="line">      &#125;, 3000);</span><br><span class="line">    </span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;style lang=&quot;scss&quot; scoped&gt;</span><br><span class="line">.echojoy-message &#123;</span><br><span class="line">  display: flex;</span><br><span class="line">  align-items: center;</span><br><span class="line">  justify-content: center;</span><br><span class="line">  position: fixed;</span><br><span class="line">  top: 0;</span><br><span class="line">  bottom: 0;</span><br><span class="line">  left: 0;</span><br><span class="line">  right: 0;</span><br><span class="line">  color: #fff;</span><br><span class="line">  z-index: 9999;</span><br><span class="line">  background: transparent;</span><br><span class="line">  &gt; p &#123;</span><br><span class="line">    padding: 12px 22px;</span><br><span class="line">    font-size: 18px;</span><br><span class="line">    border-radius: 4px;</span><br><span class="line">    background: rgba(17, 17, 17, 0.7);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-<p>上面的内容想必大家应该都能看懂，所以这里就直接讲下面的重点了。</p>
-<h2 id="写一个-message-js"><a href="#写一个-message-js" class="headerlink" title="写一个 message.js"></a>写一个 message.js</h2><p>我们在 message.vue 的同级目录下新建一个 message.js 文件。我们先瞟一眼文件内容（也不多，已经是个最简版了）👇：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// message.js</span><br><span class="line">import Vue from &quot;vue&quot;; // 引入 Vue 是因为要用到 Vue.extend() 这个方法</span><br><span class="line">import message from &quot;./message.vue&quot;; // 引入刚才的 toast 组件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const Toast = function() &#123;</span><br><span class="line">  instance = new ToastConstructor().$mount(); // 渲染组件</span><br><span class="line">  </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">let messageConstructor = Vue.extend(message); // 这个在前面的前置知识内容里面有讲到</span><br><span class="line">let instance;</span><br><span class="line"></span><br><span class="line">const Message = function (options = &#123;&#125;) &#123;</span><br><span class="line">    instance = new messageConstructor().$mount(); // 渲染组件</span><br><span class="line">    document.body.appendChild(instance.$el); // 挂载到 body 下</span><br><span class="line">&#125;;</span><br><span class="line">export default Message;</span><br></pre></td></tr></table></figure>
-<p>上面的代码暴露了一个 Message 函数。为什么要暴露一个函数呢？原因很简单：你想想，我们最终是不是要根据 <code>this.$Message ()</code> 来调用一个组件，说白了，通过 js 调用，本质就是调用一个 函数。也就是说 <code>this.$Message ()</code> 就是执行了上面代码中导出的 <code>export default Message</code>，也就是执行了 Message 函数（<code>const Message = function() {}</code>），所以当我们调用 <code>this.$Message()</code> 的时候其实就是执行了 <code>Message()</code> 函数。而 <code>Message()</code> 函数只做了一件事情：就是通过手动挂载的方式把组件挂载到 body 下面。<br>补充一下🤐：一般来说我们常见的是 <code>$mount(&quot;#app&quot;)</code>，也就是把组件挂载到 <code>#app</code> 下面，<code>&lt;router-view /&gt;</code> 也包含在 <code>#app</code> 中，但是我们这种 Message提示是放在 <code>body</code> 下面的，也就是说它不受 <code>#app</code> 和 <code>&lt;router-view /&gt;</code> 的管控，所以当我们切换页面（路由）的时候，这个 Message 组件是不会跟着立马消失的，这点要注意哦😯。<br>这里顺便给个组件的目录结构，如下图所示：<br><img src="https://upload-images.jianshu.io/upload_images/11846892-2e4a12e3b5f5da91.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="message.png"></p>
-<h2 id="开始调用"><a href="#开始调用" class="headerlink" title="开始调用"></a>开始调用</h2><p>调用方式很简单，首先我们在入口文件 main.js（和上面不是同一个😢） 里加上两行代码，这样我们就能在需要的地方直接用 js 调用它了，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import EchojoyMessage from &apos;./../packages/message/src/message.js&apos;</span><br><span class="line">Vue.prototype.$message = EchojoyMessage;</span><br></pre></td></tr></table></figure>
-<p>然后在页面中测试一下，就像下面这样子：<br><img src="https://upload-images.jianshu.io/upload_images/11846892-09a2f0e7cbe77528.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ALAERT.png"></p>
-<p>运行一下代码：<br><img src="https://upload-images.jianshu.io/upload_images/11846892-a3c24b73cd995de6?imageMogr2/auto-orient/strip" alt="image"></p>
-<figcaption></figcaption>
-
-<p>嗯，挺好，小有成就的 feel 👏👏👏。</p>
-<h2 id="支持可传参数"><a href="#支持可传参数" class="headerlink" title="支持可传参数"></a>支持可传参数</h2><p>别急，我们好像还漏了点什么🤔。。。对了，现在还不支持传参呢，直接调用 <code>this.$message()</code> 就只能显示————服务器错误，请稍后重试（这下全都是后端的锅了😊）。但我们可是个有追求的前端，不能局限于此，所以现在让我们来尝试增加下两个可配置参数，这里拿 <code>duration</code> 和 <code>content</code> 举个栗子🌰。<br>首先我们要修改 message.vue 组件里面的内容（其实没啥大变化），就像下面这样：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- message.vue 可配置版 --&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">   &lt;div class=&quot;echojoy-message&quot; &gt;</span><br><span class="line">    &lt;p &gt;</span><br><span class="line">      &#123;&#123;content&#125;&#125; </span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">// 主要就改了 data</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &quot;EchojoyMessage&quot;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      content: &quot;&quot;,</span><br><span class="line">      duration: 3000</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted() &#123;</span><br><span class="line">    setTimeout(() =&gt; &#123;</span><br><span class="line">      this.$destroy(true);</span><br><span class="line">      this.$el.parentNode.removeChild(this.$el);</span><br><span class="line">    &#125;, this.duration);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<p>上面的代码应该算是浅显易懂了，接下来我们看下 message.js 里面改了啥：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// message.js</span><br><span class="line">import Vue from &quot;vue&quot;; // 引入 Vue 是因为要用到 Vue.extend() 这个方法</span><br><span class="line">import message from &quot;./message.vue&quot;; // 引入刚才的 toast 组件</span><br><span class="line"></span><br><span class="line">let messageConstructor = Vue.extend(message); // 这个在前面的前置知识内容里面有讲到</span><br><span class="line">let instance;</span><br><span class="line"></span><br><span class="line">const Message = function (options = &#123;&#125;) &#123;</span><br><span class="line">  instance = new messageConstructor(&#123;</span><br><span class="line">    data: options // 这里的 data 会传到 message.vue 组件中的 data 中，当然也可以写在 props 里</span><br><span class="line">  &#125;); // 渲染组件</span><br><span class="line">  document.body.appendChild(instance.$mount().$el); // 挂载到 body 下</span><br><span class="line">&#125;;</span><br><span class="line">export default Message;</span><br></pre></td></tr></table></figure>
-<p>其实 message.js 也没多大变化，就是在函数里面加了个参数。要注意的是 <code>new messageConstructor({ data: options })</code> 中的 data 就是 message.vue 组件中的 data，不是随随便便取的字段名，传入的 <code>options</code> 会和组件中的 data 合并（Vue 的功劳）。<br>em。。。是的，就这么简单，现在让我们继续来调用一下它：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  methods: &#123;</span><br><span class="line">    show()&#123;</span><br><span class="line">      this.$message.success(&#123;</span><br><span class="line">        content: &quot;哈哈哈哈，消失的贼快&quot;,</span><br><span class="line">        duration: 0</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<p>运行一下就可以看到：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/11846892-738632ab3db8fc91?imageMogr2/auto-orient/strip" alt="image"></p>
-<figcaption></figcaption>
-
-<p>当然，这还没完，我们继续添加个小功能点🙄。。。</p>
-<h2 id="支持-this-message-error"><a href="#支持-this-message-error" class="headerlink" title="支持 this.$message.error()"></a>支持 this.$message.error()</h2><p>这里我们打算支持 <code>this.$message.error()</code> 和 <code>this.$message.success()</code> 这两种方式，所以我们第一步还是要先去修改一下 message.vue 文件的内容（主要就是根据 <code>type</code> 值来修改组件的样式），就像下面这样：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--main.vue--&gt;</span><br><span class="line">&lt;div class=&quot;echojoy-message&quot; :class=&quot;type ? `echojoy-message--$&#123;type&#125;` : &apos;&apos;&quot;&gt;</span><br><span class="line">    &lt;p class=&quot;echojoy-message-content&quot;&gt;</span><br><span class="line">      &#123;&#123;content&#125;&#125; </span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  ...</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      type: &quot;&quot;,</span><br><span class="line">      content: &quot;&quot;,</span><br><span class="line">      duration: 3000</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  ...</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;style lang=&quot;scss&quot; scoped&gt;</span><br><span class="line">.echojoy-message&#123;</span><br><span class="line">  ...</span><br><span class="line">  &amp;--error p &#123; background: rgba(255, 0, 0, 0.5); &#125;</span><br><span class="line">  &amp;--success p &#123; background: rgba(0, 255, 0, 0.5); &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-<p>其次，<code>this.$message.error()</code> 其实就等价于 <code>Message.error()</code>，所以我们现在的目的就是要给 Message函数扩充方法，也比较简单，就先看代码再解释吧：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// message.js</span><br><span class="line">const Message= function(options = &#123;&#125;) &#123;</span><br><span class="line"> ...</span><br><span class="line">&#125;;</span><br><span class="line">// 以下就是在 Message函数中拓展 [&quot;success&quot;, &quot;error&quot;] 这两个方法</span><br><span class="line"></span><br><span class="line">[&quot;success&quot;, &quot;error&quot;].forEach(type =&gt; &#123;</span><br><span class="line">  Message[type] = options =&gt; &#123;</span><br><span class="line">    options.type = type;</span><br><span class="line">    return Message(options);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">export default Message;</span><br></pre></td></tr></table></figure>
-<p>我们可以看到 <code>Message.error()</code> 和 <code>Message.success()</code> 最终还是调用 <code>Message(options)</code> 这个函数，只不过在调用之前需要多做一步处理，就是将 <code>[&quot;success&quot;, &quot;error&quot;]</code> 作为一个 <code>type</code> 参数给合并进 <code>options</code> 里面再传递，仅此而已😬。<br>那就试试效果吧：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  methods: &#123;</span><br><span class="line">    show() &#123;</span><br><span class="line">      this.$message(&#123; content: &quot;这是正常的&quot; &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">    showError() &#123;</span><br><span class="line">      this.$message.error(&#123; content: &quot;竟然失败了&quot; &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">    showSuccess() &#123;</span><br><span class="line">      this.$message.success(&#123; content: &quot;居然成功了&quot; &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/11846892-6435ed3c174a7160?imageMogr2/auto-orient/strip" alt="image"></p>
-<h2 id="duration-lt-0-message一直存在"><a href="#duration-lt-0-message一直存在" class="headerlink" title="duration &lt;= 0,message一直存在"></a>duration &lt;= 0,message一直存在</h2><ul>
-<li>传入参数非number类型<br>首先我们为了让组件可以在传入错误类型的duration是能正常使用，做了一个小小的兼容，判断变量类型是否为number，非number类型，控制台输出错误，并强行转化duration为数字1000.（处理办法相当粗暴了！！）</li>
-<li>传入参数为number类型移除该组件实例和 DOM 节点<br><code>&gt;0</code><br>在duration的时间范围内，移除该组件实例和 DOM 节点<br><code>&lt;=0</code><br>不做任何处理<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mounted() &#123;</span><br><span class="line">    if (typeof this.duration !== &apos;number&apos; ) &#123;</span><br><span class="line">      console.error(&apos;the duration must be a number!&apos;)</span><br><span class="line">      this.duration = 1000</span><br><span class="line">    &#125;</span><br><span class="line">    if (this.duration &gt; 0) &#123;</span><br><span class="line">      setTimeout(() =&gt; &#123;</span><br><span class="line">        // 3s 后通过父级移除子元素的方式来移除该组件实例和 DOM 节点</span><br><span class="line">        this.$destroy(true);</span><br><span class="line">        this.$el.parentNode.removeChild(this.$el);</span><br><span class="line">      &#125;, this.duration);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="手动关闭message"><a href="#手动关闭message" class="headerlink" title="手动关闭message"></a>手动关闭message</h2><p>在dom结构上设置可以执行关闭的icon图标,添加事件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;i class=&quot;echojoy-icon-close echojoy-message-close&quot; @click=&quot;close&quot;&gt;&lt;/i&gt;</span><br></pre></td></tr></table></figure></p>
-<p>在scripts中增加函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">methods:&#123;</span><br><span class="line">    close()&#123;</span><br><span class="line">      this.$destroy(true);</span><br><span class="line">      this.$el.parentNode.removeChild(this.$el);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h4><p>再见吧！</p>
-<p>参考 连接：<a href="https://juejin.im/post/5ca20e426fb9a05e42555d1d" target="_blank" rel="noopener">https://juejin.im/post/5ca20e426fb9a05e42555d1d</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/15/message-comp/" data-id="ck0qobmjl001088kcxo806ufs" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-nodeBasics" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/08/14/nodeBasics/" class="article-date">
-  <time datetime="2019-08-14T07:37:18.000Z" itemprop="datePublished">2019-08-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/14/nodeBasics/">node 基础知识</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Author: Echo<br>Time: 2019-08-14 15:37:18</p>
-<h1 id="有助于理解前端工具的-node-知识"><a href="#有助于理解前端工具的-node-知识" class="headerlink" title="有助于理解前端工具的 node 知识"></a>有助于理解前端工具的 node 知识</h1><h2 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h2><p>平时写惯了业务代码之后，如果想要了解下 webpack 或者 vue-cli，好像是件很难上手的事情🙁 。拿 webpack 来说，我们可能会对配置熟悉点，但常常一段时间过后又忘了，感觉看起来不是很好懂。其实类似这种打包工具、构建工具我们最好应该先去学习一下 node 的一些基础知识，然后再回过头来看这些工具，就会有柳暗花明又一村的感觉，因为这些工具是用 node 写出来的🤯。<br>想想我们是不是时常看到过这种东西：<code>const path = require(&#39;path&#39;);</code>。<br>假设你学过前端框架但没学过 node，你看到这句话的时候就会一头雾水，好像知道它是弄路径的，但具体这是哪里来的，常用来做什么就不得而知了，我起初看的感觉就是这样🤨。<br>后来才知道这其实是 node 的内置模块，因为这些构建工具或打包工具是用 node 来执行的，只要我们有装 node，它里面的内置模块就能直接引用，不用另外安装。所以强烈建议大家要是想了解这类工具最好先学习一下 node，不然会总是懵逼的🧐。<br>言归正传，本篇就来简要讲述一下 node 的一些常用内置模块。</p>
-<h2 id="node-初识"><a href="#node-初识" class="headerlink" title="node 初识"></a>node 初识</h2><h4 id="node-是什么"><a href="#node-是什么" class="headerlink" title="node 是什么"></a>node 是什么</h4><p>首先 node 不是一门后台语言而是一个环境，一个能够让 js 运行在服务器的环境，这个环境就好比是服务器上的浏览器（虽然不是很恰当），但正是因为有了它才使得 js 变成了一门后台语言。</p>
-<h4 id="node-遵循的规范"><a href="#node-遵循的规范" class="headerlink" title="node 遵循的规范"></a>node 遵循的规范</h4><p>其次 node 遵循的是 CommonJs 规范，什么意思？其实就是规定了导入导出的方式😬，就向下面这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">require(&apos;./module&apos;)</span><br><span class="line">module.exports = &#123;</span><br><span class="line">    a: 1,</span><br><span class="line">&#125;</span><br><span class="line">exports.a = 1;</span><br></pre></td></tr></table></figure></p>
-<p>这就是 node 的规范，用<code>require</code> 导入、用 <code>module.exports</code> 导出。那 node 为什么不支持 ESM（就是用 <code>import</code> 导入、用 <code>export</code> 导出）规范呢，因为它出现的比较早，仅此而已，然后一时半会儿还改不过来，以后应该就会支持了。另外，我们时常在 webpack 里看到 <code>require()</code> 字样却没有看见 <code>import()</code>就是因为 webpack 是要用 node 来执行的，而 node 目前只支持 <code>require()</code>。</p>
-<p>这里顺带来一张各种规范图（这种东西容易忘，当作历史看看就行🙄），如下：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/11846892-9bba9115e27bcd20.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="16ad4be6bc803f68.png"></p>
-<h2 id="require-寻找依赖"><a href="#require-寻找依赖" class="headerlink" title="require 寻找依赖"></a>require 寻找依赖</h2><p>require() 里面的参数有两种写法，一种带路径一种不带路径。就像下面这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">require(&apos;./module&apos;); // 带相对路径</span><br><span class="line">require(&apos;/module&apos;); // 带绝对路径</span><br><span class="line">require(&apos;module&apos;); // 不带路径</span><br></pre></td></tr></table></figure></p>
-<p>这种不带路径的 <code>require(&#39;module&#39;)</code>引入方式，可能是内置模块，也可能是第三方模块，内置模块优先查找，没有的话就是第三方模块了，它会先从当前目录的 node_modules 里面查找，没有的话就到父目录下的 node_modules 里面去找，如此向上追溯，直到根目录下的 node_modules 目录，要是还没有的话就会到全局里面去找，大概是这么一个搜索过程。</p>
-<p>另外一种带路径的方式，就会沿着路径去找，如果没有找到则会尝试将当前目录作一个包来加载。此外，使用绝对路径的速度查找最快，当然了，node 也对路径查找做了缓存机制。</p>
-<h2 id="node-模块包装"><a href="#node-模块包装" class="headerlink" title="node 模块包装"></a>node 模块包装</h2><p>node 在解析每个模块（js 文件）时，会对每个模块进行包装，就是在代码外面加一个闭包，并且向里传递五个参数，这样就保证了每个模块之间的独立，就像下面这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(function(exports, require, module, __filename, __dirname) &#123;</span><br><span class="line">    // module: 表示当前模块</span><br><span class="line">    // __filename: 当前模块的带有完整绝对路径的文件名</span><br><span class="line">    // __dirname: 当前模块的完整绝对路径</span><br><span class="line">    module.exports = exports = this = &#123;&#125;;</span><br><span class="line">    // 我们的代码就在这里...</span><br><span class="line">    return module.exports;</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure></p>
-<p>想想我们平时是不是常在 webpack 里面看到 __dirname 这种东西，我们既没有引入也没有声明它，为什么能够直接使用呢，就是因为这个原因😮。</p>
-<h2 id="node-的应用场景"><a href="#node-的应用场景" class="headerlink" title="node 的应用场景"></a>node 的应用场景</h2><p>一般来说，node 主要应用于以下几个方面：</p>
-<ul>
-<li>自动化构建等工具</li>
-<li>中间层</li>
-<li>小项目</li>
-</ul>
-<p>第一点对于前端同学来说应该是重中之重了，什么工程化、自动构建工具就是用 node 写出来的，它是前端的一大分水岭之一，是块难啃的骨头，所以我们必须拿下，不然瓶颈很快就到了。如果你能熟练应用 node 的各种模块（系统模块 + 第三方模块），那么恭喜你，你又比别人牛逼了一截😎。</p>
-<h2 id="node-的优点"><a href="#node-的优点" class="headerlink" title="node 的优点"></a>node 的优点</h2><ul>
-<li>适合前端大大们</li>
-<li>基于事件驱动和无阻塞的I/O（适合处理并发请求）</li>
-<li>性能较好（别人做过性能分析）</li>
-</ul>
-<h2 id="node-内置模块"><a href="#node-内置模块" class="headerlink" title="node 内置模块"></a>node 内置模块</h2><p>ok，废话了这么多，咱们赶紧来看看一些常见的 node 基础模块吧。相信掌握这些对你学习 webpack 和 vue-cli 等工具是有很大帮助的✊ 。</p>
-<h3 id="http-模块"><a href="#http-模块" class="headerlink" title="http 模块"></a>http 模块</h3><p>这是 node 最最基础的功能了，我们用 <code>node http.js</code> 运行一下下面的文件就能开启一个服务器，在浏览器中输入 <code>http://localhost:8888</code> 即可访问，http.js 具体内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// http.js</span><br><span class="line">const http = require(&apos;http&apos;);</span><br><span class="line">http.createServer((req, res) =&gt; &#123; // 开启一个服务</span><br><span class="line">  console.log(&apos;请求来了&apos;); // 如果你打开 http://localhost:8888，控制台就会打印此消息</span><br><span class="line">  res.write(&apos;hello&apos;); // 返回给页面的值，也就是页面会显示 hello</span><br><span class="line">  res.end(); // 必须有结束的标识，否则页面会一直处于加载状态</span><br><span class="line">&#125;).listen(8888); // 端口号</span><br></pre></td></tr></table></figure></p>
-<h3 id="fs-文件系统"><a href="#fs-文件系统" class="headerlink" title="fs 文件系统"></a>fs 文件系统</h3><p>由于 js 一开始是用来开发给浏览器用的，所以它的能力就局限于浏览器，不能直接对客户端的本地文件进行操作，这样做的目的是为了保证客户端的信息安全，当然了，通过一些手段也可以操作客户端内容（就像 <code>&lt;input type=&#39;file&#39;&gt;</code>），但是需要用户手动操作才行。<br>但是当 js 作为后台语言时，就可以直接对服务器上的资源文件进行 I/O 操作了。这也是 node 中尤为重要的模块之一（操作文件的能力），这在自动化构建和工程化中是很常用的。它的主要职责就是读写文件，或者移动复制删除等。fs 就好比对数据库进行增删改查一样，不同的是它操作的是文件。下面我们来具体看看代码用例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">const fs = require(&apos;fs&apos;);</span><br><span class="line"></span><br><span class="line">// 写入文件：fs.writeFile(path, fileData, cb);</span><br><span class="line">fs.writeFile(&apos;./text.txt&apos;, &apos;hello xr!&apos;, err =&gt; &#123;</span><br><span class="line">  if (err) &#123;</span><br><span class="line">    console.log(&apos;写入失败&apos;, err);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    console.log(&apos;写入成功&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 读取文件：fs.readFile(path, cb);</span><br><span class="line">fs.readFile(&apos;./text.txt&apos;, (err, fileData) =&gt; &#123;</span><br><span class="line">  if (err) &#123;</span><br><span class="line">    console.log(&apos;读取失败&apos;, err);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    console.log(&apos;读取成功&apos;, fileData.toString()); // fileData 是二进制文件，非媒体文件可以用 toString 转换一下</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>需要注意的是 readFile 里面的 fileData 是原始的二进制文件🤨（em…就是计算机才看的懂的文件格式），对于非媒体类型（如纯文本）的文件可以用 <code>toString()</code> 转换一下，媒体类型的文件以后则会以流的方式进行读取，要是强行用 <code>toString()</code> 转换的话会丢失掉原始信息，所以不能乱转。二进制和 <code>toString</code> 的效果就像下面这样：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/11846892-c418ff2996cf5c61?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
-<p>另外，和 fs.readFile（异步） 和 fs.writeFile（异步）相对应的还有 fs.readFileSync（同步）和 fs.writeFileSync（同步），fs 的大多方法也都有同步异步两个版本，具体取决于业务选择，一般都用异步，不知道用啥的话也用异步。</p>
-<h2 id="path-路径"><a href="#path-路径" class="headerlink" title="path 路径"></a>path 路径</h2><p>这个模块想必大家应该都并不陌生，🧐瞟过 webpack 的都应该看过这个东东。很显然，path 就是来处理路径相关东西的，我们直接看下面的常见用例就能够体会到：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&apos;path&apos;);</span><br><span class="line"></span><br><span class="line">let str = &apos;/root/a/b/index.html&apos;;</span><br><span class="line">console.log(path.dirname(str)); // 路径</span><br><span class="line">// /root/a/b</span><br><span class="line">console.log(path.extname(str)); // 后缀名</span><br><span class="line">// .html</span><br><span class="line">console.log(path.basename(str)); // 文件名</span><br><span class="line">// index.html</span><br><span class="line"></span><br><span class="line">// path.resolve() 路径解析，简单来说就是拼凑路径，最终返回一个绝对路径</span><br><span class="line">let pathOne = path.resolve(&apos;rooot/a/b&apos;, &apos;../c&apos;, &apos;d&apos;, &apos;..&apos;, &apos;e&apos;);</span><br><span class="line"></span><br><span class="line">// 一般用来打印绝对路径，就像下面这样，其中 __dirname 指的就是当前目录</span><br><span class="line">let pathTwo = path.resolve(__dirname, &apos;build&apos;); // 这个用法很常见，你应该在 webpack 中有见过</span><br><span class="line"></span><br><span class="line">console.log(pathOne, pathTwo, __dirname);</span><br><span class="line">// pathOne  =&gt;  /Users/lgq/Desktop/node/rooot/a/c/e</span><br><span class="line">// pathTwo  =&gt;  /Users/lgq/Desktop/node/build</span><br><span class="line">// __dirname  =&gt;  /Users/lgq/Desktop/node</span><br></pre></td></tr></table></figure></p>
-<p>嗯，下次看到 path 这个东西就不会迷茫了。</p>
-<h3 id="url-模块"><a href="#url-模块" class="headerlink" title="url 模块"></a>url 模块</h3><p>很显然这是个用来处理网址相关东西的，也是我们必须要掌握的，主要用来获取地址路径和参数的，就像下面这样：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const url = require(&apos;url&apos;);</span><br><span class="line"></span><br><span class="line">let site = &apos;http://www.xr.com/a/b/index.html?a=1&amp;b=2&apos;;</span><br><span class="line">let &#123; pathname, query &#125; = url.parse(site, true); // url.parse() 解析网址，true 的意思是把参数解析成对象</span><br><span class="line"></span><br><span class="line">console.log(pathname, query);</span><br><span class="line">// /a/b/index.html  &#123; a: &apos;1&apos;, b: &apos;2&apos; &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="querystring-查询字符串"><a href="#querystring-查询字符串" class="headerlink" title="querystring 查询字符串"></a>querystring 查询字符串</h3><p>这个主要是用来把形如这样的字符串 <code>a=1&amp;b=2&amp;c=3</code>（&amp;和=可以换成别的）解析成 <code>{ a: &#39;1&#39;, b: &#39;2&#39;, c: &#39;3&#39; }</code> 对象，反过来也可以把对象拼接成字符串，上面的 url 参数也可以用 querystring 来解析，具体演示如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const querystring = require(&apos;querystring&apos;);</span><br><span class="line"></span><br><span class="line">let query = &apos;a=1&amp;b=2&amp;c=3&apos;; // 形如这样的字符串就能被解析</span><br><span class="line">let obj = querystring.parse(query);</span><br><span class="line">console.log(obj, obj.a); // &#123; a: &apos;1&apos;, b: &apos;2&apos;, c: &apos;3&apos; &#125;   &apos;1&apos;</span><br><span class="line"></span><br><span class="line">query = &apos;a=1&amp;b=2&amp;c=3&amp;a=3&apos;; // 如果参数重复，其所对应的值会变成数组</span><br><span class="line">obj = querystring.parse(query);</span><br><span class="line">console.log(obj); // &#123; a: [ &apos;1&apos;, &apos;3&apos; ], b: &apos;2&apos;, c: &apos;3&apos; &#125;</span><br><span class="line"></span><br><span class="line">// 相反的我们可以用 querystring.stringify() 把对象拼接成字符串</span><br><span class="line">query = querystring.stringify(obj);</span><br><span class="line">console.log(query); // a=1&amp;a=3&amp;b=2&amp;c=3</span><br></pre></td></tr></table></figure>
-<h3 id="assert-断言"><a href="#assert-断言" class="headerlink" title="assert 断言"></a>assert 断言</h3><p>这个我们直接看下面代码就知道它的作用了：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// assert.js</span><br><span class="line">const assert = require(&apos;assert&apos;);</span><br><span class="line"></span><br><span class="line">// assert(条件，错误消息)，条件这部分会返回一个布尔值</span><br><span class="line">assert(2 &lt; 1, &apos;断言失败&apos;);</span><br></pre></td></tr></table></figure>
-<p><code>node assert.js</code> 运行一下代码就能看到如下结果：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/11846892-6bd3e74df2f4db39?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
-<p>上图是断言失败的例子，如果断言正确的话，则不会有任何提示，程序会继续默默往下执行。所以断言的作用就是先判断条件是否正确（有点像 if），如果条件返回值为 <code>false</code> 则阻止程序运行，并抛出一个错误，如果返回值为 <code>true</code> 则继续执行，一般用于函数中间和参数判断。<br>另外，这里再介绍两种 equal 用法（assert 里面有好多种 equal，这里举例其中的两种）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// assert.js</span><br><span class="line">const assert = require(&apos;assert&apos;);</span><br><span class="line"></span><br><span class="line">const obj1 = &#123; a: &#123; b: 1 &#125; &#125;;</span><br><span class="line">const obj2 = &#123; a: &#123; b: 1 &#125; &#125;;</span><br><span class="line">const obj3 = &#123; a: &#123; b: &apos;1&apos; &#125; &#125;;</span><br><span class="line"></span><br><span class="line">// assert.deepEqual(变量，预期值，错误信息)   变量 == 预期值</span><br><span class="line">// assert.deepStrictEqual(变量，预期值，错误信息)  变量 === 预期值</span><br><span class="line">// 同样也是错误的时候抛出信息，正确的时候继续默默执行</span><br><span class="line">assert.deepEqual(obj1, obj2, &apos;不等哦&apos;); // true</span><br><span class="line">assert.deepEqual(obj1, obj3, &apos;不等哦&apos;); // true</span><br><span class="line">assert.deepStrictEqual(obj1, obj2, &apos;不等哦&apos;); // true</span><br><span class="line">assert.deepStrictEqual(obj1, obj3, &apos;不等哦&apos;); // false，这个会抛出错误信息</span><br></pre></td></tr></table></figure>
-<h3 id="stream-流"><a href="#stream-流" class="headerlink" title="stream 流"></a>stream 流</h3><p>stream 又叫做流，大家或多或少应该有听过这个概念，那具体是什么意思呢？在这里，你可以把它当做是前面说过的 <code>fs.readFile</code> 和 <code>fs.writeFile</code> 的升级版。<br>我们要知道 <code>readFile</code> 和 <code>writeFile</code> 的工作流程 是先把整个文件读取到内存中，然后再一次写入，这种方式对于稍大的文件就不适用了，因为这样容易导致内存不足，所以更好的方式是什么呢？就是边读边写啦，业界常说成管道流，就像水流经过水管一样，进水多少，出水就多少，这个水管就是占用的资源（内存），就那么大，这我们样就能合理利用内存分配啦，而不是一口气吃成个胖子，有吃撑的风险（就是内存爆了🤐）。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">const fs = require(&apos;fs&apos;);</span><br><span class="line"></span><br><span class="line">// 读取流：fs.createReadStream();</span><br><span class="line">// 写入流：fs.createWriteStream();</span><br><span class="line">let rs = fs.createReadStream(&apos;a.txt&apos;); // 要读取的文件</span><br><span class="line">let ws = fs.createWriteStream(&apos;a2.txt&apos;); // 输出的文件</span><br><span class="line"></span><br><span class="line">rs.pipe(ws); // 用 pipe 将 rs 和 ws 衔接起来，将读取流的数据传到输出流（就是这么简单的一句话就能搞定）</span><br><span class="line"></span><br><span class="line">rs.on(&apos;error&apos;, err =&gt; &#123;</span><br><span class="line">  console.log(err);</span><br><span class="line">&#125;);</span><br><span class="line">ws.on(&apos;finish&apos;, () =&gt; &#123;</span><br><span class="line">  console.log(&apos;成功&apos;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>流式操作，就是一直读取，它是个连续的过程，如果一边快一边慢，或者一边出错没衔接上也没关系，它会自动处理，不用我们自己去调整其中的误差，是个优秀的模块没错了👍。另外，我们没有直接使用 stream 模块，是因为 fs 模块引用了它并对其做了封装，所以用 fs 即可。</p>
-<h3 id="zlib-压缩"><a href="#zlib-压缩" class="headerlink" title="zlib 压缩"></a>zlib 压缩</h3><p>这个用法简单，作用也明了，直接看下面的代码就能理解：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">const fs = require(&apos;fs&apos;);</span><br><span class="line">const zlib = require(&apos;zlib&apos;);</span><br><span class="line"></span><br><span class="line">let rs = fs.createReadStream(&apos;tree.jpg&apos;);</span><br><span class="line">let gz = zlib.createGzip();</span><br><span class="line">let ws = fs.createWriteStream(&apos;tree.jpg.gz&apos;);</span><br><span class="line"></span><br><span class="line">rs.pipe(gz).pipe(ws);  // 原始文件 =&gt; 压缩 =&gt; 写入</span><br><span class="line"></span><br><span class="line">rs.on(&apos;error&apos;, err =&gt; &#123;</span><br><span class="line">  console.log(err);</span><br><span class="line">&#125;);</span><br><span class="line">ws.on(&apos;finish&apos;, () =&gt; &#123;</span><br><span class="line">  console.log(&apos;成功&apos;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>ok👌，以上就是本章要讲的一些 node 知识（比较基础，大家凑合看看）。当然除此之外，还有 util、Buffer、Event、crypto 和 process 等其他内置模块，这里就不一一赘述了，希望大家能够多动手多敲两下代码多实践，毕竟纸上得来终觉浅嘛💪。如果你能用好 node 的各种模块，那么转后端也就拥有了无限可能性😋（其实前端的坑大的超乎你想像😭）。<br>参考作者：尤水就下<br>参考链接：<a href="https://juejin.im/post/5ccacfb96fb9a03201243cb9" target="_blank" rel="noopener">https://juejin.im/post/5ccacfb96fb9a03201243cb9</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/14/nodeBasics/" data-id="ck0qobmjj000y88kc66xw23d7" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-npmBuild" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/07/26/npmBuild/" class="article-date">
-  <time datetime="2019-07-26T06:18:53.000Z" itemprop="datePublished">2019-07-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/07/26/npmBuild/">npm 部署自己的组件库</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Author: Echo<br>Time: 2019-07-24 15:28:39</p>
-<h1 id="基于-vue-cli-打造属于自己的-UI-库"><a href="#基于-vue-cli-打造属于自己的-UI-库" class="headerlink" title="基于 vue-cli 打造属于自己的 UI 库"></a>基于 vue-cli 打造属于自己的 UI 库</h1><h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><h2 id="知识前置"><a href="#知识前置" class="headerlink" title="知识前置"></a>知识前置</h2><p>我们可能习惯了在一个 vue 里面引入组件的方式，所以先这里要巩固一下全局引入组件的方式。举个栗子🌰，一般我们的用法是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import Loading from &apos;../components/loading&apos;</span><br><span class="line">// 方法一：name 是组件的名字</span><br><span class="line">Vue.component(Loading.name, Loading)</span><br><span class="line">// 方法二：前提是 Loading 有提供 install 这个方法</span><br><span class="line">Vue.use(Loading);</span><br></pre></td></tr></table></figure></p>
-<h1 id="基于vue-cli3打造组件库"><a href="#基于vue-cli3打造组件库" class="headerlink" title="基于vue-cli3打造组件库"></a>基于vue-cli3打造组件库</h1><h1 id="搭建目录"><a href="#搭建目录" class="headerlink" title="搭建目录"></a>搭建目录</h1><h4 id="快速创建项目"><a href="#快速创建项目" class="headerlink" title="快速创建项目"></a>快速创建项目</h4><ul>
-<li>vue-cli3<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue create projectName</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="修改目录结构"><a href="#修改目录结构" class="headerlink" title="修改目录结构"></a>修改目录结构</h3><ul>
-<li>把 src 目录名字改成 examples，这是用于展示组件示例的</li>
-<li>在根目录下新建一个 packages 文件夹，这是用来放组件的<br><img src="/images/1.png" alt="1ll.png"><br> 你可能会问为什么要建这样的目录结构，问得好，原因很简单，因为别人是这样做的，所以借鉴（模仿）罗。。。我们可以看到 Element 的源码也是这样的结构：<br>当我们水平不够的时候，模仿是一种强大的学习能力👏。</li>
-</ul>
-<h3 id="添加配置文件"><a href="#添加配置文件" class="headerlink" title="添加配置文件"></a>添加配置文件</h3><p>小改了一下目录之后，你会惊奇的发现项目运行不了了。没关系，这很正常，毕竟 src 都不见了，路径啥的肯定得报错。所以现在我们来解决这个问题。 在根目录下新建一个 vue.config.js 文件（新项目是没有这个文件的），并写入以下内容：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&apos;path&apos;)</span><br><span class="line">module.exports = &#123;</span><br><span class="line">  // 修改 pages 入口</span><br><span class="line">  pages: &#123;</span><br><span class="line">    index: &#123;</span><br><span class="line">      entry: &apos;examples/main.js&apos;, // 入口</span><br><span class="line">      template: &apos;public/index.html&apos;, // 模板</span><br><span class="line">      filename: &apos;index.html&apos; // 输出文件</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  // 扩展 webpack 配置</span><br><span class="line">  chainWebpack: config =&gt; &#123;</span><br><span class="line">    // @ 默认指向 src 目录，这里要改成 examples</span><br><span class="line">    // 另外也可以新增一个 ~ 指向 packages</span><br><span class="line">    config.resolve.alias</span><br><span class="line">      .set(&apos;@&apos;, path.resolve(&apos;examples&apos;))</span><br><span class="line">      .set(&apos;~&apos;, path.resolve(&apos;packages&apos;))</span><br><span class="line"></span><br><span class="line">    // 把 packages 和 examples 加入编译，因为新增的文件默认是不被 webpack 处理的</span><br><span class="line">    config.module</span><br><span class="line">      .rule(&apos;js&apos;)</span><br><span class="line">      .include.add(/packages/).end()</span><br><span class="line">      .include.add(/examples/).end()</span><br><span class="line">      .use(&apos;babel&apos;)</span><br><span class="line">      .loader(&apos;babel-loader&apos;)</span><br><span class="line">      .tap(options =&gt; &#123;</span><br><span class="line">        // 修改它的选项...</span><br><span class="line">        return options</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上面的注释应该都写的挺明了，主要就是修改别名、修改入口文件以及把新文件加入 webpack 编译这几个步骤。然后我们再运行一下程序就可以跑得通了。至于为什么这么配置、或者怎么配置，不了解的同学可以去 <a href="https://link.juejin.im/?target=https%3A%2F%2Fcli.vuejs.org%2Fzh%2Fconfig%2F%23%25E5%2585%25A8%25E5%25B1%2580-cli-%25E9%2585%258D%25E7%25BD%25AE" target="_blank" rel="noopener">Vue Cli</a> 官网看下，上面写的是清清楚楚、明明白白，然而我也只是懂那么一两个配置而已😭😭😭，还没学会 webpack 的套路，因为常常是用的时候看一眼，一阵子不用就又忘了，没办法🤷‍♀️脑子不行。</p>
-<h2 id="编写组件"><a href="#编写组件" class="headerlink" title="编写组件"></a>编写组件</h2><p>一个组件库没有组件怎么行呢，所以我们要先写个 test 组件（你可以随便写，这不重要）。ok👌，我们先在 packages 目录下新建一个 test 文件夹，再在 test 文件夹下下面新建一个 src 文件夹，在 src 文件夹下面新建一个 test.vue 组件，大概长下面这样子👇：</p>
-<p><img src="/images/2.png" alt="1ll.png"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--test.vue--&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;echojoy-test&quot; @click=&quot;handleClick&quot;&gt;&#123;&#123; num &#125;&#125;&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &apos;EchojoyTest&apos;,</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      num: 0</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    handleClick () &#123;</span><br><span class="line">      this.num++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style &gt;</span><br><span class="line">.echojoy-test &#123;</span><br><span class="line">  width: 100px;</span><br><span class="line">  height: 100px;</span><br><span class="line">  line-height: 100px;</span><br><span class="line">  border-radius: 50%;</span><br><span class="line">  font-size: 30px;</span><br><span class="line">  text-align: center;</span><br><span class="line">  background: #24292e;</span><br><span class="line">  color: white;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-<p>应该都能看懂吧，不过多解释。⚠️这里主要强调一点，就是 name 这个名字尤为重要，我就在这个坑里呆了挺久。首先它是必须要写的，为啥呢，你可以把它理解为 id，具有唯一标识组件的作用，将来我们可是要通过这个 name 来找到和判定这是什么组件，所以你写的所有组件应该是不重名的；其次这个 name 就是我们最终的标签名，比如这里我们的 name 是 <code>EchojoyTest</code>，到时候我们写的标签就长这样 <code>&lt;echojoy-test&gt;&lt;/echojoy-test&gt;</code>，就像 Element 一样，name 是 <code>ElButton</code>，用的时候就是 <code>&lt;el-button&gt;&lt;/el-button&gt;</code>。</p>
-<h2 id="暴露组件"><a href="#暴露组件" class="headerlink" title="暴露组件"></a>暴露组件</h2><p>让我们在 packages/test 下面新建一个 index.js 文件，具体代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 对外提供对组件的引用，注意组件必须声明 name</span><br><span class="line">import EchojoyTest from &apos;./src/test&apos;</span><br><span class="line">// 为组件提供 install 安装方法，供按需引入</span><br><span class="line">EchojoyTest.install = Vue =&gt; &#123;</span><br><span class="line">  Vue.component(EchojoyTest.name, EchojoyTest)</span><br><span class="line">&#125;</span><br><span class="line">export default EchojoyTest</span><br></pre></td></tr></table></figure>
-<p>这步的精髓就在于给组件扩展一个 install 方法，至于为什么要扩展这个方法，文章开头已经说到了，是因为 <code>Vue.use()</code> 的需要，use 会默认调用 install 方法安装，仅此而已。接着我们在 packages 下面也新建一个 index.js 文件，注意和上面那个 index.js 区别开，上面那个是针对单个组件安装的，这个是针对所有组件全局安装的，先看代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">import EchojoyTest from &apos;./test&apos;</span><br><span class="line">// 存储组件列表</span><br><span class="line">const components = [</span><br><span class="line">  EchojoyTest</span><br><span class="line">]</span><br><span class="line">// 定义 install 方法，接收 Vue 作为参数。如果使用 use 注册插件，则所有的组件都将被注册</span><br><span class="line">const install = function (Vue) &#123;</span><br><span class="line">  // 判断是否安装</span><br><span class="line">  if (install.installed) return</span><br><span class="line">  install.installed = true</span><br><span class="line">  // 遍历注册全局组件</span><br><span class="line">  components.map(component =&gt; Vue.component(component.name, component))</span><br><span class="line">  // 下面这个写法也可以</span><br><span class="line">  // components.map(component =&gt; Vue.use(component))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 判断是否是直接引入文件</span><br><span class="line">if (typeof window !== &apos;undefined&apos; &amp;&amp; window.Vue) &#123;</span><br><span class="line">  install(window.Vue)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  // 导出的对象必须具有 install，才能被 Vue.use() 方法安装</span><br><span class="line">  install,</span><br><span class="line">  // 以下是具体的组件列表</span><br><span class="line">  ...components</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这步的主要作用就是统一导出所有组件及暴露 install 方法。之前的 index.js 只是安装单个组件，而现在这个 index.js 是循环安装所有组件，具体使用就看你是不是要按需引用了。这里给个目录结构方便大家观看：</p>
-<p><img src="/images/3.png" alt="1ll.png"></p>
-<p>因为这步挺重要的，所以建议好好停下来理解消化一下🤔。。。<br>当然你可能会问道，为什么这样建目录？还能什么原因，因为 Element 是这样（如下图），所以我们这样写，仅此而已。</p>
-<h2 id="组件测试"><a href="#组件测试" class="headerlink" title="组件测试"></a>组件测试</h2><p>ok，组件写完了，接下来我们就在 examples 下面测试一下，看看能不能引用成功。 首先在 examples 下的 main.js 中引入刚刚写好的包，就像下面这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import EchojoyUI from &apos;./../packages&apos;</span><br><span class="line">Vue.use(EchojoyUI);</span><br></pre></td></tr></table></figure></p>
-<p>然后把 examples/components下面的 HelloWorld里面的内容删了，写入自己标签组件，就像下面这样：</p>
-<p><img src="/images/11.png" alt="1ll.png"></p>
-<p>好了，最后让我们运行一下项目 <code>npm run  serve</code>，看看效果，嗯，还凑合吧。</p>
-<h2 id="库模式打包"><a href="#库模式打包" class="headerlink" title="库模式打包"></a>库模式打包</h2><p>在 vue-cli3 中我们通过以下命令可以将一个单独的入口打包成一个库：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// target: 默认为构建应用，改为 lib 即可启用构建库模式</span><br><span class="line">// name: 输出文件名</span><br><span class="line">// dest: 输出目录，默认为 dist，这里我们改为 lib</span><br><span class="line">// entry: 入口文件路径</span><br><span class="line">vue-cli-service build --target lib --name lib [entry]</span><br></pre></td></tr></table></figure>
-<p>要注意的是在库模式中，打包出来的库中是不包含 Vue 的。 然后我们修改一下 package.json 文件，就像下面这样：</p>
-<p><img src="/images/5.png" alt="1ll.png"></p>
-<p>接着执行 <code>npm run lib</code> 就能生成库啦，看看左侧的目录是不是多了个 lib 文件夹，那个就是我们要发布的东西。<br><img src="/images/6.png" alt="1ll.png"></p>
-<p>补充下，lib 目录下面的 js 之所以有好几种，是因为有两种规范（common 和 umd）、是否压缩（min）和映射（map）的区别，暂且知道有这么回事就行，不用深究。</p>
-<h2 id="发布到npm"><a href="#发布到npm" class="headerlink" title="发布到npm"></a>发布到npm</h2><p>万事俱备，只欠发布。</p>
-<ol>
-<li>完善一下 README.md 文档，这个随便写两句就好</li>
-<li>修改一下 package.json 文件：</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123; </span><br><span class="line">  &quot;name&quot;: &quot;echojoy-ui&quot;,</span><br><span class="line">  &quot;version&quot;: &quot;0.1.0&quot;,</span><br><span class="line">  &quot;private&quot;: true,</span><br><span class="line">  &quot;description&quot;: &quot;基于 vue-cli3 的 UI 组件库&quot;,</span><br><span class="line">  &quot;main&quot;: &quot;lib/xr-ui.umd.min.js&quot;,</span><br><span class="line">  &quot;keywords&quot;: &quot;echojoy-ui&quot;,</span><br><span class="line">  &quot;private&quot;: false,</span><br><span class="line">  &quot;license&quot;: &quot;MIT&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>在根目录下新建一个 .npmignore 文件，内容和 .gitignore 差不多：</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"># 这是复制 .gitignore 里面的</span><br><span class="line">.DS_Store</span><br><span class="line">node_modules</span><br><span class="line">/dist</span><br><span class="line"></span><br><span class="line"># local env files</span><br><span class="line">.env.local</span><br><span class="line">.env.*.local</span><br><span class="line"></span><br><span class="line"># Log files</span><br><span class="line">npm-debug.log*</span><br><span class="line">yarn-debug.log*</span><br><span class="line">yarn-error.log*</span><br><span class="line"></span><br><span class="line"># Editor directories and files</span><br><span class="line">.idea</span><br><span class="line">.vscode</span><br><span class="line">*.suo</span><br><span class="line">*.ntvs*</span><br><span class="line">*.njsproj</span><br><span class="line">*.sln</span><br><span class="line">*.sw*</span><br><span class="line"></span><br><span class="line"># 以下是新增的</span><br><span class="line"># 要忽略目录和指定文件</span><br><span class="line">examples/</span><br><span class="line">packages/</span><br><span class="line">public/</span><br><span class="line">vue.config.js</span><br><span class="line">babel.config.js</span><br><span class="line">*.map</span><br><span class="line">*.html</span><br></pre></td></tr></table></figure>
-<p>最后执行 <code>npm login</code> 登入 npm 账号，再执行 <code>npm publish</code> 发布即可，就这么简单的两步就可以，过一会在 npm 上就能搜到了。当然前提是你有个 npm 账号，没有的话去注册一个吧，很 easy 的，然后还要搜下你的 npm 包名是否有人用，有的话就换一个。</p>
-<h2 id="小试牛刀"><a href="#小试牛刀" class="headerlink" title="小试牛刀"></a>小试牛刀</h2><p>终于，历尽千辛万苦，我们可以引用自己写的库拉，想想就牛叉。别激动，让我们试验一下，用 <code>vue create echojoy-ui-use</code> 另起一个新项目，然后 <code>npm i echojoy-ui -S</code>，可以在 node_modules 里面看到我们的包大概长这样：<br><img src="/images/7.png" alt="1ll.png"></p>
-<p>然后在 main.js 引入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import EchojoyUI from &quot;echojoy-ui&quot;;</span><br><span class="line">import &quot;echojoy-ui/lib/echojoy-ui.css&quot;;</span><br><span class="line">Vue.use(EchojoyUI);</span><br></pre></td></tr></table></figure>
-<p>这样我们就能在页面中引入组件啦，哈哈哈哈，贼开心，喜上眉梢。。。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;echojoy-test&gt;&lt;/echojoy-test&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="vue-cli3（vue-cli2）"><a href="#vue-cli3（vue-cli2）" class="headerlink" title="! vue-cli3（vue-cli2）"></a>! vue-cli3（vue-cli2）</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue init webpack projectName</span><br></pre></td></tr></table></figure>
-<p><img src="/images/8.png" alt="1ll.png"></p>
-<h4 id="启动项目"><a href="#启动项目" class="headerlink" title="启动项目"></a>启动项目</h4><p><code>npm run dev</code><br><img src="/images/9.png" alt="1ll.png"><br>浏览器输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8080</span><br></pre></td></tr></table></figure></p>
-<h4 id="编写组件-1"><a href="#编写组件-1" class="headerlink" title="编写组件"></a>编写组件</h4><p>在src的components新建组件limit：即文件夹<code>EchoLimit</code>-&gt;文件<code>index.vue</code> + 文件<code>index+css</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">// index.vue</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;echo-limit-container&quot; v-if=&quot;visible === false&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;echo-limit-container-inner&quot;&gt;</span><br><span class="line">      &lt;span class=&quot;echo-limit-text&quot;&gt;</span><br><span class="line">        &#123;&#123;limitTip&#125;&#125;</span><br><span class="line">      &lt;/span&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    visible: &#123;</span><br><span class="line">      type: Boolean,</span><br><span class="line">      default: false</span><br><span class="line">    &#125;,</span><br><span class="line">    limitTip: &#123;</span><br><span class="line">      type: String,</span><br><span class="line">      default: &apos;没有权限！！&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  name: &quot;EchoLimit&quot; // 这个名字很重要，它就是未来的标签名&lt;echo-limit&gt;&lt;/echo-limit&gt;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">  @import &quot;./index&quot;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure></p>
-<p>⚠️这里主要强调一点，就是 name 这个名字尤为重要，你可以把它理解为 id，具有唯一标识组件的作用，将来我们可是要通过这个 name 来找到和判定这是什么组件，所以你写的所有组件应该是不重名的；其次这个 name 就是我们最终的标签名，比如这里我们的 name 是 EchoLimit，到时候我们写的标签就长这样 <echo-limit></echo-limit>，就像 Element 一样，name 是 ElButton，用的时候就是 <el-button></el-button>。</p>
-<h4 id="暴露组件-1"><a href="#暴露组件-1" class="headerlink" title="暴露组件"></a>暴露组件</h4><ul>
-<li>注册单个组件</li>
-</ul>
-<p>在 components 的 EchoLimit下面新建一个 index.js 文件，具体代码如下：<br>// 为组件提供 install 方法，供组件对外按需引入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import EchoLimit from &quot;./EchoLimit/index.vue&quot;;</span><br><span class="line">EchoLimit.install = Vue =&gt; &#123;</span><br><span class="line">  Vue.component(EchoLimit.name, EchoLimit);</span><br><span class="line">&#125;;</span><br><span class="line">export default EchoLimit;</span><br></pre></td></tr></table></figure></p>
-<p>这步的精髓就在于给组件扩展一个 install 方法，至于为什么要扩展这个方法，文章开头已经说到了，是因为 Vue.use() 的需要，use 会默认调用 install 方法安装。</p>
-<ul>
-<li>注册全局组件<br>让我们在 components 下面新建一个 index.js 文件，具体代码如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">// index.js</span><br><span class="line">import EchoLimit from &apos;./EchoLimit&apos;</span><br><span class="line">// 所有组件列表</span><br><span class="line">const components = [</span><br><span class="line">  EchoLimit</span><br><span class="line">]</span><br><span class="line">// 定义 install 方法，接收 Vue 作为参数</span><br><span class="line">const install = function (Vue) &#123;</span><br><span class="line">  // 判断是否安装，安装过就不继续往下执行</span><br><span class="line">  if (install.installed) return</span><br><span class="line">  install.installed = true</span><br><span class="line">  // 遍历注册所有组件</span><br><span class="line">  components.map(component =&gt; Vue.component(component.name, component))</span><br><span class="line">  // 下面这个写法也可以</span><br><span class="line">  // components.map(component =&gt; Vue.use(component))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 检测到 Vue 才执行，毕竟我们是基于 Vue 的</span><br><span class="line">if (typeof window !== &apos;undefined&apos; &amp;&amp; window.Vue) &#123;</span><br><span class="line">  install(window.Vue)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(components[0].name) // 控制台输出组件的name,方便引用组件</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  install,</span><br><span class="line">  // 所有组件，必须具有 install，才能使用 Vue.use()</span><br><span class="line">  ...components</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>目录结构方便大家观看：<br><img src="/images/4.png" alt="1ll.png"></p>
-<h4 id="组件测试-1"><a href="#组件测试-1" class="headerlink" title="组件测试"></a>组件测试</h4><p>ok，组件写完了，接下来我们就在 HelloWorld.vue下面测试一下，看看能不能引用成功。 首先在 src下的 main.js 中引入刚刚写好的包，如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import EchoUI from &apos;./components&apos;</span><br><span class="line">Vue.use(EchoUI)</span><br></pre></td></tr></table></figure>
-<p>在 HelloWorld.vue中引入组件EchoLimit.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;EchoLimit&gt;&lt;/EchoLimit&gt;</span><br><span class="line">     &lt;echo-limit&gt;&lt;/echo-limit&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/echo-limit&gt;</span><br></pre></td></tr></table></figure></p>
-<p>运行项目<code>npm run dev</code>,会发现成功了！！!<br><img src="/images/10.png" alt="1ll.png"></p>
-<p>过程同上！！！！！！！！！</p>
-<p>参考 连接：<a href="https://www.jianshu.com/p/41cc796488df" target="_blank" rel="noopener">https://www.jianshu.com/p/41cc796488df</a><br>参考 链接：<a href="https://juejin.im/post/5c95c61f6fb9a070c40acf65" target="_blank" rel="noopener">https://juejin.im/post/5c95c61f6fb9a070c40acf65</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/26/npmBuild/" data-id="ck0qobmjm001188kcsj3nmnhi" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li></ul>
 
     </footer>
   </div>
@@ -1822,7 +1603,7 @@ table: display:table-cell; vertical-align: middle;
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-hexo/">blog-hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-hexo/">blog-hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端面试题/">前端面试题</a></li></ul>
     </div>
   </div>
 
@@ -1832,7 +1613,7 @@ table: display:table-cell; vertical-align: middle;
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/blog-hexo/" style="font-size: 15px;">blog-hexo</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/web/" style="font-size: 10px;">web</a>
+      <a href="/tags/blog-hexo/" style="font-size: 13.33px;">blog-hexo</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/js/" style="font-size: 13.33px;">js</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/vue/" style="font-size: 16.67px;">vue</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/前端面试题/" style="font-size: 20px;">前端面试题</a>
     </div>
   </div>
 
@@ -1854,23 +1635,23 @@ table: display:table-cell; vertical-align: middle;
       <ul>
         
           <li>
+            <a href="/2019/09/19/web/">前端面试题汇总</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/19/css/">前端css相关面试题汇总</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/19/vue/">vue相关面试题汇总</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/19/js/">前端js相关面试题汇总</a>
+          </li>
+        
+          <li>
             <a href="/2019/09/19/cssTitle/">css相关面试题</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/03/vueTitle/">vue相关面试题</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/03/vueSourceCoding/">了解vue源码</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/02/webTitle/">前端面试题整理</a>
-          </li>
-        
-          <li>
-            <a href="/2019/08/26/promise/">Promise</a>
           </li>
         
       </ul>

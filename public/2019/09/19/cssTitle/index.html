@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Author: EchoTime: 2019-09-19 15:46:24 1.什么是 BFC机制BFC(Block Formatting Context)，块级格式化上下文，是一个独立的渲染区域，让处于 BFC 内部的元素与外部的元素相互隔离，使内外元素的定位不会相互影响。  触发条件 (以下任意一条)   float的值不为none overflow的值不为visible display的值为">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-19T11:59:13.631Z">
+<meta property="og:updated_time" content="2019-09-19T12:43:37.523Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="css相关面试题">
 <meta name="twitter:description" content="Author: EchoTime: 2019-09-19 15:46:24 1.什么是 BFC机制BFC(Block Formatting Context)，块级格式化上下文，是一个独立的渲染区域，让处于 BFC 内部的元素与外部的元素相互隔离，使内外元素的定位不会相互影响。  触发条件 (以下任意一条)   float的值不为none overflow的值不为visible display的值为">
@@ -334,8 +334,7 @@ table: display:table-cell; vertical-align: middle;
 </li>
 </ol>
 <p>4.flex + justify-content + align-items<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">.box&#123;</span><br><span class="line">   height:600px;</span><br><span class="line"></span><br><span class="line">   display:flex;</span><br><span class="line">   justify-content:center;  //子元素水平居中</span><br><span class="line">   align-items:center;      //子元素垂直居中</span><br><span class="line">     /* aa只要三句话就可以实现不定宽高水平垂直居中。*/</span><br><span class="line">    &#125;</span><br><span class="line">  .box&gt;div&#123;</span><br><span class="line">    background: green;</span><br><span class="line">    width: 200px;</span><br><span class="line">    height: 200px;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
-<p>##4. 清除浮动有哪些方法, 各有什么优缺点</p>
-<ul>
+<h2 id="4-清除浮动有哪些方法-各有什么优缺点"><a href="#4-清除浮动有哪些方法-各有什么优缺点" class="headerlink" title="4. 清除浮动有哪些方法, 各有什么优缺点"></a>4. 清除浮动有哪些方法, 各有什么优缺点</h2><ul>
 <li>使用clear属性的空元素<br>在浮动元素后使用一个空元素如<div class="clear"></div>，并在CSS中赋予.clear{clear:both;}属性即可清理浮动。亦可使用<br class="clear">或<hr class="clear">来进行清理。</li>
 </ul>
 <p>优点: 简单, 写少量代码, 兼容性也好 缺点: 添加无语义html元素, 不利于代码语义化, 后期维护成本大</p>
@@ -492,7 +491,7 @@ table: display:table-cell; vertical-align: middle;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/19/cssTitle/" data-id="ck0qobmjh000w88kck3ifuy5b" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/19/cssTitle/" data-id="ck0qpat1s000z04kc2sgxlrjs" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
@@ -502,6 +501,15 @@ table: display:table-cell; vertical-align: middle;
   
     
 <nav id="article-nav">
+  
+    <a href="/2019/09/19/js/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          前端js相关面试题汇总
+        
+      </div>
+    </a>
   
   
     <a href="/2019/09/03/vueTitle/" id="article-nav-older" class="article-nav-link-wrap">
@@ -525,7 +533,7 @@ table: display:table-cell; vertical-align: middle;
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-hexo/">blog-hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-hexo/">blog-hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端面试题/">前端面试题</a></li></ul>
     </div>
   </div>
 
@@ -535,7 +543,7 @@ table: display:table-cell; vertical-align: middle;
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/blog-hexo/" style="font-size: 15px;">blog-hexo</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/web/" style="font-size: 10px;">web</a>
+      <a href="/tags/blog-hexo/" style="font-size: 13.33px;">blog-hexo</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/js/" style="font-size: 13.33px;">js</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/vue/" style="font-size: 16.67px;">vue</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/前端面试题/" style="font-size: 20px;">前端面试题</a>
     </div>
   </div>
 
@@ -557,23 +565,23 @@ table: display:table-cell; vertical-align: middle;
       <ul>
         
           <li>
+            <a href="/2019/09/19/web/">前端面试题汇总</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/19/css/">前端css相关面试题汇总</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/19/vue/">vue相关面试题汇总</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/19/js/">前端js相关面试题汇总</a>
+          </li>
+        
+          <li>
             <a href="/2019/09/19/cssTitle/">css相关面试题</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/03/vueTitle/">vue相关面试题</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/03/vueSourceCoding/">了解vue源码</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/02/webTitle/">前端面试题整理</a>
-          </li>
-        
-          <li>
-            <a href="/2019/08/26/promise/">Promise</a>
           </li>
         
       </ul>
