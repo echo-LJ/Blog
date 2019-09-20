@@ -22,8 +22,8 @@ $ npm install axios
 在项目的src目录下新建文件夹request,文件夹下新建http.js和api.js文件：
 
 
-> http.js: 封装axios
-> api.js: 用来统一管理接口
+ * http.js: 封装axios
+ * api.js: 用来统一管理接口
 
 ```
 // 在http.js中引入axios
@@ -48,12 +48,12 @@ axios.defaults.baseURL = baseURL_Map[process.env.NODE_ENV]
 // 或者直接设置成基本变量：
 const TIMEOUT = 30000;
 ```
-> 扩展：
-> ###### process.env.NODE_ENV
-> process对象是全局变量: 提供当前node.js的有关信息，以及控制当前node.js的有关进程。因为是全局变量，它对于node应用程序是始终可用的，无需require()
-> process.env属性返回一个包含用户环境信息的对象
-> process.env.NODE_ENV:不是process.env对象上原有的属性，是我们自己添加进去的一个环境变量，用来确定当前所处的开发阶段。
-> 测试环境： uat; 生产环境：product; 开发环境： dev
+扩展：
+###### process.env.NODE_ENV
+* process对象是全局变量: 提供当前node.js的有关信息，以及控制当前node.js的有关进程。因为是全局变量，它对于node应用程序是始终可用的，无需require()
+* process.env属性返回一个包含用户环境信息的对象
+* process.env.NODE_ENV:不是process.env对象上原有的属性，是我们自己添加进去的一个环境变量，用来确定当前所处的开发阶段。
+* 测试环境： uat; 生产环境：product; 开发环境： dev
 
 ##### 设置请求超时变量
 ```
@@ -62,16 +62,15 @@ const TIMEOUT = 30000;
 const TIMEOUT = 30000;
 ```
 
-> 扩展： 
-> 统一处理所有接口的超时时间： `axios.defaults.timeout = 10000;`
-> 
+扩展： 
+* 统一处理所有接口的超时时间： `axios.defaults.timeout = 10000;`
 
 ##### 设置post请求头
 ```
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 ```
 
-> 此处无需设置，在下面封装的时候会针对get和post请求做统一对应处理
+ 此处无需设置，在下面封装的时候会针对get和post请求做统一对应处理
 
 ##### 定义HTTP响应状态码的范围
 ```
@@ -359,7 +358,7 @@ api.js使用实例：
 ```
 import axios, { download } from './http';
 
-export const export = (data, defaultFilename) => download({
+export const export = (data, defaultFilename) = download({
   url: '/api//export',
   method: 'post',
   data,
@@ -373,10 +372,10 @@ export const export = (data, defaultFilename) => download({
 
 
 * 配置请求基本信息的常量：（用于基本处理）
-> BASE_URL ：根据环境变量，针对生成、测试、开发环境配置对应的url
-> TIMEOUT: 配置接口请求超时时间。
-> headers： 配置请求头
-> validateStatus: 定义HTTP响应状态码的范围。如果`validateStatus`返回`true`（或被设置为`null` promise将被解析;否则，promise将被拒绝。
+ BASE_URL ：根据环境变量，针对生成、测试、开发环境配置对应的url
+ TIMEOUT: 配置接口请求超时时间。
+ headers： 配置请求头
+ validateStatus: 定义HTTP响应状态码的范围。如果`validateStatus`返回`true`（或被设置为`null` promise将被解析;否则，promise将被拒绝。
 
 可以请求接口的不同，封装axios的时候，将 请求基本信息的常量 通过 参数 的方式单独进行配置。
 
@@ -385,16 +384,16 @@ export const export = (data, defaultFilename) => download({
 
 * 请求拦截
 
-> timeout: 在axios的源代码中，超时后, 会在拦截器那里 axios.interceptors.response 捕抓到错误信息, 且 error.code = "ECONNABORTED"，可以根据这个code提示超时报错信息。
+ timeout: 在axios的源代码中，超时后, 会在拦截器那里 axios.interceptors.response 捕抓到错误信息, 且 error.code = "ECONNABORTED"，可以根据这个code提示超时报错信息。
 
-> token：统一在http请求的header都加上token，这样后台根据token判断你的登录情况，即使本地存在token，也有可能token是过期的，所以在响应拦截器中要对返回状态进行判断
+ token：统一在http请求的header都加上token，这样后台根据token判断你的登录情况，即使本地存在token，也有可能token是过期的，所以在响应拦截器中要对返回状态进行判断
 
-> other errors: 根据请求状态`status`,直接promise.reject.路由跳转到对应的报错页面。
-> 根据请求头和method来处理入参的格式
+ other errors: 根据请求状态`status`,直接promise.reject.路由跳转到对应的报错页面。
+ 根据请求头和method来处理入参的格式
 
 在使用axios时，注意到配置选项中包含params和data两者，以为他们是相同的，实则不然。
 因为params是添加到url的请求字符串中的，用于get请求。
 而data是添加到请求体（body）中的， 用于post请求。
 
 * 响应拦截
-> badStatusMap: 请求失败，根据HTTP响应状态码做出对应的messageTip
+ badStatusMap: 请求失败，根据HTTP响应状态码做出对应的messageTip
