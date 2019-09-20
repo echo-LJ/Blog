@@ -4,6 +4,9 @@ date: 2019-09-20 10:50:39
 tags: es6, vue
 ---
 
+Author: Echo
+Time: 2019-09-20 10:50:39
+
 [axios文档地址](https://www.npmjs.com/package/axios)
 
 在vue项目中，和后台交互获取数据这块，我们通常使用的是`axios`库，它是基于`promise`的http库，可运行在浏览器端和node.js中。他有很多优秀的特性，例如`拦截请求和响应、取消请求、转换json、客户端防御cSRF`等。所以我们的尤大大也是果断放弃了对其官方库vue-resource的维护，直接推荐我们使用axios库.
