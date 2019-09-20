@@ -27,7 +27,13 @@ https://cn.vuejs.org/v2/guide/ssr.html
 * 了解一下node
 * 了解一下deep,样式穿透。
 * 了解一下github中的vue+express&写一下思路。
+* 看一下redux 中dispatch怎么实现换执行触发reducer
+* 看一下redux 中connect
 
 
 
 
+
+react 生命周期函数图片
+![react.png](https://github.com/bailicangdu/pxq/raw/master/screenshot/react-lifecycle.png)
+![REDUX.png](值得注意的是connect，Provider，mapStateToProps,mapDispatchToProps是react-redux提供的，redux本身和react没有半毛钱关系，它只是数据处理中心，没有和react产生任何耦合，是react-redux让它们联系在一起)
