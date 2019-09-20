@@ -65,6 +65,77 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-express" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/09/20/express/" class="article-date">
+  <time datetime="2019-09-20T09:29:05.000Z" itemprop="datePublished">2019-09-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/20/express/">express： 实现本地代码+本地mock+环境接口数据</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Author: Echo<br>Time: 2019-09-20 17:29:05</p>
+<h3 id="express"><a href="#express" class="headerlink" title="express"></a>express</h3><ul>
+<li>简介<br>基于 Node.js 平台，快速、开放、极简的 Web 开发框架</li>
+</ul>
+<p>简单来说，封装了node中http核心模块，专注于业务逻辑的开发.</p>
+<p>express中间件的本质就是请求处理方法，把用户从请求到响应的整个过程分发到多个中间件中去处理，提高代码灵活性，动态可扩展</p>
+<ul>
+<li>安装<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp; npm install express --save-dev</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>以vue项目为例<br>在根目录下新建api文件-&gt;server.js文件。</p>
+</blockquote>
+<h6 id="安装其他依赖"><a href="#安装其他依赖" class="headerlink" title="安装其他依赖:"></a>安装其他依赖:</h6><ul>
+<li><p>body-parser<br>一个HTTP请求体解析中间件，使用这个模块可以解析JSON、Raw、文本、URL - encoded格式的请求体，Express框架中就是使用这个模块做为请求体解析中间件。</p>
+</li>
+<li><p>request: Request - Simplified HTTP client</p>
+</li>
+<li>klaw-sync：klaw-sync is a Node.js recursive and fast file system walker</li>
+</ul>
+<p>实例代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">const express = require(&apos;express&apos;);</span><br><span class="line">const bodyParser = require(&apos;body-parser&apos;);</span><br><span class="line"></span><br><span class="line">const request = require(&apos;request&apos;);</span><br><span class="line">const path = require(&apos;path&apos;);</span><br><span class="line">const walk = require(&apos;klaw-sync&apos;);</span><br><span class="line">const config = require(&quot;../vue.config&quot;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const origin_proxy_url = &apos;http://origin_proxy_url.jdcloud.com&apos;; //测试接口url</span><br><span class="line">const local_proxy_port = 3002;                                  //本地server端口</span><br><span class="line">const local_proxy_url = `http://localhost:$&#123;local_proxy_port&#125;`; //本地接口url</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const app = express();</span><br><span class="line"></span><br><span class="line">//  创建 application/x-www-form-urlencoded 解析 :解析UTF-8的编码的数据</span><br><span class="line">app.use(bodyParser.urlencoded(&#123; extended: false &#125;)); </span><br><span class="line">// 当设置为false时，会使用querystring库解析URL编码的数据；当设置为true时，会使用qs库解析URL编码的数据。后没有指定编码时，使用此编码。默认为true</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// create application/json parser</span><br><span class="line">app.use(bodyParser.json());</span><br><span class="line">app.use(function (req, res, next) &#123;</span><br><span class="line">  res.header(&quot;Access-Control-Allow-Origin&quot;, &quot;*&quot;);</span><br><span class="line">  res.header(&quot;Access-Control-Allow-Headers&quot;, &quot;Origin, X-Requested-With, Content-Type, Accept&quot;);</span><br><span class="line">  next();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">let _existRoutes = [];</span><br><span class="line">app.use((req, res, next) =&gt; &#123; //TODO post和上传还有问题</span><br><span class="line">  const &#123; url, body, method &#125; = req;</span><br><span class="line">  if (!~_existRoutes.indexOf(req.path)) &#123;</span><br><span class="line">    const rurl = origin_proxy_url.replace(/\/$/, &apos;&apos;) + url;</span><br><span class="line">    let r = method === &apos;POST&apos;</span><br><span class="line">      ? request.post(&#123; url: rurl, form: body &#125;, (err, httpRes, reqBody) =&gt; &#123;</span><br><span class="line">        console.log(err, reqBody, body)</span><br><span class="line">      &#125;)</span><br><span class="line">      : request(rurl);</span><br><span class="line">    console.log(`本地未定义的请求，跳转到 $&#123;method&#125; $&#123;rurl&#125;`);</span><br><span class="line">    req.pipe(r).pipe(res);</span><br><span class="line">    return;</span><br><span class="line">  &#125;</span><br><span class="line">  next();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">//遍历本目录下的 *.api.js</span><br><span class="line">walk(path.resolve(&apos;./&apos;))</span><br><span class="line">  .filter(p =&gt; /\.api\.js$/.test(p.path))</span><br><span class="line">  .map(p =&gt; p.path)</span><br><span class="line">  .forEach(part =&gt; require(part)(app));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//全局配置，只在应用启动时读取一次</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//记录注册过的路由</span><br><span class="line">_existRoutes = app._router.stack.filter(s =&gt; s.route).map(s =&gt; s.route.path);</span><br><span class="line"></span><br><span class="line">app.listen(local_proxy_port, () =&gt; &#123;</span><br><span class="line">  console.log(`\n\n local server running at $&#123;local_proxy_url&#125; \n\n`);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="运行express服务器"><a href="#运行express服务器" class="headerlink" title="运行express服务器"></a>运行express服务器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;serve&quot;: &quot;vue-cli-service serve&quot;, // 启动本地项目： 如果配置了代理，请求的是本地代码+测试接口</span><br><span class="line"></span><br><span class="line">    // express 相关命令</span><br><span class="line">    &quot;server&quot;: &quot;nodemon api/server.js&quot;, //  本地express服务器</span><br><span class="line">    &quot;devlocal&quot;: &quot;shell-exec --colored-output \&quot;npm run serve --local\&quot; \&quot;npm run server\&quot;&quot; </span><br><span class="line">    // 启动本地项目: 本地代码+ 本地mock接口/测试接口</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+<ul>
+<li>安装运行依赖<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm install shell-executor --save-dev</span><br><span class="line">$ npm install nodemon --save-dev</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>shell-executor: A small nodejs module to execute shell commands in parallel<br>nodemon: 用来监视node.js应用程序中的任何更改并自动重启服务,非常适合用在开发环境中</p>
+</blockquote>
+<ul>
+<li>运行项目</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run devlocal</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/09/20/express/" data-id="ck0rxd4t0000fygkcdv92a854" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-commitMessage" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/09/20/commitMessage/" class="article-date">
@@ -145,7 +216,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/20/commitMessage/" data-id="ck0ru0t7200042gkcms7vy624" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/20/commitMessage/" data-id="ck0rxd4sv000bygkcw8b8l1xd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
@@ -201,7 +272,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/20/ForwardReverseProxy/" data-id="ck0ru0t6q00002gkcvo8kin1r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/20/ForwardReverseProxy/" data-id="ck0rxd4ss0009ygkc7npcpglu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
@@ -251,7 +322,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/20/virtualDom/" data-id="ck0ru0t7a000c2gkc3ydqkhz3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/20/virtualDom/" data-id="ck0rxd4t8000oygkcla55vjow" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
@@ -348,7 +419,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/20/axios/" data-id="ck0ru0t8700152gkcxqa8t817" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/20/axios/" data-id="ck0rxd4ts0019ygkc9tu9df92" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6-vue/">es6, vue</a></li></ul>
@@ -387,7 +458,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/19/web/" data-id="ck0ru0t7i000i2gkcqrrll5ll" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/19/web/" data-id="ck0rxd4to0016ygkc91j54i1s" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端面试题/">前端面试题</a></li></ul>
@@ -426,7 +497,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/19/css/" data-id="ck0ru0t7000032gkcd9t4lob7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/19/css/" data-id="ck0rxd4sy000eygkcu7wswmdc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端面试题/">前端面试题</a></li></ul>
@@ -466,7 +537,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/19/vue/" data-id="ck0ru0t7c000e2gkcytbb8ttt" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/19/vue/" data-id="ck0rxd4t9000qygkcahzesj5f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端面试题/">前端面试题</a></li></ul>
@@ -506,7 +577,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/19/js/" data-id="ck0ru0t7300052gkc4g8ucmo2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/19/js/" data-id="ck0rxd4t4000jygkcnqvs8yph" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端面试题/">前端面试题</a></li></ul>
@@ -944,7 +1015,7 @@ table: display:table-cell; vertical-align: middle;
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/19/cssTitle/" data-id="ck0ru0t8800172gkc7scqe7tv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/19/cssTitle/" data-id="ck0rxd4tt001bygkc0clgm77i" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
@@ -956,64 +1027,10 @@ table: display:table-cell; vertical-align: middle;
 
 
   
-    <article id="post-vueTitle" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/09/03/vueTitle/" class="article-date">
-  <time datetime="2019-09-03T02:10:37.000Z" itemprop="datePublished">2019-09-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/03/vueTitle/">vue相关面试题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Author: Echo<br>Time: 2019-09-03 10:10:37</p>
-<h3 id="孙子组件或更深层次的组件通信（除了props和vuex的其他用法）"><a href="#孙子组件或更深层次的组件通信（除了props和vuex的其他用法）" class="headerlink" title="孙子组件或更深层次的组件通信（除了props和vuex的其他用法）"></a>孙子组件或更深层次的组件通信（除了props和vuex的其他用法）</h3><ul>
-<li>Vue Event Bus，使用Vue的实例，实现事件的监听和发布，实现组件之间的传递<h6 id="缺点"><a href="#缺点" class="headerlink" title="缺点:"></a>缺点:</h6>使用在实际的项目操作中发现，如不能实现很好的事件监听与发布的管理，往往容易导致数据流的混乱，在多人协作的项目中，不利于项目的维护<br>#####1.  父组件使用provide，子组件使用inject</li>
-<li>通过inject直接访问其两个层级上的数据，其用法与props完全相同，同样可以参数校验等<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.provide就相当于加强版父组件prop</span><br><span class="line">2.inject就相当于加强版子组件的props</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>// 示例代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">// 父组件</span><br><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">		&#123;&#123;name&#125;&#125;</span><br><span class="line">	&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"> </span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">	name: &apos;father&apos;,</span><br><span class="line">  // 传入对象写法</span><br><span class="line">  provide: &#123;</span><br><span class="line">    name: &apos;bar&apos;</span><br><span class="line">  &#125;</span><br><span class="line">  // 函数写法</span><br><span class="line">	provide () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      name: &apos;foo&apos;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">// 孙子组件或者深层次组件</span><br><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">		&#123;&#123;name&#125;&#125;</span><br><span class="line">	&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"> </span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">	name: &apos;Grandson&apos;,</span><br><span class="line">	inject: [name]</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
-<h6 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h6><p>在任意层级都能访问，导致数据变化追踪比较困难。</p>
-<h5 id="2-通过-attrs传递属性"><a href="#2-通过-attrs传递属性" class="headerlink" title="2.通过$attrs传递属性"></a>2.通过$attrs传递属性</h5><p>vue api解释说明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vm.$attrs和inheritAttrs</span><br><span class="line">2.4.0 新增</span><br><span class="line">类型：&#123; [key: string]: string &#125;</span><br><span class="line">只读</span><br><span class="line">详细：</span><br><span class="line">包含了父作用域中不作为 prop 被识别 (且获取) 的特性绑定 (class 和 style 除外)。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过 v-bind=&quot;$attrs&quot; 传入内部组件——在创建高级别的组件时非常有用。</span><br></pre></td></tr></table></figure></p>
-<p>细节使用示例参考链接：<a href="https://www.jianshu.com/p/ce8ca875c337" target="_blank" rel="noopener">https://www.jianshu.com/p/ce8ca875c337</a></p>
-<h5 id="3-通过-listeners传递事件"><a href="#3-通过-listeners传递事件" class="headerlink" title="3.通过$listeners传递事件"></a>3.通过$listeners传递事件</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vm.$listeners</span><br><span class="line">2.4.0 新增</span><br><span class="line">类型：&#123; [key: string]: Function | Array&lt;Function&gt; &#125;</span><br><span class="line">只读</span><br><span class="line">详细：</span><br><span class="line">包含了父作用域中的 (不含 .native 修饰器的) v-on 事件监听器。它可以通过 v-on=&quot;$listeners&quot; 传入内部组件——在创建更高层次的组件时非常有用。</span><br></pre></td></tr></table></figure>
-<h5 id="4-Vue2-6-新全局API：Vue-observable"><a href="#4-Vue2-6-新全局API：Vue-observable" class="headerlink" title="4.Vue2.6+新全局API：Vue.observable()"></a>4.Vue2.6+新全局API：Vue.observable()</h5><h3 id="子组件访问父组件数据（除了props）"><a href="#子组件访问父组件数据（除了props）" class="headerlink" title="子组件访问父组件数据（除了props）"></a>子组件访问父组件数据（除了props）</h3><ul>
-<li>使用$parent属性</li>
-<li>通过$attrs传递属性</li>
-<li>Vue2.6+新全局API：Vue.observable()</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/03/vueTitle/" data-id="ck0ru0t7f000g2gkckjdszuf2" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
   </nav>
 </section>
         
@@ -1036,7 +1053,7 @@ table: display:table-cell; vertical-align: middle;
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/blog-hexo/" style="font-size: 15px;">blog-hexo</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/es6-vue/" style="font-size: 10px;">es6, vue</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/node/" style="font-size: 10px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/web/" style="font-size: 15px;">web</a> <a href="/tags/前端面试题/" style="font-size: 20px;">前端面试题</a>
+      <a href="/tags/blog-hexo/" style="font-size: 15px;">blog-hexo</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/es6-vue/" style="font-size: 10px;">es6, vue</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/node/" style="font-size: 15px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/web/" style="font-size: 15px;">web</a> <a href="/tags/前端面试题/" style="font-size: 20px;">前端面试题</a>
     </div>
   </div>
 
@@ -1058,6 +1075,10 @@ table: display:table-cell; vertical-align: middle;
       <ul>
         
           <li>
+            <a href="/2019/09/20/express/">express： 实现本地代码+本地mock+环境接口数据</a>
+          </li>
+        
+          <li>
             <a href="/2019/09/20/commitMessage/">Commit message 代码提交规范</a>
           </li>
         
@@ -1071,10 +1092,6 @@ table: display:table-cell; vertical-align: middle;
         
           <li>
             <a href="/2019/09/20/axios/">axios封装</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/19/web/">前端面试题汇总</a>
           </li>
         
       </ul>
