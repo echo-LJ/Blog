@@ -117,3 +117,8 @@ $ npm install nodemon --save-dev
 > shell-executor: A small nodejs module to execute shell commands in parallel
 > nodemon: 用来监视node.js应用程序中的任何更改并自动重启服务,非常适合用在开发环境中
 
+* 运行项目
+
+```
+$ npm run devlocal
+```
