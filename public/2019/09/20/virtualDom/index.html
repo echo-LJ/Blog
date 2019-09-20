@@ -3,15 +3,20 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Archives: 2019/8 | Hexo</title>
+  <title>虚拟dom | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2019/08/index.html">
+  <meta name="description" content="Author: EchoTime: 2019-09-20 11:05:02 什么是虚拟DOM树？（Virtual DOM）virtual，指的是对真实DOM的一种模拟。相对于直接操作真实的DOM结构，我们构建一棵虚拟的树，将各种数据和操作直接应用在这棵虚拟的树上，然后再将对虚拟的树的修改应用到真实的DOM结构上。虚拟DOM树其实就是一个普通的js对象，它是用来描述一段HTML片段的  当页面渲染的">
+<meta name="keywords" content="vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="虚拟dom">
+<meta property="og:url" content="http://yoursite.com/2019/09/20/virtualDom/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Author: EchoTime: 2019-09-20 11:05:02 什么是虚拟DOM树？（Virtual DOM）virtual，指的是对真实DOM的一种模拟。相对于直接操作真实的DOM结构，我们构建一棵虚拟的树，将各种数据和操作直接应用在这棵虚拟的树上，然后再将对虚拟的树的修改应用到真实的DOM结构上。虚拟DOM树其实就是一个普通的js对象，它是用来描述一段HTML片段的  当页面渲染的">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-09-20T03:05:45.501Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="虚拟dom">
+<meta name="twitter:description" content="Author: EchoTime: 2019-09-20 11:05:02 什么是虚拟DOM树？（Virtual DOM）virtual，指的是对真实DOM的一种模拟。相对于直接操作真实的DOM结构，我们构建一棵虚拟的树，将各种数据和操作直接应用在这棵虚拟的树上，然后再将对虚拟的树的修改应用到真实的DOM结构上。虚拟DOM树其实就是一个普通的js对象，它是用来描述一段HTML片段的  当页面渲染的">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -60,115 +65,65 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/08/26/promise/" class="archive-article-date">
-  <time datetime="2019-08-26T02:44:24.000Z" itemprop="datePublished">Aug 26</time>
+        <section id="main"><article id="post-virtualDom" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/09/20/virtualDom/" class="article-date">
+  <time datetime="2019-09-20T03:05:02.000Z" itemprop="datePublished">2019-09-20</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/26/promise/">Promise</a>
+    <h1 class="article-title" itemprop="name">
+      虚拟dom
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/08/21/JS-thread/" class="archive-article-date">
-  <time datetime="2019-08-21T07:36:08.000Z" itemprop="datePublished">Aug 21</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/21/JS-thread/">从多线程到Event Loop全面梳理</a>
-    </h1>
-  
+        <p>Author: Echo<br>Time: 2019-09-20 11:05:02</p>
+<h5 id="什么是虚拟DOM树？（Virtual-DOM）"><a href="#什么是虚拟DOM树？（Virtual-DOM）" class="headerlink" title="什么是虚拟DOM树？（Virtual DOM）"></a>什么是虚拟DOM树？（Virtual DOM）</h5><p>virtual，指的是对真实DOM的一种模拟。相对于直接操作真实的DOM结构，我们构建一棵虚拟的树，将各种数据和操作直接应用在这棵虚拟的树上，然后再将对虚拟的树的修改应用到真实的DOM结构上。<br>虚拟DOM树其实就是一个普通的js对象，它是用来描述一段HTML片段的</p>
+<ul>
+<li>当页面渲染的时候Vue会创建一颗虚拟DOM树</li>
+<li>当页面发生改变Vue会再创建一颗新的虚拟DOM树</li>
+<li>前后两颗新旧虚拟DOM树进行对比，Vue通过diff算法，去记录差异的地方</li>
+<li>将有差异的地方更新到真实的DOM树中<h5 id="虚拟DOM树有什么用？"><a href="#虚拟DOM树有什么用？" class="headerlink" title="虚拟DOM树有什么用？　"></a>虚拟DOM树有什么用？　</h5>vue中的虚拟DOM树只会重新渲染页面修改的地方，大大减少了对真实DOM树的操作。 ——-虚拟DOM树是占内容的，但是可以帮我们提高DOM的性能。</li>
+</ul>
+<p>可以这样理解，虚拟DOM树是用空间(虚拟DOM树占空间)换时间(虚拟DOM树可以提高DOM效率)。</p>
+<h5 id="Vue-v-for-中-key-到底有什么用？"><a href="#Vue-v-for-中-key-到底有什么用？" class="headerlink" title="Vue  v-for 中 :key 到底有什么用？"></a>Vue  v-for 中 :key 到底有什么用？</h5><p>vue不直接操作真实的DOM树，通过虚拟DOM树就可以重新渲染修改的地方，影藏在背后的原理其实就是 diff 算法。<br>key的作用是为了高效的更新虚拟DOM树，提高查找的效率，一次性定位到要修改的元</p>
+<p>参考链接： <a href="https://www.cnblogs.com/javascript9527/p/11327924.html" target="_blank" rel="noopener">https://www.cnblogs.com/javascript9527/p/11327924.html</a></p>
+<p>实现一个Virtual DOM算法参考链接： <a href="https://www.cnblogs.com/ssw-men/p/10818585.html" target="_blank" rel="noopener">https://www.cnblogs.com/ssw-men/p/10818585.html</a></p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/08/19/request/" class="archive-article-date">
-  <time datetime="2019-08-19T06:05:42.000Z" itemprop="datePublished">Aug 19</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/19/request/">关于前端请求的那些事</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/08/15/message-comp/" class="archive-article-date">
-  <time datetime="2019-08-15T08:05:21.000Z" itemprop="datePublished">Aug 15</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/09/20/virtualDom/" data-id="ck0rjpmqa000lpckcg8yatjqw" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/15/message-comp/">模拟element-ui写message组件思路</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/08/14/nodeBasics/" class="archive-article-date">
-  <time datetime="2019-08-14T07:37:18.000Z" itemprop="datePublished">Aug 14</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/14/nodeBasics/">node 基础知识</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/09/20/axios/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">axios封装</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 </section>
         
