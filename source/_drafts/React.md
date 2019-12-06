@@ -178,6 +178,7 @@ context 的更新需要通过 setState()触发，但是这并不是很可靠的�
 #### 8. 你有用过 React 的插槽(Portals)吗？怎么用？
 * 首先简单的介绍下 react 中的插槽（Portals），通过 ReactDOM.createPortal(child, container)创建，是 ReactDOM 提供的接口，可以实现将子节点渲染到父组件 DOM 层次结构之外的 DOM 节点。
 * 第一个参数（child）是任何可渲染的 React 子元素，例如一个元素，字符串或 片段(fragment)。第二个参数（container）则是一个 DOM 元素。
+
 * 对于 portal 的一个典型用例是当父组件有 overflow: hidden 或 z-index 样式，但你需要子组件能够在视觉上 “跳出(break out)” 其容器。例如，对话框、hovercards 以及提示框。所以一般 react 组件里的模态框，就是这样实现的。
 #### 9. React 的严格模式有什么用处？
 
@@ -241,12 +242,10 @@ StrictMode 目前有助于：
 
 react官方文档中说到：组件无论是使用函数声明还是通过class声明，都不能修改自身的props,props作为组件对外通信的一个接口，为了保证组件像纯函数一样没有响应的副作用，所有的组件都必须像纯函数一样保护他们的props不被修改。
 
-
 #### 12.`super()`和`super(props)`有什么区别？
 
 react中的class是基于es6的规范实现的，继承是使用extends关键字实现继承的，字类必须在constructor()中调用super()方法否则新建实力就会报错；
 报错的原因就是：子类是没有自己的this对象的，它只能继承父类的this对象，然后对其进行加工，而super()就是将父类中的this对象继承给子类的，没有super()子类就得不到this对象。
-
 如果你使用了constructor就必须使用super()，这个是用来初始化this的，可以绑定事件到this上，如果想要在constructor中使用this.props,就必须给super添加参数super(props)；
 注意：无论有没有constructor，在render中的this.props都是可以使用的，这是react自动附带的，如果没有用到constructor是可以不写的，react会默认添加一个空的constroctor.
 
