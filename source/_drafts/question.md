@@ -29,11 +29,15 @@ https://cn.vuejs.org/v2/guide/ssr.html
 * 了解一下github中的vue+express&写一下思路。
 * 看一下redux 中dispatch怎么实现换执行触发reducer
 * 看一下redux 中connect
+* 熟悉一下async await
 
+
+* React Intl是什么原理？  在react项目中实现国际化
+参考链接：https://www.jianshu.com/p/c57e000c2bbf
 
 
 
 
 react 生命周期函数图片
-![react.png](https://github.com/bailicangdu/pxq/raw/master/screenshot/react-lifecycle.png)
-![REDUX.png](值得注意的是connect，Provider，mapStateToProps,mapDispatchToProps是react-redux提供的，redux本身和react没有半毛钱关系，它只是数据处理中心，没有和react产生任何耦合，是react-redux让它们联系在一起)
+<!-- ![react.png](https://github.com/bailicangdu/pxq/raw/master/screenshot/react-lifecycle.png)
+![REDUX.png](值得注意的是connect，Provider，mapStateToProps,mapDispatchToProps是react-redux提供的，redux本身和react没有半毛钱关系，它只是数据处理中心，没有和react产生任何耦合，是react-redux让它们联系在一起) -->
