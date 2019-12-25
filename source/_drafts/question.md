@@ -10,8 +10,8 @@ tags:
 ####### 在jd的电脑提交代码到github上需要重定向密钥：
 
 eval $(ssh-agent -s)
-ssh-add ~/.ssh/lujing163
-
+windows:ssh-add ~/.ssh/lujing163
+mac: ssh-add ~/.ssh/github
 https://ssr.vuejs.org/zh/
 https://cn.vuejs.org/v2/guide/ssr.html
 * 看一下process.env.NODE_ENV是怎么回事 https://www.jb51.net/article/126838.htm
