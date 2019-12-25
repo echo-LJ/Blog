@@ -258,8 +258,21 @@ react中的class是基于es6的规范实现的，继承是使用extends关键字
 * babel动态导入
 
 
+#### 14.怎样使用Hooks获取服务端数据？
+参考链接： https://zhuanlan.zhihu.com/p/57214270
 
+#### 15.使用Hooks要遵守哪些原则？
+* 只在最顶层使用 Hook
+* 只在 React 函数中调用 Hook
+https://react.docschina.org/docs/hooks-rules.html
 
+#### render方法的原理你有了解吗？它返回的数据类型是什么？
+#### 在React项目中你用过哪些动画的包?
+
+#### useEffect和useLayoutEffect的区别?
+在 React hook 中，useEffect 用来取代 componentDidMount 和 componentDidUpdate。主要作用是当页面渲染后，进行一些副作用操作（比如访问 DOM，请求数据）。
+* useLayoutEffect 相比 useEffect，通过同步执行状态更新可解决一些特性场景下的页面闪烁问题。
+* useEffect 可以满足百分之99的场景，而且 useLayoutEffect 会阻塞渲染，请谨慎使用。
 
 
 

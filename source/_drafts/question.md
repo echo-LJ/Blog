@@ -41,3 +41,8 @@ https://cn.vuejs.org/v2/guide/ssr.html
 react 生命周期函数图片
 <!-- ![react.png](https://github.com/bailicangdu/pxq/raw/master/screenshot/react-lifecycle.png)
 ![REDUX.png](值得注意的是connect，Provider，mapStateToProps,mapDispatchToProps是react-redux提供的，redux本身和react没有半毛钱关系，它只是数据处理中心，没有和react产生任何耦合，是react-redux让它们联系在一起) -->
+
+
+react https://www.ru23.com/note/55bd244d.html 看一下
+https://www.cnblogs.com/TomXu/archive/2011/12/15/2288411.html： 汤姆大叔
+https://www.cnblogs.com/TankXiao/archive/2012/02/06/2337728.html#summaryview fiddler  /charles
