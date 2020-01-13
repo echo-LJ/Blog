@@ -2,7 +2,22 @@
 title: question
 tags:
 ---
+关联本地文件夹到github项目
+```
+git init
+git remote add origin https://自己的仓库url地址
+git status
+git add .
+git commit -m '[提交内容的描述]'
+先 push，以后才能 pull：git push --set-upstream origin master
+再 git pull
+撤销 git init 命令：
+rm -rf .git
 
+撤销 git add . 命令：
+git rm -rf --cached .
+
+```
 * `webTitle`: 浏览器解析过程?
 * `webTitle`: HTTP response报文结构是怎样的
 * `vueSourceCoding`:看一下这个https://www.cnblogs.com/zhuzhenwei918/p/9266407.html 百度搜索一下`vue serverPrefetch`& https://zhuanlan.zhihu.com/p/25936718
