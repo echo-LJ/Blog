@@ -65,6 +65,252 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-nodeBasics" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/14/nodeBasics/" class="article-date">
+  <time datetime="2019-08-14T07:37:18.000Z" itemprop="datePublished">2019-08-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/14/nodeBasics/">node 基础知识</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Author: Echo<br>Time: 2019-08-14 15:37:18</p>
+<h1 id="有助于理解前端工具的-node-知识"><a href="#有助于理解前端工具的-node-知识" class="headerlink" title="有助于理解前端工具的 node 知识"></a>有助于理解前端工具的 node 知识</h1><h2 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h2><p>平时写惯了业务代码之后，如果想要了解下 webpack 或者 vue-cli，好像是件很难上手的事情🙁 。拿 webpack 来说，我们可能会对配置熟悉点，但常常一段时间过后又忘了，感觉看起来不是很好懂。其实类似这种打包工具、构建工具我们最好应该先去学习一下 node 的一些基础知识，然后再回过头来看这些工具，就会有柳暗花明又一村的感觉，因为这些工具是用 node 写出来的🤯。<br>想想我们是不是时常看到过这种东西：<code>const path = require(&#39;path&#39;);</code>。<br>假设你学过前端框架但没学过 node，你看到这句话的时候就会一头雾水，好像知道它是弄路径的，但具体这是哪里来的，常用来做什么就不得而知了，我起初看的感觉就是这样🤨。<br>后来才知道这其实是 node 的内置模块，因为这些构建工具或打包工具是用 node 来执行的，只要我们有装 node，它里面的内置模块就能直接引用，不用另外安装。所以强烈建议大家要是想了解这类工具最好先学习一下 node，不然会总是懵逼的🧐。<br>言归正传，本篇就来简要讲述一下 node 的一些常用内置模块。</p>
+<h2 id="node-初识"><a href="#node-初识" class="headerlink" title="node 初识"></a>node 初识</h2><h4 id="node-是什么"><a href="#node-是什么" class="headerlink" title="node 是什么"></a>node 是什么</h4><p>首先 node 不是一门后台语言而是一个环境，一个能够让 js 运行在服务器的环境，这个环境就好比是服务器上的浏览器（虽然不是很恰当），但正是因为有了它才使得 js 变成了一门后台语言。</p>
+<h4 id="node-遵循的规范"><a href="#node-遵循的规范" class="headerlink" title="node 遵循的规范"></a>node 遵循的规范</h4><p>其次 node 遵循的是 CommonJs 规范，什么意思？其实就是规定了导入导出的方式😬，就向下面这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">require(&apos;./module&apos;)</span><br><span class="line">module.exports = &#123;</span><br><span class="line">    a: 1,</span><br><span class="line">&#125;</span><br><span class="line">exports.a = 1;</span><br></pre></td></tr></table></figure></p>
+<p>这就是 node 的规范，用<code>require</code> 导入、用 <code>module.exports</code> 导出。那 node 为什么不支持 ESM（就是用 <code>import</code> 导入、用 <code>export</code> 导出）规范呢，因为它出现的比较早，仅此而已，然后一时半会儿还改不过来，以后应该就会支持了。另外，我们时常在 webpack 里看到 <code>require()</code> 字样却没有看见 <code>import()</code>就是因为 webpack 是要用 node 来执行的，而 node 目前只支持 <code>require()</code>。</p>
+<p>这里顺带来一张各种规范图（这种东西容易忘，当作历史看看就行🙄），如下：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/11846892-9bba9115e27bcd20.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="16ad4be6bc803f68.png"></p>
+<h2 id="require-寻找依赖"><a href="#require-寻找依赖" class="headerlink" title="require 寻找依赖"></a>require 寻找依赖</h2><p>require() 里面的参数有两种写法，一种带路径一种不带路径。就像下面这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">require(&apos;./module&apos;); // 带相对路径</span><br><span class="line">require(&apos;/module&apos;); // 带绝对路径</span><br><span class="line">require(&apos;module&apos;); // 不带路径</span><br></pre></td></tr></table></figure></p>
+<p>这种不带路径的 <code>require(&#39;module&#39;)</code>引入方式，可能是内置模块，也可能是第三方模块，内置模块优先查找，没有的话就是第三方模块了，它会先从当前目录的 node_modules 里面查找，没有的话就到父目录下的 node_modules 里面去找，如此向上追溯，直到根目录下的 node_modules 目录，要是还没有的话就会到全局里面去找，大概是这么一个搜索过程。</p>
+<p>另外一种带路径的方式，就会沿着路径去找，如果没有找到则会尝试将当前目录作一个包来加载。此外，使用绝对路径的速度查找最快，当然了，node 也对路径查找做了缓存机制。</p>
+<h2 id="node-模块包装"><a href="#node-模块包装" class="headerlink" title="node 模块包装"></a>node 模块包装</h2><p>node 在解析每个模块（js 文件）时，会对每个模块进行包装，就是在代码外面加一个闭包，并且向里传递五个参数，这样就保证了每个模块之间的独立，就像下面这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(function(exports, require, module, __filename, __dirname) &#123;</span><br><span class="line">    // module: 表示当前模块</span><br><span class="line">    // __filename: 当前模块的带有完整绝对路径的文件名</span><br><span class="line">    // __dirname: 当前模块的完整绝对路径</span><br><span class="line">    module.exports = exports = this = &#123;&#125;;</span><br><span class="line">    // 我们的代码就在这里...</span><br><span class="line">    return module.exports;</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure></p>
+<p>想想我们平时是不是常在 webpack 里面看到 __dirname 这种东西，我们既没有引入也没有声明它，为什么能够直接使用呢，就是因为这个原因😮。</p>
+<h2 id="node-的应用场景"><a href="#node-的应用场景" class="headerlink" title="node 的应用场景"></a>node 的应用场景</h2><p>一般来说，node 主要应用于以下几个方面：</p>
+<ul>
+<li>自动化构建等工具</li>
+<li>中间层</li>
+<li>小项目</li>
+</ul>
+<p>第一点对于前端同学来说应该是重中之重了，什么工程化、自动构建工具就是用 node 写出来的，它是前端的一大分水岭之一，是块难啃的骨头，所以我们必须拿下，不然瓶颈很快就到了。如果你能熟练应用 node 的各种模块（系统模块 + 第三方模块），那么恭喜你，你又比别人牛逼了一截😎。</p>
+<h2 id="node-的优点"><a href="#node-的优点" class="headerlink" title="node 的优点"></a>node 的优点</h2><ul>
+<li>适合前端大大们</li>
+<li>基于事件驱动和无阻塞的I/O（适合处理并发请求）</li>
+<li>性能较好（别人做过性能分析）</li>
+</ul>
+<h2 id="node-内置模块"><a href="#node-内置模块" class="headerlink" title="node 内置模块"></a>node 内置模块</h2><p>ok，废话了这么多，咱们赶紧来看看一些常见的 node 基础模块吧。相信掌握这些对你学习 webpack 和 vue-cli 等工具是有很大帮助的✊ 。</p>
+<h3 id="http-模块"><a href="#http-模块" class="headerlink" title="http 模块"></a>http 模块</h3><p>这是 node 最最基础的功能了，我们用 <code>node http.js</code> 运行一下下面的文件就能开启一个服务器，在浏览器中输入 <code>http://localhost:8888</code> 即可访问，http.js 具体内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// http.js</span><br><span class="line">const http = require(&apos;http&apos;);</span><br><span class="line">http.createServer((req, res) =&gt; &#123; // 开启一个服务</span><br><span class="line">  console.log(&apos;请求来了&apos;); // 如果你打开 http://localhost:8888，控制台就会打印此消息</span><br><span class="line">  res.write(&apos;hello&apos;); // 返回给页面的值，也就是页面会显示 hello</span><br><span class="line">  res.end(); // 必须有结束的标识，否则页面会一直处于加载状态</span><br><span class="line">&#125;).listen(8888); // 端口号</span><br></pre></td></tr></table></figure></p>
+<h3 id="fs-文件系统"><a href="#fs-文件系统" class="headerlink" title="fs 文件系统"></a>fs 文件系统</h3><p>由于 js 一开始是用来开发给浏览器用的，所以它的能力就局限于浏览器，不能直接对客户端的本地文件进行操作，这样做的目的是为了保证客户端的信息安全，当然了，通过一些手段也可以操作客户端内容（就像 <code>&lt;input type=&#39;file&#39;&gt;</code>），但是需要用户手动操作才行。<br>但是当 js 作为后台语言时，就可以直接对服务器上的资源文件进行 I/O 操作了。这也是 node 中尤为重要的模块之一（操作文件的能力），这在自动化构建和工程化中是很常用的。它的主要职责就是读写文件，或者移动复制删除等。fs 就好比对数据库进行增删改查一样，不同的是它操作的是文件。下面我们来具体看看代码用例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">const fs = require(&apos;fs&apos;);</span><br><span class="line"></span><br><span class="line">// 写入文件：fs.writeFile(path, fileData, cb);</span><br><span class="line">fs.writeFile(&apos;./text.txt&apos;, &apos;hello xr!&apos;, err =&gt; &#123;</span><br><span class="line">  if (err) &#123;</span><br><span class="line">    console.log(&apos;写入失败&apos;, err);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    console.log(&apos;写入成功&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 读取文件：fs.readFile(path, cb);</span><br><span class="line">fs.readFile(&apos;./text.txt&apos;, (err, fileData) =&gt; &#123;</span><br><span class="line">  if (err) &#123;</span><br><span class="line">    console.log(&apos;读取失败&apos;, err);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    console.log(&apos;读取成功&apos;, fileData.toString()); // fileData 是二进制文件，非媒体文件可以用 toString 转换一下</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>需要注意的是 readFile 里面的 fileData 是原始的二进制文件🤨（em…就是计算机才看的懂的文件格式），对于非媒体类型（如纯文本）的文件可以用 <code>toString()</code> 转换一下，媒体类型的文件以后则会以流的方式进行读取，要是强行用 <code>toString()</code> 转换的话会丢失掉原始信息，所以不能乱转。二进制和 <code>toString</code> 的效果就像下面这样：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/11846892-c418ff2996cf5c61?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>另外，和 fs.readFile（异步） 和 fs.writeFile（异步）相对应的还有 fs.readFileSync（同步）和 fs.writeFileSync（同步），fs 的大多方法也都有同步异步两个版本，具体取决于业务选择，一般都用异步，不知道用啥的话也用异步。</p>
+<h2 id="path-路径"><a href="#path-路径" class="headerlink" title="path 路径"></a>path 路径</h2><p>这个模块想必大家应该都并不陌生，🧐瞟过 webpack 的都应该看过这个东东。很显然，path 就是来处理路径相关东西的，我们直接看下面的常见用例就能够体会到：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&apos;path&apos;);</span><br><span class="line"></span><br><span class="line">let str = &apos;/root/a/b/index.html&apos;;</span><br><span class="line">console.log(path.dirname(str)); // 路径</span><br><span class="line">// /root/a/b</span><br><span class="line">console.log(path.extname(str)); // 后缀名</span><br><span class="line">// .html</span><br><span class="line">console.log(path.basename(str)); // 文件名</span><br><span class="line">// index.html</span><br><span class="line"></span><br><span class="line">// path.resolve() 路径解析，简单来说就是拼凑路径，最终返回一个绝对路径</span><br><span class="line">let pathOne = path.resolve(&apos;rooot/a/b&apos;, &apos;../c&apos;, &apos;d&apos;, &apos;..&apos;, &apos;e&apos;);</span><br><span class="line"></span><br><span class="line">// 一般用来打印绝对路径，就像下面这样，其中 __dirname 指的就是当前目录</span><br><span class="line">let pathTwo = path.resolve(__dirname, &apos;build&apos;); // 这个用法很常见，你应该在 webpack 中有见过</span><br><span class="line"></span><br><span class="line">console.log(pathOne, pathTwo, __dirname);</span><br><span class="line">// pathOne  =&gt;  /Users/lgq/Desktop/node/rooot/a/c/e</span><br><span class="line">// pathTwo  =&gt;  /Users/lgq/Desktop/node/build</span><br><span class="line">// __dirname  =&gt;  /Users/lgq/Desktop/node</span><br></pre></td></tr></table></figure></p>
+<p>嗯，下次看到 path 这个东西就不会迷茫了。</p>
+<h3 id="url-模块"><a href="#url-模块" class="headerlink" title="url 模块"></a>url 模块</h3><p>很显然这是个用来处理网址相关东西的，也是我们必须要掌握的，主要用来获取地址路径和参数的，就像下面这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const url = require(&apos;url&apos;);</span><br><span class="line"></span><br><span class="line">let site = &apos;http://www.xr.com/a/b/index.html?a=1&amp;b=2&apos;;</span><br><span class="line">let &#123; pathname, query &#125; = url.parse(site, true); // url.parse() 解析网址，true 的意思是把参数解析成对象</span><br><span class="line"></span><br><span class="line">console.log(pathname, query);</span><br><span class="line">// /a/b/index.html  &#123; a: &apos;1&apos;, b: &apos;2&apos; &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="querystring-查询字符串"><a href="#querystring-查询字符串" class="headerlink" title="querystring 查询字符串"></a>querystring 查询字符串</h3><p>这个主要是用来把形如这样的字符串 <code>a=1&amp;b=2&amp;c=3</code>（&amp;和=可以换成别的）解析成 <code>{ a: &#39;1&#39;, b: &#39;2&#39;, c: &#39;3&#39; }</code> 对象，反过来也可以把对象拼接成字符串，上面的 url 参数也可以用 querystring 来解析，具体演示如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const querystring = require(&apos;querystring&apos;);</span><br><span class="line"></span><br><span class="line">let query = &apos;a=1&amp;b=2&amp;c=3&apos;; // 形如这样的字符串就能被解析</span><br><span class="line">let obj = querystring.parse(query);</span><br><span class="line">console.log(obj, obj.a); // &#123; a: &apos;1&apos;, b: &apos;2&apos;, c: &apos;3&apos; &#125;   &apos;1&apos;</span><br><span class="line"></span><br><span class="line">query = &apos;a=1&amp;b=2&amp;c=3&amp;a=3&apos;; // 如果参数重复，其所对应的值会变成数组</span><br><span class="line">obj = querystring.parse(query);</span><br><span class="line">console.log(obj); // &#123; a: [ &apos;1&apos;, &apos;3&apos; ], b: &apos;2&apos;, c: &apos;3&apos; &#125;</span><br><span class="line"></span><br><span class="line">// 相反的我们可以用 querystring.stringify() 把对象拼接成字符串</span><br><span class="line">query = querystring.stringify(obj);</span><br><span class="line">console.log(query); // a=1&amp;a=3&amp;b=2&amp;c=3</span><br></pre></td></tr></table></figure>
+<h3 id="assert-断言"><a href="#assert-断言" class="headerlink" title="assert 断言"></a>assert 断言</h3><p>这个我们直接看下面代码就知道它的作用了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// assert.js</span><br><span class="line">const assert = require(&apos;assert&apos;);</span><br><span class="line"></span><br><span class="line">// assert(条件，错误消息)，条件这部分会返回一个布尔值</span><br><span class="line">assert(2 &lt; 1, &apos;断言失败&apos;);</span><br></pre></td></tr></table></figure>
+<p><code>node assert.js</code> 运行一下代码就能看到如下结果：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/11846892-6bd3e74df2f4db39?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>上图是断言失败的例子，如果断言正确的话，则不会有任何提示，程序会继续默默往下执行。所以断言的作用就是先判断条件是否正确（有点像 if），如果条件返回值为 <code>false</code> 则阻止程序运行，并抛出一个错误，如果返回值为 <code>true</code> 则继续执行，一般用于函数中间和参数判断。<br>另外，这里再介绍两种 equal 用法（assert 里面有好多种 equal，这里举例其中的两种）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// assert.js</span><br><span class="line">const assert = require(&apos;assert&apos;);</span><br><span class="line"></span><br><span class="line">const obj1 = &#123; a: &#123; b: 1 &#125; &#125;;</span><br><span class="line">const obj2 = &#123; a: &#123; b: 1 &#125; &#125;;</span><br><span class="line">const obj3 = &#123; a: &#123; b: &apos;1&apos; &#125; &#125;;</span><br><span class="line"></span><br><span class="line">// assert.deepEqual(变量，预期值，错误信息)   变量 == 预期值</span><br><span class="line">// assert.deepStrictEqual(变量，预期值，错误信息)  变量 === 预期值</span><br><span class="line">// 同样也是错误的时候抛出信息，正确的时候继续默默执行</span><br><span class="line">assert.deepEqual(obj1, obj2, &apos;不等哦&apos;); // true</span><br><span class="line">assert.deepEqual(obj1, obj3, &apos;不等哦&apos;); // true</span><br><span class="line">assert.deepStrictEqual(obj1, obj2, &apos;不等哦&apos;); // true</span><br><span class="line">assert.deepStrictEqual(obj1, obj3, &apos;不等哦&apos;); // false，这个会抛出错误信息</span><br></pre></td></tr></table></figure>
+<h3 id="stream-流"><a href="#stream-流" class="headerlink" title="stream 流"></a>stream 流</h3><p>stream 又叫做流，大家或多或少应该有听过这个概念，那具体是什么意思呢？在这里，你可以把它当做是前面说过的 <code>fs.readFile</code> 和 <code>fs.writeFile</code> 的升级版。<br>我们要知道 <code>readFile</code> 和 <code>writeFile</code> 的工作流程 是先把整个文件读取到内存中，然后再一次写入，这种方式对于稍大的文件就不适用了，因为这样容易导致内存不足，所以更好的方式是什么呢？就是边读边写啦，业界常说成管道流，就像水流经过水管一样，进水多少，出水就多少，这个水管就是占用的资源（内存），就那么大，这我们样就能合理利用内存分配啦，而不是一口气吃成个胖子，有吃撑的风险（就是内存爆了🤐）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">const fs = require(&apos;fs&apos;);</span><br><span class="line"></span><br><span class="line">// 读取流：fs.createReadStream();</span><br><span class="line">// 写入流：fs.createWriteStream();</span><br><span class="line">let rs = fs.createReadStream(&apos;a.txt&apos;); // 要读取的文件</span><br><span class="line">let ws = fs.createWriteStream(&apos;a2.txt&apos;); // 输出的文件</span><br><span class="line"></span><br><span class="line">rs.pipe(ws); // 用 pipe 将 rs 和 ws 衔接起来，将读取流的数据传到输出流（就是这么简单的一句话就能搞定）</span><br><span class="line"></span><br><span class="line">rs.on(&apos;error&apos;, err =&gt; &#123;</span><br><span class="line">  console.log(err);</span><br><span class="line">&#125;);</span><br><span class="line">ws.on(&apos;finish&apos;, () =&gt; &#123;</span><br><span class="line">  console.log(&apos;成功&apos;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>流式操作，就是一直读取，它是个连续的过程，如果一边快一边慢，或者一边出错没衔接上也没关系，它会自动处理，不用我们自己去调整其中的误差，是个优秀的模块没错了👍。另外，我们没有直接使用 stream 模块，是因为 fs 模块引用了它并对其做了封装，所以用 fs 即可。</p>
+<h3 id="zlib-压缩"><a href="#zlib-压缩" class="headerlink" title="zlib 压缩"></a>zlib 压缩</h3><p>这个用法简单，作用也明了，直接看下面的代码就能理解：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">const fs = require(&apos;fs&apos;);</span><br><span class="line">const zlib = require(&apos;zlib&apos;);</span><br><span class="line"></span><br><span class="line">let rs = fs.createReadStream(&apos;tree.jpg&apos;);</span><br><span class="line">let gz = zlib.createGzip();</span><br><span class="line">let ws = fs.createWriteStream(&apos;tree.jpg.gz&apos;);</span><br><span class="line"></span><br><span class="line">rs.pipe(gz).pipe(ws);  // 原始文件 =&gt; 压缩 =&gt; 写入</span><br><span class="line"></span><br><span class="line">rs.on(&apos;error&apos;, err =&gt; &#123;</span><br><span class="line">  console.log(err);</span><br><span class="line">&#125;);</span><br><span class="line">ws.on(&apos;finish&apos;, () =&gt; &#123;</span><br><span class="line">  console.log(&apos;成功&apos;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>ok👌，以上就是本章要讲的一些 node 知识（比较基础，大家凑合看看）。当然除此之外，还有 util、Buffer、Event、crypto 和 process 等其他内置模块，这里就不一一赘述了，希望大家能够多动手多敲两下代码多实践，毕竟纸上得来终觉浅嘛💪。如果你能用好 node 的各种模块，那么转后端也就拥有了无限可能性😋（其实前端的坑大的超乎你想像😭）。<br>参考作者：尤水就下<br>参考链接：<a href="https://juejin.im/post/5ccacfb96fb9a03201243cb9" target="_blank" rel="noopener">https://juejin.im/post/5ccacfb96fb9a03201243cb9</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/14/nodeBasics/" data-id="ck5eyth3s00110wp3ynuj6co8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-npmBuild" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/26/npmBuild/" class="article-date">
+  <time datetime="2019-07-26T06:18:53.000Z" itemprop="datePublished">2019-07-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/26/npmBuild/">npm 部署自己的组件库</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Author: Echo<br>Time: 2019-07-24 15:28:39</p>
+<h1 id="基于-vue-cli-打造属于自己的-UI-库"><a href="#基于-vue-cli-打造属于自己的-UI-库" class="headerlink" title="基于 vue-cli 打造属于自己的 UI 库"></a>基于 vue-cli 打造属于自己的 UI 库</h1><h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><h2 id="知识前置"><a href="#知识前置" class="headerlink" title="知识前置"></a>知识前置</h2><p>我们可能习惯了在一个 vue 里面引入组件的方式，所以先这里要巩固一下全局引入组件的方式。举个栗子🌰，一般我们的用法是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import Loading from &apos;../components/loading&apos;</span><br><span class="line">// 方法一：name 是组件的名字</span><br><span class="line">Vue.component(Loading.name, Loading)</span><br><span class="line">// 方法二：前提是 Loading 有提供 install 这个方法</span><br><span class="line">Vue.use(Loading);</span><br></pre></td></tr></table></figure></p>
+<h1 id="基于vue-cli3打造组件库"><a href="#基于vue-cli3打造组件库" class="headerlink" title="基于vue-cli3打造组件库"></a>基于vue-cli3打造组件库</h1><h1 id="搭建目录"><a href="#搭建目录" class="headerlink" title="搭建目录"></a>搭建目录</h1><h4 id="快速创建项目"><a href="#快速创建项目" class="headerlink" title="快速创建项目"></a>快速创建项目</h4><ul>
+<li>vue-cli3<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue create projectName</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="修改目录结构"><a href="#修改目录结构" class="headerlink" title="修改目录结构"></a>修改目录结构</h3><ul>
+<li>把 src 目录名字改成 examples，这是用于展示组件示例的</li>
+<li>在根目录下新建一个 packages 文件夹，这是用来放组件的<br><img src="../images/1.png" alt="1ll.png"><br> 你可能会问为什么要建这样的目录结构，问得好，原因很简单，因为别人是这样做的，所以借鉴（模仿）罗。。。我们可以看到 Element 的源码也是这样的结构：<br>当我们水平不够的时候，模仿是一种强大的学习能力👏。</li>
+</ul>
+<h3 id="添加配置文件"><a href="#添加配置文件" class="headerlink" title="添加配置文件"></a>添加配置文件</h3><p>小改了一下目录之后，你会惊奇的发现项目运行不了了。没关系，这很正常，毕竟 src 都不见了，路径啥的肯定得报错。所以现在我们来解决这个问题。 在根目录下新建一个 vue.config.js 文件（新项目是没有这个文件的），并写入以下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&apos;path&apos;)</span><br><span class="line">module.exports = &#123;</span><br><span class="line">  // 修改 pages 入口</span><br><span class="line">  pages: &#123;</span><br><span class="line">    index: &#123;</span><br><span class="line">      entry: &apos;examples/main.js&apos;, // 入口</span><br><span class="line">      template: &apos;public/index.html&apos;, // 模板</span><br><span class="line">      filename: &apos;index.html&apos; // 输出文件</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  // 扩展 webpack 配置</span><br><span class="line">  chainWebpack: config =&gt; &#123;</span><br><span class="line">    // @ 默认指向 src 目录，这里要改成 examples</span><br><span class="line">    // 另外也可以新增一个 ~ 指向 packages</span><br><span class="line">    config.resolve.alias</span><br><span class="line">      .set(&apos;@&apos;, path.resolve(&apos;examples&apos;))</span><br><span class="line">      .set(&apos;~&apos;, path.resolve(&apos;packages&apos;))</span><br><span class="line"></span><br><span class="line">    // 把 packages 和 examples 加入编译，因为新增的文件默认是不被 webpack 处理的</span><br><span class="line">    config.module</span><br><span class="line">      .rule(&apos;js&apos;)</span><br><span class="line">      .include.add(/packages/).end()</span><br><span class="line">      .include.add(/examples/).end()</span><br><span class="line">      .use(&apos;babel&apos;)</span><br><span class="line">      .loader(&apos;babel-loader&apos;)</span><br><span class="line">      .tap(options =&gt; &#123;</span><br><span class="line">        // 修改它的选项...</span><br><span class="line">        return options</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的注释应该都写的挺明了，主要就是修改别名、修改入口文件以及把新文件加入 webpack 编译这几个步骤。然后我们再运行一下程序就可以跑得通了。至于为什么这么配置、或者怎么配置，不了解的同学可以去 <a href="https://link.juejin.im/?target=https%3A%2F%2Fcli.vuejs.org%2Fzh%2Fconfig%2F%23%25E5%2585%25A8%25E5%25B1%2580-cli-%25E9%2585%258D%25E7%25BD%25AE" target="_blank" rel="noopener">Vue Cli</a> 官网看下，上面写的是清清楚楚、明明白白，然而我也只是懂那么一两个配置而已😭😭😭，还没学会 webpack 的套路，因为常常是用的时候看一眼，一阵子不用就又忘了，没办法🤷‍♀️脑子不行。</p>
+<h2 id="编写组件"><a href="#编写组件" class="headerlink" title="编写组件"></a>编写组件</h2><p>一个组件库没有组件怎么行呢，所以我们要先写个 test 组件（你可以随便写，这不重要）。ok👌，我们先在 packages 目录下新建一个 test 文件夹，再在 test 文件夹下下面新建一个 src 文件夹，在 src 文件夹下面新建一个 test.vue 组件，大概长下面这样子👇：</p>
+<p><img src="../images/2.png" alt="1ll.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--test.vue--&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;echojoy-test&quot; @click=&quot;handleClick&quot;&gt;&#123;&#123; num &#125;&#125;&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &apos;EchojoyTest&apos;,</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      num: 0</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    handleClick () &#123;</span><br><span class="line">      this.num++</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style &gt;</span><br><span class="line">.echojoy-test &#123;</span><br><span class="line">  width: 100px;</span><br><span class="line">  height: 100px;</span><br><span class="line">  line-height: 100px;</span><br><span class="line">  border-radius: 50%;</span><br><span class="line">  font-size: 30px;</span><br><span class="line">  text-align: center;</span><br><span class="line">  background: #24292e;</span><br><span class="line">  color: white;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p>应该都能看懂吧，不过多解释。⚠️这里主要强调一点，就是 name 这个名字尤为重要，我就在这个坑里呆了挺久。首先它是必须要写的，为啥呢，你可以把它理解为 id，具有唯一标识组件的作用，将来我们可是要通过这个 name 来找到和判定这是什么组件，所以你写的所有组件应该是不重名的；其次这个 name 就是我们最终的标签名，比如这里我们的 name 是 <code>EchojoyTest</code>，到时候我们写的标签就长这样 <code>&lt;echojoy-test&gt;&lt;/echojoy-test&gt;</code>，就像 Element 一样，name 是 <code>ElButton</code>，用的时候就是 <code>&lt;el-button&gt;&lt;/el-button&gt;</code>。</p>
+<h2 id="暴露组件"><a href="#暴露组件" class="headerlink" title="暴露组件"></a>暴露组件</h2><p>让我们在 packages/test 下面新建一个 index.js 文件，具体代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 对外提供对组件的引用，注意组件必须声明 name</span><br><span class="line">import EchojoyTest from &apos;./src/test&apos;</span><br><span class="line">// 为组件提供 install 安装方法，供按需引入</span><br><span class="line">EchojoyTest.install = Vue =&gt; &#123;</span><br><span class="line">  Vue.component(EchojoyTest.name, EchojoyTest)</span><br><span class="line">&#125;</span><br><span class="line">export default EchojoyTest</span><br></pre></td></tr></table></figure>
+<p>这步的精髓就在于给组件扩展一个 install 方法，至于为什么要扩展这个方法，文章开头已经说到了，是因为 <code>Vue.use()</code> 的需要，use 会默认调用 install 方法安装，仅此而已。接着我们在 packages 下面也新建一个 index.js 文件，注意和上面那个 index.js 区别开，上面那个是针对单个组件安装的，这个是针对所有组件全局安装的，先看代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">import EchojoyTest from &apos;./test&apos;</span><br><span class="line">// 存储组件列表</span><br><span class="line">const components = [</span><br><span class="line">  EchojoyTest</span><br><span class="line">]</span><br><span class="line">// 定义 install 方法，接收 Vue 作为参数。如果使用 use 注册插件，则所有的组件都将被注册</span><br><span class="line">const install = function (Vue) &#123;</span><br><span class="line">  // 判断是否安装</span><br><span class="line">  if (install.installed) return</span><br><span class="line">  install.installed = true</span><br><span class="line">  // 遍历注册全局组件</span><br><span class="line">  components.map(component =&gt; Vue.component(component.name, component))</span><br><span class="line">  // 下面这个写法也可以</span><br><span class="line">  // components.map(component =&gt; Vue.use(component))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 判断是否是直接引入文件</span><br><span class="line">if (typeof window !== &apos;undefined&apos; &amp;&amp; window.Vue) &#123;</span><br><span class="line">  install(window.Vue)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  // 导出的对象必须具有 install，才能被 Vue.use() 方法安装</span><br><span class="line">  install,</span><br><span class="line">  // 以下是具体的组件列表</span><br><span class="line">  ...components</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这步的主要作用就是统一导出所有组件及暴露 install 方法。之前的 index.js 只是安装单个组件，而现在这个 index.js 是循环安装所有组件，具体使用就看你是不是要按需引用了。这里给个目录结构方便大家观看：</p>
+<p><img src="../images/3.png" alt="1ll.png"></p>
+<p>因为这步挺重要的，所以建议好好停下来理解消化一下🤔。。。<br>当然你可能会问道，为什么这样建目录？还能什么原因，因为 Element 是这样（如下图），所以我们这样写，仅此而已。</p>
+<h2 id="组件测试"><a href="#组件测试" class="headerlink" title="组件测试"></a>组件测试</h2><p>ok，组件写完了，接下来我们就在 examples 下面测试一下，看看能不能引用成功。 首先在 examples 下的 main.js 中引入刚刚写好的包，就像下面这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import EchojoyUI from &apos;./../packages&apos;</span><br><span class="line">Vue.use(EchojoyUI);</span><br></pre></td></tr></table></figure></p>
+<p>然后把 examples/components下面的 HelloWorld里面的内容删了，写入自己标签组件，就像下面这样：</p>
+<p><img src="../images/11.png" alt="1ll.png"></p>
+<p>好了，最后让我们运行一下项目 <code>npm run  serve</code>，看看效果，嗯，还凑合吧。</p>
+<h2 id="库模式打包"><a href="#库模式打包" class="headerlink" title="库模式打包"></a>库模式打包</h2><p>在 vue-cli3 中我们通过以下命令可以将一个单独的入口打包成一个库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// target: 默认为构建应用，改为 lib 即可启用构建库模式</span><br><span class="line">// name: 输出文件名</span><br><span class="line">// dest: 输出目录，默认为 dist，这里我们改为 lib</span><br><span class="line">// entry: 入口文件路径</span><br><span class="line">vue-cli-service build --target lib --name lib [entry]</span><br></pre></td></tr></table></figure>
+<p>要注意的是在库模式中，打包出来的库中是不包含 Vue 的。 然后我们修改一下 package.json 文件，就像下面这样：</p>
+<p><img src="../images/5.png" alt="1ll.png"></p>
+<p>接着执行 <code>npm run lib</code> 就能生成库啦，看看左侧的目录是不是多了个 lib 文件夹，那个就是我们要发布的东西。<br><img src="../images/6.png" alt="1ll.png"></p>
+<p>补充下，lib 目录下面的 js 之所以有好几种，是因为有两种规范（common 和 umd）、是否压缩（min）和映射（map）的区别，暂且知道有这么回事就行，不用深究。</p>
+<h2 id="发布到npm"><a href="#发布到npm" class="headerlink" title="发布到npm"></a>发布到npm</h2><p>万事俱备，只欠发布。</p>
+<ol>
+<li>完善一下 README.md 文档，这个随便写两句就好</li>
+<li>修改一下 package.json 文件：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123; </span><br><span class="line">  &quot;name&quot;: &quot;echojoy-ui&quot;,</span><br><span class="line">  &quot;version&quot;: &quot;0.1.0&quot;,</span><br><span class="line">  &quot;private&quot;: true,</span><br><span class="line">  &quot;description&quot;: &quot;基于 vue-cli3 的 UI 组件库&quot;,</span><br><span class="line">  &quot;main&quot;: &quot;lib/xr-ui.umd.min.js&quot;,</span><br><span class="line">  &quot;keywords&quot;: &quot;echojoy-ui&quot;,</span><br><span class="line">  &quot;private&quot;: false,</span><br><span class="line">  &quot;license&quot;: &quot;MIT&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>在根目录下新建一个 .npmignore 文件，内容和 .gitignore 差不多：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"># 这是复制 .gitignore 里面的</span><br><span class="line">.DS_Store</span><br><span class="line">node_modules</span><br><span class="line">/dist</span><br><span class="line"></span><br><span class="line"># local env files</span><br><span class="line">.env.local</span><br><span class="line">.env.*.local</span><br><span class="line"></span><br><span class="line"># Log files</span><br><span class="line">npm-debug.log*</span><br><span class="line">yarn-debug.log*</span><br><span class="line">yarn-error.log*</span><br><span class="line"></span><br><span class="line"># Editor directories and files</span><br><span class="line">.idea</span><br><span class="line">.vscode</span><br><span class="line">*.suo</span><br><span class="line">*.ntvs*</span><br><span class="line">*.njsproj</span><br><span class="line">*.sln</span><br><span class="line">*.sw*</span><br><span class="line"></span><br><span class="line"># 以下是新增的</span><br><span class="line"># 要忽略目录和指定文件</span><br><span class="line">examples/</span><br><span class="line">packages/</span><br><span class="line">public/</span><br><span class="line">vue.config.js</span><br><span class="line">babel.config.js</span><br><span class="line">*.map</span><br><span class="line">*.html</span><br></pre></td></tr></table></figure>
+<p>最后执行 <code>npm login</code> 登入 npm 账号，再执行 <code>npm publish</code> 发布即可，就这么简单的两步就可以，过一会在 npm 上就能搜到了。当然前提是你有个 npm 账号，没有的话去注册一个吧，很 easy 的，然后还要搜下你的 npm 包名是否有人用，有的话就换一个。</p>
+<h2 id="小试牛刀"><a href="#小试牛刀" class="headerlink" title="小试牛刀"></a>小试牛刀</h2><p>终于，历尽千辛万苦，我们可以引用自己写的库拉，想想就牛叉。别激动，让我们试验一下，用 <code>vue create echojoy-ui-use</code> 另起一个新项目，然后 <code>npm i echojoy-ui -S</code>，可以在 node_modules 里面看到我们的包大概长这样：<br><img src="../images/7.png" alt="1ll.png"></p>
+<p>然后在 main.js 引入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import EchojoyUI from &quot;echojoy-ui&quot;;</span><br><span class="line">import &quot;echojoy-ui/lib/echojoy-ui.css&quot;;</span><br><span class="line">Vue.use(EchojoyUI);</span><br></pre></td></tr></table></figure>
+<p>这样我们就能在页面中引入组件啦，哈哈哈哈，贼开心，喜上眉梢。。。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;echojoy-test&gt;&lt;/echojoy-test&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="vue-cli3（vue-cli2）"><a href="#vue-cli3（vue-cli2）" class="headerlink" title="! vue-cli3（vue-cli2）"></a>! vue-cli3（vue-cli2）</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue init webpack projectName</span><br></pre></td></tr></table></figure>
+<p><img src="../images/8.png" alt="1ll.png"></p>
+<h4 id="启动项目"><a href="#启动项目" class="headerlink" title="启动项目"></a>启动项目</h4><p><code>npm run dev</code><br><img src="../images/9.png" alt="1ll.png"><br>浏览器输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:8080</span><br></pre></td></tr></table></figure></p>
+<h4 id="编写组件-1"><a href="#编写组件-1" class="headerlink" title="编写组件"></a>编写组件</h4><p>在src的components新建组件limit：即文件夹<code>EchoLimit</code>-&gt;文件<code>index.vue</code> + 文件<code>index+css</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">// index.vue</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;echo-limit-container&quot; v-if=&quot;visible === false&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;echo-limit-container-inner&quot;&gt;</span><br><span class="line">      &lt;span class=&quot;echo-limit-text&quot;&gt;</span><br><span class="line">        &#123;&#123;limitTip&#125;&#125;</span><br><span class="line">      &lt;/span&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    visible: &#123;</span><br><span class="line">      type: Boolean,</span><br><span class="line">      default: false</span><br><span class="line">    &#125;,</span><br><span class="line">    limitTip: &#123;</span><br><span class="line">      type: String,</span><br><span class="line">      default: &apos;没有权限！！&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  name: &quot;EchoLimit&quot; // 这个名字很重要，它就是未来的标签名&lt;echo-limit&gt;&lt;/echo-limit&gt;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">  @import &quot;./index&quot;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure></p>
+<p>⚠️这里主要强调一点，就是 name 这个名字尤为重要，你可以把它理解为 id，具有唯一标识组件的作用，将来我们可是要通过这个 name 来找到和判定这是什么组件，所以你写的所有组件应该是不重名的；其次这个 name 就是我们最终的标签名，比如这里我们的 name 是 EchoLimit，到时候我们写的标签就长这样 <echo-limit></echo-limit>，就像 Element 一样，name 是 ElButton，用的时候就是 <el-button></el-button>。</p>
+<h4 id="暴露组件-1"><a href="#暴露组件-1" class="headerlink" title="暴露组件"></a>暴露组件</h4><ul>
+<li>注册单个组件</li>
+</ul>
+<p>在 components 的 EchoLimit下面新建一个 index.js 文件，具体代码如下：<br>// 为组件提供 install 方法，供组件对外按需引入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import EchoLimit from &quot;./EchoLimit/index.vue&quot;;</span><br><span class="line">EchoLimit.install = Vue =&gt; &#123;</span><br><span class="line">  Vue.component(EchoLimit.name, EchoLimit);</span><br><span class="line">&#125;;</span><br><span class="line">export default EchoLimit;</span><br></pre></td></tr></table></figure></p>
+<p>这步的精髓就在于给组件扩展一个 install 方法，至于为什么要扩展这个方法，文章开头已经说到了，是因为 Vue.use() 的需要，use 会默认调用 install 方法安装。</p>
+<ul>
+<li>注册全局组件<br>让我们在 components 下面新建一个 index.js 文件，具体代码如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">// index.js</span><br><span class="line">import EchoLimit from &apos;./EchoLimit&apos;</span><br><span class="line">// 所有组件列表</span><br><span class="line">const components = [</span><br><span class="line">  EchoLimit</span><br><span class="line">]</span><br><span class="line">// 定义 install 方法，接收 Vue 作为参数</span><br><span class="line">const install = function (Vue) &#123;</span><br><span class="line">  // 判断是否安装，安装过就不继续往下执行</span><br><span class="line">  if (install.installed) return</span><br><span class="line">  install.installed = true</span><br><span class="line">  // 遍历注册所有组件</span><br><span class="line">  components.map(component =&gt; Vue.component(component.name, component))</span><br><span class="line">  // 下面这个写法也可以</span><br><span class="line">  // components.map(component =&gt; Vue.use(component))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 检测到 Vue 才执行，毕竟我们是基于 Vue 的</span><br><span class="line">if (typeof window !== &apos;undefined&apos; &amp;&amp; window.Vue) &#123;</span><br><span class="line">  install(window.Vue)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(components[0].name) // 控制台输出组件的name,方便引用组件</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  install,</span><br><span class="line">  // 所有组件，必须具有 install，才能使用 Vue.use()</span><br><span class="line">  ...components</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>目录结构方便大家观看：<br><img src="../images/4.png" alt="1ll.png"></p>
+<h4 id="组件测试-1"><a href="#组件测试-1" class="headerlink" title="组件测试"></a>组件测试</h4><p>ok，组件写完了，接下来我们就在 HelloWorld.vue下面测试一下，看看能不能引用成功。 首先在 src下的 main.js 中引入刚刚写好的包，如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import EchoUI from &apos;./components&apos;</span><br><span class="line">Vue.use(EchoUI)</span><br></pre></td></tr></table></figure>
+<p>在 HelloWorld.vue中引入组件EchoLimit.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;EchoLimit&gt;&lt;/EchoLimit&gt;</span><br><span class="line">     &lt;echo-limit&gt;&lt;/echo-limit&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/echo-limit&gt;</span><br></pre></td></tr></table></figure></p>
+<p>运行项目<code>npm run dev</code>,会发现成功了！！!<br><img src="../images/10.png" alt="1ll.png"></p>
+<p>过程同上！！！！！！！！！</p>
+<p>参考 连接：<a href="https://www.jianshu.com/p/41cc796488df" target="_blank" rel="noopener">https://www.jianshu.com/p/41cc796488df</a><br>参考 链接：<a href="https://juejin.im/post/5c95c61f6fb9a070c40acf65" target="_blank" rel="noopener">https://juejin.im/post/5c95c61f6fb9a070c40acf65</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/26/npmBuild/" data-id="ck5eyth3x00160wp3y7bgghid" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hexoDeplayBug" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/24/hexoDeplayBug/" class="article-date">
+  <time datetime="2019-07-24T07:28:39.000Z" itemprop="datePublished">2019-07-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/24/hexoDeplayBug/">hexo deplay出错</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Author: Echo<br>Time: 2019-07-24 15:28:39</p>
+<p>今天想在自己的另一个博客地址上更新一下博客，没想到hexo deplay没有反应，以下是解决过程：</p>
+<h1 id="当部署失败的时候，请按照以下步骤进行："><a href="#当部署失败的时候，请按照以下步骤进行：" class="headerlink" title="当部署失败的时候，请按照以下步骤进行："></a>当部署失败的时候，请按照以下步骤进行：</h1><p>报错内容如下：<br><img src="https://upload-images.jianshu.io/upload_images/11846892-380d07b43c8f919a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h1 id="通过SSH-key来上传代码"><a href="#通过SSH-key来上传代码" class="headerlink" title="通过SSH key来上传代码"></a>通过SSH key来上传代码</h1><h6 id="1将SSH-key添加到github中"><a href="#1将SSH-key添加到github中" class="headerlink" title="1将SSH key添加到github中"></a>1将SSH key添加到github中</h6><p>① 打开本地文件：id_rsa.pub（文件路径可以在上一步SSH生成成功后看到路径，比如我的是c/Users/echo/.ssh/id_rsa.pub），可以将这个文件在编辑器中打开，然后全选复制。</p>
+<p>② 登陆github，点击头像位置处 Settings ——&gt; SSH and GPG keys ——&gt; New SSH key，点击新建SSH key。</p>
+<p>③ 将 ① 中复制的内容粘贴在key文本框里，title可以不用填（或者自己起一个名字也可以）</p>
+<h6 id="2测试设置是否成功："><a href="#2测试设置是否成功：" class="headerlink" title="2测试设置是否成功："></a>2测试设置是否成功：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<p>如果出现如下情况<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Hi username! You&apos;ve successfully authenticated, but GitHub does not </span><br><span class="line">provide shell access.</span><br></pre></td></tr></table></figure></p>
+<p>将项目中如下位置文件做出更改<br><img src="https://upload-images.jianshu.io/upload_images/11846892-9dc350788418a979.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>不要使用https，而是改为SSH，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">repository: https://github.com/username/username.github.io.git</span><br></pre></td></tr></table></figure></p>
+<p>修改为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">repo：git@github.com:username/username.github.io.git</span><br></pre></td></tr></table></figure></p>
+<p>一般这步基本就可以部署了！！！<br>如果部署还是失败，可以试试如下步骤（还是不行，就多试几遍。。。有点坑）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">删除.deploy_git</span><br><span class="line">$ hexo clean </span><br><span class="line">$ hexo g</span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure></p>
+<p>本人的问题成功解决了，希望帮到大家哈哈哈哈哈开心！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/24/hexoDeplayBug/" data-id="ck5eyth3i000s0wp36ojly22e" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog-hexo/">blog-hexo</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-blogInit" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/07/24/blogInit/" class="article-date">
@@ -127,7 +373,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/24/blogInit/" data-id="ck0rxd4su000aygkcqv0y3wr6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/24/blogInit/" data-id="ck5eyth37000h0wp3yjg8zgyn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog-hexo/">blog-hexo</a></li></ul>
@@ -174,7 +420,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
     </div>
   </div>
 
@@ -187,23 +433,23 @@
       <ul>
         
           <li>
+            <a href="/2020/01/15/vueCliMd/">vue-cli3项目展示本地Markdown文件的方法</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/27/reactTitle/">reactTitle</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/04/asyncAwit/">asyncAwit</a>
+          </li>
+        
+          <li>
             <a href="/2019/09/20/express/">express： 实现本地代码+本地mock+环境接口数据</a>
           </li>
         
           <li>
             <a href="/2019/09/20/commitMessage/">Commit message 代码提交规范</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/20/ForwardReverseProxy/">正向代理&amp;反向代理</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/20/virtualDom/">虚拟dom</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/20/axios/">axios封装</a>
           </li>
         
       </ul>
@@ -218,7 +464,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2019 John Doe<br>
+      &copy; 2020 John Doe<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

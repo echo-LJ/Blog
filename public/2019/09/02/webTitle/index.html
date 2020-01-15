@@ -14,7 +14,7 @@
 <meta property="og:description" content="Author: EchoTime: 2019-09-02 10:42:59 页面从输入URL到页面加载显示完成，这个过程中都发生了什么？1.输入域名地址2.发送至DNS服务器并获得域名对应的WEB服务器IP地址；3.与WEB服务器建立TCP连接；4.服务器的永久重定向响应（从 http://example.com 到 http://www.example.com）5.浏览器跟踪重定向地址6.服务器">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://pic.xiaohuochai.site/blog/browserRender1.png">
-<meta property="og:updated_time" content="2019-09-19T12:55:01.834Z">
+<meta property="og:updated_time" content="2019-12-14T10:29:55.949Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端面试题整理">
 <meta name="twitter:description" content="Author: EchoTime: 2019-09-02 10:42:59 页面从输入URL到页面加载显示完成，这个过程中都发生了什么？1.输入域名地址2.发送至DNS服务器并获得域名对应的WEB服务器IP地址；3.与WEB服务器建立TCP连接；4.服务器的永久重定向响应（从 http://example.com 到 http://www.example.com）5.浏览器跟踪重定向地址6.服务器">
@@ -265,6 +265,29 @@
 </ul>
 <p>同源政策的目的，是为了保证用户信息的安全，防止恶意的网站窃取数据。</p>
 <p>如果非同源，共有三种行为受到限制<br>1.Cookie、LocalStorage 和 IndexDB 无法读取。<br>2.DOM 无法获得。<br>3.AJAX 请求不能发送。</p>
+<h2 id="爬虫和反爬虫的理解"><a href="#爬虫和反爬虫的理解" class="headerlink" title="爬虫和反爬虫的理解"></a>爬虫和反爬虫的理解</h2><p>参考链接： <a href="https://www.cnblogs.com/tulintao/p/11614577.html" target="_blank" rel="noopener">https://www.cnblogs.com/tulintao/p/11614577.html</a></p>
+<ul>
+<li><code>爬虫</code>：为了获得任何信息而采用任何手段对某一网站进行<code>攻击</code>行为，之所以成为攻击行为，因为对网站的爬虫过程会对网站造成不同程度的影响。<br>爬虫与手动点击访问网站数据的主要区别在于这个是批量操作。</li>
+<li><code>反爬虫</code>： 网站为了维护自己的核心安全而采取的抑制爬虫的手段。</li>
+</ul>
+<p>常见的反爬虫机制：</p>
+<ol>
+<li>基于User-Agent反爬</li>
+</ol>
+<ul>
+<li>思想： 服务器后台访问的User-Agent进行同籍，单位时间内同一个User-Agent访问的次数超过特定的阈值，就会被不同程度的封禁Ip,从而无法进行爬虫。</li>
+<li>解决：<br>方案一：<br> 将常见的User-Agent封装到一个文件中，别人总结好的常用的User-Agent链接：<a href="https://www.cnblogs.com/zrmw/p/9332801.html" target="_blank" rel="noopener">https://www.cnblogs.com/zrmw/p/9332801.html</a><br> 在爬取的过程中首先导入这个文件，然后随机选择这里面的某一个User-Agent<br>方案二：<br> 在python中使用第三方类库：fake_useragent ，生成随机的User-Agent</li>
+</ul>
+<ol start="2">
+<li>基于IP反爬 </li>
+</ol>
+<ul>
+<li>思想：后端服务器对访问进行统计，单位时间内同一个IP访问的次数超过特定的阈值，就会被不同程度的封禁Ip,从而无法进行爬虫。</li>
+<li>解决<br>使用不同的IP进行访问，设置一定的访问停滞，random.sleep(3)</li>
+</ul>
+<ol start="3">
+<li>动态页面抓包 </li>
+</ol>
 <hr>
 <p>// 下面的还没有看<br>关于建站安全防护</p>
 <p>要做好防XSS、CSRF、SQL注入攻击.DDOS攻击。</p>
@@ -313,7 +336,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/02/webTitle/" data-id="ck0rxd4ue001rygkcfo1291z2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/02/webTitle/" data-id="ck5eyth4e001s0wp3qp1egkxn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
@@ -374,7 +397,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
     </div>
   </div>
 
@@ -387,23 +410,23 @@
       <ul>
         
           <li>
+            <a href="/2020/01/15/vueCliMd/">vue-cli3项目展示本地Markdown文件的方法</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/27/reactTitle/">reactTitle</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/04/asyncAwit/">asyncAwit</a>
+          </li>
+        
+          <li>
             <a href="/2019/09/20/express/">express： 实现本地代码+本地mock+环境接口数据</a>
           </li>
         
           <li>
             <a href="/2019/09/20/commitMessage/">Commit message 代码提交规范</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/20/ForwardReverseProxy/">正向代理&amp;反向代理</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/20/virtualDom/">虚拟dom</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/20/axios/">axios封装</a>
           </li>
         
       </ul>
@@ -418,7 +441,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2019 John Doe<br>
+      &copy; 2020 John Doe<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

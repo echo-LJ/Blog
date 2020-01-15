@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Author: EchoTime: 2019-09-19 15:46:24 1.什么是 BFC机制BFC(Block Formatting Context)，块级格式化上下文，是一个独立的渲染区域，让处于 BFC 内部的元素与外部的元素相互隔离，使内外元素的定位不会相互影响。  触发条件 (以下任意一条)   float的值不为none overflow的值不为visible display的值为">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-19T12:43:37.523Z">
+<meta property="og:updated_time" content="2019-12-14T10:29:55.948Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="css相关面试题">
 <meta name="twitter:description" content="Author: EchoTime: 2019-09-19 15:46:24 1.什么是 BFC机制BFC(Block Formatting Context)，块级格式化上下文，是一个独立的渲染区域，让处于 BFC 内部的元素与外部的元素相互隔离，使内外元素的定位不会相互影响。  触发条件 (以下任意一条)   float的值不为none overflow的值不为visible display的值为">
@@ -473,10 +473,7 @@ table: display:table-cell; vertical-align: middle;
 <li>兼容性区别<br>@import是 CSS2.1 才有的语法，故只可在 IE5+ 才能识别；link标签作为 HTML 元素，不存在兼容性问题。<br>DOM可控性区别<br>可以通过 JS 操作 DOM ，插入link标签来改变样式；由于DOM方法是基于文档的，无法使用@import的方式插入样式。<br>css部分就整理到这里, 小伙伴们面试还有什么经常遇到的,可以在评论区给我留言, 我有时间就整理出来, IT(挨踢)都是一大家, 方便你我他<h2 id="9-开发中为什么要初始化css样式"><a href="#9-开发中为什么要初始化css样式" class="headerlink" title="9. 开发中为什么要初始化css样式"></a>9. 开发中为什么要初始化css样式</h2></li>
 </ul>
 <p>因为浏览器的兼容问题，不同浏览器对有些标签的默认值是不同的，如果没对CSS初始化往往会出现浏览器之间的页面显示差异。</p>
-<ol start="10">
-<li>CSS优化、提高性能的方法有哪些</li>
-</ol>
-<p>尽量将样式写在单独的css文件里面，在head元素中引用 将代码写成单独的css文件有几点好处：</p>
+<h2 id="10-CSS优化、提高性能的方法有哪些"><a href="#10-CSS优化、提高性能的方法有哪些" class="headerlink" title="10. CSS优化、提高性能的方法有哪些?"></a>10. CSS优化、提高性能的方法有哪些?</h2><p>尽量将样式写在单独的css文件里面，在head元素中引用 将代码写成单独的css文件有几点好处：</p>
 <ul>
 <li>内容和样式分离，易于管理和维护</li>
 <li>减少页面体积</li>
@@ -486,12 +483,17 @@ table: display:table-cell; vertical-align: middle;
 <li>利用CSS继承减少代码量</li>
 <li>避免！important，可以选择其他选择器</li>
 </ul>
+<h2 id="11-css的预处理器和后处理器都有哪些吗？它们有什么区别呢？"><a href="#11-css的预处理器和后处理器都有哪些吗？它们有什么区别呢？" class="headerlink" title="11. css的预处理器和后处理器都有哪些吗？它们有什么区别呢？"></a>11. css的预处理器和后处理器都有哪些吗？它们有什么区别呢？</h2><p>参考链接: <a href="https://blog.csdn.net/yushuangyushuang/article/details/79209752" target="_blank" rel="noopener">https://blog.csdn.net/yushuangyushuang/article/details/79209752</a>.</p>
+<ul>
+<li>预处理器 :Less,sass,Stylus.PostCSS。<br>市面上有很多CSS预处理器可供选择，且绝大多数CSS预处理器会增加一些原生CSS不具备的特性，例如代码混合，嵌套选择器，继承选择器等。这些特性让CSS的结构更加具有可读性且易于维护。</li>
+<li>后处理器 :rework，postcss。对css进行处理，有的可以对css进行压缩，有的可以自动处理兼容性问题。</li>
+</ul>
 <p>参考链接：<a href="http://www.pinlue.com/article/2019/05/2002/158990051021.html" target="_blank" rel="noopener">http://www.pinlue.com/article/2019/05/2002/158990051021.html</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/19/cssTitle/" data-id="ck0rxd4tt001bygkc0clgm77i" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/19/cssTitle/" data-id="ck5eyth3u00140wp3tj2eevfe" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
@@ -552,7 +554,7 @@ table: display:table-cell; vertical-align: middle;
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
     </div>
   </div>
 
@@ -565,23 +567,23 @@ table: display:table-cell; vertical-align: middle;
       <ul>
         
           <li>
+            <a href="/2020/01/15/vueCliMd/">vue-cli3项目展示本地Markdown文件的方法</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/27/reactTitle/">reactTitle</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/04/asyncAwit/">asyncAwit</a>
+          </li>
+        
+          <li>
             <a href="/2019/09/20/express/">express： 实现本地代码+本地mock+环境接口数据</a>
           </li>
         
           <li>
             <a href="/2019/09/20/commitMessage/">Commit message 代码提交规范</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/20/ForwardReverseProxy/">正向代理&amp;反向代理</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/20/virtualDom/">虚拟dom</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/20/axios/">axios封装</a>
           </li>
         
       </ul>
@@ -596,7 +598,7 @@ table: display:table-cell; vertical-align: middle;
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2019 John Doe<br>
+      &copy; 2020 John Doe<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

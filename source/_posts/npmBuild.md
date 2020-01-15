@@ -29,7 +29,7 @@ vue create projectName
 
 *  把 src 目录名字改成 examples，这是用于展示组件示例的
 *  在根目录下新建一个 packages 文件夹，这是用来放组件的
-![1ll.png](/images/1.png)
+![1ll.png](../images/1.png)
     你可能会问为什么要建这样的目录结构，问得好，原因很简单，因为别人是这样做的，所以借鉴（模仿）罗。。。我们可以看到 Element 的源码也是这样的结构：
 当我们水平不够的时候，模仿是一种强大的学习能力👏。
 
@@ -78,7 +78,7 @@ module.exports = {
 
 一个组件库没有组件怎么行呢，所以我们要先写个 test 组件（你可以随便写，这不重要）。ok👌，我们先在 packages 目录下新建一个 test 文件夹，再在 test 文件夹下下面新建一个 src 文件夹，在 src 文件夹下面新建一个 test.vue 组件，大概长下面这样子👇：
 
-![1ll.png](/images/2.png)
+![1ll.png](../images/2.png)
 
 
 ```
@@ -172,7 +172,7 @@ export default {
 
 这步的主要作用就是统一导出所有组件及暴露 install 方法。之前的 index.js 只是安装单个组件，而现在这个 index.js 是循环安装所有组件，具体使用就看你是不是要按需引用了。这里给个目录结构方便大家观看：
 
-![1ll.png](/images/3.png)
+![1ll.png](../images/3.png)
 
 因为这步挺重要的，所以建议好好停下来理解消化一下🤔。。。
 当然你可能会问道，为什么这样建目录？还能什么原因，因为 Element 是这样（如下图），所以我们这样写，仅此而已。
@@ -186,7 +186,7 @@ Vue.use(EchojoyUI);
 ```
 然后把 examples/components下面的 HelloWorld里面的内容删了，写入自己标签组件，就像下面这样：
 
-![1ll.png](/images/11.png)
+![1ll.png](../images/11.png)
 
 
 好了，最后让我们运行一下项目 `npm run  serve`，看看效果，嗯，还凑合吧。
@@ -206,12 +206,12 @@ vue-cli-service build --target lib --name lib [entry]
 
 要注意的是在库模式中，打包出来的库中是不包含 Vue 的。 然后我们修改一下 package.json 文件，就像下面这样：
 
-![1ll.png](/images/5.png)
+![1ll.png](../images/5.png)
 
 
 
 接着执行 `npm run lib` 就能生成库啦，看看左侧的目录是不是多了个 lib 文件夹，那个就是我们要发布的东西。
-![1ll.png](/images/6.png)
+![1ll.png](../images/6.png)
 
 
 
@@ -281,7 +281,7 @@ babel.config.js
 ## 小试牛刀
 
 终于，历尽千辛万苦，我们可以引用自己写的库拉，想想就牛叉。别激动，让我们试验一下，用 `vue create echojoy-ui-use` 另起一个新项目，然后 `npm i echojoy-ui -S`，可以在 node_modules 里面看到我们的包大概长这样：
-![1ll.png](/images/7.png)
+![1ll.png](../images/7.png)
 
 
 
@@ -303,14 +303,14 @@ Vue.use(EchojoyUI);
 ```
  vue init webpack projectName
 ```
-![1ll.png](/images/8.png)
+![1ll.png](../images/8.png)
 
 
 ####  启动项目
 `
  npm run dev
 `
-![1ll.png](/images/9.png)
+![1ll.png](../images/9.png)
 浏览器输入
 ```
 http://localhost:8080
@@ -408,7 +408,7 @@ export default {
 ```
 
 目录结构方便大家观看：
-![1ll.png](/images/4.png)
+![1ll.png](../images/4.png)
 
 #### 组件测试
 
@@ -428,7 +428,7 @@ Vue.use(EchoUI)
 </echo-limit>
 ```
 运行项目`npm run dev`,会发现成功了！！!
-![1ll.png](/images/10.png)
+![1ll.png](../images/10.png)
 
 
 过程同上！！！！！！！！！
