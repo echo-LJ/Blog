@@ -39,3 +39,5 @@ tags:
 * commitMessage.md -> Commit message 代码提交规范
 
 * express.md -> express： 实现本地代码+本地mock+环境接口数据
+
+* reactive.md -> Vue响应式原理解析

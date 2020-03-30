@@ -65,6 +65,186 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-request" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/19/request/" class="article-date">
+  <time datetime="2019-08-19T06:05:42.000Z" itemprop="datePublished">2019-08-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/19/request/">关于前端请求的那些事</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Author: Echo<br>Time: 2019-08-19 14:05:42</p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>前端是一个快速发展的领域，而在前端的技术栈当中，前端请求又是最见的一个领域，通过请求接口数据，才能将一个静态的页面动态化。本文将以前端发展的时间轴来逐一分析前端请求的技术演变及其优劣。</p>
+<h2 id="XMLHttpRequest"><a href="#XMLHttpRequest" class="headerlink" title="XMLHttpRequest"></a>XMLHttpRequest</h2><p>XMLHttpRequest是最早出现的与服务器交换数据的方案，有了XMLHttpRequest,开发者终于可以在不重新加载页面的情况下更新网页，可以在页面加载后请求接受以及发送数据。而所有的浏览器均支持获取XMLHttpRequest对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var xhr = new XMLHttpRequest(); //获取XMLHttpRequest对象</span><br></pre></td></tr></table></figure></p>
+<p>由于浏览器的兼容性，各个浏览器对于创建XMLHttpRequest的方法不同，以下是兼容方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var xhr;</span><br><span class="line">if (window.XMLHttpRequest) &#123; // Mozilla, Safari...</span><br><span class="line">  xhr = new XMLHttpRequest();</span><br><span class="line">&#125; else if (window.ActiveXObject) &#123; // IE</span><br><span class="line">  try &#123;</span><br><span class="line">    xhr = new ActiveXObject(&apos;Msxml2.XMLHTTP&apos;);</span><br><span class="line">  &#125; catch (e) &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">      xhr = new ActiveXObject(&apos;Microsoft.XMLHTTP&apos;);  //IE5,6</span><br><span class="line">    &#125; catch (e) &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>使用XMLHttpRequest发起一个get请求<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// get请求</span><br><span class="line">xhr.open(&quot;GET&quot;,&quot;test1.txt&quot;,true);</span><br><span class="line">xhr.send();</span><br></pre></td></tr></table></figure></p>
+<p>完整的post请求代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">var xhr;</span><br><span class="line">if (window.XMLHttpRequest) &#123; // Mozilla, Safari...</span><br><span class="line">  xhr = new XMLHttpRequest();</span><br><span class="line">&#125; else if (window.ActiveXObject) &#123; // IE</span><br><span class="line">  try &#123;</span><br><span class="line">    xhr = new ActiveXObject(&apos;Msxml2.XMLHTTP&apos;);</span><br><span class="line">  &#125; catch (e) &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">      xhr = new ActiveXObject(&apos;Microsoft.XMLHTTP&apos;);</span><br><span class="line">    &#125; catch (e) &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if (xhr) &#123;</span><br><span class="line">  xhr.onreadystatechange = onReadyStateChange;</span><br><span class="line">  xhr.open(&apos;POST&apos;, &apos;/api&apos;, true);</span><br><span class="line">  // 设置 Content-Type 为 application/x-www-form-urlencoded</span><br><span class="line">  // 以表单的形式传递数据</span><br><span class="line">  xhr.setRequestHeader(&apos;Content-Type&apos;, &apos;application/x-www-form-urlencoded&apos;);</span><br><span class="line">  xhr.send(&apos;username=admin&amp;password=root&apos;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// onreadystatechange 方法</span><br><span class="line">function onReadyStateChange() &#123;</span><br><span class="line">  // 该函数会被调用四次</span><br><span class="line">  if (xhr.readyState === 4 &amp;&amp;xhr.status === 200) &#123;</span><br><span class="line">    console.log(&apos;执行成功&apos;);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    console.log(&apos;执行出错&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Jquery-Ajax"><a href="#Jquery-Ajax" class="headerlink" title="Jquery Ajax"></a>Jquery Ajax</h2><p>说到Jquery，这是一个时代，几乎统治了前端10年有余，彻底解决了UI层与数据层交互的问题，直到三大框架(Angular/React/Vue）的出现，前端进入MVVM浪潮。而Ajax将XHR进行封装，让开发者可以更加便捷方便进行使用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;   //标准写法</span><br><span class="line">   type: &apos;POST&apos;,</span><br><span class="line">   url: url,</span><br><span class="line">   data: data,</span><br><span class="line">   dataType: dataType,</span><br><span class="line">   success: function () &#123;&#125;,</span><br><span class="line">   error: function () &#123;&#125;</span><br><span class="line">&#125;);</span><br><span class="line">$.get(url,function()&#123;&#125;); //get请求</span><br><span class="line">$.post(url,body,function()&#123;&#125;); //post请求</span><br><span class="line">$.getJSON(url,function()&#123;&#125;);  //get请求从服务器加载Json编码</span><br></pre></td></tr></table></figure></p>
+<h4 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h4><ul>
+<li>对原生XHR的封装</li>
+<li>针对MVC的编程</li>
+<li>完美的兼容性</li>
+<li>支持jsonp<h4 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h4></li>
+<li>不符合MVVM</li>
+<li>异步模型不够现代，不支持链式，代码可读性差</li>
+<li>整个Jquery太大，引入成本过高</li>
+</ul>
+<h2 id="Fetch"><a href="#Fetch" class="headerlink" title="Fetch"></a>Fetch</h2><p>fetch其实是一个新世界，脱离XHR，完全是基于Promise的异步处理机制，使用起来会比ajax更加简单。<br>使用fetch的代码会相比xhr来说更具有条理性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fetch(url).then(function(response) &#123;</span><br><span class="line">  return response.json();</span><br><span class="line">&#125;).then(function(data) &#123;</span><br><span class="line">  console.log(data);</span><br><span class="line">&#125;).catch(function(e) &#123;</span><br><span class="line">  console.log(&quot;Oops, error&quot;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在使用ES6的箭头函数后<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fetch(url).then(response =&gt; response.json())</span><br><span class="line">  .then(data =&gt; console.log(data))</span><br><span class="line">  .catch(e =&gt; console.log(&quot;Oops, error&quot;, e))</span><br></pre></td></tr></table></figure></p>
+<p>优点：</p>
+<ul>
+<li>更加底层，提供的API丰富（request, response）</li>
+<li>语法简单，脱离了XHR，基于ES新的Promise设计</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>兼容性比较凄惨，低级别浏览器均不支持，需要实现fetch的polyfill了。思路其实很简单，就是判断浏览器是否支持原生的fetch，不支持的话，就仍然使用XMLHttpRequest的方式实现，同时结合Promise来进行封装。常见的polyfill就有：<code>es6-promise</code>,<code>babel-polyfill</code>,<code>fetch-ie8</code>等</li>
+<li>不支持jsonp，可以引入<code>fetch-jsonp</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">安装 npm install fetch-jsonp --save-dev</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 使用 </span><br><span class="line">fetchJsonp(url, &#123;</span><br><span class="line"> timeout: 3000, jsonpCallback: &apos;callback&apos; </span><br><span class="line">&#125;).then(function(response) &#123; </span><br><span class="line">  console.log(response.json()); </span><br><span class="line">&#125;).catch(function(e) &#123; </span><br><span class="line">  console.log(e) </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>没有拦截器，需要额外再封装一层或者<code>fetch-interceptor</code></li>
+<li>默认不带cookie，需要添加配置</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fetch(url,&#123;</span><br><span class="line">  credentials: &apos;include&apos;  </span><br><span class="line">  //include表示cookie既可同域，也可跨域，‘same-origin’表示只可同域</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>没有abort，不支持timeout超时处理<br>可以用Promise.race()实现，Promise.race(iterable) 方法返回一个Promise对象，只要 iterable 中任意一个Promise 被 resolve 或者 reject 后，外部的Promise 就会以相同的值被 resolve 或者 reject。</li>
+<li>无法获取progress状态<br>Fetch中的Response.body 中实现了getReader()方法用于读取原始字节流, 该字节流可以循环读取.<h2 id="Axios"><a href="#Axios" class="headerlink" title="Axios"></a>Axios</h2>axios也是比较新的网络请求的类库，并且被尤雨溪尤大推荐，已成为VUE的网络请求标配，也是十分的火爆。它本身也是对原生XHR的封装。</li>
+<li>支持node，创建http请求</li>
+<li>支持Promise API</li>
+<li>客户端防止CSRF：每个请求带一个cookie拿到的key</li>
+<li>拦截请求和响应</li>
+<li>可取消请求<br>兼容性上虽然axios本质上也是对原生XHR的封装，但是它也依赖原生ES6 Promise的实现，和fetch一样需要polyfill的兼容。<h4 id="安装"><a href="#安装" class="headerlink" title="安装:"></a>安装:</h4></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//npm</span><br><span class="line">npm install axios</span><br><span class="line"></span><br><span class="line">//cdn</span><br><span class="line">&lt;script src=&quot;https://unpkg.com/axios/dist/axios.min.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="基本使用如下："><a href="#基本使用如下：" class="headerlink" title="基本使用如下："></a>基本使用如下：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">axios(&#123;</span><br><span class="line">    method: &apos;GET&apos;,</span><br><span class="line">    url: url,</span><br><span class="line">&#125;)</span><br><span class="line">.then(res =&gt; &#123;console.log(res)&#125;)</span><br><span class="line">.catch(err =&gt; &#123;console.log(err)&#125;)</span><br><span class="line"></span><br><span class="line">// get请求</span><br><span class="line">axios.get(url)</span><br><span class="line">  .then(function (response) &#123;</span><br><span class="line">    console.log(response);</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(function (error) &#123;</span><br><span class="line">    console.log(error);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">// post请求</span><br><span class="line">axios.post（‘/user’, &#123;</span><br><span class="line">    name: &apos;Jerry&apos;,</span><br><span class="line">    lastName: &apos;Liang&apos;</span><br><span class="line">  &#125;)</span><br><span class="line">  .then(function (response) &#123;</span><br><span class="line">    console.log(response);</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(function (error) &#123;</span><br><span class="line">    console.log(error);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="如何选择（个人理解，仅供参考）"><a href="#如何选择（个人理解，仅供参考）" class="headerlink" title="如何选择（个人理解，仅供参考）"></a>如何选择（个人理解，仅供参考）<a href="https://qianduan.group/posts/5bebe26f9fd64d5a7458a932#-" target="_blank" rel="noopener"></a></h2><ol>
+<li>首先可以肯定的是，如果你的代码依旧是基于Jquery，那毫无疑问，ajax就是你最好的选择。</li>
+<li>如果你使用的是任意MVVM框架，建议无脑使用axios，fetch在实际项目使用中，需要各种的封装和异常处理，并非开箱即用，而axios可以做到直接替换$.ajax。</li>
+<li>如果就是要使用fetch，那相信你也一定能封装成自己的一套最佳实践。</li>
+</ol>
+<p>参考：<a href="https://qianduan.group/posts/5bebe26f9fd64d5a7458a932" target="_blank" rel="noopener">https://qianduan.group/posts/5bebe26f9fd64d5a7458a932</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/19/request/" data-id="ck8e8xqzg001cdcp3b2s79x1s" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-message-comp" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/15/message-comp/" class="article-date">
+  <time datetime="2019-08-15T08:05:21.000Z" itemprop="datePublished">2019-08-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/15/message-comp/">模拟element-ui写message组件思路</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Author: Echo<br>Time: 2019-08-15 16:05:21</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在平时的开发过程中，我们总是先写好一个组件，然后在需要的页面中用 <code>import</code> 引入即可，但如果是下面这种类型的组件呢👇</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/11846892-a36600e65a733412?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>上面这种类型的浮层提示有一个很大的特点，就是使用频率特别高，几乎每个页面都会用到它，于是乎我们就要在每个页面中去引入该组件，并且在每个页面都得通过一个变量来控制它的显隐，这显然不是我们想要的🙅。。。那我们想要的是什么样呢🤔？用过一些 UI 框架的同学们应该知道有这样一种用法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">this.$message(&#123;</span><br><span class="line">    duration: 3000,</span><br><span class="line">    content: &apos;这是一条消息提示&apos;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>没错，就是这么简单的一句话就万事大吉了（就是用 js 调用组件而已啦🧐）。那这种效果究竟是怎么实现的呢？今天就让我们来（手把手🤝 ）一探究竟吧！</p>
+<h2 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h2><p>不知道小伙伴们有没有用过 <code>Vue.extend()</code> 这个东东，反正我是很少碰过，印象不深，所以这里我们先来短暂了解一下 <code>Vue.extend()</code> 主要是用来干嘛的。先来个官方说明（不多的，坚持下）：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/11846892-562ca3309f3120c7?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p>没怎么看懂？😴没关系，不重要，你只要记住（加少许理解）以下用法即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 导入以往的普通组件</span><br><span class="line">import Main from &apos;./main.vue&apos;;</span><br><span class="line">// 用 Vue.extend 创建组件的模板（构造函数）</span><br><span class="line">let mainConstructor = Vue.extend(Main);</span><br><span class="line">// 实例化组件</span><br><span class="line">let instance = new mainConstructor();</span><br><span class="line">// 挂载到相应的元素上</span><br><span class="line">instance.$mount(&apos;#app&apos;);</span><br></pre></td></tr></table></figure>
+<p>不知道你看懂没有，上面的 <code>Vue.extend(Main)</code> 就是一个基于 main.vue 的组件模板（构造函数），<code>instance</code> 是实例化的组件，<code>$mount()</code> 是手动挂载的意思。其中 <code>Vue.extend()</code> 和 <code>$mount()</code> 就是我们通过 js 调用、渲染并挂载组件的精髓所在，相当于早前的 <code>createElement</code> 和 <code>appendChild</code>，有异曲同工之效。这个点需要我们好好熟悉一下，所以你可以先停下来屡屡思路🤔。<br>补充一下🤐：<code>$mount()</code> 里面如果没有参数，说明组件只是渲染了但还没有挂载到页面上，如果有正确的（元素）参数则直接挂载到元素下面。</p>
+<h2 id="写一个-message-组件"><a href="#写一个-message-组件" class="headerlink" title="写一个 message 组件"></a>写一个 message 组件</h2><p>js 调用归调用，最原始的组件还是要有的，只是我们不通过 <code>import</code> 来引入到页面中而已。ok，我们就以最开始的那个 message图片来简单写一下这个 vue 组件（element-ui中的message 和 alert 也是一样的）。这里就直接上代码啦，毕竟它的结构简单到爆了，也不是本章节的重点：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- message.vue --&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;echojoy-message&quot; &gt;</span><br><span class="line">    &lt;p&gt;服务器错误，请稍后重试&lt;/p&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &quot;EchojoyMessage&quot;,</span><br><span class="line">  </span><br><span class="line">  mounted() &#123;</span><br><span class="line">    setTimeout(() =&gt; &#123;</span><br><span class="line">        // 3s 后通过父级移除子元素的方式来移除该组件实例和 DOM 节点</span><br><span class="line">        this.$destroy(true);</span><br><span class="line">        this.$el.parentNode.removeChild(this.$el);</span><br><span class="line">      &#125;, 3000);</span><br><span class="line">    </span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;style lang=&quot;scss&quot; scoped&gt;</span><br><span class="line">.echojoy-message &#123;</span><br><span class="line">  display: flex;</span><br><span class="line">  align-items: center;</span><br><span class="line">  justify-content: center;</span><br><span class="line">  position: fixed;</span><br><span class="line">  top: 0;</span><br><span class="line">  bottom: 0;</span><br><span class="line">  left: 0;</span><br><span class="line">  right: 0;</span><br><span class="line">  color: #fff;</span><br><span class="line">  z-index: 9999;</span><br><span class="line">  background: transparent;</span><br><span class="line">  &gt; p &#123;</span><br><span class="line">    padding: 12px 22px;</span><br><span class="line">    font-size: 18px;</span><br><span class="line">    border-radius: 4px;</span><br><span class="line">    background: rgba(17, 17, 17, 0.7);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p>上面的内容想必大家应该都能看懂，所以这里就直接讲下面的重点了。</p>
+<h2 id="写一个-message-js"><a href="#写一个-message-js" class="headerlink" title="写一个 message.js"></a>写一个 message.js</h2><p>我们在 message.vue 的同级目录下新建一个 message.js 文件。我们先瞟一眼文件内容（也不多，已经是个最简版了）👇：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// message.js</span><br><span class="line">import Vue from &quot;vue&quot;; // 引入 Vue 是因为要用到 Vue.extend() 这个方法</span><br><span class="line">import message from &quot;./message.vue&quot;; // 引入刚才的 toast 组件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const Toast = function() &#123;</span><br><span class="line">  instance = new ToastConstructor().$mount(); // 渲染组件</span><br><span class="line">  </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">let messageConstructor = Vue.extend(message); // 这个在前面的前置知识内容里面有讲到</span><br><span class="line">let instance;</span><br><span class="line"></span><br><span class="line">const Message = function (options = &#123;&#125;) &#123;</span><br><span class="line">    instance = new messageConstructor().$mount(); // 渲染组件</span><br><span class="line">    document.body.appendChild(instance.$el); // 挂载到 body 下</span><br><span class="line">&#125;;</span><br><span class="line">export default Message;</span><br></pre></td></tr></table></figure>
+<p>上面的代码暴露了一个 Message 函数。为什么要暴露一个函数呢？原因很简单：你想想，我们最终是不是要根据 <code>this.$Message ()</code> 来调用一个组件，说白了，通过 js 调用，本质就是调用一个 函数。也就是说 <code>this.$Message ()</code> 就是执行了上面代码中导出的 <code>export default Message</code>，也就是执行了 Message 函数（<code>const Message = function() {}</code>），所以当我们调用 <code>this.$Message()</code> 的时候其实就是执行了 <code>Message()</code> 函数。而 <code>Message()</code> 函数只做了一件事情：就是通过手动挂载的方式把组件挂载到 body 下面。<br>补充一下🤐：一般来说我们常见的是 <code>$mount(&quot;#app&quot;)</code>，也就是把组件挂载到 <code>#app</code> 下面，<code>&lt;router-view /&gt;</code> 也包含在 <code>#app</code> 中，但是我们这种 Message提示是放在 <code>body</code> 下面的，也就是说它不受 <code>#app</code> 和 <code>&lt;router-view /&gt;</code> 的管控，所以当我们切换页面（路由）的时候，这个 Message 组件是不会跟着立马消失的，这点要注意哦😯。<br>这里顺便给个组件的目录结构，如下图所示：<br><img src="https://upload-images.jianshu.io/upload_images/11846892-2e4a12e3b5f5da91.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="message.png"></p>
+<h2 id="开始调用"><a href="#开始调用" class="headerlink" title="开始调用"></a>开始调用</h2><p>调用方式很简单，首先我们在入口文件 main.js（和上面不是同一个😢） 里加上两行代码，这样我们就能在需要的地方直接用 js 调用它了，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import EchojoyMessage from &apos;./../packages/message/src/message.js&apos;</span><br><span class="line">Vue.prototype.$message = EchojoyMessage;</span><br></pre></td></tr></table></figure>
+<p>然后在页面中测试一下，就像下面这样子：<br><img src="https://upload-images.jianshu.io/upload_images/11846892-09a2f0e7cbe77528.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="ALAERT.png"></p>
+<p>运行一下代码：<br><img src="https://upload-images.jianshu.io/upload_images/11846892-a3c24b73cd995de6?imageMogr2/auto-orient/strip" alt="image"></p>
+<figcaption></figcaption>
+
+<p>嗯，挺好，小有成就的 feel 👏👏👏。</p>
+<h2 id="支持可传参数"><a href="#支持可传参数" class="headerlink" title="支持可传参数"></a>支持可传参数</h2><p>别急，我们好像还漏了点什么🤔。。。对了，现在还不支持传参呢，直接调用 <code>this.$message()</code> 就只能显示————服务器错误，请稍后重试（这下全都是后端的锅了😊）。但我们可是个有追求的前端，不能局限于此，所以现在让我们来尝试增加下两个可配置参数，这里拿 <code>duration</code> 和 <code>content</code> 举个栗子🌰。<br>首先我们要修改 message.vue 组件里面的内容（其实没啥大变化），就像下面这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- message.vue 可配置版 --&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">   &lt;div class=&quot;echojoy-message&quot; &gt;</span><br><span class="line">    &lt;p &gt;</span><br><span class="line">      &#123;&#123;content&#125;&#125; </span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">// 主要就改了 data</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &quot;EchojoyMessage&quot;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      content: &quot;&quot;,</span><br><span class="line">      duration: 3000</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted() &#123;</span><br><span class="line">    setTimeout(() =&gt; &#123;</span><br><span class="line">      this.$destroy(true);</span><br><span class="line">      this.$el.parentNode.removeChild(this.$el);</span><br><span class="line">    &#125;, this.duration);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>上面的代码应该算是浅显易懂了，接下来我们看下 message.js 里面改了啥：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// message.js</span><br><span class="line">import Vue from &quot;vue&quot;; // 引入 Vue 是因为要用到 Vue.extend() 这个方法</span><br><span class="line">import message from &quot;./message.vue&quot;; // 引入刚才的 toast 组件</span><br><span class="line"></span><br><span class="line">let messageConstructor = Vue.extend(message); // 这个在前面的前置知识内容里面有讲到</span><br><span class="line">let instance;</span><br><span class="line"></span><br><span class="line">const Message = function (options = &#123;&#125;) &#123;</span><br><span class="line">  instance = new messageConstructor(&#123;</span><br><span class="line">    data: options // 这里的 data 会传到 message.vue 组件中的 data 中，当然也可以写在 props 里</span><br><span class="line">  &#125;); // 渲染组件</span><br><span class="line">  document.body.appendChild(instance.$mount().$el); // 挂载到 body 下</span><br><span class="line">&#125;;</span><br><span class="line">export default Message;</span><br></pre></td></tr></table></figure>
+<p>其实 message.js 也没多大变化，就是在函数里面加了个参数。要注意的是 <code>new messageConstructor({ data: options })</code> 中的 data 就是 message.vue 组件中的 data，不是随随便便取的字段名，传入的 <code>options</code> 会和组件中的 data 合并（Vue 的功劳）。<br>em。。。是的，就这么简单，现在让我们继续来调用一下它：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  methods: &#123;</span><br><span class="line">    show()&#123;</span><br><span class="line">      this.$message.success(&#123;</span><br><span class="line">        content: &quot;哈哈哈哈，消失的贼快&quot;,</span><br><span class="line">        duration: 0</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>运行一下就可以看到：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/11846892-738632ab3db8fc91?imageMogr2/auto-orient/strip" alt="image"></p>
+<figcaption></figcaption>
+
+<p>当然，这还没完，我们继续添加个小功能点🙄。。。</p>
+<h2 id="支持-this-message-error"><a href="#支持-this-message-error" class="headerlink" title="支持 this.$message.error()"></a>支持 this.$message.error()</h2><p>这里我们打算支持 <code>this.$message.error()</code> 和 <code>this.$message.success()</code> 这两种方式，所以我们第一步还是要先去修改一下 message.vue 文件的内容（主要就是根据 <code>type</code> 值来修改组件的样式），就像下面这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--main.vue--&gt;</span><br><span class="line">&lt;div class=&quot;echojoy-message&quot; :class=&quot;type ? `echojoy-message--$&#123;type&#125;` : &apos;&apos;&quot;&gt;</span><br><span class="line">    &lt;p class=&quot;echojoy-message-content&quot;&gt;</span><br><span class="line">      &#123;&#123;content&#125;&#125; </span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  ...</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      type: &quot;&quot;,</span><br><span class="line">      content: &quot;&quot;,</span><br><span class="line">      duration: 3000</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  ...</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;style lang=&quot;scss&quot; scoped&gt;</span><br><span class="line">.echojoy-message&#123;</span><br><span class="line">  ...</span><br><span class="line">  &amp;--error p &#123; background: rgba(255, 0, 0, 0.5); &#125;</span><br><span class="line">  &amp;--success p &#123; background: rgba(0, 255, 0, 0.5); &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p>其次，<code>this.$message.error()</code> 其实就等价于 <code>Message.error()</code>，所以我们现在的目的就是要给 Message函数扩充方法，也比较简单，就先看代码再解释吧：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// message.js</span><br><span class="line">const Message= function(options = &#123;&#125;) &#123;</span><br><span class="line"> ...</span><br><span class="line">&#125;;</span><br><span class="line">// 以下就是在 Message函数中拓展 [&quot;success&quot;, &quot;error&quot;] 这两个方法</span><br><span class="line"></span><br><span class="line">[&quot;success&quot;, &quot;error&quot;].forEach(type =&gt; &#123;</span><br><span class="line">  Message[type] = options =&gt; &#123;</span><br><span class="line">    options.type = type;</span><br><span class="line">    return Message(options);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">export default Message;</span><br></pre></td></tr></table></figure>
+<p>我们可以看到 <code>Message.error()</code> 和 <code>Message.success()</code> 最终还是调用 <code>Message(options)</code> 这个函数，只不过在调用之前需要多做一步处理，就是将 <code>[&quot;success&quot;, &quot;error&quot;]</code> 作为一个 <code>type</code> 参数给合并进 <code>options</code> 里面再传递，仅此而已😬。<br>那就试试效果吧：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  methods: &#123;</span><br><span class="line">    show() &#123;</span><br><span class="line">      this.$message(&#123; content: &quot;这是正常的&quot; &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">    showError() &#123;</span><br><span class="line">      this.$message.error(&#123; content: &quot;竟然失败了&quot; &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">    showSuccess() &#123;</span><br><span class="line">      this.$message.success(&#123; content: &quot;居然成功了&quot; &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/11846892-6435ed3c174a7160?imageMogr2/auto-orient/strip" alt="image"></p>
+<h2 id="duration-lt-0-message一直存在"><a href="#duration-lt-0-message一直存在" class="headerlink" title="duration &lt;= 0,message一直存在"></a>duration &lt;= 0,message一直存在</h2><ul>
+<li>传入参数非number类型<br>首先我们为了让组件可以在传入错误类型的duration是能正常使用，做了一个小小的兼容，判断变量类型是否为number，非number类型，控制台输出错误，并强行转化duration为数字1000.（处理办法相当粗暴了！！）</li>
+<li>传入参数为number类型移除该组件实例和 DOM 节点<br><code>&gt;0</code><br>在duration的时间范围内，移除该组件实例和 DOM 节点<br><code>&lt;=0</code><br>不做任何处理<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mounted() &#123;</span><br><span class="line">    if (typeof this.duration !== &apos;number&apos; ) &#123;</span><br><span class="line">      console.error(&apos;the duration must be a number!&apos;)</span><br><span class="line">      this.duration = 1000</span><br><span class="line">    &#125;</span><br><span class="line">    if (this.duration &gt; 0) &#123;</span><br><span class="line">      setTimeout(() =&gt; &#123;</span><br><span class="line">        // 3s 后通过父级移除子元素的方式来移除该组件实例和 DOM 节点</span><br><span class="line">        this.$destroy(true);</span><br><span class="line">        this.$el.parentNode.removeChild(this.$el);</span><br><span class="line">      &#125;, this.duration);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="手动关闭message"><a href="#手动关闭message" class="headerlink" title="手动关闭message"></a>手动关闭message</h2><p>在dom结构上设置可以执行关闭的icon图标,添加事件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;i class=&quot;echojoy-icon-close echojoy-message-close&quot; @click=&quot;close&quot;&gt;&lt;/i&gt;</span><br></pre></td></tr></table></figure></p>
+<p>在scripts中增加函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">methods:&#123;</span><br><span class="line">    close()&#123;</span><br><span class="line">      this.$destroy(true);</span><br><span class="line">      this.$el.parentNode.removeChild(this.$el);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h4><p>再见吧！</p>
+<p>参考 连接：<a href="https://juejin.im/post/5ca20e426fb9a05e42555d1d" target="_blank" rel="noopener">https://juejin.im/post/5ca20e426fb9a05e42555d1d</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/15/message-comp/" data-id="ck8e8xqz40010dcp32ayfvc65" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-nodeBasics" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/08/14/nodeBasics/" class="article-date">
@@ -140,7 +320,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/14/nodeBasics/" data-id="ck5eyx84u00139jp3k1taer8z" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/08/14/nodeBasics/" data-id="ck8e8xqz60015dcp3tml7y3bd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
@@ -249,7 +429,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/26/npmBuild/" data-id="ck5eyx84z00159jp33ec528vd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/26/npmBuild/" data-id="ck8e8xqz90017dcp3ytfu7eyj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li></ul>
@@ -299,7 +479,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/24/hexoDeplayBug/" data-id="ck5eyx84p000x9jp3cfnnaesc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/24/hexoDeplayBug/" data-id="ck8e8xqz0000tdcp3w87t3mjz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog-hexo/">blog-hexo</a></li></ul>
@@ -373,7 +553,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/24/blogInit/" data-id="ck5eyx847000m9jp3vy9yz7p0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/24/blogInit/" data-id="ck8e8xqyu000ndcp398hd8acw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog-hexo/">blog-hexo</a></li></ul>
@@ -411,7 +591,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/blog-hexo/" style="font-size: 15px;">blog-hexo</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/es6-vue/" style="font-size: 10px;">es6, vue</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/node/" style="font-size: 15px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/web/" style="font-size: 15px;">web</a> <a href="/tags/前端面试题/" style="font-size: 20px;">前端面试题</a>
+      <a href="/tags/blog-hexo/" style="font-size: 13.33px;">blog-hexo</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/es6-vue/" style="font-size: 10px;">es6, vue</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/js/" style="font-size: 13.33px;">js</a> <a href="/tags/node/" style="font-size: 13.33px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/web/" style="font-size: 13.33px;">web</a> <a href="/tags/前端面试题/" style="font-size: 16.67px;">前端面试题</a>
     </div>
   </div>
 
@@ -420,7 +600,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
     </div>
   </div>
 
@@ -433,6 +613,14 @@
       <ul>
         
           <li>
+            <a href="/2020/03/30/reactive/">Vue响应式原理解析</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/30/v8/">v8</a>
+          </li>
+        
+          <li>
             <a href="/2020/01/15/vueCliMd/">vue-cli3项目展示本地Markdown文件的方法</a>
           </li>
         
@@ -442,14 +630,6 @@
         
           <li>
             <a href="/2019/11/04/asyncAwit/">asyncAwit</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/20/express/">express： 实现本地代码+本地mock+环境接口数据</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/20/commitMessage/">Commit message 代码提交规范</a>
           </li>
         
       </ul>

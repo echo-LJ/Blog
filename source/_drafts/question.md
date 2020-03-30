@@ -36,7 +36,6 @@ https://cn.vuejs.org/v2/guide/ssr.html
 * mac:将华清的组件库和可视化大屏整理成组件库和项目汇总&发布组件到npm上
 
 
-* Object.create是什么意思？
 
 * 看一下前端工程化（媛媛之前分享）
 * 了解骨架屏

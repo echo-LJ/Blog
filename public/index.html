@@ -65,6 +65,113 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-reactive" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/30/reactive/" class="article-date">
+  <time datetime="2020-03-30T08:55:06.000Z" itemprop="datePublished">2020-03-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/30/reactive/">Vue响应式原理解析</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="vue从改变一个数据到发生改变的过程"><a href="#vue从改变一个数据到发生改变的过程" class="headerlink" title="vue从改变一个数据到发生改变的过程"></a>vue从改变一个数据到发生改变的过程</h3><ul>
+<li>数据改变触发set</li>
+<li>Set部分触发notify(更新和通知) -&gt; Get部分收集依赖</li>
+<li>更改对应的虚拟dom</li>
+<li>重新render<h4 id="vue2"><a href="#vue2" class="headerlink" title="vue2"></a>vue2</h4></li>
+<li>defineProperty<br>defineProperty不仅仅用来做响应式，他的作用可以用来给对象中的属性配置操作权限。其中get和set实现了响应式原理。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">let ob = &#123;</span><br><span class="line">  a:1</span><br><span class="line">&#125;</span><br><span class="line">Object.defineProperty(ob, &apos;a&apos;, &#123;</span><br><span class="line">  writable:false, // 属性值是否可写</span><br><span class="line">  enumerable: false, // 属性值是否可循环</span><br><span class="line">  configurable: false //属性值是否可以delete</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">Object.getOwnPropertyDescriptor(ob, &apos;a&apos;); // 读取对象的属性值</span><br></pre></td></tr></table></figure>
+<ul>
+<li>get &amp; set <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">let _value = ob.a;</span><br><span class="line">// 如果想要使用get&amp;set方法实现读取和存储，必须将属性值重新赋值给新的变量，来实现储存和中转，这也是defineProperty不优雅的一点。</span><br><span class="line">// get &amp; set 必须配合return方法使用。</span><br><span class="line">Object.defineProperty(ob, &apos;a&apos;, &#123;</span><br><span class="line">  get () &#123;</span><br><span class="line">    return _value;</span><br><span class="line">  &#125;,</span><br><span class="line">  set (newValue) &#123;</span><br><span class="line">    _value = newValue</span><br><span class="line">    return _value;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">// 实现vue简易版的双向原理</span><br><span class="line">function Vue () &#123;</span><br><span class="line">  this.$data = &#123;a:1&#125;;</span><br><span class="line">  this.el = document.getElementById(&apos;app&apos;);</span><br><span class="line">  this.vritualDom = &apos;&apos;;</span><br><span class="line">  this.observer(this.$data); //注册监听</span><br><span class="line">  this.render();</span><br><span class="line">&#125;</span><br><span class="line">// 注册get和set</span><br><span class="line">Vue.prototype.observer = function (obj) &#123;</span><br><span class="line">  var value;</span><br><span class="line">  var self = this;</span><br><span class="line">  for (var key in obj) &#123;</span><br><span class="line">    value = obj[key];</span><br><span class="line">    if (typeof value === &apos;object&apos;) &#123;</span><br><span class="line">      this.observer(value);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      Object.defineProperty(obj, key, &#123;</span><br><span class="line">        get()&#123;</span><br><span class="line">          // 进行依赖收集</span><br><span class="line">          // 为什么要收集依赖？</span><br><span class="line">          // 数据可能只在局部位置使用，找到对应依赖，只更新依赖于变量的组件。</span><br><span class="line">          return value;</span><br><span class="line">        &#125;,</span><br><span class="line">        set(newvalue)&#123;</span><br><span class="line">          value = newvalue;</span><br><span class="line">          self.render()</span><br><span class="line">          return value;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Vue.prototype.render = function (obj) &#123;</span><br><span class="line">  this.vritualDom = &apos;i am&apos; + this.$data.a;</span><br><span class="line">  this.el.innerHTML = this.vritualDom;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="defineProperty中的get和set是对象的属性，对数组如何实现处理？"><a href="#defineProperty中的get和set是对象的属性，对数组如何实现处理？" class="headerlink" title="defineProperty中的get和set是对象的属性，对数组如何实现处理？"></a>defineProperty中的get和set是对象的属性，对数组如何实现处理？</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 数组的双向绑定就是做了一个设计者模式；</span><br><span class="line">// 取出数组的原型链并拷贝;</span><br><span class="line">var arraypro = Array.prototype;</span><br><span class="line">var arrob =Object.create(arraypro);</span><br><span class="line">var arrFun = [&apos;push&apos;, &apos;pop&apos;, &apos;shift&apos;];</span><br><span class="line"></span><br><span class="line">arr.forEach((method .index) =&gt; &#123;</span><br><span class="line">  arrob[method] = function () &#123;</span><br><span class="line">    var ret = arraypro[method].apply(this, arguments);</span><br><span class="line">    dep.notify() // 触发试图更新</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="vue3"><a href="#vue3" class="headerlink" title="vue3"></a>vue3</h3><ul>
+<li>Proxy对象用于定义基本操作的自定义行为（和defineProperty类似，用法不同）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">let obj = &#123;</span><br><span class="line">  a:1,</span><br><span class="line">&#125;</span><br><span class="line">var obj = new Proxy(ob, &#123;</span><br><span class="line">  get (target, key, receiver) &#123;</span><br><span class="line">    return target[key];</span><br><span class="line">  &#125;,</span><br><span class="line">  set (target, key, value, receiver) &#123;</span><br><span class="line">    return Reflect.set(target, key, value)</span><br><span class="line">    // return target[key] = value;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// vue简易版的实现双向原理</span><br><span class="line">function Vue () &#123;</span><br><span class="line">  var self = this;</span><br><span class="line">  this.$data = new Proxy(this.$data, &#123;</span><br><span class="line">    get (target, key, receiver) &#123;</span><br><span class="line">      return target[key];</span><br><span class="line">    &#125;,</span><br><span class="line">    set (target, key, value, receiver) &#123;</span><br><span class="line">      target[key] = value;</span><br><span class="line">      self.render();</span><br><span class="line">      return target[key];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="proxy的其他作用？"><a href="#proxy的其他作用？" class="headerlink" title="proxy的其他作用？"></a>proxy的其他作用？</h4><ul>
+<li><p>校验类型<br>// 创建一个对象，对象有name和age两个属性;name是中文 age是数字且大于18;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">var validtor = &#123;</span><br><span class="line">  // 策略模式</span><br><span class="line">  name: function (value) &#123;</span><br><span class="line">    var reg = /^[\u4E00-\u9FA5]+$/;</span><br><span class="line">    if (typeof value == &apos;string&apos; &amp;&amp; reg.test(value)) &#123;</span><br><span class="line">      return true;</span><br><span class="line">    &#125;</span><br><span class="line">    return false;</span><br><span class="line">  &#125;,</span><br><span class="line">  age: function (value) &#123;</span><br><span class="line">    if (typeof value == &apos;number&apos; &amp;&amp; value &gt;= 18) &#123;</span><br><span class="line">      return true;</span><br><span class="line">    &#125;</span><br><span class="line">    return false;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line">function preson (age, name) &#123;</span><br><span class="line">  this.age = age;</span><br><span class="line">  this.name = name;</span><br><span class="line">  return new Proxy(this, &#123;</span><br><span class="line">    get (target, key) &#123;</span><br><span class="line">      return targe[key]</span><br><span class="line">    &#125;,</span><br><span class="line">    set (target, key, value) &#123;</span><br><span class="line">      if (validtor[key](value)) &#123;</span><br><span class="line">        return Reflect.set(target, key, value);</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        throw new Error(key + &apos;is not right&apos;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>真正私有属性</p>
+</li>
+</ul>
+<h4 id="defineProperty-和-Proxy的区别"><a href="#defineProperty-和-Proxy的区别" class="headerlink" title="defineProperty 和 Proxy的区别"></a>defineProperty 和 Proxy的区别</h4><ol>
+<li>defineProperty只能监听对象的某个属性，不能监听全对象；</li>
+<li>可以省去defineProperty 中的for in 循环，节省性能</li>
+<li>可以监听数组，不需要再去单独的对数组进行特异性处理；</li>
+<li>不需要借助外部变量实现存储和读取（完善了vue2中defineProperty的不优雅的地方）</li>
+<li>不会污染原对象(proxy对原对象进行代理，生成新的代理对象)</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/30/reactive/" data-id="ck8e8xqzk001hdcp3o9fkhnj5" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-v8" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/30/v8/" class="article-date">
+  <time datetime="2020-03-30T08:45:02.000Z" itemprop="datePublished">2020-03-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/30/v8/">v8</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="v8引擎如何回收内存"><a href="#v8引擎如何回收内存" class="headerlink" title="v8引擎如何回收内存"></a>v8引擎如何回收内存</h1>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/30/v8/" data-id="ck8e8xqzl001kdcp3yibl28or" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-vueCliMd" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/01/15/vueCliMd/" class="article-date">
@@ -105,7 +212,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/01/15/vueCliMd/" data-id="ck5eyx85a001i9jp3nhkb7ifu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/01/15/vueCliMd/" data-id="ck8e8xqzr001udcp3kp1fkey3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -141,7 +248,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/27/reactTitle/" data-id="ck5eyx85300199jp3kptxk7eh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/27/reactTitle/" data-id="ck8e8xqzf001bdcp3fe522bb3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -234,7 +341,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/04/asyncAwit/" data-id="ck5eyx845000i9jp3rcizb4sv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/04/asyncAwit/" data-id="ck8e8xqyw000odcp3dt0c7sz8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -303,7 +410,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/20/express/" data-id="ck5eyx84m000u9jp3djo56w60" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/20/express/" data-id="ck8e8xqyy000sdcp3pzk3sovp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
@@ -395,7 +502,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/20/commitMessage/" data-id="ck5eyx84b000o9jp3ts5wsnwd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/20/commitMessage/" data-id="ck8e8xqyx000pdcp34uwx1uu8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
@@ -451,7 +558,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/20/ForwardReverseProxy/" data-id="ck5eyx842000g9jp35x65zr4j" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/20/ForwardReverseProxy/" data-id="ck8e8xqy6000fdcp3cusfs0t7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
@@ -501,7 +608,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/20/virtualDom/" data-id="ck5eyx856001d9jp37ktz9ygn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/20/virtualDom/" data-id="ck8e8xqzh001fdcp3k5retwu1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
@@ -598,88 +705,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/20/axios/" data-id="ck5eyx846000l9jp3h6jjjc8f" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/20/axios/" data-id="ck8e8xqys000ldcp3egzyamg0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6-vue/">es6, vue</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-web" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/09/19/web/" class="article-date">
-  <time datetime="2019-09-19T12:53:29.000Z" itemprop="datePublished">2019-09-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/19/web/">前端面试题汇总</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="页面从输入URL到页面加载显示完成，这个过程中都发生了什么？"><a href="#页面从输入URL到页面加载显示完成，这个过程中都发生了什么？" class="headerlink" title="页面从输入URL到页面加载显示完成，这个过程中都发生了什么？"></a>页面从输入URL到页面加载显示完成，这个过程中都发生了什么？</h5><h5 id="浏览器工作原理"><a href="#浏览器工作原理" class="headerlink" title="浏览器工作原理"></a>浏览器工作原理</h5><h5 id="浏览器内核"><a href="#浏览器内核" class="headerlink" title="浏览器内核"></a>浏览器内核</h5><h5 id="常见的浏览器内核有哪些？"><a href="#常见的浏览器内核有哪些？" class="headerlink" title="常见的浏览器内核有哪些？"></a>常见的浏览器内核有哪些？</h5><h5 id="cookies，sessionStorage-和-localStorage-的区别？"><a href="#cookies，sessionStorage-和-localStorage-的区别？" class="headerlink" title="cookies，sessionStorage 和 localStorage 的区别？"></a>cookies，sessionStorage 和 localStorage 的区别？</h5><h5 id="页面访问cookie的限制条件"><a href="#页面访问cookie的限制条件" class="headerlink" title="页面访问cookie的限制条件"></a>页面访问cookie的限制条件</h5><h5 id="实现浏览器内多个标签页之间的通信"><a href="#实现浏览器内多个标签页之间的通信" class="headerlink" title="实现浏览器内多个标签页之间的通信"></a>实现浏览器内多个标签页之间的通信</h5><h5 id="页面可见性（Page-Visibility-API）-可以有哪些用途"><a href="#页面可见性（Page-Visibility-API）-可以有哪些用途" class="headerlink" title="页面可见性（Page Visibility API） 可以有哪些用途"></a>页面可见性（Page Visibility API） 可以有哪些用途</h5><h5 id="网页验证码是做什么的，是为了解决什么安全问题"><a href="#网页验证码是做什么的，是为了解决什么安全问题" class="headerlink" title="网页验证码是做什么的，是为了解决什么安全问题"></a>网页验证码是做什么的，是为了解决什么安全问题</h5><h5 id="为什么利用多个域名来存储网站资源"><a href="#为什么利用多个域名来存储网站资源" class="headerlink" title="为什么利用多个域名来存储网站资源"></a>为什么利用多个域名来存储网站资源</h5><h5 id="一个页面上有大量的图片，加载很慢，你有哪些方法优化这些图片的加载，给用户更好的体验"><a href="#一个页面上有大量的图片，加载很慢，你有哪些方法优化这些图片的加载，给用户更好的体验" class="headerlink" title="一个页面上有大量的图片，加载很慢，你有哪些方法优化这些图片的加载，给用户更好的体验"></a>一个页面上有大量的图片，加载很慢，你有哪些方法优化这些图片的加载，给用户更好的体验</h5><h5 id="以前端角度出发做好SEO（搜索引擎）需要考虑什么？"><a href="#以前端角度出发做好SEO（搜索引擎）需要考虑什么？" class="headerlink" title="以前端角度出发做好SEO（搜索引擎）需要考虑什么？"></a>以前端角度出发做好SEO（搜索引擎）需要考虑什么？</h5><h5 id="前端性能优化"><a href="#前端性能优化" class="headerlink" title="前端性能优化"></a>前端性能优化</h5><h5 id="webSocket如何兼容低浏览器"><a href="#webSocket如何兼容低浏览器" class="headerlink" title="webSocket如何兼容低浏览器"></a>webSocket如何兼容低浏览器</h5><h5 id="web开发中会话跟踪的方法"><a href="#web开发中会话跟踪的方法" class="headerlink" title="web开发中会话跟踪的方法"></a>web开发中会话跟踪的方法</h5><h5 id="HTTP-method"><a href="#HTTP-method" class="headerlink" title="HTTP method"></a>HTTP method</h5><h5 id="HTTP状态码及其含义"><a href="#HTTP状态码及其含义" class="headerlink" title="HTTP状态码及其含义"></a>HTTP状态码及其含义</h5><h5 id="什么是同源：协议相同-域名相同-端口相同"><a href="#什么是同源：协议相同-域名相同-端口相同" class="headerlink" title="什么是同源：协议相同 域名相同 端口相同"></a>什么是同源：协议相同 域名相同 端口相同</h5><h5 id="爬虫和反爬虫的理解"><a href="#爬虫和反爬虫的理解" class="headerlink" title="爬虫和反爬虫的理解"></a>爬虫和反爬虫的理解</h5><p>答案参考链接：<a href="https://lujinggirl.github.io/2019/09/02/webTitle/" target="_blank" rel="noopener">https://lujinggirl.github.io/2019/09/02/webTitle/</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/19/web/" data-id="ck5eyx85i001o9jp32r436bel" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端面试题/">前端面试题</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-css" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/09/19/css/" class="article-date">
-  <time datetime="2019-09-19T12:53:19.000Z" itemprop="datePublished">2019-09-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/19/css/">前端css相关面试题汇总</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="什么是-BFC机制"><a href="#什么是-BFC机制" class="headerlink" title="什么是 BFC机制"></a>什么是 BFC机制</h5><h5 id="CSS3中新增的选择器以及属性"><a href="#CSS3中新增的选择器以及属性" class="headerlink" title="CSS3中新增的选择器以及属性"></a>CSS3中新增的选择器以及属性</h5><h5 id="居中布局"><a href="#居中布局" class="headerlink" title="居中布局"></a>居中布局</h5><h5 id="清除浮动有哪些方法-各有什么优缺点"><a href="#清除浮动有哪些方法-各有什么优缺点" class="headerlink" title="清除浮动有哪些方法, 各有什么优缺点"></a>清除浮动有哪些方法, 各有什么优缺点</h5><h5 id="用纯CSS创建一个三角形的原理是什么"><a href="#用纯CSS创建一个三角形的原理是什么" class="headerlink" title="用纯CSS创建一个三角形的原理是什么"></a>用纯CSS创建一个三角形的原理是什么</h5><h5 id="实现三栏布局有哪些方法-分别描述一下"><a href="#实现三栏布局有哪些方法-分别描述一下" class="headerlink" title="实现三栏布局有哪些方法, 分别描述一下"></a>实现三栏布局有哪些方法, 分别描述一下</h5><h5 id="css3实现0-5px的细线"><a href="#css3实现0-5px的细线" class="headerlink" title="css3实现0.5px的细线"></a>css3实现0.5px的细线</h5><h5 id="link-与-import-的区别"><a href="#link-与-import-的区别" class="headerlink" title="link 与 @import 的区别"></a>link 与 @import 的区别</h5><h5 id="开发中为什么要初始化css样式"><a href="#开发中为什么要初始化css样式" class="headerlink" title="开发中为什么要初始化css样式"></a>开发中为什么要初始化css样式</h5><h5 id="CSS优化、提高性能的方法有哪些"><a href="#CSS优化、提高性能的方法有哪些" class="headerlink" title="CSS优化、提高性能的方法有哪些"></a>CSS优化、提高性能的方法有哪些</h5><p>答案参考链接：<a href="https://lujinggirl.github.io/2019/09/19/cssTitle/" target="_blank" rel="noopener">https://lujinggirl.github.io/2019/09/19/cssTitle/</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/19/css/" data-id="ck5eyx84c000q9jp3r4g0ngcy" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端面试题/">前端面试题</a></li></ul>
 
     </footer>
   </div>
@@ -714,7 +743,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/blog-hexo/" style="font-size: 15px;">blog-hexo</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/es6-vue/" style="font-size: 10px;">es6, vue</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/js/" style="font-size: 15px;">js</a> <a href="/tags/node/" style="font-size: 15px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/web/" style="font-size: 15px;">web</a> <a href="/tags/前端面试题/" style="font-size: 20px;">前端面试题</a>
+      <a href="/tags/blog-hexo/" style="font-size: 13.33px;">blog-hexo</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/es6-vue/" style="font-size: 10px;">es6, vue</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/js/" style="font-size: 13.33px;">js</a> <a href="/tags/node/" style="font-size: 13.33px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/web/" style="font-size: 13.33px;">web</a> <a href="/tags/前端面试题/" style="font-size: 16.67px;">前端面试题</a>
     </div>
   </div>
 
@@ -723,7 +752,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
     </div>
   </div>
 
@@ -736,6 +765,14 @@
       <ul>
         
           <li>
+            <a href="/2020/03/30/reactive/">Vue响应式原理解析</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/30/v8/">v8</a>
+          </li>
+        
+          <li>
             <a href="/2020/01/15/vueCliMd/">vue-cli3项目展示本地Markdown文件的方法</a>
           </li>
         
@@ -745,14 +782,6 @@
         
           <li>
             <a href="/2019/11/04/asyncAwit/">asyncAwit</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/20/express/">express： 实现本地代码+本地mock+环境接口数据</a>
-          </li>
-        
-          <li>
-            <a href="/2019/09/20/commitMessage/">Commit message 代码提交规范</a>
           </li>
         
       </ul>
