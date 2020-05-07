@@ -92,7 +92,7 @@ var arraypro = Array.prototype;
 var arrob =Object.create(arraypro);
 var arrFun = ['push', 'pop', 'shift'];
 
-arr.forEach((method .index) => {
+arrFun.forEach((method .index) => {
   arrob[method] = function () {
     var ret = arraypro[method].apply(this, arguments);
     dep.notify() // 触发试图更新

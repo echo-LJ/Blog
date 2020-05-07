@@ -65,6 +65,154 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-vueTest" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/06/vueTest/" class="article-date">
+  <time datetime="2020-05-06T07:15:23.000Z" itemprop="datePublished">2020-05-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/06/vueTest/">vueTest</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Author: Echo<br>Time: 2020-05-06 15:15:23</p>
+<h2 id="组件单元测试的好处"><a href="#组件单元测试的好处" class="headerlink" title="组件单元测试的好处"></a>组件单元测试的好处</h2><ul>
+<li>提供描述组件行为的文档</li>
+<li>节省手动测试的时间</li>
+<li>减少研发新特性时产生的bug</li>
+<li>改进设计</li>
+<li>促进重构</li>
+</ul>
+<p>自动化测试使得大团队中的开发者可以维护复杂的基础代码。</p>
+<h2 id="I-单元测试简介"><a href="#I-单元测试简介" class="headerlink" title="I. 单元测试简介"></a>I. 单元测试简介</h2><hr>
+<blockquote>
+<p>单元测试（unit testing），是指对软件中的最小可测试单元进行检查和验证。</p>
+</blockquote>
+<p>简单来说，<code>单元</code>就是人为规定的最小的被测功能模块。单元测试是在软件开发过程中要进行的最低级别的测试活动，软件的独立单元将在与程序的其他部分相隔离的情况下进行测试。</p>
+<p>对于开发活动中的各种测试，最常见的划分方法：从下至上依次为 <strong>单元测试-&gt;集成测试-&gt;端到端测试</strong> ，随着其集成度的递增，对应的自动化程度递减。</p>
+<p>端到端（在浏览器等真实场景中走通功能而把程序当成黑盒子的测试）与集成测试（集合多个测试过的单元一起测试）的反馈与修复的周期比较长、运行速度慢，测试运行不稳定，由于很多时候还要靠人工手动进行，维护成本也很高。而单元测试只针对具体一个方法或API，定位准确，采用 mock 机制，运行速度非常快（毫秒级），又是开发人员在本地执行，反馈修复及时，成本较低。</p>
+<p>我们把绝大部分能在单元测试里覆盖的用例都放在单元测试覆盖，只有单元测试测不了的，才会通过端到端与集成测试来覆盖。</p>
+<p><strong>讲解单元测试的具体概念之前，先 咀个栗子 直观了解下：</strong></p>
+<p>比如我们有这样一个模块，暴露两个方法用以对菜单路径进行一些处理：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// src/menuChecker.js</span><br><span class="line"></span><br><span class="line">export function getRoutePath(str) &#123;</span><br><span class="line">  let to = &quot;&quot;</span><br><span class="line">  //...</span><br><span class="line">  return to;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export function getHighlight(str) &#123;</span><br><span class="line">  let hl = &quot;&quot;;</span><br><span class="line">  //...</span><br><span class="line">  return hl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编写对应的测试文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">import &#123;</span><br><span class="line">  getRoutePath,</span><br><span class="line">  getHighlight</span><br><span class="line">&#125; from &quot;@/menuChecker&quot;;</span><br><span class="line"></span><br><span class="line">describe(&quot;检查菜单路径相关函数&quot;, ()=&gt;&#123;</span><br><span class="line"></span><br><span class="line">  it(&quot;应该获得正确高亮值&quot;, ()=&gt;&#123;</span><br><span class="line">    expect( getHighlight(&quot;/myworksheet/(.*)&quot;) ).toBe(&quot;myTickets&quot;);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  it(&quot;应该为未知路径取得默认的高亮值&quot;, ()=&gt;&#123;</span><br><span class="line">    expect( getHighlight(&quot;/myworksheet/ccc/aaa&quot;) ).toBe(&quot;mydefaulthl111&quot;);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  it(&quot;应该补齐开头的斜杠&quot;, ()=&gt;&#123;</span><br><span class="line">    expect( getRoutePath(&quot;/worksheet/list&quot;) ).toBe(&apos;/worksheet/list&apos;);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  it(&quot;应该能修正非法的路径&quot;, ()=&gt;&#123;</span><br><span class="line">    expect( getRoutePath(&quot;/myworksheet/(.*)&quot;) ).toBe(&quot;/myworksheet/list&quot;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>运行该测试文件，得到如下输出：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/11846892-e6bc2edad5dc4097.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="![20200506151145.png](https://upload-images.jianshu.io/upload_images/11846892-1dec9c605aeb4dcd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+"></p>
+<p>由此，我们对一次单元测试的过程有了基本的了解。</p>
+<h2 id="断言-assertions"><a href="#断言-assertions" class="headerlink" title="断言(assertions)"></a>断言(assertions)</h2><p>断言是单元测试框架中核心的部分，断言失败会导致测试不通过，或报告错误信息。</p>
+<p>对于常见的断言，举一些例子如下：</p>
+<ul>
+<li><p>同等性断言 Equality Asserts</p>
+<pre><code>1. expect(sth).toEqual(value)
+2. expect(sth).not.toEqual(value)
+</code></pre></li>
+<li><p>比较性断言 Comparison Asserts</p>
+<pre><code>1. expect(sth).toBeGreaterThan(number)
+2. expect(sth).toBeLessThanOrEqual(number)
+</code></pre></li>
+<li><p>类型性断言 Type Asserts</p>
+<pre><code>1. expect(sth).toBeInstanceOf(Class)
+</code></pre></li>
+<li><p>条件性测试 Condition Test</p>
+<pre><code>1. expect(sth).toBeTruthy()
+2. expect(sth).toBeFalsy()
+3. expect(sth).toBeDefined()
+</code></pre></li>
+</ul>
+<h2 id="断言库"><a href="#断言库" class="headerlink" title="断言库"></a>断言库</h2><p>断言库主要提供上述断言的语义化方法，用于对参与测试的值做各种各样的判断。这些语义化方法会返回测试的结果，要么成功、要么失败。常见的断言库有 Should.js, Chai.js 等。</p>
+<h2 id="测试用例-test-case"><a href="#测试用例-test-case" class="headerlink" title="测试用例 test case"></a>测试用例 test case</h2><p>为某个特殊目标而编制的一组测试输入、执行条件以及预期结果，以便测试某个程序路径或核实是否满足某个特定需求。</p>
+<p>一般的形式为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">it(&apos;should ...&apos;, function() &#123;</span><br><span class="line">    ...</span><br><span class="line">        </span><br><span class="line">    expect(sth).toEqual(sth);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="测试套件-test-suite"><a href="#测试套件-test-suite" class="headerlink" title="测试套件 test suite"></a>测试套件 test suite</h2><p>通常把一组相关的测试称为一个测试套件</p>
+<p>一般的形式为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">describe(&apos;test ...&apos;, function() &#123;</span><br><span class="line">    </span><br><span class="line">    it(&apos;should ...&apos;, function() &#123; ... &#125;);</span><br><span class="line">    </span><br><span class="line">    it(&apos;should ...&apos;, function() &#123; ... &#125;);</span><br><span class="line">    </span><br><span class="line">    ...</span><br><span class="line">    </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="spy"><a href="#spy" class="headerlink" title="spy"></a>spy</h2><blockquote>
+<p>正如 spy 字面的意思一样，我们用这种“间谍”来“监视”函数的调用情况</p>
+</blockquote>
+<p>通过对监视的函数进行包装，可以通过它清楚的知道该函数被调用过几次、传入什么参数、返回什么结果，甚至是抛出的异常情况。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var spy = sinon.spy(MyComp.prototype, &apos;someMethod&apos;);</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">expect(spy.callCount).toEqual(1);</span><br></pre></td></tr></table></figure>
+<h2 id="stub"><a href="#stub" class="headerlink" title="stub"></a>stub</h2><blockquote>
+<p>有时候会使用stub来嵌入或者直接替换掉一些代码，来达到隔离的目的</p>
+</blockquote>
+<p>一个stub可以使用最少的依赖方法来模拟该单元测试。比如一个方法可能依赖另一个方法的执行，而后者对我们来说是透明的。好的做法是使用stub 对它进行隔离替换。这样就实现了更准确的单元测试。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var myObj = &#123;</span><br><span class="line">    prop: function() &#123;</span><br><span class="line">        return &apos;foo&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">sinon.stub(myObj, &apos;prop&apos;).callsFake(function() &#123;</span><br><span class="line">    return &apos;bar&apos;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">myObj.prop(); // &apos;bar&apos;</span><br></pre></td></tr></table></figure>
+<h2 id="mock"><a href="#mock" class="headerlink" title="mock"></a>mock</h2><p><code>mock</code>一般指在测试过程中，对于某些不容易构造或者不容易获取的对象，用一个虚拟的对象来创建以便测试的测试方法</p>
+<p>广义的讲，以上的 spy 和 stub 等，以及一些对模块的模拟，对 ajax 返回值的模拟、对 timer 的模拟，都叫做 mock 。</p>
+<h2 id="测试覆盖率-code-coverage"><a href="#测试覆盖率-code-coverage" class="headerlink" title="测试覆盖率(code coverage)"></a>测试覆盖率(code coverage)</h2><p>用于统计测试用例对代码的测试情况，生成相应的报表，比如 <code>istanbul</code> 是常见的测试覆盖率统计工具。</p>
+<p><code>istanbul</code> 也就是土耳其首都 “伊斯坦布尔”，这样命名是因为土耳其地毯世界闻名，而地毯是用来”覆盖”的😷。</p>
+<p>回顾一下上面的图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/11846892-8cc2514fc4359845.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="20200506151145.png"></p>
+<p>表格中的第2列至第5列，分别对应了四个衡量维度：</p>
+<ul>
+<li>语句覆盖率（statement coverage）：是否每个语句都执行了</li>
+<li>分支覆盖率（branch coverage）：是否每个<code>if</code>代码块都执行了</li>
+<li>函数覆盖率（function coverage）：是否每个函数都调用了</li>
+<li>行覆盖率（line coverage）：是否每一行都执行了</li>
+</ul>
+<p>测试结果根据覆盖率被分为“绿色、黄色、红色”三种，应该关注这些指标，测试越全面，就能提供更高的保证。</p>
+<p>同时也没有必要一味追求行覆盖率，因为它会导致我们过分关注组件的内部实现细节，从而导致琐碎的测试。</p>
+<h2 id="II-Vue-js-中的单元测试工具"><a href="#II-Vue-js-中的单元测试工具" class="headerlink" title="II. Vue.js 中的单元测试工具"></a>II. Vue.js 中的单元测试工具</h2><hr>
+<h2 id="Jest"><a href="#Jest" class="headerlink" title="Jest"></a>Jest</h2><p>不同于”传统的”(其实也没出现几年)的 jasmine / Mocha / Chai 等前端测试框架；Jest的使用更简单（也许就是这个单词的本意“俏皮话、玩笑话”的意思），并且提供了更高的集成度、更丰富的功能。</p>
+<p>Jest 是一个由 Facebook 开发的测试运行器，相对其他测试框架，其特点就是就是内置了常用的测试工具，比如自带断言、测试覆盖率工具，实现了开箱即用。</p>
+<p>此外， Jest 的测试用例是并行执行的，而且只执行发生改变的文件所对应的测试，提升了测试速度。</p>
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>Jest 号称自己是一个 “Zero configuration testing platform”，只需在 npm scripts里面配置了test: jest，即可运行npm test，自动识别并测试符合其规则的（ Vue.js 项目中一般是 <strong>tests</strong> 目录下的）用例文件。</p>
+<p>实际使用中，适当的在 package.json 的 jest 字段或独立的 jest.config.js 里自定义配置一下，会得到更适合我们的测试场景。</p>
+<p>参考文档 <a href="https://vue-test-utils.vuejs.org/zh/guides/testing-single-file-components-with-jest.html" target="_blank" rel="noopener">https://vue-test-utils.vuejs.org/zh/guides/testing-single-file-components-with-jest.html</a> ，可以很快在 Vue.js 项目中配置好 Jest 测试环境</p>
+<h4 id="四个基础单词"><a href="#四个基础单词" class="headerlink" title="四个基础单词"></a>四个基础单词</h4><p>编写单元测试的语法通常非常简单；对于jest来说，由于其内部使用了 Jasmine 2 来进行测试，故其用例语法与 Jasmine 相同。</p>
+<p>实际上，只要先记这住四个单词，就足以应付大多数测试情况了：</p>
+<ul>
+<li>describe： 定义一个测试套件</li>
+<li>it：定义一个测试用例</li>
+<li>expect：断言的判断条件</li>
+<li>toEqual：断言的比较结果</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">describe(&apos;test ...&apos;, function() &#123;</span><br><span class="line">    it(&apos;should ...&apos;, function() &#123;</span><br><span class="line">        expect(sth).toEqual(sth);</span><br><span class="line">        expect(sth.length).toEqual(1);</span><br><span class="line">        expect(sth &gt; oth).toEqual(true);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="Vue-Test-Utils"><a href="#Vue-Test-Utils" class="headerlink" title="Vue Test Utils"></a>Vue Test Utils</h2><blockquote>
+<p>Vue Test Utils 是 Vue.js 官方的单元测试实用工具库</p>
+</blockquote>
+<p>它模拟了一部分类似 jQuery 的 API，非常直观并且易于使用和学习，提供了一些接口和几个方法来减少测试的样板代码，方便判断、操纵和遍历 Vue Component 的输出，并且减少了测试代码和实现代码之间的耦合。</p>
+<p>一般使用其 mount() 或 shallowMount() 方法，将目标组件转化为一个 Wrapper 对象，并在测试中调用其各种方法，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import &#123; mount &#125; from &apos;@vue/test-utils&apos;</span><br><span class="line">import Foo from &apos;./Foo.vue&apos;</span><br><span class="line"></span><br><span class="line">describe(&apos;Foo&apos;, () =&gt; &#123;</span><br><span class="line">  it(&apos;renders a div&apos;, () =&gt; &#123;</span><br><span class="line">    const wrapper = mount(Foo)</span><br><span class="line">    expect(wrapper.contains(&apos;div&apos;)).toBe(true)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h2 id="V-将单元测试整合到工作流中"><a href="#V-将单元测试整合到工作流中" class="headerlink" title="V. 将单元测试整合到工作流中"></a>V. 将单元测试整合到工作流中</h2><hr>
+<p>写好的单元测试，如果仅仅要靠每次 npm test 手动执行，必然会有日久忘记、逐渐过时，最后甚至无法执行的情况。</p>
+<p>有多个时间点可以作为选择，插入自动执行单元测试 – 例如每次保存文件、每次执行 build 等；此处我们选择了一种很简单的配置办法：</p>
+<p>首先在项目中安装 pre-commit 依赖包；然后在 package.json 中配置 npm scripts ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  ...</span><br><span class="line">  &quot;test&quot;: &quot;jest&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&quot;pre-commit&quot;: [</span><br><span class="line">  &quot;test&quot;</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+<p>这样在每次 git commit 之前，项目中存在的单元测试就会自动执行一次，往往就避免了 “改一个 bug，送十个新 bug” 的窘况。</p>
+<h2 id="VI-总结"><a href="#VI-总结" class="headerlink" title="VI. 总结"></a>VI. 总结</h2><hr>
+<p>单元测试作为一种经典的开发和重构手段，在软件开发领域被广泛认可和采用；前端领域也逐渐积累起了丰富的测试框架和方法。</p>
+<p>单元测试可以为我们的开发和维护提供基础保障，使我们在思路清晰、心中有底的情况下完成对代码的搭建和重构。</p>
+<p>封装好则测试易，反之不恰当的封装让测试变得困难。</p>
+<p>可测试性是一个检验组件结构良好程度的实践标准。</p>
+<p>参考资料：<br>  wx公众号：云前端<br>  文章: 实例入门 Vue.js 单元测试</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/05/06/vueTest/" data-id="ck9v0hoq1001sdskc9y7ujgug" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue-test/">vue test</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-reactive" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/03/30/reactive/" class="article-date">
@@ -124,7 +272,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/30/reactive/" data-id="ck8e8xqzk001hdcp3o9fkhnj5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/30/reactive/" data-id="ck9v0hoor000vdskcek23yzym" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
@@ -162,7 +310,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/30/v8/" data-id="ck8e8xqzl001kdcp3yibl28or" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/30/v8/" data-id="ck9v0hoov0010dskczoor13b5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -212,7 +360,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/01/15/vueCliMd/" data-id="ck8e8xqzr001udcp3kp1fkey3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/01/15/vueCliMd/" data-id="ck9v0hooy0015dskcmkh7wuz5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -248,7 +396,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/27/reactTitle/" data-id="ck8e8xqzf001bdcp3fe522bb3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/27/reactTitle/" data-id="ck9v0hooq000tdskcyq3311mt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -341,7 +489,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/04/asyncAwit/" data-id="ck8e8xqyw000odcp3dt0c7sz8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/04/asyncAwit/" data-id="ck9v0hopo001hdskcrpgld237" class="article-share-link">Share</a>
       
       
     </footer>
@@ -410,7 +558,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/20/express/" data-id="ck8e8xqyy000sdcp3pzk3sovp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/20/express/" data-id="ck9v0hool000ldskc40sgcyj8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li></ul>
@@ -502,7 +650,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/20/commitMessage/" data-id="ck8e8xqyx000pdcp34uwx1uu8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/20/commitMessage/" data-id="ck9v0hooi000hdskctocdkp2z" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
@@ -558,7 +706,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/20/ForwardReverseProxy/" data-id="ck8e8xqy6000fdcp3cusfs0t7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/20/ForwardReverseProxy/" data-id="ck9v0hood000ddskcrm00j9se" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
@@ -608,107 +756,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/20/virtualDom/" data-id="ck8e8xqzh001fdcp3k5retwu1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/20/virtualDom/" data-id="ck9v0hoow0011dskckytm1610" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-axios" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/09/20/axios/" class="article-date">
-  <time datetime="2019-09-20T02:50:39.000Z" itemprop="datePublished">2019-09-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/20/axios/">axios封装</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Author: Echo<br>Time: 2019-09-20 10:50:39</p>
-<p><a href="https://www.npmjs.com/package/axios" target="_blank" rel="noopener">axios文档地址</a></p>
-<p>在vue项目中，和后台交互获取数据这块，我们通常使用的是<code>axios</code>库，它是基于<code>promise</code>的http库，可运行在浏览器端和node.js中。他有很多优秀的特性，例如<code>拦截请求和响应、取消请求、转换json、客户端防御cSRF</code>等。所以我们的尤大大也是果断放弃了对其官方库vue-resource的维护，直接推荐我们使用axios库.</p>
-<p><code>本次封装以vue项目为例做实践。</code></p>
-<h5 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install axios</span><br></pre></td></tr></table></figure>
-<h5 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h5><p>在项目的src目录下新建文件夹request,文件夹下新建http.js和api.js文件：</p>
-<ul>
-<li>http.js: 封装axios</li>
-<li>api.js: 用来统一管理接口</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 在http.js中引入axios</span><br><span class="line">import axios from &apos;axios&apos;; // 引入axios</span><br><span class="line">import QS from &apos;qs&apos;; // 引入qs模块，用来序列化post类型的数据，后面会提到</span><br></pre></td></tr></table></figure>
-<h5 id="环境的切换-gt-配置不同的baseURL"><a href="#环境的切换-gt-配置不同的baseURL" class="headerlink" title="环境的切换-&gt;配置不同的baseURL"></a>环境的切换-&gt;配置不同的baseURL</h5><p>我们的项目环境可能有开发环境、测试环境和生产环境.<br>我们通过node的环境变量来匹配我们的默认的接口url前缀<br>axios.defaults.baseURL可以设置axios的默认请求地址</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const baseURL_Map = &#123;</span><br><span class="line">  dev：&apos;https://www.baidu.com&apos;,</span><br><span class="line">  uat: &apos;https://www.ceshi.com&apos;,</span><br><span class="line">  product: &apos;https://www.production.com&apos;</span><br><span class="line">&#125;</span><br><span class="line">axios.defaults.baseURL = baseURL_Map[process.env.NODE_ENV] </span><br><span class="line">// 或者直接设置成基本变量：</span><br><span class="line">const TIMEOUT = 30000;</span><br></pre></td></tr></table></figure>
-<p>扩展：</p>
-<h6 id="process-env-NODE-ENV"><a href="#process-env-NODE-ENV" class="headerlink" title="process.env.NODE_ENV"></a>process.env.NODE_ENV</h6><ul>
-<li>process对象是全局变量: 提供当前node.js的有关信息，以及控制当前node.js的有关进程。因为是全局变量，它对于node应用程序是始终可用的，无需require()</li>
-<li>process.env属性返回一个包含用户环境信息的对象</li>
-<li>process.env.NODE_ENV:不是process.env对象上原有的属性，是我们自己添加进去的一个环境变量，用来确定当前所处的开发阶段。</li>
-<li>测试环境： uat; 生产环境：product; 开发环境： dev</li>
-</ul>
-<h5 id="设置请求超时变量"><a href="#设置请求超时变量" class="headerlink" title="设置请求超时变量"></a>设置请求超时变量</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 例如超过了10s，就会告知用户当前请求超时，请刷新等。</span><br><span class="line"></span><br><span class="line">const TIMEOUT = 30000;</span><br></pre></td></tr></table></figure>
-<p>扩展： </p>
-<ul>
-<li>统一处理所有接口的超时时间： <code>axios.defaults.timeout = 10000;</code></li>
-</ul>
-<h5 id="设置post请求头"><a href="#设置post请求头" class="headerlink" title="设置post请求头"></a>设置post请求头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">axios.defaults.headers.post[&apos;Content-Type&apos;] = &apos;application/x-www-form-urlencoded;charset=UTF-8&apos;;</span><br></pre></td></tr></table></figure>
-<p> 此处无需设置，在下面封装的时候会针对get和post请求做统一对应处理</p>
-<h5 id="定义HTTP响应状态码的范围"><a href="#定义HTTP响应状态码的范围" class="headerlink" title="定义HTTP响应状态码的范围"></a>定义HTTP响应状态码的范围</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 判断 HTTP 请求是否成功</span><br><span class="line"> * @param &#123;number&#125; status - HTTP 状态码</span><br><span class="line"> * @returns &#123;Boolean&#125;</span><br><span class="line"> */</span><br><span class="line">const isBadRequest = status =&gt; status &gt;= 300;</span><br></pre></td></tr></table></figure>
-<h4 id="映射-HTTP-错误时的提示语句"><a href="#映射-HTTP-错误时的提示语句" class="headerlink" title="映射 HTTP 错误时的提示语句"></a>映射 HTTP 错误时的提示语句</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 映射 HTTP 错误时的提示语句</span><br><span class="line"> * @param &#123;enhanceError&#125; error</span><br><span class="line"> * @returns &#123;Object&#125;</span><br><span class="line"> */</span><br><span class="line">const badStatusMap = error =&gt; (&#123;</span><br><span class="line">  400: &apos;请求错误&apos;,</span><br><span class="line">  401: &apos;未授权，请登录&apos;,</span><br><span class="line">  403: &apos;拒绝访问&apos;,</span><br><span class="line">  404: `请求地址出错 $&#123;error.response ? error.response.config.url : &apos;&apos;&#125;`,</span><br><span class="line">  408: &apos;请求超时&apos;,</span><br><span class="line">  500: &apos;服务器内部错误&apos;,</span><br><span class="line">  501: &apos;服务未实现&apos;,</span><br><span class="line">  502: &apos;网关错误&apos;,</span><br><span class="line">  503: &apos;服务不可用&apos;,</span><br><span class="line">  504: &apos;网关超时&apos;,</span><br><span class="line">  505: &apos;HTTP版本不受支持&apos;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h5 id="封装axios"><a href="#封装axios" class="headerlink" title="封装axios"></a>封装axios</h5><ul>
-<li>http.js<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * http.js</span><br><span class="line"> * @param &#123;Object&#125; [globalOption]</span><br><span class="line"> */</span><br><span class="line">import &#123;</span><br><span class="line">  mergeWith, omit, isPlainObject</span><br><span class="line">&#125; from &apos;lodash&apos;;</span><br><span class="line"></span><br><span class="line">// isPlainObject ： checks if value is a plain object, that is, an object created by the Object constructor or one with a [[Prototype]] of null</span><br><span class="line">// mergeWith 是用于递归合并来源对象的自身和继承的可枚举属性到目标对象。 </span><br><span class="line">// 基本意思就是将默认的option配置和手动配置的globalOption，通过递归的形式合并成一个option.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 修复 axios 转换 bug，如可能把请求中的日期等转成空对象的问题</span><br><span class="line"> *  &apos;utils.merge&apos; in &apos;node_modules\axios\lib\core\Axios.js&apos;</span><br><span class="line"> * @param &#123;any&#125; obj</span><br><span class="line"> */</span><br><span class="line">const fixAxiosDateMerge = (obj) =&gt; &#123;</span><br><span class="line">  if (!obj) return obj;</span><br><span class="line">  if (obj instanceof Date) return obj.getTime();</span><br><span class="line">  if (!isPlainObject(obj)) return obj;</span><br><span class="line">  Object.keys(obj).forEach((key) =&gt; &#123;</span><br><span class="line">    obj[key] = fixAxiosDateMerge(obj[key]);</span><br><span class="line">  &#125;);</span><br><span class="line">  return obj;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function axiosWrapper(globalOption) &#123;</span><br><span class="line">  return function(option) &#123;</span><br><span class="line">    // 此处的操作相对与开放一点，把baseURL、timeout、responseType、可以根据接口不同做单独配置。</span><br><span class="line">    option = mergeWith(&#123;</span><br><span class="line">      baseURL: BASE_URL,</span><br><span class="line">      headers: &#123;</span><br><span class="line">        &apos;Content-Type&apos;: &apos;application/x-www-form-urlencoded&apos;,</span><br><span class="line">        &apos;Cache-Control&apos;: &apos;no-cache&apos;</span><br><span class="line">      &#125;,</span><br><span class="line">      timeout: TIMEOUT,</span><br><span class="line">      withCredentials: true,</span><br><span class="line">      responseType: &apos;&apos;,</span><br><span class="line">      validateStatus: status =&gt; !isBadRequest(status)</span><br><span class="line"></span><br><span class="line">      // 可以定义HTTP响应状态码的范围。如果`validateStatus`返回`true`（或被设置为`null` promise将被解析;否则，promise将被拒绝。</span><br><span class="line">    &#125;, globalOption, option);</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line">    if (option.data) &#123;</span><br><span class="line">      option.data = fixAxiosDateMerge(option.data);</span><br><span class="line">    &#125;</span><br><span class="line">    if (option.params) &#123;</span><br><span class="line">      option.params = fixAxiosDateMerge(option.params);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    const r = axios.create(option);</span><br><span class="line">    </span><br><span class="line">    // 在axios的源代码中，超时后, 会在拦截器那里 axios.interceptors.response 捕抓到错误信息, 且 error.code = &quot;ECONNABORTED&quot;</span><br><span class="line"></span><br><span class="line">    // timeout</span><br><span class="line">    r.interceptors.request.use(</span><br><span class="line">      config =&gt; config,</span><br><span class="line">      (error) =&gt; &#123;</span><br><span class="line">        </span><br><span class="line">        if (error &amp;&amp; error.code === &apos;ECONNABORTED&apos;</span><br><span class="line">          &amp;&amp; ~error.message.indexOf(&apos;timeout&apos;)) &#123;</span><br><span class="line">          console.log(&apos;[AxiosWrapper] request timeout&apos;);</span><br><span class="line">        &#125;</span><br><span class="line">        return Promise.reject(error);</span><br><span class="line">      &#125;</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    // other errors // 跳转到对应的报错页面</span><br><span class="line">    r.interceptors.request.use(</span><br><span class="line">      config =&gt; config,</span><br><span class="line">      (error) =&gt; &#123;</span><br><span class="line">        const errorInfo = error.response;</span><br><span class="line">        if (errorInfo) &#123;</span><br><span class="line">          const errorStatus = errorInfo.status;</span><br><span class="line">          router.push(&#123;</span><br><span class="line">            path: `/error/$&#123;errorStatus&#125;`</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        return Promise.reject(error);</span><br><span class="line">      &#125;</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    // make data</span><br><span class="line">    r.interceptors.request.use(</span><br><span class="line">      (opt) =&gt; &#123;</span><br><span class="line">        const params = mergeWith(&#123;&#125;, opt.data, opt.params); // cloneDeep(opt.data);</span><br><span class="line">        opt = omit(opt, [&apos;data&apos;, &apos;params&apos;]);</span><br><span class="line">        const needBody = /^(put|post|patch)$/i.test(opt.method);</span><br><span class="line">        const sendJSON = opt.headers</span><br><span class="line">          &amp;&amp; opt.headers[&apos;Content-Type&apos;] === &apos;application/json&apos;;</span><br><span class="line">          // 根据请求头和method来处理入参的格式</span><br><span class="line">        if (needBody) &#123;</span><br><span class="line">          opt.data = sendJSON</span><br><span class="line">            ? JSON.stringify(params)</span><br><span class="line">            : qs.stringify(params);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          opt.params = params;</span><br><span class="line">        &#125;</span><br><span class="line">        return opt;</span><br><span class="line">      &#125;</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    // bad HTTP request</span><br><span class="line">    r.interceptors.response.use(</span><br><span class="line">      response =&gt; response,</span><br><span class="line">      (error) =&gt; &#123;</span><br><span class="line">        if (error &amp;&amp; error.response) &#123;</span><br><span class="line">          const &#123; status, statusText &#125; = error.response;</span><br><span class="line">          if (isBadRequest(status)) &#123;</span><br><span class="line">            console.warn(&apos;[AxiosWrapper] bad HTTP request: status is %s \n&apos;, status, error.response);</span><br><span class="line">            error.message = badStatusMap(error)[status] || statusText;</span><br><span class="line">            if (!error.message) &#123;</span><br><span class="line">              try &#123;</span><br><span class="line">                error.message = JSON.parse(error.response.request.responseText).errmsg;</span><br><span class="line">              &#125; catch (ex) &#123;</span><br><span class="line">                console.log(&apos;[AxiosWrapper] json parse error&apos;, ex);</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            Vue.prototype.Config.ROOT_VUE.$message.error(error.message);</span><br><span class="line">            return Promise.reject(new Error(error.message));</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return Promise.reject(error);</span><br><span class="line">      &#125;</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    // check business logic</span><br><span class="line">    // 请求失败，根据HTTP响应状态码做出对应的messageTip</span><br><span class="line">    r.interceptors.response.use(</span><br><span class="line">      (response) =&gt; &#123;</span><br><span class="line">        if (option.responseType === &apos;arraybuffer&apos;) &#123;</span><br><span class="line">          return response;</span><br><span class="line">        &#125;</span><br><span class="line">        const [reqURL, resData] = takeapartResponse(response);</span><br><span class="line">        const noWarn = &apos;no-global-config-warn&apos; in response.config.headers</span><br><span class="line">          &amp;&amp; !!response.config.headers[&apos;no-global-config-warn&apos;];</span><br><span class="line">        const isValid = isValidCode(resData.errno);</span><br><span class="line">        const method = response.config.method.toUpperCase();</span><br><span class="line">        if (!isValid) &#123;</span><br><span class="line">          // eslint-disable-next-line prefer-promise-reject-errors</span><br><span class="line">          return Promise.reject(&#123;</span><br><span class="line">            type: ERR_CODE,</span><br><span class="line">            reqURL,</span><br><span class="line">            resData,</span><br><span class="line">            noWarn,</span><br><span class="line">            method</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        const reqStr = `$&#123;method&#125; $&#123;reqURL&#125;`;</span><br><span class="line">        // warnByResponse 函数是根据业务针对不同接口返回不同的错误提示。这个函数可以根据业务自行处理。</span><br><span class="line">        warnByResponse(reqStr, resData, true, noWarn);</span><br><span class="line">        return resData;</span><br><span class="line">      &#125;</span><br><span class="line">    );</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    // wrong business logic</span><br><span class="line">    // r.interceptors.response.use(</span><br><span class="line">    //   response =&gt; response,</span><br><span class="line">    //   (error) =&gt; &#123;</span><br><span class="line">    //     if (error.type === ERR_CODE) &#123;</span><br><span class="line">    //       const reqStr = `$&#123;error.method&#125; $&#123;error.reqURL&#125;`;</span><br><span class="line">    //       warnByResponse(reqStr, error.resData, false, error.noWarn);</span><br><span class="line">    //     &#125;</span><br><span class="line">    //     return Promise.reject(error.resData);</span><br><span class="line">    //   &#125;</span><br><span class="line">    // );</span><br><span class="line"></span><br><span class="line">    return r(option);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="简单的封装axios函数"><a href="#简单的封装axios函数" class="headerlink" title="简单的封装axios函数"></a>简单的封装axios函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 获得一般的 wrapper</span><br><span class="line"> * @param &#123;Object&#125; [option]</span><br><span class="line"> */</span><br><span class="line"> // `transformResponse` 在传递给 then/catch 前，允许修改响应数据</span><br><span class="line">export default option =&gt; axiosWrapper(&#123;</span><br><span class="line">  transformResponse: data =&gt; void (0), // eslint-disable-line no-unused-vars</span><br><span class="line">  </span><br><span class="line">&#125;)(option);</span><br></pre></td></tr></table></figure>
-<p>在使用axios时，注意到配置选项中包含params和data两者，以为他们是相同的，实则不然。</p>
-<p>因为params是添加到url的请求字符串中的，用于get请求。</p>
-<p>而data是添加到请求体（body）中的， 用于post请求。</p>
-<p>api.js使用实例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import axios, &#123; download &#125; from &apos;./http.js&apos;;</span><br><span class="line">export const mock = params =&gt; axios(&#123;</span><br><span class="line">    url: &apos;/mock&apos;,</span><br><span class="line">    method: &apos;get&apos;,</span><br><span class="line">    params</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">export const upload = data =&gt; axios(&#123;</span><br><span class="line">    url: &apos;/upload&apos;,</span><br><span class="line">    method: &apos;post&apos;,</span><br><span class="line">    data</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<h5 id="用于下载的axiosWrapper"><a href="#用于下载的axiosWrapper" class="headerlink" title="用于下载的axiosWrapper"></a>用于下载的axiosWrapper</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">export const download = option =&gt; axiosWrapper(&#123;</span><br><span class="line">  responseType: &apos;arraybuffer&apos;</span><br><span class="line">&#125;)(option)</span><br><span class="line">  .then((res) =&gt; &#123;</span><br><span class="line">    const contentType = res.headers[&apos;content-type&apos;];</span><br><span class="line"></span><br><span class="line">    if (~contentType.indexOf(&apos;json&apos;)) &#123;</span><br><span class="line">      const resData = res.data || res.request.response;</span><br><span class="line">      const text = Buffer.from(resData).toString(&apos;utf8&apos;);</span><br><span class="line">      const json = JSON.parse(text);</span><br><span class="line">      return Promise.reject(json);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    const disposition = res.headers[&apos;content-disposition&apos;];</span><br><span class="line">    if (disposition &amp;&amp; disposition.match(/attachment/)) &#123;</span><br><span class="line">      let filename = disposition.replace(/attachment;.*filename=/, &apos;&apos;).replace(/&quot;/g, &apos;&apos;);</span><br><span class="line">      filename = filename &amp;&amp; filename !== &apos;&apos;</span><br><span class="line">        ? filename</span><br><span class="line">        : (option.defaultFilename || &apos;noname&apos;);</span><br><span class="line">      const blob = new Blob([res.data], &#123; type: contentType &#125;);</span><br><span class="line">      saveAs(blob, filename);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return Promise.resolve(res);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
-<p>api.js使用实例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import axios, &#123; download &#125; from &apos;./http&apos;;</span><br><span class="line"></span><br><span class="line">export const export = (data, defaultFilename) = download(&#123;</span><br><span class="line">  url: &apos;/api//export&apos;,</span><br><span class="line">  method: &apos;post&apos;,</span><br><span class="line">  data,</span><br><span class="line">  defaultFilename</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="封装一个axios的思路"><a href="#封装一个axios的思路" class="headerlink" title="封装一个axios的思路"></a>封装一个axios的思路</h2><ul>
-<li>配置请求基本信息的常量：（用于基本处理）<br>BASE_URL ：根据环境变量，针对生成、测试、开发环境配置对应的url<br>TIMEOUT: 配置接口请求超时时间。<br>headers： 配置请求头<br>validateStatus: 定义HTTP响应状态码的范围。如果<code>validateStatus</code>返回<code>true</code>（或被设置为<code>null</code> promise将被解析;否则，promise将被拒绝。</li>
-</ul>
-<p>可以请求接口的不同，封装axios的时候，将 请求基本信息的常量 通过 参数 的方式单独进行配置。</p>
-<blockquote>
-<p>扩展：<br>  具体方法：通过lodash的mergeWith方法将默认的option配置和手动配置的globalOption，通过递归的形式合并成一个option。</p>
-</blockquote>
-<ul>
-<li><p>请求拦截</p>
-<p>timeout: 在axios的源代码中，超时后, 会在拦截器那里 axios.interceptors.response 捕抓到错误信息, 且 error.code = “ECONNABORTED”，可以根据这个code提示超时报错信息。</p>
-<p>token：统一在http请求的header都加上token，这样后台根据token判断你的登录情况，即使本地存在token，也有可能token是过期的，所以在响应拦截器中要对返回状态进行判断</p>
-<p>other errors: 根据请求状态<code>status</code>,直接promise.reject.路由跳转到对应的报错页面。<br>根据请求头和method来处理入参的格式</p>
-</li>
-</ul>
-<p>在使用axios时，注意到配置选项中包含params和data两者，以为他们是相同的，实则不然。<br>因为params是添加到url的请求字符串中的，用于get请求。<br>而data是添加到请求体（body）中的， 用于post请求。</p>
-<ul>
-<li>响应拦截<br>badStatusMap: 请求失败，根据HTTP响应状态码做出对应的messageTip</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/20/axios/" data-id="ck8e8xqys000ldcp3egzyamg0" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6-vue/">es6, vue</a></li></ul>
 
     </footer>
   </div>
@@ -733,7 +784,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-hexo/">blog-hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6-vue/">es6, vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端面试题/">前端面试题</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-hexo/">blog-hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6-vue/">es6, vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-test/">vue test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端面试题/">前端面试题</a></li></ul>
     </div>
   </div>
 
@@ -743,7 +794,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/blog-hexo/" style="font-size: 13.33px;">blog-hexo</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/es6-vue/" style="font-size: 10px;">es6, vue</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/js/" style="font-size: 13.33px;">js</a> <a href="/tags/node/" style="font-size: 13.33px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/web/" style="font-size: 13.33px;">web</a> <a href="/tags/前端面试题/" style="font-size: 16.67px;">前端面试题</a>
+      <a href="/tags/blog-hexo/" style="font-size: 13.33px;">blog-hexo</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/es6-vue/" style="font-size: 10px;">es6, vue</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/js/" style="font-size: 13.33px;">js</a> <a href="/tags/node/" style="font-size: 13.33px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/vue-test/" style="font-size: 10px;">vue test</a> <a href="/tags/web/" style="font-size: 13.33px;">web</a> <a href="/tags/前端面试题/" style="font-size: 16.67px;">前端面试题</a>
     </div>
   </div>
 
@@ -752,7 +803,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
     </div>
   </div>
 
@@ -763,6 +814,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/05/06/vueTest/">vueTest</a>
+          </li>
         
           <li>
             <a href="/2020/03/30/reactive/">Vue响应式原理解析</a>
@@ -778,10 +833,6 @@
         
           <li>
             <a href="/2019/11/27/reactTitle/">reactTitle</a>
-          </li>
-        
-          <li>
-            <a href="/2019/11/04/asyncAwit/">asyncAwit</a>
           </li>
         
       </ul>

@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="vue从改变一个数据到发生改变的过程 数据改变触发set Set部分触发notify(更新和通知) -&amp;gt; Get部分收集依赖 更改对应的虚拟dom 重新rendervue2 definePropertydefineProperty不仅仅用来做响应式，他的作用可以用来给对象中的属性配置操作权限。其中get和set实现了响应式原理。  12345678910let ob = &amp;#123;  a:">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-03-30T09:01:17.157Z">
+<meta property="og:updated_time" content="2020-05-06T03:07:59.711Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Vue响应式原理解析">
 <meta name="twitter:description" content="vue从改变一个数据到发生改变的过程 数据改变触发set Set部分触发notify(更新和通知) -&amp;gt; Get部分收集依赖 更改对应的虚拟dom 重新rendervue2 definePropertydefineProperty不仅仅用来做响应式，他的作用可以用来给对象中的属性配置操作权限。其中get和set实现了响应式原理。  12345678910let ob = &amp;#123;  a:">
@@ -124,7 +124,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/30/reactive/" data-id="ck8e8xqzk001hdcp3o9fkhnj5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/30/reactive/" data-id="ck9v0hoor000vdskcek23yzym" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
@@ -134,6 +134,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2020/05/06/vueTest/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          vueTest
+        
+      </div>
+    </a>
   
   
     <a href="/2020/03/30/v8/" id="article-nav-older" class="article-nav-link-wrap">
@@ -157,7 +166,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-hexo/">blog-hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6-vue/">es6, vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端面试题/">前端面试题</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-hexo/">blog-hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6-vue/">es6, vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-test/">vue test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端面试题/">前端面试题</a></li></ul>
     </div>
   </div>
 
@@ -167,7 +176,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/blog-hexo/" style="font-size: 13.33px;">blog-hexo</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/es6-vue/" style="font-size: 10px;">es6, vue</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/js/" style="font-size: 13.33px;">js</a> <a href="/tags/node/" style="font-size: 13.33px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/web/" style="font-size: 13.33px;">web</a> <a href="/tags/前端面试题/" style="font-size: 16.67px;">前端面试题</a>
+      <a href="/tags/blog-hexo/" style="font-size: 13.33px;">blog-hexo</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/es6-vue/" style="font-size: 10px;">es6, vue</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/js/" style="font-size: 13.33px;">js</a> <a href="/tags/node/" style="font-size: 13.33px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/vue-test/" style="font-size: 10px;">vue test</a> <a href="/tags/web/" style="font-size: 13.33px;">web</a> <a href="/tags/前端面试题/" style="font-size: 16.67px;">前端面试题</a>
     </div>
   </div>
 
@@ -176,7 +185,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
     </div>
   </div>
 
@@ -187,6 +196,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/05/06/vueTest/">vueTest</a>
+          </li>
         
           <li>
             <a href="/2020/03/30/reactive/">Vue响应式原理解析</a>
@@ -202,10 +215,6 @@
         
           <li>
             <a href="/2019/11/27/reactTitle/">reactTitle</a>
-          </li>
-        
-          <li>
-            <a href="/2019/11/04/asyncAwit/">asyncAwit</a>
           </li>
         
       </ul>
