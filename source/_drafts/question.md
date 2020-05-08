@@ -63,3 +63,31 @@ react 生命周期函数图片
 react https://www.ru23.com/note/55bd244d.html 看一下
 https://www.cnblogs.com/TomXu/archive/2011/12/15/2288411.html： 汤姆大叔
 https://www.cnblogs.com/TankXiao/archive/2012/02/06/2337728.html#summaryview fiddler  /charles
+
+
+## 讲一下vue的双向绑定原理
+
+在vue2中源码使用的defineProperty来实现双向绑定。
+实际上defineProperty它的主要作用是用来给对象中的属性配置操作权限，
+例如：
+```
+writable:false, // 属性值是否可写
+  enumerable: false, // 属性值是否可循环
+  configurable: false //属性值是否可以delete
+```
+其中get和set实现了响应式原理。
+数据改变之后触发了set方法->set方法触发更新和通知，同时get方法收集依赖->然后更改对应的虚拟dom->重新render.
+
+在这里defineProperty有一个不优雅的地方是，要使用get&set 方法实现读取的存储，必须将属性值重新赋值给新的变量，来实现存储和中转。
+
+而且对数组需要单独处理。
+// 数组的双向绑定就是做了一个设计者模式；
+// 取出数组的原型链并拷贝;
+
+并且defineProperty只能监听对象的某个属性，不能监听全对象；需要通过for in 循环。
+
+而在vue3中源码使用了的proxy来实现双向绑定原理。proxy相对于defineProperty
+
+proxy的get和set方法中直接可以返回参数target, key, value，可以直接获取到变量，不需要外部变量实现存储和读取。
+而且可以监听数组，不需要单独的对数组进行特异性处理。
+proxy对原对象进行代理，生成新的代理对象，不会污染原对象。
