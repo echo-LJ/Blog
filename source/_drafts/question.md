@@ -46,7 +46,7 @@ https://cn.vuejs.org/v2/guide/ssr.html
 * 了解一下github中的vue+express&写一下思路。
 * 看一下redux 中dispatch怎么实现换执行触发reducer
 * 看一下redux 中connect
-* 熟悉一下async await
+* 熟悉一下async await ,什么时候会用到
 
 
 * React Intl是什么原理？  在react项目中实现国际化
