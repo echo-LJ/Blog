@@ -47,6 +47,8 @@ https://cn.vuejs.org/v2/guide/ssr.html
 * 看一下redux 中dispatch怎么实现换执行触发reducer
 * 看一下redux 中connect
 * 熟悉一下async await ,什么时候会用到
+* 单页面和多页面应用的区别。
+* 一个项目怎么支持多入口
 
 
 * React Intl是什么原理？  在react项目中实现国际化

@@ -48,8 +48,6 @@ const baseURL_Map = {
   product: 'https://www.production.com'
 }
 axios.defaults.baseURL = baseURL_Map[process.env.NODE_ENV] 
-// 或者直接设置成基本变量：
-const TIMEOUT = 30000;
 ```
 扩展：
 ###### process.env.NODE_ENV
@@ -310,7 +308,7 @@ export default option => axiosWrapper({
 
 而data是添加到请求体（body）中的， 用于post请求。
 
-api.js使用实例： 
+###### api.js使用实例： 
 ```
 import axios, { download } from './http.js';
 export const mock = params => axios({
@@ -362,7 +360,7 @@ api.js使用实例：
 import axios, { download } from './http';
 
 export const export = (data, defaultFilename) = download({
-  url: '/api//export',
+  url: '/api/export',
   method: 'post',
   data,
   defaultFilename
