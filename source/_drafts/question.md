@@ -27,6 +27,7 @@ git rm -rf --cached .
 eval $(ssh-agent -s)
 windows:ssh-add ~/.ssh/lujing163
 mac: ssh-add ~/.ssh/github
+wx8e506d9ea5a0a3de
 https://ssr.vuejs.org/zh/
 https://cn.vuejs.org/v2/guide/ssr.html
 * 看一下process.env.NODE_ENV是怎么回事 https://www.jb51.net/article/126838.htm
@@ -94,6 +95,9 @@ proxy的get和set方法中直接可以返回参数target, key, value，可以直
 而且可以监听数组，不需要单独的对数组进行特异性处理。
 proxy对原对象进行代理，生成新的代理对象，不会污染原对象。
 
+# 项目中遇到的问题
+* 安全工单报高级警告：一般是项目中依赖包版本过低。需要更新到指定版本以上。
+解决办法：正常情况下是直接更新packjson中对应的依赖包就可以啦，但是有些工单所警告的依赖包是其他顶层依赖的深层依赖，在packjson 中搜索不到，处理办法是在packjson-lock中搜索警告的依赖包名称，因为这个底层依赖包可能 有很多 顶层依赖引用，所以需要针对报错的依赖进行更新，只能更新对应的顶层依赖，我当时是先更新到npm上介绍的最新版本，后来发现打包的时候报错。然后我将当前依赖包更新到当前版本的最新版本，解决了这个问题。
 
 ## 请问你在项目中做了什么？
 这个项目为了seo和加快首屏加载速度，进行了一个ssr渲染，
@@ -116,5 +120,14 @@ proxy对原对象进行代理，生成新的代理对象，不会污染原对象
 7. 定义前端规范md
 
 ...
+
+github中vue-demo项目视频地址：https://www.youtube.com/watch?v=Fa4cRMaTDUI
+
+
+阿里云服务器地址:https://netcn.console.aliyun.com/core/host/list2?spm=5176.200122.n2.3.78342f5bkbtObx
+w
+ip 39.102.68.72
+主机密码： 1234567w
+管理控制台登录密码,FTP登录密码,mysql数据库密码(bdm775972614_db): Lj@1314521
 
 
