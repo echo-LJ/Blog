@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Author: EchoTime: 2019-09-20 10:50:39 axios文档地址 在vue项目中，和后台交互获取数据这块，我们通常使用的是axios库，它是基于promise的http库，可运行在浏览器端和node.js中。他有很多优秀的特性，例如拦截请求和响应、取消请求、转换json、客户端防御cSRF等。所以我们的尤大大也是果断放弃了对其官方库vue-resource的维护，直接">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-20T03:06:06.380Z">
+<meta property="og:updated_time" content="2020-05-11T08:42:42.174Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="axios封装">
 <meta name="twitter:description" content="Author: EchoTime: 2019-09-20 10:50:39 axios文档地址 在vue项目中，和后台交互获取数据这块，我们通常使用的是axios库，它是基于promise的http库，可运行在浏览器端和node.js中。他有很多优秀的特性，例如拦截请求和响应、取消请求、转换json、客户端防御cSRF等。所以我们的尤大大也是果断放弃了对其官方库vue-resource的维护，直接">
@@ -99,7 +99,7 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 在http.js中引入axios</span><br><span class="line">import axios from &apos;axios&apos;; // 引入axios</span><br><span class="line">import QS from &apos;qs&apos;; // 引入qs模块，用来序列化post类型的数据，后面会提到</span><br></pre></td></tr></table></figure>
 <h5 id="环境的切换-gt-配置不同的baseURL"><a href="#环境的切换-gt-配置不同的baseURL" class="headerlink" title="环境的切换-&gt;配置不同的baseURL"></a>环境的切换-&gt;配置不同的baseURL</h5><p>我们的项目环境可能有开发环境、测试环境和生产环境.<br>我们通过node的环境变量来匹配我们的默认的接口url前缀<br>axios.defaults.baseURL可以设置axios的默认请求地址</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const baseURL_Map = &#123;</span><br><span class="line">  dev：&apos;https://www.baidu.com&apos;,</span><br><span class="line">  uat: &apos;https://www.ceshi.com&apos;,</span><br><span class="line">  product: &apos;https://www.production.com&apos;</span><br><span class="line">&#125;</span><br><span class="line">axios.defaults.baseURL = baseURL_Map[process.env.NODE_ENV] </span><br><span class="line">// 或者直接设置成基本变量：</span><br><span class="line">const TIMEOUT = 30000;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const baseURL_Map = &#123;</span><br><span class="line">  dev：&apos;https://www.baidu.com&apos;,</span><br><span class="line">  uat: &apos;https://www.ceshi.com&apos;,</span><br><span class="line">  product: &apos;https://www.production.com&apos;</span><br><span class="line">&#125;</span><br><span class="line">axios.defaults.baseURL = baseURL_Map[process.env.NODE_ENV]</span><br></pre></td></tr></table></figure>
 <p>扩展：</p>
 <h6 id="process-env-NODE-ENV"><a href="#process-env-NODE-ENV" class="headerlink" title="process.env.NODE_ENV"></a>process.env.NODE_ENV</h6><ul>
 <li>process对象是全局变量: 提供当前node.js的有关信息，以及控制当前node.js的有关进程。因为是全局变量，它对于node应用程序是始终可用的，无需require()</li>
@@ -124,10 +124,10 @@
 <p>在使用axios时，注意到配置选项中包含params和data两者，以为他们是相同的，实则不然。</p>
 <p>因为params是添加到url的请求字符串中的，用于get请求。</p>
 <p>而data是添加到请求体（body）中的， 用于post请求。</p>
-<p>api.js使用实例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import axios, &#123; download &#125; from &apos;./http.js&apos;;</span><br><span class="line">export const mock = params =&gt; axios(&#123;</span><br><span class="line">    url: &apos;/mock&apos;,</span><br><span class="line">    method: &apos;get&apos;,</span><br><span class="line">    params</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">export const upload = data =&gt; axios(&#123;</span><br><span class="line">    url: &apos;/upload&apos;,</span><br><span class="line">    method: &apos;post&apos;,</span><br><span class="line">    data</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h6 id="api-js使用实例："><a href="#api-js使用实例：" class="headerlink" title="api.js使用实例："></a>api.js使用实例：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import axios, &#123; download &#125; from &apos;./http.js&apos;;</span><br><span class="line">export const mock = params =&gt; axios(&#123;</span><br><span class="line">    url: &apos;/mock&apos;,</span><br><span class="line">    method: &apos;get&apos;,</span><br><span class="line">    params</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">export const upload = data =&gt; axios(&#123;</span><br><span class="line">    url: &apos;/upload&apos;,</span><br><span class="line">    method: &apos;post&apos;,</span><br><span class="line">    data</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <h5 id="用于下载的axiosWrapper"><a href="#用于下载的axiosWrapper" class="headerlink" title="用于下载的axiosWrapper"></a>用于下载的axiosWrapper</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">export const download = option =&gt; axiosWrapper(&#123;</span><br><span class="line">  responseType: &apos;arraybuffer&apos;</span><br><span class="line">&#125;)(option)</span><br><span class="line">  .then((res) =&gt; &#123;</span><br><span class="line">    const contentType = res.headers[&apos;content-type&apos;];</span><br><span class="line"></span><br><span class="line">    if (~contentType.indexOf(&apos;json&apos;)) &#123;</span><br><span class="line">      const resData = res.data || res.request.response;</span><br><span class="line">      const text = Buffer.from(resData).toString(&apos;utf8&apos;);</span><br><span class="line">      const json = JSON.parse(text);</span><br><span class="line">      return Promise.reject(json);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    const disposition = res.headers[&apos;content-disposition&apos;];</span><br><span class="line">    if (disposition &amp;&amp; disposition.match(/attachment/)) &#123;</span><br><span class="line">      let filename = disposition.replace(/attachment;.*filename=/, &apos;&apos;).replace(/&quot;/g, &apos;&apos;);</span><br><span class="line">      filename = filename &amp;&amp; filename !== &apos;&apos;</span><br><span class="line">        ? filename</span><br><span class="line">        : (option.defaultFilename || &apos;noname&apos;);</span><br><span class="line">      const blob = new Blob([res.data], &#123; type: contentType &#125;);</span><br><span class="line">      saveAs(blob, filename);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return Promise.resolve(res);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
 <p>api.js使用实例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import axios, &#123; download &#125; from &apos;./http&apos;;</span><br><span class="line"></span><br><span class="line">export const export = (data, defaultFilename) = download(&#123;</span><br><span class="line">  url: &apos;/api//export&apos;,</span><br><span class="line">  method: &apos;post&apos;,</span><br><span class="line">  data,</span><br><span class="line">  defaultFilename</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import axios, &#123; download &#125; from &apos;./http&apos;;</span><br><span class="line"></span><br><span class="line">export const export = (data, defaultFilename) = download(&#123;</span><br><span class="line">  url: &apos;/api/export&apos;,</span><br><span class="line">  method: &apos;post&apos;,</span><br><span class="line">  data,</span><br><span class="line">  defaultFilename</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <h2 id="封装一个axios的思路"><a href="#封装一个axios的思路" class="headerlink" title="封装一个axios的思路"></a>封装一个axios的思路</h2><ul>
 <li>配置请求基本信息的常量：（用于基本处理）<br>BASE_URL ：根据环境变量，针对生成、测试、开发环境配置对应的url<br>TIMEOUT: 配置接口请求超时时间。<br>headers： 配置请求头<br>validateStatus: 定义HTTP响应状态码的范围。如果<code>validateStatus</code>返回<code>true</code>（或被设置为<code>null</code> promise将被解析;否则，promise将被拒绝。</li>
 </ul>
@@ -150,7 +150,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/20/axios/" data-id="ck9v0hopr001jdskckz4o8rzv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/20/axios/" data-id="ckb6is29o000t96p3kkt0nni5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6-vue/">es6, vue</a></li></ul>
@@ -192,7 +192,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-hexo/">blog-hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6-vue/">es6, vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-test/">vue test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端面试题/">前端面试题</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-hexo/">blog-hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6-vue/">es6, vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm-react-typescript/">npm react typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-test/">vue test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-vueRouter/">vue, vueRouter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端面试题/">前端面试题</a></li></ul>
     </div>
   </div>
 
@@ -202,7 +202,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/blog-hexo/" style="font-size: 13.33px;">blog-hexo</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/es6-vue/" style="font-size: 10px;">es6, vue</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/js/" style="font-size: 13.33px;">js</a> <a href="/tags/node/" style="font-size: 13.33px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/vue-test/" style="font-size: 10px;">vue test</a> <a href="/tags/web/" style="font-size: 13.33px;">web</a> <a href="/tags/前端面试题/" style="font-size: 16.67px;">前端面试题</a>
+      <a href="/tags/blog-hexo/" style="font-size: 13.33px;">blog-hexo</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/es6-vue/" style="font-size: 10px;">es6, vue</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/js/" style="font-size: 13.33px;">js</a> <a href="/tags/node/" style="font-size: 13.33px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/npm-react-typescript/" style="font-size: 10px;">npm react typescript</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/vue-test/" style="font-size: 10px;">vue test</a> <a href="/tags/vue-vueRouter/" style="font-size: 10px;">vue, vueRouter</a> <a href="/tags/web/" style="font-size: 13.33px;">web</a> <a href="/tags/前端面试题/" style="font-size: 16.67px;">前端面试题</a>
     </div>
   </div>
 
@@ -211,7 +211,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
     </div>
   </div>
 
@@ -224,23 +224,23 @@
       <ul>
         
           <li>
-            <a href="/2020/05/06/vueTest/">vueTest</a>
+            <a href="/2020/06/08/npmReactBuild/">使用react搭建组件库：react+typescript+storybook</a>
           </li>
         
           <li>
-            <a href="/2020/03/30/reactive/">Vue响应式原理解析</a>
+            <a href="/2020/05/27/Front-endEngineering/">前端工程化</a>
           </li>
         
           <li>
-            <a href="/2020/03/30/v8/">v8</a>
+            <a href="/2020/05/19/ssr/">搭建Vue的SSR服务端渲染</a>
           </li>
         
           <li>
-            <a href="/2020/01/15/vueCliMd/">vue-cli3项目展示本地Markdown文件的方法</a>
+            <a href="/2020/05/13/vueRouter/">探究vue-router的源码</a>
           </li>
         
           <li>
-            <a href="/2019/11/27/reactTitle/">reactTitle</a>
+            <a href="/2020/05/08/optimizaProject/">优化项目的实用技巧</a>
           </li>
         
       </ul>

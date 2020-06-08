@@ -2,7 +2,9 @@
 title: question
 tags:
 ---
-关联本地文件夹到github项目
+## 打开/usr/local
+1.Mac下/usr/local目录默认是对于Finder是隐藏,如果需要到/usr/local下去,打开Finder,然后使用command+shift+G,在弹出的目录中填写/usr/local就可以了。
+## 关联本地文件夹到github项目
 ```
 git init
 git remote add origin https://自己的仓库url地址
@@ -17,6 +19,12 @@ rm -rf .git
 撤销 git add . 命令：
 git rm -rf --cached .
 
+
+
+回退到某个commit
+第一步： git clone [git-url] -b [branch-name]
+
+第二步：git reset --hard [commit-number]
 ```
 * `webTitle`: 浏览器解析过程?
 * `webTitle`: HTTP response报文结构是怎样的
@@ -122,12 +130,3 @@ proxy对原对象进行代理，生成新的代理对象，不会污染原对象
 ...
 
 github中vue-demo项目视频地址：https://www.youtube.com/watch?v=Fa4cRMaTDUI
-
-
-阿里云服务器地址:https://netcn.console.aliyun.com/core/host/list2?spm=5176.200122.n2.3.78342f5bkbtObx
-w
-ip 39.102.68.72
-主机密码： 1234567w
-管理控制台登录密码,FTP登录密码,mysql数据库密码(bdm775972614_db): Lj@1314521
-
-

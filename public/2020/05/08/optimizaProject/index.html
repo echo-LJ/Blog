@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>优化项目的实用技巧 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一些有意思的loader 和 plugins 如何自动加载require.context：根据自定的规则获取需要的内容。  解决困扰：新增或减少页面每次需要更改路由配置？   以vue项目为例，实现动态配置路由。  在vue的component中按照如下格式配置页面。  mode (模块名称)  index.routes.js (该模块下路由解析配置)pages (文件统一名称)  mode.in">
+<meta property="og:type" content="article">
+<meta property="og:title" content="优化项目的实用技巧">
+<meta property="og:url" content="http://yoursite.com/2020/05/08/optimizaProject/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一些有意思的loader 和 plugins 如何自动加载require.context：根据自定的规则获取需要的内容。  解决困扰：新增或减少页面每次需要更改路由配置？   以vue项目为例，实现动态配置路由。  在vue的component中按照如下格式配置页面。  mode (模块名称)  index.routes.js (该模块下路由解析配置)pages (文件统一名称)  mode.in">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/11846892-47016d33b4647d29.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/11846892-fafb831343c335b4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/11846892-d5d9ff566fdbde19.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/11846892-4cf356217f7b1eb0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/11846892-4e1610e26c92530e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/11846892-cd9552fdd529d347.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/11846892-5b5262f39bc46f2c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/11846892-8799f362b4bdfdff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/11846892-c4e24d770a72ec58.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2020-05-08T07:21:23.031Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="优化项目的实用技巧">
+<meta name="twitter:description" content="一些有意思的loader 和 plugins 如何自动加载require.context：根据自定的规则获取需要的内容。  解决困扰：新增或减少页面每次需要更改路由配置？   以vue项目为例，实现动态配置路由。  在vue的component中按照如下格式配置页面。  mode (模块名称)  index.routes.js (该模块下路由解析配置)pages (文件统一名称)  mode.in">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/11846892-47016d33b4647d29.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-optimizaProject" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/08/optimizaProject/" class="article-date">
+  <time datetime="2020-05-08T07:20:06.000Z" itemprop="datePublished">2020-05-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      优化项目的实用技巧
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一些有意思的loader-和-plugins"><a href="#一些有意思的loader-和-plugins" class="headerlink" title="一些有意思的loader 和 plugins"></a>一些有意思的loader 和 plugins</h2><hr>
+<h4 id="如何自动加载"><a href="#如何自动加载" class="headerlink" title="如何自动加载"></a>如何自动加载</h4><p><code>require.context</code>：根据自定的规则获取需要的内容。</p>
+<blockquote>
+<p>解决困扰：新增或减少页面每次需要更改路由配置？</p>
+</blockquote>
+<ul>
+<li>以vue项目为例，实现动态配置路由。</li>
+</ul>
+<p>在vue的component中按照如下格式配置页面。<br><img src="https://upload-images.jianshu.io/upload_images/11846892-47016d33b4647d29.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<blockquote>
+<p>mode (模块名称)</p>
+<blockquote>
+<p>index.routes.js (该模块下路由解析配置)<br>pages (文件统一名称)</p>
+<blockquote>
+<p>mode.index.vue (模块下默认页面)<br>mode.resource.vue  (模块下其他页面)</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>在mode中的index.routes.js中配置路由解析代码,会自动生成routes<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">// 第1个参数： 路径</span><br><span class="line">// 第2个参数: 是否遍历1参数下面的子文件夹</span><br><span class="line">// 第3个参数： 正则匹配对应后缀的文件</span><br><span class="line"></span><br><span class="line">let r = require.context(&apos;./pages&apos;, false, /.vue/);</span><br><span class="line">// r是一个func,直接调用会报错。</span><br><span class="line">let routesArr = [];</span><br><span class="line">r.keys().forEach((key) =&gt; &#123;</span><br><span class="line">  console.log(r(key))</span><br><span class="line">  let _keyArr = key.split(&apos;.&apos;);</span><br><span class="line">  if (key.indexOf(&apos;index&apos;) != -1) &#123;</span><br><span class="line">    routesArr.push (&#123;</span><br><span class="line">      path: _keyArr[1],</span><br><span class="line">      name: _keyArr[1],</span><br><span class="line">      component: r(key).default</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    routesArr.push (&#123;</span><br><span class="line">      path: `$&#123;_keyArr[1]&#125;/$&#123;_keyArr[2]&#125;`,</span><br><span class="line">      name: _keyArr[1],</span><br><span class="line">      component: r(key).default</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">export default routesArr</span><br></pre></td></tr></table></figure></p>
+<p>在总路由地址下引用各个模块下面的路由：</p>
+<p>在router &gt; index.js配置如下代码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">let r = require.context(&apos;./components&apos;, true, /\.routes\.js/);</span><br><span class="line">let routesArr: any[] = [];</span><br><span class="line">r.keys().forEach((key) =&gt; &#123;</span><br><span class="line">  console.log(r(key));</span><br><span class="line">  routesArr = routesArr.concat(r(key).defalut);</span><br><span class="line">&#125;)</span><br><span class="line">export const routes = [</span><br><span class="line">  &#123;</span><br><span class="line">    path: &quot;/&quot;,</span><br><span class="line">    name: &apos;Home&apos;,</span><br><span class="line">    components:Home</span><br><span class="line">  &#125;,</span><br><span class="line">  ...routesArr</span><br><span class="line">];</span><br></pre></td></tr></table></figure></p>
+<p>缺点：<br>  1.不能按需引入<br>  2.不能实现动态路由。<br>优点：<br>  1.规范项目结构+文件命名+路由命名<br>  2.减少配置路由的困扰</p>
+<h2 id="如何优化打包"><a href="#如何优化打包" class="headerlink" title="如何优化打包"></a>如何优化打包</h2><hr>
+<h4 id="Dll优化"><a href="#Dll优化" class="headerlink" title="Dll优化"></a>Dll优化</h4><p>原理： 减少处理内容和步骤<br>js - 第三方库： vue / vue-router / axios /loadsh (只压缩打包一次,缓存到静态文件中)</p>
+<p>步骤： 预处理第三方库 -&gt; 打包其他文件。</p>
+<ul>
+<li>以vue项目为例，封装Dll优化。</li>
+</ul>
+<p>在vue项目的bulid文件下新建webpack.dll.js文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">var path = require(&apos;path&apos;)</span><br><span class="line">var webpack = require(&apos;webpack&apos;)</span><br><span class="line">var config = require(&apos;../config&apos;)</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">    // 定义提前处理的文件</span><br><span class="line">    vendor: [&apos;vue/dist/vue.esm.js&apos;, &apos;vue-router&apos;]</span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    // 将预处理打包好的文件资源，放在静态文件夹中。</span><br><span class="line">    path: path.join(__dirname, &apos;../static/js&apos;),</span><br><span class="line">    filename: &apos;[name].dll.js&apos;,</span><br><span class="line">    library: &apos;[name]_library&apos;</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    // 在当前目录下生成一个通知，命名为[name]_manifest.json</span><br><span class="line">    new webpack.DllPlugin(&#123;</span><br><span class="line">      path:path.join(__dirname,&apos;.&apos;, &apos;[name]-manifest.json&apos;),</span><br><span class="line">      name: &apos;[name]_library&apos; // 对应output中的library</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在package.json 的 <code>scripts</code>中配置npm run dll 命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;dll&quot;: &quot;webpack --config build/webpack.dll.js&quot;</span><br></pre></td></tr></table></figure></p>
+<p>然后执行<code>npm run dll</code>命令看一下打包所需要的时间<br><img src="https://upload-images.jianshu.io/upload_images/11846892-fafb831343c335b4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>然后在执行一下<code>npm run build</code> 命令查看一下原始打包所需要的时间<br><img src="https://upload-images.jianshu.io/upload_images/11846892-d5d9ff566fdbde19.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>执行<code>npm run dll</code>命令之后会发现在<code>bulid</code>文件夹下生成了<br><code>vendor-manifest.json</code>,在<code>static/js</code>下生成了<code>vendor.dll.js</code>。<br><img src="https://upload-images.jianshu.io/upload_images/11846892-4cf356217f7b1eb0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><img src="https://upload-images.jianshu.io/upload_images/11846892-4e1610e26c92530e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>然后在<code>bulid/webpack.prod.conf.js</code>中配置正常打包下的文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">plugins: [</span><br><span class="line">    new webpack.DllReferencePlugin(&#123;</span><br><span class="line">      //context: 在html中引入的路径。</span><br><span class="line">      context: path.join(__dirname, &apos;..&apos;),</span><br><span class="line">      manifest: require(&apos;./vendor-manifest.json&apos;)</span><br><span class="line">    &#125;)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>最后在执行一下<code>npm run build</code> 命令查看一下dll处理之后打包所需要的时间<br><img src="https://upload-images.jianshu.io/upload_images/11846892-cd9552fdd529d347.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>很完美的节约了一些时间，时间就是金钱，时间就是生命。</p>
+<h4 id="如何开发插件与loader"><a href="#如何开发插件与loader" class="headerlink" title="如何开发插件与loader"></a>如何开发插件与loader</h4><hr>
+<blockquote>
+<p>示例问题：项目vuex过大，导致打包结果过大。<br>处理： 按组件异步加载vuex</p>
+</blockquote>
+<p>在src/store文件夹下index文件中存储首屏加载的vuex数据;<br>在src/store/model/.. 文件夹下存储其他模块需要懒加载的vuex数据;<br><img src="https://upload-images.jianshu.io/upload_images/11846892-5b5262f39bc46f2c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>在src下新建vuePlugins/index封装插件<br><img src="https://upload-images.jianshu.io/upload_images/11846892-8799f362b4bdfdff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>示例代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">let a = &#123;</span><br><span class="line">  install:function(vue) &#123;</span><br><span class="line">    vue.mixin(&#123;</span><br><span class="line">      beforeCreate:function()&#123;</span><br><span class="line">        if (this.$options.isVuex) &#123;</span><br><span class="line">          // 在对应页面中配置store</span><br><span class="line">          // store中存储需要按需加载的vuex相关的js文件</span><br><span class="line">          let store = this.$options.store;</span><br><span class="line">          // 动态引入vuex</span><br><span class="line">          // 注意：import的参数不能传入变量。</span><br><span class="line">          import(&apos;../store/model/&apos;+ store).then((res) =&gt; &#123;</span><br><span class="line">            // registerModul方法是vuex的方法;</span><br><span class="line">            this.$store.registerModule(store, res.default);</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">export default a;</span><br></pre></td></tr></table></figure></p>
+<p>在main.js引入插件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import Vuepl from &quot;./vuePlugins&quot;;</span><br><span class="line">Vue.use(Vuepl);</span><br></pre></td></tr></table></figure></p>
+<p>在需要懒加载vuex的页面配置<br><img src="https://upload-images.jianshu.io/upload_images/11846892-c4e24d770a72ec58.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">isVuex:true;</span><br><span class="line">store: &apos;modelIndex&apos;;</span><br></pre></td></tr></table></figure></p>
+<p>👌了！以上就是vuex实现按需加载的栗子。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/05/08/optimizaProject/" data-id="ckb6is2aa001h96p389bae8gi" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/05/13/vueRouter/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          探究vue-router的源码
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/06/vueTest/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">vueTest</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-hexo/">blog-hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6-vue/">es6, vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm-react-typescript/">npm react typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-test/">vue test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-vueRouter/">vue, vueRouter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端面试题/">前端面试题</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/blog-hexo/" style="font-size: 13.33px;">blog-hexo</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/es6-vue/" style="font-size: 10px;">es6, vue</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/js/" style="font-size: 13.33px;">js</a> <a href="/tags/node/" style="font-size: 13.33px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/npm-react-typescript/" style="font-size: 10px;">npm react typescript</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/vue-test/" style="font-size: 10px;">vue test</a> <a href="/tags/vue-vueRouter/" style="font-size: 10px;">vue, vueRouter</a> <a href="/tags/web/" style="font-size: 13.33px;">web</a> <a href="/tags/前端面试题/" style="font-size: 16.67px;">前端面试题</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/06/08/npmReactBuild/">使用react搭建组件库：react+typescript+storybook</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/27/Front-endEngineering/">前端工程化</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/19/ssr/">搭建Vue的SSR服务端渲染</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/13/vueRouter/">探究vue-router的源码</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/08/optimizaProject/">优化项目的实用技巧</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

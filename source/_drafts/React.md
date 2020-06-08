@@ -120,6 +120,7 @@ store的三大功能：dispatch，subscribe，getState都不需要手动来写�
 
 参考链接：https://github.com/bailicangdu/react-pxq
 
+
 # React
 
 #### 1. 什么时候使用状态管理器？
