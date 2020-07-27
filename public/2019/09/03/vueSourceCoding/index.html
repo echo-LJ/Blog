@@ -5,19 +5,19 @@
   
   <title>了解vue源码 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Author: EchoTime: 2019-09-03 09:47:57 new Vue()做了什么？new关键字代表实例化一个对象, 而Vue实际上是一个类, 源码位置是/src/core/instance/index.js12345678function Vue (options) &amp;#123;  if (process.env.NODE_ENV !== &amp;apos;production&amp;a">
+  <meta name="description" content="Author: EchodefinePropertyTime: 2019-09-03 09:47:57 new Vue()做了什么？new关键字代表实例化一个对象, 而Vue实际上是一个类, 源码位置是/src/core/instance/index.js12345678function Vue (options) &amp;#123;  if (process.env.NODE_ENV !== &amp;apo">
 <meta name="keywords" content="vue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="了解vue源码">
 <meta property="og:url" content="http://yoursite.com/2019/09/03/vueSourceCoding/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Author: EchoTime: 2019-09-03 09:47:57 new Vue()做了什么？new关键字代表实例化一个对象, 而Vue实际上是一个类, 源码位置是/src/core/instance/index.js12345678function Vue (options) &amp;#123;  if (process.env.NODE_ENV !== &amp;apos;production&amp;a">
+<meta property="og:description" content="Author: EchodefinePropertyTime: 2019-09-03 09:47:57 new Vue()做了什么？new关键字代表实例化一个对象, 而Vue实际上是一个类, 源码位置是/src/core/instance/index.js12345678function Vue (options) &amp;#123;  if (process.env.NODE_ENV !== &amp;apo">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/3/25/169b418d400ff0b7?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
-<meta property="og:updated_time" content="2019-12-04T12:50:48.226Z">
+<meta property="og:updated_time" content="2020-07-22T08:13:14.822Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="了解vue源码">
-<meta name="twitter:description" content="Author: EchoTime: 2019-09-03 09:47:57 new Vue()做了什么？new关键字代表实例化一个对象, 而Vue实际上是一个类, 源码位置是/src/core/instance/index.js12345678function Vue (options) &amp;#123;  if (process.env.NODE_ENV !== &amp;apos;production&amp;a">
+<meta name="twitter:description" content="Author: EchodefinePropertyTime: 2019-09-03 09:47:57 new Vue()做了什么？new关键字代表实例化一个对象, 而Vue实际上是一个类, 源码位置是/src/core/instance/index.js12345678function Vue (options) &amp;#123;  if (process.env.NODE_ENV !== &amp;apo">
 <meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2019/3/25/169b418d400ff0b7?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -89,7 +89,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Author: Echo<br>Time: 2019-09-03 09:47:57</p>
+        <p>Author: EchodefineProperty<br>Time: 2019-09-03 09:47:57</p>
 <h2 id="new-Vue-做了什么？"><a href="#new-Vue-做了什么？" class="headerlink" title="new Vue()做了什么？"></a>new Vue()做了什么？</h2><p>new关键字代表实例化一个对象, 而Vue实际上是一个类, 源码位置是<br><code>/src/core/instance/index.js</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function Vue (options) &#123;</span><br><span class="line">  if (process.env.NODE_ENV !== &apos;production&apos; &amp;&amp;</span><br><span class="line">    !(this instanceof Vue)</span><br><span class="line">  ) &#123;</span><br><span class="line">    warn(&apos;Vue is a constructor and should be called with the `new` keyword&apos;)</span><br><span class="line">  &#125;</span><br><span class="line">  this._init(options)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>接着我们跳转追踪至<code>this._init()</code>，即<code>Vue.prototype._init</code>,位于<code>src\core\instance\init.js</code>.<br>在<code>_init()</code>方法的内部有一系列 <code>init*</code> 的方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Vue.prototype._init = function (options?: Object) &#123;</span><br><span class="line">    const vm: Component = this</span><br><span class="line">    // ...忽略，从第45行看起</span><br><span class="line">    if (process.env.NODE_ENV !== &apos;production&apos;) &#123;</span><br><span class="line">      initProxy(vm)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      vm._renderProxy = vm</span><br><span class="line">    &#125;</span><br><span class="line">    // expose real self</span><br><span class="line">    vm._self = vm</span><br><span class="line">    initLifecycle(vm)</span><br><span class="line">    initEvents(vm)</span><br><span class="line">    initRender(vm)</span><br><span class="line">    callHook(vm, &apos;beforeCreate&apos;)</span><br><span class="line">    initInjections(vm) // resolve injections before data/props</span><br><span class="line">    initState(vm)</span><br><span class="line">    initProvide(vm) // resolve provide after data/props</span><br><span class="line">    callHook(vm, &apos;created&apos;)</span><br><span class="line">    // ...忽略</span><br><span class="line">    if (vm.$options.el) &#123;</span><br><span class="line">      vm.$mount(vm.$options.el)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>统一概述一遍new Vue()时做了什么处理:</p>
@@ -259,7 +259,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/03/vueSourceCoding/" data-id="ckb6is2at002696p367vjx0c4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/09/03/vueSourceCoding/" data-id="ckd4b4q2t002at2p3fedmnthp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
@@ -320,7 +320,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
     </div>
   </div>
 
@@ -333,23 +333,23 @@
       <ul>
         
           <li>
-            <a href="/2020/06/08/npmReactBuild/">使用react搭建组件库：react+typescript+storybook</a>
+            <a href="/2020/07/27/vueI18/">vue项目中引入&amp;使用国际化</a>
           </li>
         
           <li>
-            <a href="/2020/05/27/Front-endEngineering/">前端工程化</a>
+            <a href="/2020/07/27/fixProject/">如何优化项目</a>
           </li>
         
           <li>
-            <a href="/2020/05/19/ssr/">搭建Vue的SSR服务端渲染</a>
+            <a href="/2020/07/27/axios1/">Axios源码解析</a>
           </li>
         
           <li>
-            <a href="/2020/05/13/vueRouter/">探究vue-router的源码</a>
+            <a href="/2020/07/27/reactCom2/">使用react搭建组件库--radio组件</a>
           </li>
         
           <li>
-            <a href="/2020/05/08/optimizaProject/">优化项目的实用技巧</a>
+            <a href="/2020/07/27/reactCom1/">使用react搭建组件库--icon组件</a>
           </li>
         
       </ul>

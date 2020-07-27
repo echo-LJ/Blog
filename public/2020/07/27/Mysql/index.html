@@ -3,19 +3,19 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>reactTitle | Hexo</title>
+  <title>macOS 上安裝 MySQL | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="blog">
+  <meta name="description" content="在 macOS 下安裝 MySQL 资料库，并且基本的设定 root 密码。  安装步骤 官网页面下方No thanks, just start my download. 借用站点-mysql-5.6.21-osx10.9-x86_64.dmg 对mysql-5.6.21-osx10.9-x86_64.dmg点击两下进行安装，点击两下mysql-5.6.21-osx10.8-x86_64.pkg">
 <meta property="og:type" content="article">
-<meta property="og:title" content="reactTitle">
-<meta property="og:url" content="http://yoursite.com/2019/11/27/reactTitle/index.html">
+<meta property="og:title" content="macOS 上安裝 MySQL">
+<meta property="og:url" content="http://yoursite.com/2020/07/27/Mysql/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="blog">
+<meta property="og:description" content="在 macOS 下安裝 MySQL 资料库，并且基本的设定 root 密码。  安装步骤 官网页面下方No thanks, just start my download. 借用站点-mysql-5.6.21-osx10.9-x86_64.dmg 对mysql-5.6.21-osx10.9-x86_64.dmg点击两下进行安装，点击两下mysql-5.6.21-osx10.8-x86_64.pkg">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-12-14T10:29:55.948Z">
+<meta property="og:updated_time" content="2020-07-27T09:11:32.868Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="reactTitle">
-<meta name="twitter:description" content="blog">
+<meta name="twitter:title" content="macOS 上安裝 MySQL">
+<meta name="twitter:description" content="在 macOS 下安裝 MySQL 资料库，并且基本的设定 root 密码。  安装步骤 官网页面下方No thanks, just start my download. 借用站点-mysql-5.6.21-osx10.9-x86_64.dmg 对mysql-5.6.21-osx10.9-x86_64.dmg点击两下进行安装，点击两下mysql-5.6.21-osx10.8-x86_64.pkg">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -64,10 +64,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-reactTitle" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Mysql" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/11/27/reactTitle/" class="article-date">
-  <time datetime="2019-11-27T07:04:55.000Z" itemprop="datePublished">2019-11-27</time>
+    <a href="/2020/07/27/Mysql/" class="article-date">
+  <time datetime="2020-07-27T09:11:18.000Z" itemprop="datePublished">2020-07-27</time>
 </a>
     
   </div>
@@ -78,7 +78,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      reactTitle
+      macOS 上安裝 MySQL
     </h1>
   
 
@@ -86,11 +86,35 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <blockquote>
+<p>在 macOS 下安裝 MySQL 资料库，并且基本的设定 root 密码。</p>
+</blockquote>
+<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><ul>
+<li><a href="https://dev.mysql.com/downloads/file/?id=454017" target="_blank" rel="noopener">官网页面</a>下方<code>No thanks, just start my download.</code></li>
+<li>借用站点-<a href="https://cdn.ioa.tw/MacEnvInit/mysql-5.6.21-osx10.9-x86_64.dmg" target="_blank" rel="noopener">mysql-5.6.21-osx10.9-x86_64.dmg</a></li>
+<li>对<code>mysql-5.6.21-osx10.9-x86_64.dmg</code>点击两下进行安装，点击两下<code>mysql-5.6.21-osx10.8-x86_64.pkg</code> 开始安装</li>
+<li>‼️若是 OSX 10.10 以上，请在 安装类型 的步骤时点击自定 把 <code>Startup Item</code> 选择 取消勾选！</li>
+<li>安装完成后，打开 系统偏好设置 &gt; MySQL &gt; Start MySQL Server<br>若 系统偏好设置 里面没看到 MySQL 的话，请重开 系统偏好设置<h2 id="变更启动权限"><a href="#变更启动权限" class="headerlink" title="变更启动权限"></a>变更启动权限</h2></li>
+<li>每次启动 MySQL 都要输入密码，很麻烦，所以变更一下权限，终端输入命令 <code>sudo chmod 777 /usr/local/mysql/support-files/mysql.server</code><h2 id="加入指令"><a href="#加入指令" class="headerlink" title="加入指令"></a>加入指令</h2></li>
+<li>打开终端输入 <code>vim ~/.zshrc</code></li>
+<li>在最下面新增 <code>export PATH=&quot;/usr/local/mysql/bin:$PATH&quot;</code>执行<code>:wq</code></li>
+<li>退出之后，在终端执行<code>source ~/.zshrc</code><h2 id="设定密码"><a href="#设定密码" class="headerlink" title="设定密码"></a>设定密码</h2></li>
+<li>打开终端</li>
+<li>进入 MySQL，终端执行命令 <code>mysql -u root</code></li>
+<li>执行命令<code>use mysql;</code>选择资料库</li>
+<li>执行命令<code>update user set password=PASSWORD(&quot;你的密碼&quot;) where User=&#39;root&#39;;</code> 设定密码</li>
+<li>执行命令<code>flush privileges;</code>刷新MySQL</li>
+<li>执行命令<code>quit</code> 离开 MySQL</li>
+</ul>
+<blockquote>
+<p>注意！设置密码时，要记得加上引号，假设密码为1234，应该为：<br>update user set password=PASSWORD(“1234”) where User=’root’;</p>
+</blockquote>
+<p>相关参考：<a href="https://www.ioa.tw/macOS/MySQL.html" target="_blank" rel="noopener">https://www.ioa.tw/macOS/MySQL.html</a></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/27/reactTitle/" data-id="ckb6is2ad001l96p36fbmm2i2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/27/Mysql/" data-id="ckd4b4q11000pt2p36iinj26l" class="article-share-link">Share</a>
       
       
     </footer>
@@ -99,19 +123,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2020/01/15/vueCliMd/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/07/27/Node/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          vue-cli3项目展示本地Markdown文件的方法
+          NO3:Node.js + mysql+Sequelize实现注册接口及校验逻辑
         
       </div>
     </a>
   
   
-    <a href="/2019/11/04/asyncAwit/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/06/08/npmReactBuild/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">asyncAwit</div>
+      <div class="article-nav-title">使用react搭建组件库：react+typescript+storybook</div>
     </a>
   
 </nav>
@@ -149,7 +173,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
     </div>
   </div>
 
@@ -162,23 +186,23 @@
       <ul>
         
           <li>
-            <a href="/2020/06/08/npmReactBuild/">使用react搭建组件库：react+typescript+storybook</a>
+            <a href="/2020/07/27/vueI18/">vue项目中引入&amp;使用国际化</a>
           </li>
         
           <li>
-            <a href="/2020/05/27/Front-endEngineering/">前端工程化</a>
+            <a href="/2020/07/27/fixProject/">如何优化项目</a>
           </li>
         
           <li>
-            <a href="/2020/05/19/ssr/">搭建Vue的SSR服务端渲染</a>
+            <a href="/2020/07/27/axios1/">Axios源码解析</a>
           </li>
         
           <li>
-            <a href="/2020/05/13/vueRouter/">探究vue-router的源码</a>
+            <a href="/2020/07/27/reactCom2/">使用react搭建组件库--radio组件</a>
           </li>
         
           <li>
-            <a href="/2020/05/08/optimizaProject/">优化项目的实用技巧</a>
+            <a href="/2020/07/27/reactCom1/">使用react搭建组件库--icon组件</a>
           </li>
         
       </ul>

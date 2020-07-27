@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>vue项目中引入&amp;使用国际化 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="国际化思路：将当前语言代码-国家地区对照表（zh-CN）放到cookie中和vuex中,每次通过读取cookie&amp;amp;vuex中的语言代码，来展示对应的语言包，在切换语言的时候将语言代码存入到cookie&amp;amp;vuex中（保证刷新页面后能记住用户选择的语言）。####引入vue-i18n&amp;amp;vuex&amp;amp;js-cookievue-i18n是vue国际化依赖包,vuex是状态管理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue项目中引入&amp;使用国际化">
+<meta property="og:url" content="http://yoursite.com/2020/07/27/vueI18/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="国际化思路：将当前语言代码-国家地区对照表（zh-CN）放到cookie中和vuex中,每次通过读取cookie&amp;amp;vuex中的语言代码，来展示对应的语言包，在切换语言的时候将语言代码存入到cookie&amp;amp;vuex中（保证刷新页面后能记住用户选择的语言）。####引入vue-i18n&amp;amp;vuex&amp;amp;js-cookievue-i18n是vue国际化依赖包,vuex是状态管理">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-07-27T09:24:37.776Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue项目中引入&amp;使用国际化">
+<meta name="twitter:description" content="国际化思路：将当前语言代码-国家地区对照表（zh-CN）放到cookie中和vuex中,每次通过读取cookie&amp;amp;vuex中的语言代码，来展示对应的语言包，在切换语言的时候将语言代码存入到cookie&amp;amp;vuex中（保证刷新页面后能记住用户选择的语言）。####引入vue-i18n&amp;amp;vuex&amp;amp;js-cookievue-i18n是vue国际化依赖包,vuex是状态管理">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-vueI18" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/27/vueI18/" class="article-date">
+  <time datetime="2020-07-27T09:24:07.000Z" itemprop="datePublished">2020-07-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      vue项目中引入&amp;使用国际化
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>国际化思路：将当前语言代码-国家地区对照表（zh-CN）放到cookie中和vuex中,每次通过读取cookie&amp;vuex中的语言代码，来展示对应的语言包，在切换语言的时候将语言代码存入到cookie&amp;vuex中（保证刷新页面后能记住用户选择的语言）。<br>####引入vue-i18n&amp;vuex&amp;js-cookie<br>vue-i18n是vue国际化依赖包,vuex是状态管理。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save vue-i18n vuex js-cookie</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>在main.js中注册引入即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import VueI18n from &apos;vue-i18n&apos;</span><br><span class="line">import Cookies from &apos;js-cookie&apos;</span><br><span class="line">Vue.use(VueI18n)</span><br><span class="line">import store from &apos;vuex&apos;</span><br><span class="line">new Vue(&#123;</span><br><span class="line">  el: &apos;#app&apos;,</span><br><span class="line">  i18n,</span><br><span class="line">  store,</span><br><span class="line">  components: &#123; App &#125;,</span><br><span class="line">  template: &apos;&lt;App/&gt;&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>小编是将其放在store&amp;lang之中,在main.js中引入两个文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import store from &apos;./store&apos;</span><br><span class="line">import i18n from &apos;./lang&apos;</span><br><span class="line">// 由于这里用到了element组件库，这里需要的同学自行安装element-ui</span><br><span class="line">// npm install element-ui</span><br><span class="line">//  Vue.use(Element, &#123;</span><br><span class="line">//  i18n: (key, value) =&gt; i18n.t(key, value)</span><br><span class="line">// &#125;)</span><br><span class="line">new Vue(&#123;</span><br><span class="line">  el: &apos;#app&apos;,</span><br><span class="line">  router,</span><br><span class="line">  i18n,</span><br><span class="line">  store,</span><br><span class="line">  components: &#123; App &#125;,</span><br><span class="line">  template: &apos;&lt;App/&gt;&apos;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>lang文件夹：当前以中英文为例，需要支持多个语言则可添加同级语言包。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">lang</span><br><span class="line">  |--index.js   //主文件</span><br><span class="line">  |</span><br><span class="line">  |-- zh.js      //中文语言包</span><br><span class="line">  |</span><br><span class="line">  |-- zh.js      //英文语言包</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">`index.js`</span><br><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">import VueI18n from &apos;vue-i18n&apos;</span><br><span class="line">import Cookies from &apos;js-cookie&apos;</span><br><span class="line">import elementEnLocale from &apos;element-ui/lib/locale/lang/en&apos; // element-ui lang</span><br><span class="line">import elementZhLocale from &apos;element-ui/lib/locale/lang/zh-CN&apos;// element-ui lang</span><br><span class="line">import enLocale from &apos;./en&apos;</span><br><span class="line">import zhLocale from &apos;./zh&apos;</span><br><span class="line"></span><br><span class="line">Vue.use(VueI18n)</span><br><span class="line"></span><br><span class="line">const messages = &#123;</span><br><span class="line">  en-US: &#123;</span><br><span class="line">    ...enLocale,</span><br><span class="line">    ...elementEnLocale</span><br><span class="line">  &#125;,</span><br><span class="line">  zh-CN: &#123;</span><br><span class="line">    ...zhLocale,</span><br><span class="line">    ...elementZhLocale</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const i18n = new VueI18n(&#123;</span><br><span class="line">  locale: Cookies.get(&apos;language&apos;) || &apos;en-US&apos;,</span><br><span class="line">  messages</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">export default i18n</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">`zh.js`</span><br><span class="line">  export default &#123;</span><br><span class="line">  login: &#123;</span><br><span class="line">    title: &apos;欢迎&apos;</span><br><span class="line">    logIn: &apos;登录&apos;</span><br><span class="line"> &#125;</span><br><span class="line">`en.js`</span><br><span class="line">export default &#123;</span><br><span class="line">  login: &#123;</span><br><span class="line">    title: &apos;Welcome&apos;,</span><br><span class="line">    logIn: &apos;Log in&apos;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>使用实例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;span&gt;&#123;&#123;$t(&apos;login.title&apos;)&#125;&#125;&lt;/span&gt;</span><br><span class="line">// 在语言代码为中文（zh-CN）时,则展示为：欢迎</span><br><span class="line">// 在语言代码为英文（en-US）时,则展示为：Welcome&apos;</span><br></pre></td></tr></table></figure></p>
+<p>store文件夹：vue&amp;cookie中存入语言代码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">store</span><br><span class="line">  |--index.js   //主文件</span><br><span class="line">  |</span><br><span class="line">  |-- modules      //vuex子模块文件</span><br><span class="line">          |</span><br><span class="line">          |-- language.js      //语言</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">`index.js`</span><br><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">import Vuex from &apos;vuex&apos;</span><br><span class="line">import language from &apos;./modules/language&apos;</span><br><span class="line"></span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"></span><br><span class="line">const store = new Vuex.Store(&#123;</span><br><span class="line">  modules: &#123;</span><br><span class="line">    language</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">export default store</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">`language.js  `</span><br><span class="line">import Cookies from &apos;js-cookie&apos;</span><br><span class="line">import Cookies from &apos;js-cookie&apos;</span><br><span class="line"></span><br><span class="line">const app = &#123;</span><br><span class="line">  state: &#123;</span><br><span class="line">    language: Cookies.get(&apos;language&apos;) || &apos;en-US&apos; // 项目初始化时，默认为英文</span><br><span class="line">  &#125;,</span><br><span class="line">  mutations: &#123;</span><br><span class="line">    SET_LANGUAGE: (state, language) =&gt; &#123;</span><br><span class="line">      state.language = language</span><br><span class="line">      Cookies.set(&apos;language&apos;, language)</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  getters: &#123;</span><br><span class="line">    language: state =&gt; state.language</span><br><span class="line">  &#125;,</span><br><span class="line">  actions: &#123;</span><br><span class="line">    setLanguage(&#123; commit &#125;, language) &#123;</span><br><span class="line">      commit(&apos;SET_LANGUAGE&apos;, language)</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default app</span><br></pre></td></tr></table></figure>
+<p>在项目需要切换语言的位置，添加如下事件即可，（事件：将语言代码存入到vuex中，vuex中调用setcookie即可存入到cookie中,并改变i18n中的local即可切换语言。）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">handleSetLanguage(lang) &#123;</span><br><span class="line">  this.$i18n.locale = lang</span><br><span class="line">  this.$store.dispatch(&apos;setLanguage&apos;, lang)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>以上即可实现国际化！！！！！<br>😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/27/vueI18/" data-id="ckd4b4q2r0027t2p34ni8dn92" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/07/27/fixProject/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">如何优化项目</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-hexo/">blog-hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6-vue/">es6, vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm-react-typescript/">npm react typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-test/">vue test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-vueRouter/">vue, vueRouter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端面试题/">前端面试题</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/blog-hexo/" style="font-size: 13.33px;">blog-hexo</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/es6-vue/" style="font-size: 10px;">es6, vue</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/js/" style="font-size: 13.33px;">js</a> <a href="/tags/node/" style="font-size: 13.33px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/npm-react-typescript/" style="font-size: 10px;">npm react typescript</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/vue-test/" style="font-size: 10px;">vue test</a> <a href="/tags/vue-vueRouter/" style="font-size: 10px;">vue, vueRouter</a> <a href="/tags/web/" style="font-size: 13.33px;">web</a> <a href="/tags/前端面试题/" style="font-size: 16.67px;">前端面试题</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/07/27/vueI18/">vue项目中引入&amp;使用国际化</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/27/fixProject/">如何优化项目</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/27/axios1/">Axios源码解析</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/27/reactCom2/">使用react搭建组件库--radio组件</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/27/reactCom1/">使用react搭建组件库--icon组件</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

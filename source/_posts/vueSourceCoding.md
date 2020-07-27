@@ -4,7 +4,7 @@ date: 2019-09-03 09:47:57
 tags: vue
 ---
 
-Author: Echo
+Author: EchodefineProperty
 Time: 2019-09-03 09:47:57
 
 ## new Vue()做了什么？
