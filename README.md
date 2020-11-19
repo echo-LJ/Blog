@@ -42,4 +42,30 @@ $ git cz
 ```
 $ git push origin <-分支名->
 ```
-## 提交代码执行步骤
+## 运行项目
+```
+hexo g
+hexo server
+```
+在线访问项目地址：http://localhost:4000/.
+
+## 部署项目
+首先将项目中有关文件提交！
+```
+删除.deploy_git
+$ hexo clean 
+$ hexo g
+$ hexo d
+```
+线上访问项目地址： https://lujinggirl.github.io/
+
+## 生成博客文章的一些常用命令
+```
+hexo new "postName" #新建文章  
+hexo new page "pageName" #新建页面  
+hexo generate #生成静态页面至public目录  
+hexo server #开启预览访问端口（默认端口4000，'ctrl + c'关闭server）  
+hexo deploy #将.deploy目录部署到GitHub  
+hexo help  #查看帮助  
+hexo version  #查看Hexo的版本
+```
