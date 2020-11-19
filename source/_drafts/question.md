@@ -2,6 +2,8 @@
 title: question
 tags:
 ---
+## 安装全局包报没权限
+解决方法，运行：sudo npm install -g @vue/cli
 ## 打开/usr/local
 1.Mac下/usr/local目录默认是对于Finder是隐藏,如果需要到/usr/local下去,打开Finder,然后使用command+shift+G,在弹出的目录中填写/usr/local就可以了。
 ## 关联本地文件夹到github项目
@@ -30,7 +32,7 @@ git rm -rf --cached .
 * `webTitle`: HTTP response报文结构是怎样的
 * `vueSourceCoding`:看一下这个https://www.cnblogs.com/zhuzhenwei918/p/9266407.html 百度搜索一下`vue serverPrefetch`& https://zhuanlan.zhihu.com/p/25936718
 
-####### 在jd的电脑提交代码到github上需要重定向密钥：
+#### 在jd的电脑提交代码到github上需要重定向密钥：
 
 eval $(ssh-agent -s)
 windows:ssh-add ~/.ssh/lujing163
