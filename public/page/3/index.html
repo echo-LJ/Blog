@@ -1,1120 +1,669 @@
 <!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="utf-8">
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<!--<![endif]-->
+
+<head>
+  <title>Echo的博客</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="Echo的博客">
+    <meta name="author" content="John Doe">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="Echo的博客" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
   
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/page/3/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="blog">
-<meta property="og:locale" content="default">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="blog">
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
   
 
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
 </head>
-</html>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
+
+<!--
+<body class="home-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close">
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            <li>
+                <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                        <li><a href="/" target="_BLANK" class="animsition-link">AAA</a></li>
+                    
+                        <li><a href="/atom.xml" target="_BLANK" class="animsition-link">BBB</a></li>
+                    
+                </ul>
+            </li>
+            
+            
+            
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a href="http://go.kieran.top/" class="animsition-link">Kieran</a></li>
+                    
+                    <li><a href="http://domain.com/" class="animsition-link">Name</a></li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-commitMessage" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/09/20/commitMessage/" class="article-date">
-  <time datetime="2019-09-20T07:52:39.000Z" itemprop="datePublished">2019-09-20</time>
-</a>
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/20/commitMessage/">Commit message 代码提交规范</a>
-    </h1>
-  
+    <!-- ============================ END Off-canvas navigation =========================== -->
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Author: Echo<br>Time: 2019-09-20 15:52:39</p>
-<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>在多人协作项目中，如果代码风格统一、代码提交信息的说明准确，那么在后期协作以及Bug处理时会更加方便。Git 每次提交代码，都要写 Commit message（提交说明），否则就不允许提交。一般来说，commit message 应该清晰明了，说明本次提交的目的。</p>
-<h5 id="Commit-message-的作用"><a href="#Commit-message-的作用" class="headerlink" title="Commit message 的作用"></a>Commit message 的作用</h5><ul>
-<li>提供更多的历史信息，方便快速浏览</li>
-<li>过滤某些commit（比如文档改动），便于快速查找信息</li>
-<li>直接从commit生成Change log</li>
-<li>可读性好，清晰，不必深入看代码即可了解当前commit的作用。</li>
-<li>为 Code Reviewing（代码审查）做准备</li>
-<li>方便跟踪工程历史</li>
-<li>提高项目的整体质量，提高个人工程素质</li>
-</ul>
-<h5 id="Commit-message-的格式"><a href="#Commit-message-的格式" class="headerlink" title="Commit message 的格式"></a>Commit message 的格式</h5><p>Commit message 包括三个部分：Header，Body 和 Footer</p>
-<h6 id="一、Header"><a href="#一、Header" class="headerlink" title="一、Header"></a>一、Header</h6><p><code>Header部分只有一行，包括三个字段：type（必需）、scope（可选）和subject（必需）</code></p>
-<ul>
-<li><p>type</p>
-<p>type用于说明 commit 的类别，只允许使用下面的标识</p>
-<p>  feat：新增功能（feature）<br>  fix：修补bug<br>  docs：仅仅修改了文档，比如 README, CHANGELOG, CONTRIBUTE等等<br>  style： 仅仅修改了空格、格式缩进、逗号等等，不改变代码逻辑<br>  refactor：重构（即不是新增功能，也不是修改bug的代码变动）<br>  test：增加测试，包括单元测试、集成测试等<br>  chore：构建过程或辅助工具的变动<br>  type：代表某次提交的类型，比如是修复一个bug还是增加一个新的feature。<br>  perf: 优化相关，比如提升性能、体验<br>  revert: 回滚到上一个版本<br>  ci：自动化流程配置修改<br>注：如果type为feat和fix，则该 commit 将肯定出现在 Change log 之中</p>
-</li>
-<li><p>scope</p>
-</li>
-</ul>
-<p>scope用于说明 commit 影响的范围，比如数据层、控制层、视图层等等，视项目不同而不  同。</p>
-<ul>
-<li>subject</li>
-</ul>
-<p>①subject是 commit 目的的简短描述，不超过50个字符。<br>②以动词开头，使用第一人称现在时，比如change，而不是changed或changes<br>③第一个字母小写<br>④结尾不加句号（.）</p>
-<h6 id="一、Body"><a href="#一、Body" class="headerlink" title="一、Body"></a>一、Body</h6><p><code>Body 部分是对本次 commit 的详细描述，可以分成多行</code></p>
-<h6 id="三、Footer"><a href="#三、Footer" class="headerlink" title="三、Footer"></a>三、Footer</h6><p>Footer 部分只用于两种情况：</p>
-<ul>
-<li>不兼容变动<br>如果当前代码与上一个版本不兼容，则 Footer 部分以BREAKING CHANGE开头，后面是对变动的描述、以及变动理由和迁移方法</li>
-<li>关闭 Issue</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">如果当前 commit 针对某个issue，那么可以在 Footer 部分关闭这个 issue</span><br><span class="line"></span><br><span class="line">Closes #234</span><br><span class="line"></span><br><span class="line">也可以一次关闭多个 issue</span><br><span class="line"></span><br><span class="line">Closes #123, #245, #992</span><br></pre></td></tr></table></figure>
-<h4 id="全局安装"><a href="#全局安装" class="headerlink" title="全局安装"></a>全局安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g commitizen</span><br></pre></td></tr></table></figure>
-<h4 id="项目中安装"><a href="#项目中安装" class="headerlink" title="项目中安装"></a>项目中安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ commitizen init cz-conventional-changelog --save --save-exact</span><br></pre></td></tr></table></figure>
-<p>注意：如果是第二次配置，需要用–force：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ commitizen init cz-conventional-changelog --save --force</span><br></pre></td></tr></table></figure></p>
-<h4 id="将未暂存文件所有变化提交到暂存区"><a href="#将未暂存文件所有变化提交到暂存区" class="headerlink" title="将未暂存文件所有变化提交到暂存区"></a>将未暂存文件所有变化提交到暂存区</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git add .</span><br></pre></td></tr></table></figure>
-<p>① git add . ：他会监控工作区的状态树，使用它会把工作时的所有变化提交到暂存区，包括文件内容修改(modified)以及新文件(new)，但不包括被删除的文件。</p>
-<p>②git add -u ：他仅监控已经被add的文件（即tracked file），他会将被修改的文件提交到暂存区（git add –update的缩写）。add -u 不会提交新文件。</p>
-<p>③git add -a ：是上面两个功能的合集（git add –all的缩写）</p>
-<h4 id="命令行输入提交命令"><a href="#命令行输入提交命令" class="headerlink" title="命令行输入提交命令"></a>命令行输入提交命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git cz</span><br></pre></td></tr></table></figure>
-<p>输入命令后依次提示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1. 上、下键选择要提交的更改类型</span><br><span class="line"></span><br><span class="line">2. 此更改的范围是什么(例如组件或文件名)?(按回车键跳过)</span><br><span class="line"></span><br><span class="line">3. 写一个简短的祈使句来描述这个变化</span><br><span class="line"></span><br><span class="line">4. 提供更详细的更改说明:(按回车键跳过)</span><br><span class="line"></span><br><span class="line">5. 有什么重大变化吗?</span><br><span class="line"></span><br><span class="line">6. 这一变化是否会影响</span><br><span class="line">任何未解决的问题?</span><br></pre></td></tr></table></figure></p>
-<h4 id="再推送到本地git仓库"><a href="#再推送到本地git仓库" class="headerlink" title="再推送到本地git仓库"></a>再推送到本地git仓库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push</span><br></pre></td></tr></table></figure>
-<h4 id="打印日志命令"><a href="#打印日志命令" class="headerlink" title="打印日志命令"></a>打印日志命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git log</span><br></pre></td></tr></table></figure>
-<h4 id="输出CHANGELOG记录，（文件名称自己设置），通过以下命令，在项目中生成-CHANGELOG-md-文件"><a href="#输出CHANGELOG记录，（文件名称自己设置），通过以下命令，在项目中生成-CHANGELOG-md-文件" class="headerlink" title="输出CHANGELOG记录，（文件名称自己设置），通过以下命令，在项目中生成 CHANGELOG.md 文件"></a>输出CHANGELOG记录，（文件名称自己设置），通过以下命令，在项目中生成 CHANGELOG.md 文件</h4><ul>
-<li>安装生成 Change log 的工具</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g conventional-changelog-cli</span><br></pre></td></tr></table></figure>
-<ul>
-<li>通过提交记录生成 CHANGELOG.md</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ conventional-changelog -p -i CHANGELOG.md -s</span><br></pre></td></tr></table></figure>
-<h4 id="打印出-git-log-的日志记录（详细日志记录）"><a href="#打印出-git-log-的日志记录（详细日志记录）" class="headerlink" title="打印出 git log 的日志记录（详细日志记录）"></a>打印出 git log 的日志记录（详细日志记录）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git log &gt; 文件名</span><br></pre></td></tr></table></figure>
-<p>参考链接： <a href="https://segmentfault.com/a/1190000019579621" target="_blank" rel="noopener">https://segmentfault.com/a/1190000019579621</a></p>
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/20/commitMessage/" data-id="ckd4b4q18000ut2p3xleqxk9i" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
 
-    </footer>
-  </div>
-  
-</article>
+        <!-- ============================ Header & Logo bar =========================== -->
 
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">Echo的博客</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a></li>
+                            
+                            
+                            <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a></li>
+                            
+                            
+                            <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a></li>
+                            
+                            
+                            <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
 
-  
-    <article id="post-ForwardReverseProxy" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/09/20/ForwardReverseProxy/" class="article-date">
-  <time datetime="2019-09-20T03:12:13.000Z" itemprop="datePublished">2019-09-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/20/ForwardReverseProxy/">正向代理&amp;反向代理</a>
-    </h1>
-  
+        <!-- ============================ Header & Logo bar =========================== -->
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Author: Echo<br>Time: 2019-09-20 11:12:13</p>
-<h2 id="ForwardProxy"><a href="#ForwardProxy" class="headerlink" title="ForwardProxy"></a>ForwardProxy</h2><p>正向代理（forward proxy）：是一个位于客户端和目标服务器之间的服务器(代理服务器)，为了从目标服务器取得内容，客户端向代理服务器发送一个请求并指定目标，然后代理服务器向目标服务器转交请求并将获得的内容返回给客户端。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">这种代理其实在生活中是比较常见的，比如科学上网技术，其用到的就是代理技术。</span><br><span class="line"></span><br><span class="line">有时候，用户想要访问某国外网站，该网站无法在国内直接访问，但是我们可以访问到一个代理服务器，这个代理服务器可以访问到这个国外网站。这样呢，用户对该国外网站的访问就需要通过代理服务器来转发请求，并且该代理服务器也会将请求的响应再返回给用户。这个上网的过程就是用到了正向代理。</span><br></pre></td></tr></table></figure>
-<p><img src="https://img2018.cnblogs.com/blog/612653/201902/612653-20190226142038241-1287539351.png" alt="ForwardProxy"></p>
-<h6 id="正向代理，其实是”代理服务器”代理了”客户端”，去和”目标服务器”进行交互。"><a href="#正向代理，其实是”代理服务器”代理了”客户端”，去和”目标服务器”进行交互。" class="headerlink" title="正向代理，其实是”代理服务器”代理了”客户端”，去和”目标服务器”进行交互。"></a>正向代理，其实是”代理服务器”代理了”客户端”，去和”目标服务器”进行交互。</h6><h4 id="用途："><a href="#用途：" class="headerlink" title="用途："></a>用途：</h4><ul>
-<li>突破访问限制<br>通过代理服务器，可以突破自身IP访问限制，访问国外网站，教育网等。</li>
-<li>提高访问速度<br>通常代理服务器都设置一个较大的硬盘缓冲区，会将部分请求的响应保存到缓冲区中，当其他用户再访问相同的信息时， 则直接由缓冲区中取出信息，传给用户，以提高访问速度。</li>
-<li>隐藏客户端真实IP<br>上网者也可以通过这种方法隐藏自己的IP，免受攻击。</li>
-</ul>
-<h2 id="ReverseProxy"><a href="#ReverseProxy" class="headerlink" title="ReverseProxy"></a>ReverseProxy</h2><p>反向代理（reverse proxy）：是指以代理服务器来接受internet上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给internet上请求连接的客户端，此时代理服务器对外就表现为一个反向代理服务器。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对于常用的场景，就是我们在Web开发中用到的负载均衡服务器，客户端发送请求到负载均衡服务器上，负载均衡服务器再把请求转发给一台真正的服务器来执行，再把执行结果返回给客户端。</span><br></pre></td></tr></table></figure>
-<p><img src="https://img2018.cnblogs.com/blog/612653/201902/612653-20190226142038241-1287539351.png" alt="ReverseProxy"></p>
-<h6 id="反向代理，其实是”代理服务器”代理了”目标服务器”，去和”客户端”进行交互。"><a href="#反向代理，其实是”代理服务器”代理了”目标服务器”，去和”客户端”进行交互。" class="headerlink" title="反向代理，其实是”代理服务器”代理了”目标服务器”，去和”客户端”进行交互。"></a>反向代理，其实是”代理服务器”代理了”目标服务器”，去和”客户端”进行交互。</h6><h4 id="用途：-1"><a href="#用途：-1" class="headerlink" title="用途："></a>用途：</h4><ul>
-<li>负载均衡<br>反向代理服务器可以做负载均衡，根据所有真实服务器的负载情况，将客户端请求分发到不同的真实服务器上。</li>
-<li>提高访问速度<br>反向代理服务器可以对于静态内容及短时间内有大量访问请求的动态内容提供缓存服务，提高访问速度。</li>
-<li>隐藏客户端真实IP<br>使用反向代理，可以对客户端隐藏服务器的IP地址。</li>
-<li>提供安全保障<br>反向代理服务器可以作为应用层防火墙，为网站提供对基于Web的攻击行为（例如DoS/DDoS）的防护，更容易排查恶意软件等。还可以为后端服务器统一提供加密和SSL加速（如SSL终端代理），提供HTTP访问认证等</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/20/ForwardReverseProxy/" data-id="ckd4b4q0w000kt2p3xesekbxl" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-virtualDom" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/09/20/virtualDom/" class="article-date">
-  <time datetime="2019-09-20T03:05:02.000Z" itemprop="datePublished">2019-09-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/20/virtualDom/">虚拟dom</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Author: Echo<br>Time: 2019-09-20 11:05:02</p>
-<h5 id="什么是虚拟DOM树？（Virtual-DOM）"><a href="#什么是虚拟DOM树？（Virtual-DOM）" class="headerlink" title="什么是虚拟DOM树？（Virtual DOM）"></a>什么是虚拟DOM树？（Virtual DOM）</h5><p>virtual，指的是对真实DOM的一种模拟。相对于直接操作真实的DOM结构，我们构建一棵虚拟的树，将各种数据和操作直接应用在这棵虚拟的树上，然后再将对虚拟的树的修改应用到真实的DOM结构上。<br>虚拟DOM树其实就是一个普通的js对象，它是用来描述一段HTML片段的</p>
-<ul>
-<li>当页面渲染的时候Vue会创建一颗虚拟DOM树</li>
-<li>当页面发生改变Vue会再创建一颗新的虚拟DOM树</li>
-<li>前后两颗新旧虚拟DOM树进行对比，Vue通过diff算法，去记录差异的地方</li>
-<li>将有差异的地方更新到真实的DOM树中<h5 id="虚拟DOM树有什么用？"><a href="#虚拟DOM树有什么用？" class="headerlink" title="虚拟DOM树有什么用？　"></a>虚拟DOM树有什么用？　</h5>vue中的虚拟DOM树只会重新渲染页面修改的地方，大大减少了对真实DOM树的操作。 ——-虚拟DOM树是占内容的，但是可以帮我们提高DOM的性能。</li>
-</ul>
-<p>可以这样理解，虚拟DOM树是用空间(虚拟DOM树占空间)换时间(虚拟DOM树可以提高DOM效率)。</p>
-<h5 id="Vue-v-for-中-key-到底有什么用？"><a href="#Vue-v-for-中-key-到底有什么用？" class="headerlink" title="Vue  v-for 中 :key 到底有什么用？"></a>Vue  v-for 中 :key 到底有什么用？</h5><p>vue不直接操作真实的DOM树，通过虚拟DOM树就可以重新渲染修改的地方，影藏在背后的原理其实就是 diff 算法。<br>key的作用是为了高效的更新虚拟DOM树，提高查找的效率，一次性定位到要修改的元</p>
-<p>参考链接： <a href="https://www.cnblogs.com/javascript9527/p/11327924.html" target="_blank" rel="noopener">https://www.cnblogs.com/javascript9527/p/11327924.html</a></p>
-<p>实现一个Virtual DOM算法参考链接： <a href="https://www.cnblogs.com/ssw-men/p/10818585.html" target="_blank" rel="noopener">https://www.cnblogs.com/ssw-men/p/10818585.html</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/20/virtualDom/" data-id="ckd4b4q2o0022t2p3tw7miee0" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-axios" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/09/20/axios/" class="article-date">
-  <time datetime="2019-09-20T02:50:39.000Z" itemprop="datePublished">2019-09-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/20/axios/">axios封装</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Author: Echo<br>Time: 2019-09-20 10:50:39</p>
-<p><a href="https://www.npmjs.com/package/axios" target="_blank" rel="noopener">axios文档地址</a></p>
-<p>在vue项目中，和后台交互获取数据这块，我们通常使用的是<code>axios</code>库，它是基于<code>promise</code>的http库，可运行在浏览器端和node.js中。他有很多优秀的特性，例如<code>拦截请求和响应、取消请求、转换json、客户端防御cSRF</code>等。所以我们的尤大大也是果断放弃了对其官方库vue-resource的维护，直接推荐我们使用axios库.</p>
-<p><code>本次封装以vue项目为例做实践。</code></p>
-<h5 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install axios</span><br></pre></td></tr></table></figure>
-<h5 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h5><p>在项目的src目录下新建文件夹request,文件夹下新建http.js和api.js文件：</p>
-<ul>
-<li>http.js: 封装axios</li>
-<li>api.js: 用来统一管理接口</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 在http.js中引入axios</span><br><span class="line">import axios from &apos;axios&apos;; // 引入axios</span><br><span class="line">import QS from &apos;qs&apos;; // 引入qs模块，用来序列化post类型的数据，后面会提到</span><br></pre></td></tr></table></figure>
-<h5 id="环境的切换-gt-配置不同的baseURL"><a href="#环境的切换-gt-配置不同的baseURL" class="headerlink" title="环境的切换-&gt;配置不同的baseURL"></a>环境的切换-&gt;配置不同的baseURL</h5><p>我们的项目环境可能有开发环境、测试环境和生产环境.<br>我们通过node的环境变量来匹配我们的默认的接口url前缀<br>axios.defaults.baseURL可以设置axios的默认请求地址</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const baseURL_Map = &#123;</span><br><span class="line">  dev：&apos;https://www.baidu.com&apos;,</span><br><span class="line">  uat: &apos;https://www.ceshi.com&apos;,</span><br><span class="line">  product: &apos;https://www.production.com&apos;</span><br><span class="line">&#125;</span><br><span class="line">axios.defaults.baseURL = baseURL_Map[process.env.NODE_ENV]</span><br></pre></td></tr></table></figure>
-<p>扩展：</p>
-<h6 id="process-env-NODE-ENV"><a href="#process-env-NODE-ENV" class="headerlink" title="process.env.NODE_ENV"></a>process.env.NODE_ENV</h6><ul>
-<li>process对象是全局变量: 提供当前node.js的有关信息，以及控制当前node.js的有关进程。因为是全局变量，它对于node应用程序是始终可用的，无需require()</li>
-<li>process.env属性返回一个包含用户环境信息的对象</li>
-<li>process.env.NODE_ENV:不是process.env对象上原有的属性，是我们自己添加进去的一个环境变量，用来确定当前所处的开发阶段。</li>
-<li>测试环境： uat; 生产环境：product; 开发环境： dev</li>
-</ul>
-<h5 id="设置请求超时变量"><a href="#设置请求超时变量" class="headerlink" title="设置请求超时变量"></a>设置请求超时变量</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 例如超过了10s，就会告知用户当前请求超时，请刷新等。</span><br><span class="line"></span><br><span class="line">const TIMEOUT = 30000;</span><br></pre></td></tr></table></figure>
-<p>扩展： </p>
-<ul>
-<li>统一处理所有接口的超时时间： <code>axios.defaults.timeout = 10000;</code></li>
-</ul>
-<h5 id="设置post请求头"><a href="#设置post请求头" class="headerlink" title="设置post请求头"></a>设置post请求头</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">axios.defaults.headers.post[&apos;Content-Type&apos;] = &apos;application/x-www-form-urlencoded;charset=UTF-8&apos;;</span><br></pre></td></tr></table></figure>
-<p> 此处无需设置，在下面封装的时候会针对get和post请求做统一对应处理</p>
-<h5 id="定义HTTP响应状态码的范围"><a href="#定义HTTP响应状态码的范围" class="headerlink" title="定义HTTP响应状态码的范围"></a>定义HTTP响应状态码的范围</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 判断 HTTP 请求是否成功</span><br><span class="line"> * @param &#123;number&#125; status - HTTP 状态码</span><br><span class="line"> * @returns &#123;Boolean&#125;</span><br><span class="line"> */</span><br><span class="line">const isBadRequest = status =&gt; status &gt;= 300;</span><br></pre></td></tr></table></figure>
-<h4 id="映射-HTTP-错误时的提示语句"><a href="#映射-HTTP-错误时的提示语句" class="headerlink" title="映射 HTTP 错误时的提示语句"></a>映射 HTTP 错误时的提示语句</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 映射 HTTP 错误时的提示语句</span><br><span class="line"> * @param &#123;enhanceError&#125; error</span><br><span class="line"> * @returns &#123;Object&#125;</span><br><span class="line"> */</span><br><span class="line">const badStatusMap = error =&gt; (&#123;</span><br><span class="line">  400: &apos;请求错误&apos;,</span><br><span class="line">  401: &apos;未授权，请登录&apos;,</span><br><span class="line">  403: &apos;拒绝访问&apos;,</span><br><span class="line">  404: `请求地址出错 $&#123;error.response ? error.response.config.url : &apos;&apos;&#125;`,</span><br><span class="line">  408: &apos;请求超时&apos;,</span><br><span class="line">  500: &apos;服务器内部错误&apos;,</span><br><span class="line">  501: &apos;服务未实现&apos;,</span><br><span class="line">  502: &apos;网关错误&apos;,</span><br><span class="line">  503: &apos;服务不可用&apos;,</span><br><span class="line">  504: &apos;网关超时&apos;,</span><br><span class="line">  505: &apos;HTTP版本不受支持&apos;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h5 id="封装axios"><a href="#封装axios" class="headerlink" title="封装axios"></a>封装axios</h5><ul>
-<li>http.js<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * http.js</span><br><span class="line"> * @param &#123;Object&#125; [globalOption]</span><br><span class="line"> */</span><br><span class="line">import &#123;</span><br><span class="line">  mergeWith, omit, isPlainObject</span><br><span class="line">&#125; from &apos;lodash&apos;;</span><br><span class="line"></span><br><span class="line">// isPlainObject ： checks if value is a plain object, that is, an object created by the Object constructor or one with a [[Prototype]] of null</span><br><span class="line">// mergeWith 是用于递归合并来源对象的自身和继承的可枚举属性到目标对象。 </span><br><span class="line">// 基本意思就是将默认的option配置和手动配置的globalOption，通过递归的形式合并成一个option.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 修复 axios 转换 bug，如可能把请求中的日期等转成空对象的问题</span><br><span class="line"> *  &apos;utils.merge&apos; in &apos;node_modules\axios\lib\core\Axios.js&apos;</span><br><span class="line"> * @param &#123;any&#125; obj</span><br><span class="line"> */</span><br><span class="line">const fixAxiosDateMerge = (obj) =&gt; &#123;</span><br><span class="line">  if (!obj) return obj;</span><br><span class="line">  if (obj instanceof Date) return obj.getTime();</span><br><span class="line">  if (!isPlainObject(obj)) return obj;</span><br><span class="line">  Object.keys(obj).forEach((key) =&gt; &#123;</span><br><span class="line">    obj[key] = fixAxiosDateMerge(obj[key]);</span><br><span class="line">  &#125;);</span><br><span class="line">  return obj;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function axiosWrapper(globalOption) &#123;</span><br><span class="line">  return function(option) &#123;</span><br><span class="line">    // 此处的操作相对与开放一点，把baseURL、timeout、responseType、可以根据接口不同做单独配置。</span><br><span class="line">    option = mergeWith(&#123;</span><br><span class="line">      baseURL: BASE_URL,</span><br><span class="line">      headers: &#123;</span><br><span class="line">        &apos;Content-Type&apos;: &apos;application/x-www-form-urlencoded&apos;,</span><br><span class="line">        &apos;Cache-Control&apos;: &apos;no-cache&apos;</span><br><span class="line">      &#125;,</span><br><span class="line">      timeout: TIMEOUT,</span><br><span class="line">      withCredentials: true,</span><br><span class="line">      responseType: &apos;&apos;,</span><br><span class="line">      validateStatus: status =&gt; !isBadRequest(status)</span><br><span class="line"></span><br><span class="line">      // 可以定义HTTP响应状态码的范围。如果`validateStatus`返回`true`（或被设置为`null` promise将被解析;否则，promise将被拒绝。</span><br><span class="line">    &#125;, globalOption, option);</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line">    if (option.data) &#123;</span><br><span class="line">      option.data = fixAxiosDateMerge(option.data);</span><br><span class="line">    &#125;</span><br><span class="line">    if (option.params) &#123;</span><br><span class="line">      option.params = fixAxiosDateMerge(option.params);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    const r = axios.create(option);</span><br><span class="line">    </span><br><span class="line">    // 在axios的源代码中，超时后, 会在拦截器那里 axios.interceptors.response 捕抓到错误信息, 且 error.code = &quot;ECONNABORTED&quot;</span><br><span class="line"></span><br><span class="line">    // timeout</span><br><span class="line">    r.interceptors.request.use(</span><br><span class="line">      config =&gt; config,</span><br><span class="line">      (error) =&gt; &#123;</span><br><span class="line">        </span><br><span class="line">        if (error &amp;&amp; error.code === &apos;ECONNABORTED&apos;</span><br><span class="line">          &amp;&amp; ~error.message.indexOf(&apos;timeout&apos;)) &#123;</span><br><span class="line">          console.log(&apos;[AxiosWrapper] request timeout&apos;);</span><br><span class="line">        &#125;</span><br><span class="line">        return Promise.reject(error);</span><br><span class="line">      &#125;</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    // other errors // 跳转到对应的报错页面</span><br><span class="line">    r.interceptors.request.use(</span><br><span class="line">      config =&gt; config,</span><br><span class="line">      (error) =&gt; &#123;</span><br><span class="line">        const errorInfo = error.response;</span><br><span class="line">        if (errorInfo) &#123;</span><br><span class="line">          const errorStatus = errorInfo.status;</span><br><span class="line">          router.push(&#123;</span><br><span class="line">            path: `/error/$&#123;errorStatus&#125;`</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        return Promise.reject(error);</span><br><span class="line">      &#125;</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    // make data</span><br><span class="line">    r.interceptors.request.use(</span><br><span class="line">      (opt) =&gt; &#123;</span><br><span class="line">        const params = mergeWith(&#123;&#125;, opt.data, opt.params); // cloneDeep(opt.data);</span><br><span class="line">        opt = omit(opt, [&apos;data&apos;, &apos;params&apos;]);</span><br><span class="line">        const needBody = /^(put|post|patch)$/i.test(opt.method);</span><br><span class="line">        const sendJSON = opt.headers</span><br><span class="line">          &amp;&amp; opt.headers[&apos;Content-Type&apos;] === &apos;application/json&apos;;</span><br><span class="line">          // 根据请求头和method来处理入参的格式</span><br><span class="line">        if (needBody) &#123;</span><br><span class="line">          opt.data = sendJSON</span><br><span class="line">            ? JSON.stringify(params)</span><br><span class="line">            : qs.stringify(params);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">          opt.params = params;</span><br><span class="line">        &#125;</span><br><span class="line">        return opt;</span><br><span class="line">      &#125;</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    // bad HTTP request</span><br><span class="line">    r.interceptors.response.use(</span><br><span class="line">      response =&gt; response,</span><br><span class="line">      (error) =&gt; &#123;</span><br><span class="line">        if (error &amp;&amp; error.response) &#123;</span><br><span class="line">          const &#123; status, statusText &#125; = error.response;</span><br><span class="line">          if (isBadRequest(status)) &#123;</span><br><span class="line">            console.warn(&apos;[AxiosWrapper] bad HTTP request: status is %s \n&apos;, status, error.response);</span><br><span class="line">            error.message = badStatusMap(error)[status] || statusText;</span><br><span class="line">            if (!error.message) &#123;</span><br><span class="line">              try &#123;</span><br><span class="line">                error.message = JSON.parse(error.response.request.responseText).errmsg;</span><br><span class="line">              &#125; catch (ex) &#123;</span><br><span class="line">                console.log(&apos;[AxiosWrapper] json parse error&apos;, ex);</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            Vue.prototype.Config.ROOT_VUE.$message.error(error.message);</span><br><span class="line">            return Promise.reject(new Error(error.message));</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return Promise.reject(error);</span><br><span class="line">      &#125;</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    // check business logic</span><br><span class="line">    // 请求失败，根据HTTP响应状态码做出对应的messageTip</span><br><span class="line">    r.interceptors.response.use(</span><br><span class="line">      (response) =&gt; &#123;</span><br><span class="line">        if (option.responseType === &apos;arraybuffer&apos;) &#123;</span><br><span class="line">          return response;</span><br><span class="line">        &#125;</span><br><span class="line">        const [reqURL, resData] = takeapartResponse(response);</span><br><span class="line">        const noWarn = &apos;no-global-config-warn&apos; in response.config.headers</span><br><span class="line">          &amp;&amp; !!response.config.headers[&apos;no-global-config-warn&apos;];</span><br><span class="line">        const isValid = isValidCode(resData.errno);</span><br><span class="line">        const method = response.config.method.toUpperCase();</span><br><span class="line">        if (!isValid) &#123;</span><br><span class="line">          // eslint-disable-next-line prefer-promise-reject-errors</span><br><span class="line">          return Promise.reject(&#123;</span><br><span class="line">            type: ERR_CODE,</span><br><span class="line">            reqURL,</span><br><span class="line">            resData,</span><br><span class="line">            noWarn,</span><br><span class="line">            method</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        const reqStr = `$&#123;method&#125; $&#123;reqURL&#125;`;</span><br><span class="line">        // warnByResponse 函数是根据业务针对不同接口返回不同的错误提示。这个函数可以根据业务自行处理。</span><br><span class="line">        warnByResponse(reqStr, resData, true, noWarn);</span><br><span class="line">        return resData;</span><br><span class="line">      &#125;</span><br><span class="line">    );</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    // wrong business logic</span><br><span class="line">    // r.interceptors.response.use(</span><br><span class="line">    //   response =&gt; response,</span><br><span class="line">    //   (error) =&gt; &#123;</span><br><span class="line">    //     if (error.type === ERR_CODE) &#123;</span><br><span class="line">    //       const reqStr = `$&#123;error.method&#125; $&#123;error.reqURL&#125;`;</span><br><span class="line">    //       warnByResponse(reqStr, error.resData, false, error.noWarn);</span><br><span class="line">    //     &#125;</span><br><span class="line">    //     return Promise.reject(error.resData);</span><br><span class="line">    //   &#125;</span><br><span class="line">    // );</span><br><span class="line"></span><br><span class="line">    return r(option);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="简单的封装axios函数"><a href="#简单的封装axios函数" class="headerlink" title="简单的封装axios函数"></a>简单的封装axios函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 获得一般的 wrapper</span><br><span class="line"> * @param &#123;Object&#125; [option]</span><br><span class="line"> */</span><br><span class="line"> // `transformResponse` 在传递给 then/catch 前，允许修改响应数据</span><br><span class="line">export default option =&gt; axiosWrapper(&#123;</span><br><span class="line">  transformResponse: data =&gt; void (0), // eslint-disable-line no-unused-vars</span><br><span class="line">  </span><br><span class="line">&#125;)(option);</span><br></pre></td></tr></table></figure>
-<p>在使用axios时，注意到配置选项中包含params和data两者，以为他们是相同的，实则不然。</p>
-<p>因为params是添加到url的请求字符串中的，用于get请求。</p>
-<p>而data是添加到请求体（body）中的， 用于post请求。</p>
-<h6 id="api-js使用实例："><a href="#api-js使用实例：" class="headerlink" title="api.js使用实例："></a>api.js使用实例：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import axios, &#123; download &#125; from &apos;./http.js&apos;;</span><br><span class="line">export const mock = params =&gt; axios(&#123;</span><br><span class="line">    url: &apos;/mock&apos;,</span><br><span class="line">    method: &apos;get&apos;,</span><br><span class="line">    params</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">export const upload = data =&gt; axios(&#123;</span><br><span class="line">    url: &apos;/upload&apos;,</span><br><span class="line">    method: &apos;post&apos;,</span><br><span class="line">    data</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h5 id="用于下载的axiosWrapper"><a href="#用于下载的axiosWrapper" class="headerlink" title="用于下载的axiosWrapper"></a>用于下载的axiosWrapper</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">export const download = option =&gt; axiosWrapper(&#123;</span><br><span class="line">  responseType: &apos;arraybuffer&apos;</span><br><span class="line">&#125;)(option)</span><br><span class="line">  .then((res) =&gt; &#123;</span><br><span class="line">    const contentType = res.headers[&apos;content-type&apos;];</span><br><span class="line"></span><br><span class="line">    if (~contentType.indexOf(&apos;json&apos;)) &#123;</span><br><span class="line">      const resData = res.data || res.request.response;</span><br><span class="line">      const text = Buffer.from(resData).toString(&apos;utf8&apos;);</span><br><span class="line">      const json = JSON.parse(text);</span><br><span class="line">      return Promise.reject(json);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    const disposition = res.headers[&apos;content-disposition&apos;];</span><br><span class="line">    if (disposition &amp;&amp; disposition.match(/attachment/)) &#123;</span><br><span class="line">      let filename = disposition.replace(/attachment;.*filename=/, &apos;&apos;).replace(/&quot;/g, &apos;&apos;);</span><br><span class="line">      filename = filename &amp;&amp; filename !== &apos;&apos;</span><br><span class="line">        ? filename</span><br><span class="line">        : (option.defaultFilename || &apos;noname&apos;);</span><br><span class="line">      const blob = new Blob([res.data], &#123; type: contentType &#125;);</span><br><span class="line">      saveAs(blob, filename);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return Promise.resolve(res);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
-<p>api.js使用实例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import axios, &#123; download &#125; from &apos;./http&apos;;</span><br><span class="line"></span><br><span class="line">export const export = (data, defaultFilename) = download(&#123;</span><br><span class="line">  url: &apos;/api/export&apos;,</span><br><span class="line">  method: &apos;post&apos;,</span><br><span class="line">  data,</span><br><span class="line">  defaultFilename</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="封装一个axios的思路"><a href="#封装一个axios的思路" class="headerlink" title="封装一个axios的思路"></a>封装一个axios的思路</h2><ul>
-<li>配置请求基本信息的常量：（用于基本处理）<br>BASE_URL ：根据环境变量，针对生成、测试、开发环境配置对应的url<br>TIMEOUT: 配置接口请求超时时间。<br>headers： 配置请求头<br>validateStatus: 定义HTTP响应状态码的范围。如果<code>validateStatus</code>返回<code>true</code>（或被设置为<code>null</code> promise将被解析;否则，promise将被拒绝。</li>
-</ul>
-<p>可以请求接口的不同，封装axios的时候，将 请求基本信息的常量 通过 参数 的方式单独进行配置。</p>
-<blockquote>
-<p>扩展：<br>  具体方法：通过lodash的mergeWith方法将默认的option配置和手动配置的globalOption，通过递归的形式合并成一个option。</p>
-</blockquote>
-<ul>
-<li><p>请求拦截</p>
-<p>timeout: 在axios的源代码中，超时后, 会在拦截器那里 axios.interceptors.response 捕抓到错误信息, 且 error.code = “ECONNABORTED”，可以根据这个code提示超时报错信息。</p>
-<p>token：统一在http请求的header都加上token，这样后台根据token判断你的登录情况，即使本地存在token，也有可能token是过期的，所以在响应拦截器中要对返回状态进行判断</p>
-<p>other errors: 根据请求状态<code>status</code>,直接promise.reject.路由跳转到对应的报错页面。<br>根据请求头和method来处理入参的格式</p>
-</li>
-</ul>
-<p>在使用axios时，注意到配置选项中包含params和data两者，以为他们是相同的，实则不然。<br>因为params是添加到url的请求字符串中的，用于get请求。<br>而data是添加到请求体（body）中的， 用于post请求。</p>
-<ul>
-<li>响应拦截<br>badStatusMap: 请求失败，根据HTTP响应状态码做出对应的messageTip</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/20/axios/" data-id="ckd4b4q17000tt2p3ykuoowiy" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6-vue/">es6, vue</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-web" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/09/19/web/" class="article-date">
-  <time datetime="2019-09-19T12:53:29.000Z" itemprop="datePublished">2019-09-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/19/web/">前端面试题汇总</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="页面从输入URL到页面加载显示完成，这个过程中都发生了什么？"><a href="#页面从输入URL到页面加载显示完成，这个过程中都发生了什么？" class="headerlink" title="页面从输入URL到页面加载显示完成，这个过程中都发生了什么？"></a>页面从输入URL到页面加载显示完成，这个过程中都发生了什么？</h5><h5 id="浏览器工作原理"><a href="#浏览器工作原理" class="headerlink" title="浏览器工作原理"></a>浏览器工作原理</h5><h5 id="浏览器内核"><a href="#浏览器内核" class="headerlink" title="浏览器内核"></a>浏览器内核</h5><h5 id="常见的浏览器内核有哪些？"><a href="#常见的浏览器内核有哪些？" class="headerlink" title="常见的浏览器内核有哪些？"></a>常见的浏览器内核有哪些？</h5><h5 id="cookies，sessionStorage-和-localStorage-的区别？"><a href="#cookies，sessionStorage-和-localStorage-的区别？" class="headerlink" title="cookies，sessionStorage 和 localStorage 的区别？"></a>cookies，sessionStorage 和 localStorage 的区别？</h5><h5 id="页面访问cookie的限制条件"><a href="#页面访问cookie的限制条件" class="headerlink" title="页面访问cookie的限制条件"></a>页面访问cookie的限制条件</h5><h5 id="实现浏览器内多个标签页之间的通信"><a href="#实现浏览器内多个标签页之间的通信" class="headerlink" title="实现浏览器内多个标签页之间的通信"></a>实现浏览器内多个标签页之间的通信</h5><h5 id="页面可见性（Page-Visibility-API）-可以有哪些用途"><a href="#页面可见性（Page-Visibility-API）-可以有哪些用途" class="headerlink" title="页面可见性（Page Visibility API） 可以有哪些用途"></a>页面可见性（Page Visibility API） 可以有哪些用途</h5><h5 id="网页验证码是做什么的，是为了解决什么安全问题"><a href="#网页验证码是做什么的，是为了解决什么安全问题" class="headerlink" title="网页验证码是做什么的，是为了解决什么安全问题"></a>网页验证码是做什么的，是为了解决什么安全问题</h5><h5 id="为什么利用多个域名来存储网站资源"><a href="#为什么利用多个域名来存储网站资源" class="headerlink" title="为什么利用多个域名来存储网站资源"></a>为什么利用多个域名来存储网站资源</h5><h5 id="一个页面上有大量的图片，加载很慢，你有哪些方法优化这些图片的加载，给用户更好的体验"><a href="#一个页面上有大量的图片，加载很慢，你有哪些方法优化这些图片的加载，给用户更好的体验" class="headerlink" title="一个页面上有大量的图片，加载很慢，你有哪些方法优化这些图片的加载，给用户更好的体验"></a>一个页面上有大量的图片，加载很慢，你有哪些方法优化这些图片的加载，给用户更好的体验</h5><h5 id="以前端角度出发做好SEO（搜索引擎）需要考虑什么？"><a href="#以前端角度出发做好SEO（搜索引擎）需要考虑什么？" class="headerlink" title="以前端角度出发做好SEO（搜索引擎）需要考虑什么？"></a>以前端角度出发做好SEO（搜索引擎）需要考虑什么？</h5><h5 id="前端性能优化"><a href="#前端性能优化" class="headerlink" title="前端性能优化"></a>前端性能优化</h5><h5 id="webSocket如何兼容低浏览器"><a href="#webSocket如何兼容低浏览器" class="headerlink" title="webSocket如何兼容低浏览器"></a>webSocket如何兼容低浏览器</h5><h5 id="web开发中会话跟踪的方法"><a href="#web开发中会话跟踪的方法" class="headerlink" title="web开发中会话跟踪的方法"></a>web开发中会话跟踪的方法</h5><h5 id="HTTP-method"><a href="#HTTP-method" class="headerlink" title="HTTP method"></a>HTTP method</h5><h5 id="HTTP状态码及其含义"><a href="#HTTP状态码及其含义" class="headerlink" title="HTTP状态码及其含义"></a>HTTP状态码及其含义</h5><h5 id="什么是同源：协议相同-域名相同-端口相同"><a href="#什么是同源：协议相同-域名相同-端口相同" class="headerlink" title="什么是同源：协议相同 域名相同 端口相同"></a>什么是同源：协议相同 域名相同 端口相同</h5><h5 id="爬虫和反爬虫的理解"><a href="#爬虫和反爬虫的理解" class="headerlink" title="爬虫和反爬虫的理解"></a>爬虫和反爬虫的理解</h5><p>答案参考链接：<a href="https://lujinggirl.github.io/2019/09/02/webTitle/" target="_blank" rel="noopener">https://lujinggirl.github.io/2019/09/02/webTitle/</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/19/web/" data-id="ckd4b4q2u002ct2p3y2guh35h" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端面试题/">前端面试题</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-css" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/09/19/css/" class="article-date">
-  <time datetime="2019-09-19T12:53:19.000Z" itemprop="datePublished">2019-09-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/19/css/">前端css相关面试题汇总</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="什么是-BFC机制"><a href="#什么是-BFC机制" class="headerlink" title="什么是 BFC机制"></a>什么是 BFC机制</h5><h5 id="CSS3中新增的选择器以及属性"><a href="#CSS3中新增的选择器以及属性" class="headerlink" title="CSS3中新增的选择器以及属性"></a>CSS3中新增的选择器以及属性</h5><h5 id="居中布局"><a href="#居中布局" class="headerlink" title="居中布局"></a>居中布局</h5><h5 id="清除浮动有哪些方法-各有什么优缺点"><a href="#清除浮动有哪些方法-各有什么优缺点" class="headerlink" title="清除浮动有哪些方法, 各有什么优缺点"></a>清除浮动有哪些方法, 各有什么优缺点</h5><h5 id="用纯CSS创建一个三角形的原理是什么"><a href="#用纯CSS创建一个三角形的原理是什么" class="headerlink" title="用纯CSS创建一个三角形的原理是什么"></a>用纯CSS创建一个三角形的原理是什么</h5><h5 id="实现三栏布局有哪些方法-分别描述一下"><a href="#实现三栏布局有哪些方法-分别描述一下" class="headerlink" title="实现三栏布局有哪些方法, 分别描述一下"></a>实现三栏布局有哪些方法, 分别描述一下</h5><h5 id="css3实现0-5px的细线"><a href="#css3实现0-5px的细线" class="headerlink" title="css3实现0.5px的细线"></a>css3实现0.5px的细线</h5><h5 id="link-与-import-的区别"><a href="#link-与-import-的区别" class="headerlink" title="link 与 @import 的区别"></a>link 与 @import 的区别</h5><h5 id="开发中为什么要初始化css样式"><a href="#开发中为什么要初始化css样式" class="headerlink" title="开发中为什么要初始化css样式"></a>开发中为什么要初始化css样式</h5><h5 id="CSS优化、提高性能的方法有哪些"><a href="#CSS优化、提高性能的方法有哪些" class="headerlink" title="CSS优化、提高性能的方法有哪些"></a>CSS优化、提高性能的方法有哪些</h5><p>答案参考链接：<a href="https://lujinggirl.github.io/2019/09/19/cssTitle/" target="_blank" rel="noopener">https://lujinggirl.github.io/2019/09/19/cssTitle/</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/19/css/" data-id="ckd4b4q24001jt2p35cg97tz5" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端面试题/">前端面试题</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-vue" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/09/19/vue/" class="article-date">
-  <time datetime="2019-09-19T12:50:06.000Z" itemprop="datePublished">2019-09-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/19/vue/">vue相关面试题汇总</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="孙子组件或更深层次的组件通信（除了props和vuex的其他用法）"><a href="#孙子组件或更深层次的组件通信（除了props和vuex的其他用法）" class="headerlink" title="孙子组件或更深层次的组件通信（除了props和vuex的其他用法）"></a>孙子组件或更深层次的组件通信（除了props和vuex的其他用法）</h5><h5 id="子组件访问父组件数据（除了props）"><a href="#子组件访问父组件数据（除了props）" class="headerlink" title="子组件访问父组件数据（除了props）"></a>子组件访问父组件数据（除了props）</h5><p>答案参考链接：<a href="https://lujinggirl.github.io/2019/09/03/vueTitle/" target="_blank" rel="noopener">https://lujinggirl.github.io/2019/09/03/vueTitle/</a></p>
-<h5 id="new-Vue-做了什么？"><a href="#new-Vue-做了什么？" class="headerlink" title="new Vue()做了什么？"></a>new Vue()做了什么？</h5><h5 id="什么阶段才能访问DOM？"><a href="#什么阶段才能访问DOM？" class="headerlink" title="什么阶段才能访问DOM？"></a>什么阶段才能访问DOM？</h5><h5 id="谈谈你对Vue的生命周期的理解？"><a href="#谈谈你对Vue的生命周期的理解？" class="headerlink" title="谈谈你对Vue的生命周期的理解？"></a>谈谈你对Vue的生命周期的理解？</h5><h5 id="生命周期钩子的合并策略"><a href="#生命周期钩子的合并策略" class="headerlink" title="生命周期钩子的合并策略"></a>生命周期钩子的合并策略</h5><h5 id="新生命周期钩子：serverPrefetch是什么？"><a href="#新生命周期钩子：serverPrefetch是什么？" class="headerlink" title="新生命周期钩子：serverPrefetch是什么？"></a>新生命周期钩子：serverPrefetch是什么？</h5><h5 id="Vue-router-路由模式有几种？"><a href="#Vue-router-路由模式有几种？" class="headerlink" title="Vue-router 路由模式有几种？"></a>Vue-router 路由模式有几种？</h5><h5 id="谈谈你对keep-alive的了解"><a href="#谈谈你对keep-alive的了解" class="headerlink" title="谈谈你对keep-alive的了解"></a>谈谈你对keep-alive的了解</h5><h5 id="vue源码中内置的组件？"><a href="#vue源码中内置的组件？" class="headerlink" title="vue源码中内置的组件？"></a>vue源码中内置的组件？</h5><h5 id="了解Vue2-6-新全局API：Vue-observable-吗？"><a href="#了解Vue2-6-新全局API：Vue-observable-吗？" class="headerlink" title="了解Vue2.6+新全局API：Vue.observable()吗？"></a>了解Vue2.6+新全局API：Vue.observable()吗？</h5><h5 id="了解Vue数据绑定原理？"><a href="#了解Vue数据绑定原理？" class="headerlink" title="了解Vue数据绑定原理？"></a>了解Vue数据绑定原理？</h5><p>答案参考链接：<a href="https://lujinggirl.github.io/2019/09/03/vueSourceCoding/" target="_blank" rel="noopener">https://lujinggirl.github.io/2019/09/03/vueSourceCoding/</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/19/vue/" data-id="ckd4b4q2n0020t2p34ufc863x" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端面试题/">前端面试题</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-js" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/09/19/js/" class="article-date">
-  <time datetime="2019-09-19T12:45:32.000Z" itemprop="datePublished">2019-09-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/19/js/">前端js相关面试题汇总</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h4><p>答案参考链接：<a href="https://lujinggirl.github.io/2019/08/26/promise/" target="_blank" rel="noopener">https://lujinggirl.github.io/2019/08/26/promise/</a></p>
-<h4 id="宏任务、微任务"><a href="#宏任务、微任务" class="headerlink" title="宏任务、微任务"></a>宏任务、微任务</h4><p>答案参考链接：<a href="https://lujinggirl.github.io/2019/08/21/JS-thread/" target="_blank" rel="noopener">https://lujinggirl.github.io/2019/08/21/JS-thread/</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/19/js/" data-id="ckd4b4q1p0019t2p3sa5urcru" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端面试题/">前端面试题</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-cssTitle" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/09/19/cssTitle/" class="article-date">
-  <time datetime="2019-09-19T03:27:51.000Z" itemprop="datePublished">2019-09-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/19/cssTitle/">css相关面试题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Author: Echo<br>Time: 2019-09-19 15:46:24</p>
-<h2 id="1-什么是-BFC机制"><a href="#1-什么是-BFC机制" class="headerlink" title="1.什么是 BFC机制"></a>1.什么是 BFC机制</h2><p>BFC(Block Formatting Context)，块级格式化上下文，是一个独立的渲染区域，让处于 BFC 内部的元素与外部的元素相互隔离，使内外元素的定位不会相互影响。</p>
-<ul>
-<li>触发条件 (以下任意一条)</li>
-</ul>
-<ol>
-<li>float的值不为none</li>
-<li>overflow的值不为visible</li>
-<li>display的值为table-cell、tabble-caption和inline-block之一</li>
-<li>position的值不为static或则releative中的任何一个<br><code>在IE下, Layout,可通过zoom:1 触发</code></li>
-</ol>
-<ul>
-<li>BFC布局与普通文档流布局区别:</li>
-</ul>
-<h6 id="BFC布局规则"><a href="#BFC布局规则" class="headerlink" title="BFC布局规则:"></a>BFC布局规则:</h6><ol>
-<li>浮动的元素会被父级计算高度(父级元素触发了BFC)</li>
-<li>非浮动元素不会覆盖浮动元素的位置(非浮动元素触发了BFC)</li>
-<li>margin不会传递给父级(父级触发BFC)</li>
-<li>属于同一个BFC的两个相邻元素上下margin会重叠</li>
-<li>普通文档流布局: 浮动的元素是不会被父级计算高度</li>
-<li>非浮动元素会覆盖浮动元素的位置</li>
-<li>margin会传递给父级元素</li>
-<li>两个相邻元素上下的margin会重叠</li>
-</ol>
-<ul>
-<li>开发中的应用</li>
-</ul>
-<ol>
-<li>阻止margin重叠</li>
-<li>可以包含浮动元素 —— 清除内部浮动(清除浮动的原理是两个 div都位于同一个 BFC 区域之中)</li>
-<li>自适应两栏布局</li>
-<li>可以阻止元素被浮动元素覆盖</li>
-</ol>
-<h2 id="2-CSS3中新增的选择器以及属性"><a href="#2-CSS3中新增的选择器以及属性" class="headerlink" title="2. CSS3中新增的选择器以及属性"></a>2. CSS3中新增的选择器以及属性</h2><ul>
-<li>属性选择器</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>属性选择器</th>
-<th style="text-align:right">含义描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>E[att^=”val”]</td>
-<td style="text-align:right">属性att的值以”val”开头的元素</td>
-</tr>
-<tr>
-<td>E[att$=”val”]</td>
-<td style="text-align:right">属性att的值以”val”结尾的元素</td>
-</tr>
-<tr>
-<td>E[att*=”val”]</td>
-<td style="text-align:right">属性att的值包含”val”字符串的元素</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>结构伪类选择器</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>选择器</th>
-<th style="text-align:right">含义描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>E:root</td>
-<td style="text-align:right">匹配文档的根元素，对于HTML文档，就是HTML元素</td>
-</tr>
-<tr>
-<td>E:nth-child(n)</td>
-<td style="text-align:right">匹配其父元素的第n个子元素，第一个编号为1</td>
-</tr>
-<tr>
-<td>E:nth-last-child(n)</td>
-<td style="text-align:right">匹配其父元素的倒数第n个子元素，第一个编号为1</td>
-</tr>
-<tr>
-<td>E:nth-of-type(n)</td>
-<td style="text-align:right">与:nth-child()作用类似，但是仅匹配使用同种标签的元素</td>
-</tr>
-<tr>
-<td>E:nth-last-of-type(n)</td>
-<td style="text-align:right">与:nth-last-child() 作用类似，但是仅匹配使用同种标签的元素</td>
-</tr>
-<tr>
-<td>E:last-child</td>
-<td style="text-align:right">匹配父元素的最后一个子元素，等同于:nth-last-child(1)</td>
-</tr>
-<tr>
-<td>E:first-of-type</td>
-<td style="text-align:right">匹配父元素下使用同种标签的第一个子元素，等同于:nth-of-type(1)</td>
-</tr>
-<tr>
-<td>E:last-of-type</td>
-<td style="text-align:right">匹配父元素下使用同种标签的最后一个子元素，等同于:nth-last-of-type(1)</td>
-</tr>
-<tr>
-<td>E:only-child</td>
-<td style="text-align:right">匹配父元素下仅有的一个子元素，等同于:first-child:last-child或 :nth-child(1):nth-last-child(1)</td>
-</tr>
-<tr>
-<td>E:only-of-type</td>
-<td style="text-align:right">匹配父元素下使用同种标签的唯一一个子元素，等同于:first-of-type:last-of-type或 :nth-of-type(1):nth-last-of-type(1)</td>
-</tr>
-<tr>
-<td>E:empty</td>
-<td style="text-align:right">匹配一个不包含任何子元素的元素，注意，文本节点也被看作子元素</td>
-</tr>
-</tbody>
-</table>
-<p>css3新增属性</p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th style="text-align:right">含义描述</th>
-<th style="text-align:right">兼容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>transition</td>
-<td style="text-align:right">设置过渡效果</td>
-<td style="text-align:right"></td>
-</tr>
-<tr>
-<td>transform</td>
-<td style="text-align:right">变换效果(移动、缩放、转动、拉长或拉伸)</td>
-<td style="text-align:right"></td>
-</tr>
-<tr>
-<td>animation</td>
-<td style="text-align:right">动画效果</td>
-<td style="text-align:right"></td>
-</tr>
-<tr>
-<td>box-shadow</td>
-<td style="text-align:right">阴影效果</td>
-<td style="text-align:right">FF3.5, Safari 4, Chrome 3</td>
-</tr>
-<tr>
-<td>text-shadow</td>
-<td style="text-align:right">文本阴影</td>
-<td style="text-align:right">FF 3.5, Opera 10, Safari 4, Chrome 3</td>
-</tr>
-<tr>
-<td>border-colors</td>
-<td style="text-align:right">为边框设置多种颜色</td>
-<td style="text-align:right">FF3+</td>
-</tr>
-<tr>
-<td>boder-image</td>
-<td style="text-align:right">图片边框</td>
-<td style="text-align:right">FF 3.5, Safari 4, Chrome 3</td>
-</tr>
-<tr>
-<td>text-overflow</td>
-<td style="text-align:right">文本截断</td>
-<td style="text-align:right">IE6+, Safari4, Chrome3, Opera10</td>
-</tr>
-<tr>
-<td>word-wrap</td>
-<td style="text-align:right">自动换行</td>
-<td style="text-align:right">IE6+, FF 3.5, Safari 4, Chrome 3</td>
-</tr>
-<tr>
-<td>border-radius</td>
-<td style="text-align:right">圆角边框</td>
-<td style="text-align:right">FF 3+, Safari 4 , Chrome 3</td>
-</tr>
-<tr>
-<td>opacity</td>
-<td style="text-align:right">不透明度</td>
-<td style="text-align:right">all</td>
-</tr>
-<tr>
-<td>box-sizing</td>
-<td style="text-align:right">控制盒模型的组成模式</td>
-<td style="text-align:right">FF3+, Opera 10, Safari 4, Chrome 3</td>
-</tr>
-<tr>
-<td>outline</td>
-<td style="text-align:right">外边框</td>
-<td style="text-align:right">FF3+, safari 4, chrome 3, opera 10</td>
-</tr>
-<tr>
-<td>background-size</td>
-<td style="text-align:right">不指定背景图片的尺寸</td>
-<td style="text-align:right">safari 4, chrome 3, opera 10</td>
-</tr>
-<tr>
-<td>background-origin</td>
-<td style="text-align:right">指定背景图片从哪里开始显示</td>
-<td style="text-align:right">safari 4, chrome 3, FF 3+</td>
-</tr>
-<tr>
-<td>background-clip</td>
-<td style="text-align:right">指定背景图片从什么位置开始裁切</td>
-<td style="text-align:right">safari 4, chrome 3</td>
-</tr>
-<tr>
-<td>rgba</td>
-<td style="text-align:right">基于r,g,b三个颜色通道来设置颜色值, 通过a来设置透明度</td>
-<td style="text-align:right">safari 4, chrome 3, FF3, opera 10</td>
-</tr>
-</tbody>
-</table>
-<h2 id="3-居中布局"><a href="#3-居中布局" class="headerlink" title="3. 居中布局"></a>3. 居中布局</h2><ul>
-<li>水平居中</li>
-</ul>
-<ol>
-<li>行内元素: text-align:center</li>
-<li>块级元素: margin:0 auto</li>
-<li>绝对定位和移动: absolute + transform</li>
-<li>绝对定位和负边距: absolute + margin</li>
-<li>flex布局: flex + justify-content:center</li>
-</ol>
-<ul>
-<li>垂直居中</li>
-</ul>
-<ol>
-<li>子元素为单行文本: line-height:height;<pre><code>absolute + transform;
-flex + align-items:center;
-table: display:table-cell; vertical-align: middle;
-</code></pre></li>
-<li>利用position和top和负margin</li>
-</ol>
-<ul>
-<li>水平垂直居中</li>
-</ul>
-<ol>
-<li><p>已知元素宽高:绝对定位+margin:auto:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> div&#123;</span><br><span class="line">    width: 200px;</span><br><span class="line">    height: 200px;</span><br><span class="line">    background: green;</span><br><span class="line"></span><br><span class="line">    position:absolute;</span><br><span class="line">    left:0;</span><br><span class="line">    top: 0;</span><br><span class="line">    bottom: 0;</span><br><span class="line">    right: 0;</span><br><span class="line">    margin: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>已知元素宽高:  绝对定位+负margin</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> div&#123;</span><br><span class="line">    width: 200px;</span><br><span class="line">    height: 200px;</span><br><span class="line">    background: green;</span><br><span class="line"></span><br><span class="line">    position:absolute;</span><br><span class="line">    left:0;</span><br><span class="line">    top: 0;</span><br><span class="line">    bottom: 0;</span><br><span class="line">    right: 0;</span><br><span class="line">    margin: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>absolute+transform</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">div&#123;</span><br><span class="line">  width: 200px;</span><br><span class="line">  height: 200px;</span><br><span class="line">  background: green;</span><br><span class="line"></span><br><span class="line">  position:absolute;</span><br><span class="line">  left:50%;    /* 定位父级的50% */</span><br><span class="line">  top:50%;</span><br><span class="line">  transform: translate(-50%,-50%); /*自己的50% */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>4.flex + justify-content + align-items<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">.box&#123;</span><br><span class="line">   height:600px;</span><br><span class="line"></span><br><span class="line">   display:flex;</span><br><span class="line">   justify-content:center;  //子元素水平居中</span><br><span class="line">   align-items:center;      //子元素垂直居中</span><br><span class="line">     /* aa只要三句话就可以实现不定宽高水平垂直居中。*/</span><br><span class="line">    &#125;</span><br><span class="line">  .box&gt;div&#123;</span><br><span class="line">    background: green;</span><br><span class="line">    width: 200px;</span><br><span class="line">    height: 200px;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="4-清除浮动有哪些方法-各有什么优缺点"><a href="#4-清除浮动有哪些方法-各有什么优缺点" class="headerlink" title="4. 清除浮动有哪些方法, 各有什么优缺点"></a>4. 清除浮动有哪些方法, 各有什么优缺点</h2><ul>
-<li>使用clear属性的空元素<br>在浮动元素后使用一个空元素如<div class="clear"></div>，并在CSS中赋予.clear{clear:both;}属性即可清理浮动。亦可使用<br class="clear">或<hr class="clear">来进行清理。</li>
-</ul>
-<p>优点: 简单, 写少量代码, 兼容性也好 缺点: 添加无语义html元素, 不利于代码语义化, 后期维护成本大</p>
-<ul>
-<li>使用css的overflow属性<br>给浮动元素的容器添加overflow:hidden;或overflow:auto;可以清除浮动，另外在 IE6 中还需要触发 hasLayout ，例如为父元素设置容器宽高或设置zoom:1。在添加overflow属性后，浮动元素又回到了容器层，把容器高度撑起，达到了清理浮动的效果。</li>
-</ul>
-<p>优点: 简单, 代码少, 浏览器支持好 缺点: 不能和position配合使用, 因为超出的尺寸会被隐藏overflow:hidden</p>
-<ul>
-<li>使用CSS的:after伪元素 结合 :after 伪元素<br>（注意这不是伪类，而是伪元素，代表一个元素之后最近的元素）和 IEhack ，可以完美兼容当前主流的各大浏览器，这里的 IEhack 指的是触发 hasLayout。给浮动元素的容器添加一个    clearfix 的class，然后给这个class添加一个:after伪元素实现元素末尾添加一个看不见的块元素（Block element）清理浮动。通过CSS伪元素在容器的内部元素最后添加了一个看不见的空格”020”或点”.”，并且赋予clear属性来清除浮动。需要注意的是为了IE6和IE7浏览器，要给clearfix这个class添加一条zoom:1;触发haslayout。</li>
-</ul>
-<p>优点: 浏览器支持好，不容易出现怪问题（目前：大型网站都有使用，如：腾迅，网易，新浪等等） 缺点: 代码多，要两句代码结合使用，才能让主流浏览器都支持<br>给父级元素设置高度<br>简单, 代码少,好掌握 缺点: 只适用于高度固定的布局</p>
-<h2 id="5-用纯CSS创建一个三角形的原理是什么"><a href="#5-用纯CSS创建一个三角形的原理是什么" class="headerlink" title="5. 用纯CSS创建一个三角形的原理是什么"></a>5. 用纯CSS创建一个三角形的原理是什么</h2><p>之前写三角形, 都是直接记住代码,没有探究原因,我也是直到有一次面试时,面试大哥让我说说css创建三角形的原理,我就……回来就赶紧翻资料.接下来我就将当时我理解的过程列举出来:</p>
-<ol>
-<li>写一个我们最熟悉的 border应用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.box&#123;</span><br><span class="line">	width:100px;</span><br><span class="line">	height:100px;</span><br><span class="line">	border: 3px solid;</span><br><span class="line">	border-color:#1b93fb #1bfb24 #efad48 #ef4848;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>效果如下:</p>
-<ol start="2">
-<li>接下来,我们将border值增大<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.box&#123;</span><br><span class="line">	width:100px;</span><br><span class="line">	height:100px;</span><br><span class="line">	border: 50px solid;</span><br><span class="line">	border-color:#1b93fb #1bfb24 #efad48 #ef4848;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>很容易发现, border渲染并不是正方形, 而是梯形的.</p>
-<ol start="3">
-<li>在增大border的基础下, 此时我们将盒子宽高变成0,会产生什么效果呢!<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.box&#123;</span><br><span class="line">	width:0px;</span><br><span class="line">	height:0px;</span><br><span class="line">	border: 50px solid;</span><br><span class="line">	border-color:#1b93fb #1bfb24 #efad48 #ef4848;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>四个三角形拼合成的矩形呈现在我们眼前,那如如果我们只想要一个三角形, 我们是不是可以设想将其他三个设为不可见;</p>
-<ol start="4">
-<li>设置透明, 隐藏其中三个三角形<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> .box&#123;</span><br><span class="line">	width:0px;</span><br><span class="line">	height:0px;</span><br><span class="line">	border: 50px solid;</span><br><span class="line">	border-color:transparent transparent transparent #ef4848;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>三角形这样就出来, 有木有很简单, 当然我们也可以采用逆向思维来写这个效果, 就是先将所有边框设为透明, 然后需要哪边再对其设置颜色, 效果是一样的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.box&#123;</span><br><span class="line">	width:0px;</span><br><span class="line">	height:0px;</span><br><span class="line">	border: 50px solid transparent;</span><br><span class="line">	border-left:50px solid #ef4848;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>这样给面试你的人讲,讲明白应该不是问题., 重点就是要理解border的应用</p>
-<h2 id="6-实现三栏布局有哪些方法-分别描述一下"><a href="#6-实现三栏布局有哪些方法-分别描述一下" class="headerlink" title="6. 实现三栏布局有哪些方法, 分别描述一下"></a>6. 实现三栏布局有哪些方法, 分别描述一下</h2><p>三栏布局，顾名思义就是两边固定，中间自适应。三栏布局在开发十分常见，那么什么是三栏布局？即左右模块固定宽度，中间模块随浏览器变化自适应，想要完成的最终效果如下图所示：下面列出四种实现方式, 在开发中可以根据实际需求选择适合自己的方法进行编码:</p>
-<ul>
-<li>Flex 布局<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">.container&#123;</span><br><span class="line">  display:flex;</span><br><span class="line">  justify-content: center;</span><br><span class="line">  height: 200px;</span><br><span class="line">  background: #eee;</span><br><span class="line">&#125;</span><br><span class="line">.left &#123;</span><br><span class="line">   width: 200px;</span><br><span class="line">   background-color: red;</span><br><span class="line">   height: 100%;</span><br><span class="line"> &#125;</span><br><span class="line">.main &#123;</span><br><span class="line">    background-color: yellow;</span><br><span class="line">    flex: 1;</span><br><span class="line">&#125;</span><br><span class="line">.right &#123;</span><br><span class="line">    width: 200px;</span><br><span class="line">    background-color: green;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;div class=&quot;container&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;left&quot;&gt;1&lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;main&quot;&gt;2&lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;right&quot;&gt;3&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>简单实用，现在比较流行的方案，但是需要考虑浏览器的兼容性。</p>
-<ul>
-<li>绝对定位布局<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">.container &#123;</span><br><span class="line">  position: relative;</span><br><span class="line">  background:#eee;</span><br><span class="line">  height:200px;</span><br><span class="line">	&#125;</span><br><span class="line">.main &#123;</span><br><span class="line">  height: 200px;</span><br><span class="line">  margin: 0 120px;</span><br><span class="line">  background-color: yellow;</span><br><span class="line">	&#125;</span><br><span class="line">.left &#123;</span><br><span class="line">  position: absolute;</span><br><span class="line">  width: 100px;</span><br><span class="line">  height: 200px;</span><br><span class="line">  left: 0;</span><br><span class="line">  top: 0;</span><br><span class="line">  background-color: red;</span><br><span class="line">	&#125;</span><br><span class="line">.right &#123;</span><br><span class="line">  position: absolute;</span><br><span class="line">  width: 100px;</span><br><span class="line">  height: 200px;</span><br><span class="line">  background-color: green;</span><br><span class="line">  right: 0;</span><br><span class="line">  top: 0;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br><span class="line">&lt;div class=&quot;container&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;left&quot;&gt;1&lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;main&quot;&gt;2&lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;right&quot;&gt;3&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">```* </span><br><span class="line">这种方案也简单实用, 并且可以将 &lt;div class=&quot;main&quot;&gt;&lt;/div&gt;元素放到第一位,使得主要内容优先加载!</span><br><span class="line"></span><br><span class="line">双飞翼布局</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<style>
-.content {
-  float: left;
-  width: 100%;
-}
-.main {
-  height: 200px;
-  margin-left: 110px;
-  margin-right: 220px;
-  background-color: yellow;
-}
-.left {
-  float: left;
-  height: 200px;
-  width: 100px;
-  margin-left: -100%;
-  background-color: red;
-}
-.right {
-  width: 200px;
-  height: 200px;
-  float: right;
-  margin-left: -200px;
-  background-color: green;
-}    
-
-</style>
-<div class="content">
-  <div class="main"></div>
 </div>
-<div class="left"></div>
-<div class="right"></div>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* 圣杯布局</span><br></pre></td></tr></table></figure>
+      <!-- ============================ Hero Image =========================== -->
 
-<style>
-.container {
-  margin-left: 120px;
-  margin-right: 220px;
-}
-.main {
-  float: left;
-  width: 100%;
-  height: 300px;
-  background-color: yellow;
-}
-.left {
-  float: left;
-  width: 100px;
-  height: 300px;
-  margin-left: -100%;
-  position: relative;
-  left: -120px;
-  background-color: blue;
-}
-.right {
-  float: left;
-  width: 200px;
-  height: 300px;
-  margin-left: -200px;
-  position: relative;
-  right: -220px;
-  background-color: green;
-}
-</style>
-<div class="container">
-  <div class="main"></div>
-  <div class="left"></div>
-  <div class="right"></div>
-</div>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">圣杯布局和双飞翼布局解决问题的方案在前一半是相同的，也就是三栏全部float浮动，但左右两栏加上负margin让其跟中间栏div并排，以形成三栏布局。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 7. css3实现0.5px的细线</span><br></pre></td></tr></table></figure>
+<section id="hero" class="scrollme">
+    <div class="container-fluid element-img" style="background: url(/img/bg_img.jpg) no-repeat center center fixed;background-size: cover">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
+                <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
+                    <div>
+                        
+                        <h2>YOU'VE MADE A <span>BRAVE</span> DECISION, WELCOME.</h2>
+                        <p></p>
+                        
+                        <h2></h2>
+                        <p>每一个不曾起舞的日子都是对生命的辜负。</p>
+                        
 
-<style>
-.line {
-    position: relative;
-}
-.line:after {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 1px;
-    background-color: #000000;
-    -webkit-transform: scaleY(.5);
-    transform: scaleY(.5);
-}
-</style>
-
-<p><div class="line"></div><br><code>`</code></p>
-<h2 id="8-link-与-import-的区别"><a href="#8-link-与-import-的区别" class="headerlink" title="8. link 与 @import 的区别"></a>8. link 与 @import 的区别</h2><ul>
-<li>从属关系区别<br>@import是 CSS 提供的语法规则，只有导入样式表的作用；link是HTML提供的标签，不仅可以加载 CSS 文件，还可以定义 RSS、rel 连接属性等</li>
-<li>加载顺序区别<br>加载页面时，link标签引入的 CSS 被同时加载；@import引入的 CSS 将在页面加载完毕后被加载。</li>
-<li>兼容性区别<br>@import是 CSS2.1 才有的语法，故只可在 IE5+ 才能识别；link标签作为 HTML 元素，不存在兼容性问题。<br>DOM可控性区别<br>可以通过 JS 操作 DOM ，插入link标签来改变样式；由于DOM方法是基于文档的，无法使用@import的方式插入样式。<br>css部分就整理到这里, 小伙伴们面试还有什么经常遇到的,可以在评论区给我留言, 我有时间就整理出来, IT(挨踢)都是一大家, 方便你我他<h2 id="9-开发中为什么要初始化css样式"><a href="#9-开发中为什么要初始化css样式" class="headerlink" title="9. 开发中为什么要初始化css样式"></a>9. 开发中为什么要初始化css样式</h2></li>
-</ul>
-<p>因为浏览器的兼容问题，不同浏览器对有些标签的默认值是不同的，如果没对CSS初始化往往会出现浏览器之间的页面显示差异。</p>
-<h2 id="10-CSS优化、提高性能的方法有哪些"><a href="#10-CSS优化、提高性能的方法有哪些" class="headerlink" title="10. CSS优化、提高性能的方法有哪些?"></a>10. CSS优化、提高性能的方法有哪些?</h2><p>尽量将样式写在单独的css文件里面，在head元素中引用 将代码写成单独的css文件有几点好处：</p>
-<ul>
-<li>内容和样式分离，易于管理和维护</li>
-<li>减少页面体积</li>
-<li>css文件可以被缓存、重用，维护成本降低</li>
-<li>不使用@import</li>
-<li>避免使用复杂的选择器，层级越少越好 建议选择器的嵌套最好不要超过三层，比如：<br>精简页面的样式文件，去掉不用的样式</li>
-<li>利用CSS继承减少代码量</li>
-<li>避免！important，可以选择其他选择器</li>
-</ul>
-<h2 id="11-css的预处理器和后处理器都有哪些吗？它们有什么区别呢？"><a href="#11-css的预处理器和后处理器都有哪些吗？它们有什么区别呢？" class="headerlink" title="11. css的预处理器和后处理器都有哪些吗？它们有什么区别呢？"></a>11. css的预处理器和后处理器都有哪些吗？它们有什么区别呢？</h2><p>参考链接: <a href="https://blog.csdn.net/yushuangyushuang/article/details/79209752" target="_blank" rel="noopener">https://blog.csdn.net/yushuangyushuang/article/details/79209752</a>.</p>
-<ul>
-<li>预处理器 :Less,sass,Stylus.PostCSS。<br>市面上有很多CSS预处理器可供选择，且绝大多数CSS预处理器会增加一些原生CSS不具备的特性，例如代码混合，嵌套选择器，继承选择器等。这些特性让CSS的结构更加具有可读性且易于维护。</li>
-<li>后处理器 :rework，postcss。对css进行处理，有的可以对css进行压缩，有的可以自动处理兼容性问题。</li>
-</ul>
-<p>参考链接：<a href="http://www.pinlue.com/article/2019/05/2002/158990051021.html" target="_blank" rel="noopener">http://www.pinlue.com/article/2019/05/2002/158990051021.html</a></p>
-
-      
+                    </div>
+                </div>
+            </div>
+            <!-- // .col-md-12 -->
+        </div>
+        <div class="herofade beige-dk"></div>
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/19/cssTitle/" data-id="ckd4b4q1c000yt2p35hveubql" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-vueTitle" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/09/03/vueTitle/" class="article-date">
-  <time datetime="2019-09-03T02:10:37.000Z" itemprop="datePublished">2019-09-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/03/vueTitle/">vue相关面试题</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Author: Echo<br>Time: 2019-09-03 10:10:37</p>
-<h3 id="孙子组件或更深层次的组件通信（除了props和vuex的其他用法）"><a href="#孙子组件或更深层次的组件通信（除了props和vuex的其他用法）" class="headerlink" title="孙子组件或更深层次的组件通信（除了props和vuex的其他用法）"></a>孙子组件或更深层次的组件通信（除了props和vuex的其他用法）</h3><ul>
-<li>Vue Event Bus，使用Vue的实例，实现事件的监听和发布，实现组件之间的传递<h6 id="缺点"><a href="#缺点" class="headerlink" title="缺点:"></a>缺点:</h6>使用在实际的项目操作中发现，如不能实现很好的事件监听与发布的管理，往往容易导致数据流的混乱，在多人协作的项目中，不利于项目的维护<br>#####1.  父组件使用provide，子组件使用inject</li>
-<li>通过inject直接访问其两个层级上的数据，其用法与props完全相同，同样可以参数校验等<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.provide就相当于加强版父组件prop</span><br><span class="line">2.inject就相当于加强版子组件的props</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>// 示例代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">// 父组件</span><br><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">		&#123;&#123;name&#125;&#125;</span><br><span class="line">	&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"> </span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">	name: &apos;father&apos;,</span><br><span class="line">  // 传入对象写法</span><br><span class="line">  provide: &#123;</span><br><span class="line">    name: &apos;bar&apos;</span><br><span class="line">  &#125;</span><br><span class="line">  // 函数写法</span><br><span class="line">	provide () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      name: &apos;foo&apos;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">// 孙子组件或者深层次组件</span><br><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;div&gt;</span><br><span class="line">		&#123;&#123;name&#125;&#125;</span><br><span class="line">	&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"> </span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">	name: &apos;Grandson&apos;,</span><br><span class="line">	inject: [name]</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
-<h6 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h6><p>在任意层级都能访问，导致数据变化追踪比较困难。</p>
-<h5 id="2-通过-attrs传递属性"><a href="#2-通过-attrs传递属性" class="headerlink" title="2.通过$attrs传递属性"></a>2.通过$attrs传递属性</h5><p>vue api解释说明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vm.$attrs和inheritAttrs</span><br><span class="line">2.4.0 新增</span><br><span class="line">类型：&#123; [key: string]: string &#125;</span><br><span class="line">只读</span><br><span class="line">详细：</span><br><span class="line">包含了父作用域中不作为 prop 被识别 (且获取) 的特性绑定 (class 和 style 除外)。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过 v-bind=&quot;$attrs&quot; 传入内部组件——在创建高级别的组件时非常有用。</span><br></pre></td></tr></table></figure></p>
-<p>细节使用示例参考链接：<a href="https://www.jianshu.com/p/ce8ca875c337" target="_blank" rel="noopener">https://www.jianshu.com/p/ce8ca875c337</a></p>
-<h5 id="3-通过-listeners传递事件"><a href="#3-通过-listeners传递事件" class="headerlink" title="3.通过$listeners传递事件"></a>3.通过$listeners传递事件</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vm.$listeners</span><br><span class="line">2.4.0 新增</span><br><span class="line">类型：&#123; [key: string]: Function | Array&lt;Function&gt; &#125;</span><br><span class="line">只读</span><br><span class="line">详细：</span><br><span class="line">包含了父作用域中的 (不含 .native 修饰器的) v-on 事件监听器。它可以通过 v-on=&quot;$listeners&quot; 传入内部组件——在创建更高层次的组件时非常有用。</span><br></pre></td></tr></table></figure>
-<h5 id="4-Vue2-6-新全局API：Vue-observable"><a href="#4-Vue2-6-新全局API：Vue-observable" class="headerlink" title="4.Vue2.6+新全局API：Vue.observable()"></a>4.Vue2.6+新全局API：Vue.observable()</h5><h3 id="子组件访问父组件数据（除了props）"><a href="#子组件访问父组件数据（除了props）" class="headerlink" title="子组件访问父组件数据（除了props）"></a>子组件访问父组件数据（除了props）</h3><ul>
-<li>使用$parent属性</li>
-<li>通过$attrs传递属性</li>
-<li>Vue2.6+新全局API：Vue.observable()</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/09/03/vueTitle/" data-id="ckd4b4q2w002gt2p389puq428" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/2/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">__('next') &raquo;</a>
-  </nav>
 </section>
+
+<!-- Height spacing helper -->
+<div class="heightblock"></div>
+<!-- // End height spacing helper -->
+
+<!-- ============================ END Hero Image =========================== -->
+<!-- ============================ Content =========================== -->
+
+<section id="intro">
+    <div class="container">
         
-          <aside id="sidebar">
-  
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2020/01/15/vueCliMd/">vue-cli3项目展示本地Markdown文件的方法</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2020-01-15T07:05:46.000Z" itemprop="datePublished">
+          2020-01-15
+      </time>
     
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        【版本】12vue-cli3webpack@4.33.0
+【步骤】
 
-  
+安装插件
+1$ npm install markdown-it --save
+
+新建markdownLoader.js文件(自定义loader)
+12345678910111213141516const markdown = require(&apos;markdown-it&apos;);function markLoader(src) &#123;  const 
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2020/01/15/vueCliMd/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2019/11/04/asyncAwit/">asyncAwit</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2019-11-04T06:58:15.000Z" itemprop="datePublished">
+          2019-11-04
+      </time>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog-hexo/">blog-hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">css</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/">es6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6-vue/">es6, vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm-react-typescript/">npm react typescript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-test/">vue test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-vueRouter/">vue, vueRouter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/前端面试题/">前端面试题</a></li></ul>
-    </div>
-  </div>
-
-
-  
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        Author: EchoTime: 2019-09-20 10:50:39
+ES2017 标准引入了 async 函数，使得异步操作变得更加方便。async函数完全可以看作多个异步操作，包装成的一个 Promise 对象，而await命令就是内部then命令的语法糖。
+async函数完全可以看作多个异步操作，包装成的一个 Promise 对象，而await命令就是内部then命令的语法糖。async函数返回一个 Promise 对象，可
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2019/11/04/asyncAwit/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2019/09/20/express/">express： 实现本地代码+本地mock+环境接口数据</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2019-09-20T09:29:05.000Z" itemprop="datePublished">
+          2019-09-20
+      </time>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/blog-hexo/" style="font-size: 13.33px;">blog-hexo</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/es6-vue/" style="font-size: 10px;">es6, vue</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/js/" style="font-size: 13.33px;">js</a> <a href="/tags/node/" style="font-size: 13.33px;">node</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/npm-react-typescript/" style="font-size: 10px;">npm react typescript</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/vue-test/" style="font-size: 10px;">vue test</a> <a href="/tags/vue-vueRouter/" style="font-size: 10px;">vue, vueRouter</a> <a href="/tags/web/" style="font-size: 13.33px;">web</a> <a href="/tags/前端面试题/" style="font-size: 16.67px;">前端面试题</a>
-    </div>
-  </div>
-
-  
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
-    </div>
-  </div>
-
-
-  
+    | 
+    <a href="/tags/node/">node</a>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2020/07/27/vueI18/">vue项目中引入&amp;使用国际化</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/27/fixProject/">如何优化项目</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/27/axios1/">Axios源码解析</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/27/reactCom2/">使用react搭建组件库--radio组件</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/27/reactCom1/">使用react搭建组件库--icon组件</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        Author: EchoTime: 2019-09-20 17:29:05
+express
+简介基于 Node.js 平台，快速、开放、极简的 Web 开发框架
 
-  
-</aside>
+简单来说，封装了node中http核心模块，专注于业务逻辑的开发.
+express中间件的本质就是请求处理方法，把用户从请求到响应的整个过程分发到多个中间件中去处理，提高代码灵活性，动态可扩展
+
+安装1&amp; npm install express --save-dev
+
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2019/09/20/express/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2019/09/20/commitMessage/">Commit message 代码提交规范</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2019-09-20T07:52:39.000Z" itemprop="datePublished">
+          2019-09-20
+      </time>
+    
+    
+    | 
+    <a href="/tags/git/">git</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        Author: EchoTime: 2019-09-20 15:52:39
+前言在多人协作项目中，如果代码风格统一、代码提交信息的说明准确，那么在后期协作以及Bug处理时会更加方便。Git 每次提交代码，都要写 Commit message（提交说明），否则就不允许提交。一般来说，commit message 应该清晰明了，说明本次提交的目的。
+Commit message 的作用
+提供更多的历史信息，方便快速浏览
+过滤某些commit
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2019/09/20/commitMessage/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2019/09/20/ForwardReverseProxy/">正向代理&反向代理</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2019-09-20T03:12:13.000Z" itemprop="datePublished">
+          2019-09-20
+      </time>
+    
+    
+    | 
+    <a href="/tags/web/">web</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        Author: EchoTime: 2019-09-20 11:12:13
+ForwardProxy正向代理（forward proxy）：是一个位于客户端和目标服务器之间的服务器(代理服务器)，为了从目标服务器取得内容，客户端向代理服务器发送一个请求并指定目标，然后代理服务器向目标服务器转交请求并将获得的内容返回给客户端。
+123这种代理其实在生活中是比较常见的，比如科学上网技术，其用到的就是代理技术。有时候，用户想要访问某国外网站，
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2019/09/20/ForwardReverseProxy/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2019/09/20/virtualDom/">虚拟dom</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2019-09-20T03:05:02.000Z" itemprop="datePublished">
+          2019-09-20
+      </time>
+    
+    
+    | 
+    <a href="/tags/vue/">vue</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        Author: EchoTime: 2019-09-20 11:05:02
+什么是虚拟DOM树？（Virtual DOM）virtual，指的是对真实DOM的一种模拟。相对于直接操作真实的DOM结构，我们构建一棵虚拟的树，将各种数据和操作直接应用在这棵虚拟的树上，然后再将对虚拟的树的修改应用到真实的DOM结构上。虚拟DOM树其实就是一个普通的js对象，它是用来描述一段HTML片段的
+
+当页面渲染的时候Vue会创建一颗虚拟DOM树
+当页面
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2019/09/20/virtualDom/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2019/09/20/axios/">axios封装</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2019-09-20T02:50:39.000Z" itemprop="datePublished">
+          2019-09-20
+      </time>
+    
+    
+    | 
+    <a href="/tags/es6-vue/">es6, vue</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        Author: EchoTime: 2019-09-20 10:50:39
+axios文档地址
+在vue项目中，和后台交互获取数据这块，我们通常使用的是axios库，它是基于promise的http库，可运行在浏览器端和node.js中。他有很多优秀的特性，例如拦截请求和响应、取消请求、转换json、客户端防御cSRF等。所以我们的尤大大也是果断放弃了对其官方库vue-resource的维护，直接推荐我们使用axios库.
+本次封装以v
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2019/09/20/axios/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2019/09/19/web/">前端面试题汇总</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2019-09-19T12:53:29.000Z" itemprop="datePublished">
+          2019-09-19
+      </time>
+    
+    
+    | 
+    <a href="/tags/前端面试题/">前端面试题</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        页面从输入URL到页面加载显示完成，这个过程中都发生了什么？浏览器工作原理浏览器内核常见的浏览器内核有哪些？cookies，sessionStorage 和 localStorage 的区别？页面访问cookie的限制条件实现浏览器内多个标签页之间的通信页面可见性（Page Visibility API） 可以有哪些用途网页验证码是做什么的，是为了解决什么安全问题为什么利用多个域名来存储网站资源一个页面上有大量的图片，加载很慢，你有哪些
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2019/09/19/web/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2019/09/19/css/">前端css相关面试题汇总</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2019-09-19T12:53:19.000Z" itemprop="datePublished">
+          2019-09-19
+      </time>
+    
+    
+    | 
+    <a href="/tags/前端面试题/">前端面试题</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        什么是 BFC机制CSS3中新增的选择器以及属性居中布局清除浮动有哪些方法, 各有什么优缺点用纯CSS创建一个三角形的原理是什么实现三栏布局有哪些方法, 分别描述一下css3实现0.5px的细线link 与 @import 的区别开发中为什么要初始化css样式CSS优化、提高性能的方法有哪些答案参考链接：https://lujinggirl.github.io/2019/09/19/cssTitle/
+
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2019/09/19/css/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2019/09/19/vue/">vue相关面试题汇总</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2019-09-19T12:50:06.000Z" itemprop="datePublished">
+          2019-09-19
+      </time>
+    
+    
+    | 
+    <a href="/tags/前端面试题/">前端面试题</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        孙子组件或更深层次的组件通信（除了props和vuex的其他用法）子组件访问父组件数据（除了props）答案参考链接：https://lujinggirl.github.io/2019/09/03/vueTitle/
+new Vue()做了什么？什么阶段才能访问DOM？谈谈你对Vue的生命周期的理解？生命周期钩子的合并策略新生命周期钩子：serverPrefetch是什么？Vue-router 路由模式有几种？谈谈你对keep-aliv
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2019/09/19/vue/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <nav class="pagination" role="pagination">
+          <a class="pull-left" href="/page/2/">← Newer Posts</a>
+          <a class="pull-right" href="/page/4/">Older Posts →</a>
+        </nav>
     </div>
-  </div>
+</section>
+<section id="statement">
+    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
+        <div class="row">
+            <p>虽然还没想好写点什么，但是总觉得这里放句话比较和谐。</p>
+        </div>
+    </div>
+</section>
+<!-- ============================ END Content =========================== -->
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By John Doe. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;</li>
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
 </footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
 
 
-<script src="/js/script.js"></script>
 
-  </div>
+      
 </body>
 </html>
