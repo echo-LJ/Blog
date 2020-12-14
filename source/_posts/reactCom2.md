@@ -1,19 +1,19 @@
 ---
 title: 使用react搭建组件库--radio组件
 date: 2020-07-27 17:17:30
-tags:
+tags: React
 ---
 
-####前言
+## 前言
 你应该需要：[使用react搭建组件库：react+typescript+storybook]([https://www.jianshu.com/p/8ef96e06adcc](https://www.jianshu.com/p/8ef96e06adcc)
 )
-##1. 安装依赖
+## 一、 安装依赖
 在组件中使用 `rc-checkbox`： [react rc-checkbox component](https://www.npmjs.com/package/rc-checkbox)
 
 ```
 npm install rc-checkbox
 ```
-##2. 编写组件
+## 二、 编写组件
 * 新建 `src/components/Radio/radio.tsx`
 ```
 import * as React from 'react';
@@ -604,7 +604,7 @@ import Radio from "./components/Radio/radio";
 ```
 export { default as Radio } from "./components/Radio";
 ```
-## 3. 运行项目
+## 三、 运行项目
  执行命令
 ```
 $ npm start
@@ -612,7 +612,7 @@ $ npm start
 访问项目 可以看到Radio组件成功了！
 ![image.png](https://upload-images.jianshu.io/upload_images/11846892-7fc5a5e3af91ee81.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-##4. 单元测试
+## 四、 单元测试
 新建src/Radio/radio.test.tsx文件·
 ```
 import React from 'react';
@@ -660,7 +660,7 @@ $ npm test
 ![image.png](https://upload-images.jianshu.io/upload_images/11846892-44fe42fa111d9409.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
-##5.编写storybook文档
+## 五、编写storybook文档
 * 新建`src/Radio/radio.stories.tsx`文件
 ```
 import React from 'react';
@@ -704,8 +704,10 @@ $ npm run storybook
 浏览器打开http://localhost:9009/,可以看到组件库文档生成了。
 ![image.png](https://upload-images.jianshu.io/upload_images/11846892-88eb962e94583778.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-##5. 发布到npm
+## 六、 发布到npm
  ✅ ✅ ✅ ✅ ✅
+
+ 大功告成✌️✌️✌️
 
 
 
