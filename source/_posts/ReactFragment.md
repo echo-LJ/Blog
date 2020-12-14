@@ -83,7 +83,7 @@ class Columns extends React.Component {
 `<></>` 是 `<React.Fragment/>` 的语法糖。
 `<></>` 语法不能接受键值或属性。
 
-如果你需要一个带 key 的片段，你可以直接使用 `<React.Fragment />``` 。
+如果你需要一个带 key 的片段，你可以直接使用 `<React.Fragment /> 。
 一个使用场景是映射一个集合为一个片段数组 — 例如：创建一个描述列表：
 ```
 function Glossary(props) {
@@ -100,7 +100,7 @@ function Glossary(props) {
   );
 }
 ```
-key 是唯一可以传递给 ``Fragment` 的属性。在将来，我们可能增加额外的属性支持，比如事件处理。
+key 是唯一可以传递给 `Fragment` 的属性。在将来，我们可能增加额外的属性支持，比如事件处理。
 
 
 参考链接：https://www.jianshu.com/p/36bb4d88f26c
