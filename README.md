@@ -69,3 +69,8 @@ hexo deploy #将.deploy目录部署到GitHub
 hexo help  #查看帮助  
 hexo version  #查看Hexo的版本
 ```
+## 博客文章引用网络图片
+* 文章头部添加
+```
+<meta name="referrer" content="no-referrer"/>
+```
