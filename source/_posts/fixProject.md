@@ -1,7 +1,7 @@
 ---
 title: 如何优化项目
 date: 2020-07-27 17:22:37
-tags:
+tags: 前端工程化
 ---
 
 
@@ -55,7 +55,7 @@ export default routesArr
 ```
 在总路由地址下引用各个模块下面的路由：
 
-在router > index.js配置如下代码。
+在`router > index.js`配置如下代码。
 ```
 let r = require.context('./components', true, /\.routes\.js/);
 let routesArr: any[] = [];
@@ -91,7 +91,7 @@ js - 第三方库： vue / vue-router / axios /loadsh (只压缩打包一次,缓
 
 * 以vue项目为例，封装Dll优化。
 
-在vue项目的bulid文件下新建webpack.dll.js文件
+在vue项目的bulid文件下新建`webpack.dll.js`文件
 ```
 var path = require('path')
 var webpack = require('webpack')
@@ -118,7 +118,7 @@ module.exports = {
   ]
 }
 ```
-在package.json 的 `scripts`中配置npm run dll 命令
+在package.json 的 `scripts`中配置`npm run dll `命令
 ```
 "dll": "webpack --config build/webpack.dll.js"
 ```
@@ -201,3 +201,5 @@ store: 'modelIndex';
 ```
 
 👌了！以上就是vuex实现按需加载的栗子。
+
+大功告成✌️✌️✌️
