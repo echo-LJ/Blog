@@ -1,7 +1,7 @@
 ---
 title: vue项目中引入全局scss变量
 date: 2020-11-20 14:34:56
-tags: Vue Css
+tags: Vue
 ---
 vue项目中设置全局引入scss，使每个组件都可以使用变量
 
