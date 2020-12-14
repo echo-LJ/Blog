@@ -1,19 +1,20 @@
 ---
 title: Axios源码解析
 date: 2020-07-27 17:21:00
-tags:
+tags: Axios
 ---
 
-#### axios如何实现多种请求方式
+## axios如何实现多种请求方式
 ---
-`原理`： 通过数组循环来批量注册接口，统一调用同一个方法，参数差异：通过until.merge()方法来解决差异。类型：通过方法循环的method来区分。
-`实现逻辑`：
+#### `原理`： 
+通过数组循环来批量注册接口，统一调用同一个方法，参数差异：通过until.merge()方法来解决差异。类型：通过方法循环的method来区分。
+#### `实现逻辑`：
 
-1. 生成axios实例；
-2. 通过bind方法将axios原型中的request方法指向axios实例；
-3. 通过extend方法将axios实例和axios的原型链合并并指向context
+* 1. 生成axios实例；
+* 2. 通过bind方法将axios原型中的request方法指向axios实例；
+* 3. 通过extend方法将axios实例和axios的原型链合并并指向context
 目的： 扩展axios的调用方法。使axios可以通过axios.get去调用，也可以通过原型链去调用。
-4. 利用通过数组循环来批量注册接口，统一调用同一个方法.
+* 4. 利用通过数组循环来批量注册接口，统一调用同一个方法.
 通过until.merge()方法来解决参数差异。
 
 `代码示例`：
@@ -55,14 +56,14 @@ arr.forEach((method) => {
 ```
 
 
-#### axios如何实现请求拦截
+## axios如何实现请求拦截
 ---
 
-`实现逻辑`：
-1. 在axios中配置拦截器 `interceptors`，拦截器包含request属性，和response属性，两个属性对应拦截器管理方法interceptorsManner。
-2. interceptorsManner方法中配置handler属性，handler属性用于存放use加入的方法。
-3. 在interceptorsManner的原型上配置use方法，user方法将参数fulilled, rejected两个方法存入对象中并存入到handler中。
-4. 在axios的原型的request方法中注册数组chain  =  ['dispatchRequest', undefined];
+#### `实现逻辑`：
+* 1. 在axios中配置拦截器 `interceptors`，拦截器包含request属性，和response属性，两个属性对应拦截器管理方法interceptorsManner。
+* 2. interceptorsManner方法中配置handler属性，handler属性用于存放use加入的方法。
+* 3. 在interceptorsManner的原型上配置use方法，user方法将参数fulilled, rejected两个方法存入对象中并存入到handler中。
+* 4. 在axios的原型的request方法中注册数组chain  =  ['dispatchRequest', undefined];
  其中：request 会通过dispatchRequest将请求发送出去；
 4.1 循环interceptors.request.handler将用户存入的请求拦截的两个参数方法通过unshift分别存放到数组中。
 4.2 循环interceptors.response.handler将用户存入的响应拦截的两个参数方法通过shift分别存放到数组中。
@@ -119,7 +120,8 @@ Axios.interceptors.response.use(function(){
 
 });
 ```
-完美！！！！！！！！！！！！！！！！！！！！！！！！！！！
+大功告成✌️✌️✌️
+
 接下来你可能想要了解的：
 [axios文档地址](https://www.npmjs.com/package/axios)
 [Axios封装示例代码+封装思路](https://www.jianshu.com/p/7f7b655bd3c4)
