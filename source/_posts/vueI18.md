@@ -1,15 +1,16 @@
 ---
 title: vue项目中引入&使用国际化
 date: 2020-07-27 17:24:07
-tags:
+tags: Vue
 ---
 
 * 国际化思路：将当前语言代码-国家地区对照表（zh-CN）放到cookie中和vuex中,每次通过读取cookie&vuex中的语言代码，来展示对应的语言包，在切换语言的时候将语言代码存入到cookie&vuex中（保证刷新页面后能记住用户选择的语言）。
-####引入vue-i18n&vuex&js-cookie
-vue-i18n是vue国际化依赖包,vuex是状态管理。
+## 一、安装vue-i18n&vuex&js-cookie
+`vue-i18n`是vue国际化依赖包,vuex是状态管理。
 ```
 npm install --save vue-i18n vuex js-cookie
 ```
+## 二、引入vue-i18n&vuex&js-cookie
 在main.js中注册引入即可。
 ```
 import VueI18n from 'vue-i18n'
@@ -97,7 +98,7 @@ export default {
     logIn: 'Log in'
  }
 ```
-使用实例：
+## 三、使用实例：
 ```
 <span>{{$t('login.title')}}</span>
 // 在语言代码为中文（zh-CN）时,则展示为：欢迎
@@ -162,8 +163,7 @@ handleSetLanguage(lang) {
   this.$store.dispatch('setLanguage', lang)
 }
 ```
-以上即可实现国际化！！！！！
-😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊😊
+大功告成✌️✌️✌️
 
 
 
