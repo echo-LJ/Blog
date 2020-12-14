@@ -1,13 +1,13 @@
 ---
 title: 使用react搭建组件库--icon组件
 date: 2020-07-27 17:16:46
-tags:
+tags: React
 ---
 
-####前言
+## 前言
 你应该需要：[使用react搭建组件库：react+typescript+storybook]([https://www.jianshu.com/p/8ef96e06adcc](https://www.jianshu.com/p/8ef96e06adcc)
 )
-##1. 安装依赖
+## 一、安装依赖
 在组件中使用 `fortawesome`： [一套绝佳的图标字体库和CSS框架](http://www.fontawesome.com.cn)
 
 ```
@@ -15,7 +15,7 @@ npm install @fortawesome/fontawesome-svg-core
 npm install @fortawesome/free-solid-svg-icons
 npm install @fortawesome/react-fontawesome
 ```
-##2. 编写组件
+## 二、编写组件
 * 新建 `src/components/Icon/icon.tsx`
 ```
 import React, { FC } from "react";
@@ -105,14 +105,14 @@ import Icon from "./components/Icon/icon";
 ```
 export { default as Icon } from "./components/Icon";
 ```
-## 3. 运行项目
+## 三、运行项目
  执行命令
 ```
 $ npm start
 ```
 访问项目 可以看到Icon组件成功了！
 ![image.png](https://upload-images.jianshu.io/upload_images/11846892-8c703c6cd972d3e2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-##4.编写storybook文档
+## 四、编写storybook文档
 * 新建`src/Icon/icon.stories.tsx`文件
 ```
 import React from 'react'
@@ -231,7 +231,9 @@ $ npm run storybook
 ```
 浏览器打开http://localhost:9009/,可以看到组件库文档生成了。
 ![image.png](https://upload-images.jianshu.io/upload_images/11846892-f5e3bf4ef4168c78.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-##5. 发布到npm
+## 五、 发布到npm
  ✅ ✅ ✅ ✅ ✅
+
+ 大功告成✌️✌️✌️
 
 
