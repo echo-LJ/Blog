@@ -1,17 +1,19 @@
 ---
 title: NO1:使用 Node.js + Express 开发服务端
 date: 2020-07-27 17:13:28
-tags:
+tags: Node
 ---
+<meta name="referrer" content="no-referrer"/>
 
-# 一、 准备工作
+## 一、 准备工作
 ---
-####1.安装Express
+#### 1.安装Express
 ```
 $ npm install express -g
 $ npm install express-generator -g
 ```
-####2.初始化项目
+
+#### 2.初始化项目
 ```
 $ cd /Users/SPRINT/Desktop 进入桌面
 $ express 项目名称
@@ -42,7 +44,7 @@ $ npm install  //安装依赖
 目录app.js程序main文件 这个是服务器启动的入口
 
 ![image.png](https://upload-images.jianshu.io/upload_images/11846892-5d35fab3915217e4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-# 二、 启动服务器
+## 二、 启动服务器
 ---
 首先启动服务器
 ```
@@ -50,7 +52,7 @@ $ npm start
 ```
 ![image.png](https://upload-images.jianshu.io/upload_images/11846892-9bac37c86b235821.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 在浏览器中访问 [http://localhost:3000/](https://links.jianshu.com/go?to=http%3A%2F%2Flocalhost%3A3000%2F)
-三、 基本使用
+## 三、 基本使用
 ---
 打开`app.js` 这里介绍下主要代码
 ```
@@ -172,5 +174,6 @@ $ npm start
 调用方式`http://localhost:3000/users/getUserInfo?id=1`
 ![image.png](https://upload-images.jianshu.io/upload_images/11846892-2fef11908aa7525f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-总结：完美！
+大功告成✌️✌️✌️
+
 你可能需要：[NO2:Node JS + MySQL CRUD Workshop : Insert, Update, Select, Delete](https://www.jianshu.com/p/02085294b6ed)

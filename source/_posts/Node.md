@@ -1,14 +1,16 @@
 ---
 title: NO3:Node.js + mysql+Sequelize实现注册接口及校验逻辑
 date: 2020-07-27 17:12:00
-tags: 
+tags: Node
 ---
+<meta name="referrer" content="no-referrer"/>
 
 在上一篇的基础上，继续升级!
 
 [NO2:Node JS + MySQL CRUD Workshop : Insert, Update, Select, Delete](https://www.jianshu.com/p/02085294b6ed)
 
-# 1、安装依赖
+## 一、安装依赖
+---
 * 安装`mysql2`+`sequelize` +  `jsonwebtoken` + `joi`
 
 * `sequelize`
@@ -22,7 +24,8 @@ tags:
 ```
 
 
-# 2、添加+修改配置文件
+## 二、添加+修改配置文件
+---
 `修改app.js`
 ```
 // app.js
@@ -241,7 +244,9 @@ module.exports = {
 }
 
 ```
-###3. 接口测试
+## 三、 接口测试
+---
+
 >此处推荐一款接口测试工具！`POSTMAN`！ 简单来说，四个词，简单实用大方美观！
 
 * 打开`postman`
@@ -256,3 +261,5 @@ module.exports = {
 
 
 我们的注册接口就成功啦！
+
+大功告成✌️✌️✌️

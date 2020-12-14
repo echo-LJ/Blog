@@ -1,17 +1,16 @@
 ---
 title: 使用react搭建组件库：react+typescript+storybook
 date: 2020-06-08 21:12:16
-tags: npm react typescript
+tags: React
 ---
-Author: Echo
-Time: 2020-06-08 21:12:16
+<meta name="referrer" content="no-referrer"/>
 
-## 1. 安装组件库
+## 一、 安装组件库
 执行安装命令
  ```
-$ npx create-react-app echo-rui  --typescript
+npx create-react-app echo-rui  --typescript
 ```
-## 2. 组件库配置eslint
+## 二、 组件库配置eslint
 * 配置ESlint
 新建`.eslintrc.json`文件
 ```
@@ -30,13 +29,13 @@ $ npx create-react-app echo-rui  --typescript
   ]
 }
 ```
-## 3. 引入依赖
+## 三、 引入依赖
 在组件中使用 `classname`：[https://github.com/jedWatson/classnames](https://github.com/jedWatson/classnames)
 执行安装命令
 ```
-$ npm install classnames -D
-$ npm install @types/classnames -D
-$ npm install node-sass -D
+npm install classnames -D
+npm install @types/classnames -D
+npm install node-sass -D
 ```
 使用方法示例：
 如果对象的key值是变化的，可以采用下面的中括号的形式：[`btn-${btnType}`]
@@ -48,7 +47,7 @@ const classes = classNames('btn', className, {
    'disabled': (btnType === 'link') && disabled
 })
 ```
-## 4. 编写组件
+## 四、 编写组件
 * 新建 `src/components/Button/button.tsx`
 
 ```
@@ -276,7 +275,7 @@ $btn-line-height: $line-height-base !default;
 ...
 
 ```
-## 5. 删除多余文件+引用组件
+## 五、 删除多余文件+引用组件
 * 删除`src/App.css` + `src/logo.svg` + `src/index.css` + `src/App.test.js` + `serviceWorker.ts`文件
 * 修改`App.tsx`文件
 ```
@@ -320,18 +319,15 @@ export default App;
 ```
 export { default as Button } from "./components/Button";
 ```
-
-
-
-## 6. 运行项目
+## 六、 运行项目
 执行命令
 ```
-$ npm start
+npm start
 ```
 访问项目 可以看到button组件成功了！
 ![image.png](https://upload-images.jianshu.io/upload_images/11846892-8690603021ebd620.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-##7.单元测试
+## 七、单元测试
 新建`src/Button/button.test.tsx`文件
 ```
 import React from "react";
@@ -399,18 +395,16 @@ describe("Button 组件", () => {
 ```
 执行命令
 ```
-$ npm test
+npm test
 ```
 可以看到单元测试成功通过！
 ![image.png](https://upload-images.jianshu.io/upload_images/11846892-04f6282ff0e82886.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-##8.组件库实现按需加载
+## 八、组件库实现按需加载
 * 安装依赖
 ```
 $npm install node-cmd -D
 ```
-
-
 * 新建 `buildScss.js`文件
 ```
 const cmd = require("node-cmd");
@@ -496,14 +490,14 @@ module.exports = {
 ```
 ⚠️⚠️⚠️重要说明：在开发的时候，每个组件目录下面必须有一个`_style.scss`样式文件，即使他是个空文件也必须有，否则会在按需引入的时候报错找不到css文件⚠️⚠️
 
-##9.storybook文档生成
+## 九、storybook文档生成
 1. 初始化storyBook
 ```
-$ npx -p @storybook/cli sb init
+npx -p @storybook/cli sb init
 ```
 2. 添加依赖和插件
 ```
-$ npm install @storybook/addon-info --save-dev
+npm install @storybook/addon-info --save-dev
 ```
 3. 添加npm脚本
 ```
@@ -515,7 +509,7 @@ $ npm install @storybook/addon-info --save-dev
 ```
 4. 配置storybook，支持typescript
 ```
-$ npm install react-docgen-typescript-loader -D
+npm install react-docgen-typescript-loader -D
 ```
 5. 添加storybook配置文件
 * 新建`.storybook/webpack.config.js`文件
@@ -667,13 +661,13 @@ storiesOf('Button 按钮', module)
 ```
 7.执行命令
 ```
-$ npm run storybook
+npm run storybook
 ```
 在终端可以看到
 ![image.png](https://upload-images.jianshu.io/upload_images/11846892-8b43e51f15d70e6b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 浏览器打开`http://localhost:9009/`,可以看到组件库文档生成了。
 ![image.png](https://upload-images.jianshu.io/upload_images/11846892-151907d5b1ed9637.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-## 10. typescript编译配置
+## 十、 typescript编译配置
 新建`tsconfig.build.json`文件
 ```
 
@@ -700,7 +694,7 @@ $ npm run storybook
 }
 
 ```
-## 11. package.json相关配置
+## 十一、 package.json相关配置
 * 将依赖包从dependencies搬到devDependencie
 >为什么要这么做？
 一、是防止发布组件库之后别人使用了跟我们不一样的react版本造成冲突
@@ -769,12 +763,10 @@ $ npm run storybook
    ... 
 ```
 此时执行打包命令，就可以成功根据配置打包了。
-## 12. 发布到npm
+## 十二、 发布到npm
 万事俱备，只欠发布。
 * 完善一下 README.md 文档，这个随便写两句就好
-* 在根目录下新建一个 .npmignore 文件，内容和 .gitignore 差不多：
-```
-```
+* 在根目录下新建一个 .npmignore 文件，内容和 .gitignore 差不多
 最后执行 npm login 登入 npm 账号，再执行 npm publish 发布即可，就这么简单的两步就可以，过一会在 npm 上就能搜到了。当然前提是你有个 npm 账号，没有的话去注册一个吧，很 easy 的，然后还要搜下你的 npm 包名是否有人用，有的话就换一个。
 
-# 总结：完美！
+大功告成✌️✌️✌️
