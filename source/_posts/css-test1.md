@@ -1,13 +1,14 @@
 ---
-title: css相关面试题
-date: 2019-09-19 11:27:51
-tags: css
+title: Css面试题 ---- [1]
+date: 2017-11-01 10:00:00
+tags: Css
 ---
 
-Author: Echo
-Time: 2019-09-19 15:46:24
+<meta name="referrer" content="no-referrer"/>
+
 
 ## 1.什么是 BFC机制
+---
 
 BFC(Block Formatting Context)，块级格式化上下文，是一个独立的渲染区域，让处于 BFC 内部的元素与外部的元素相互隔离，使内外元素的定位不会相互影响。
 * 触发条件 (以下任意一条)
@@ -36,6 +37,7 @@ BFC(Block Formatting Context)，块级格式化上下文，是一个独立的渲
 4. 可以阻止元素被浮动元素覆盖
 
 ## 2. CSS3中新增的选择器以及属性
+---
 
 * 属性选择器
 
@@ -84,6 +86,7 @@ css3新增属性
 | rgba       | 基于r,g,b三个颜色通道来设置颜色值, 通过a来设置透明度      |    safari 4, chrome 3, FF3, opera 10    |
 		
 ## 3. 居中布局
+---
 
 * 水平居中
 1. 行内元素: text-align:center
@@ -100,7 +103,7 @@ css3新增属性
 * 水平垂直居中
 
 1. 已知元素宽高:绝对定位+margin:auto:
-  ```
+```
    div{
       width: 200px;
       height: 200px;
@@ -130,6 +133,7 @@ css3新增属性
   }
 ```
 3. absolute+transform
+
 ```
    div{
      width: 200px;
@@ -143,7 +147,7 @@ css3新增属性
    }
 
 ```
-4.flex + justify-content + align-items
+4. flex + justify-content + align-items
 ```
 .box{
    height:600px;
@@ -159,10 +163,11 @@ css3新增属性
     height: 200px;
   }
 ```
-## 4. 清除浮动有哪些方法, 各有什么优缺点
+## 4. 清除浮动有哪些方法, 各有什么优缺点?
+---
 
 * 使用clear属性的空元素 
-  在浮动元素后使用一个空元素如<div class="clear"></div>，并在CSS中赋予.clear{clear:both;}属性即可清理浮动。亦可使用<br class="clear" />或<hr class="clear" />来进行清理。
+  在浮动元素后使用一个空元素如`<div class="clear"></div>`，并在CSS中赋予`.clear{clear:both;}`属性即可清理浮动。亦可使用`<br class="clear" />`或`<hr class="clear" />`来进行清理。
 
 优点: 简单, 写少量代码, 兼容性也好 缺点: 添加无语义html元素, 不利于代码语义化, 后期维护成本大
 
@@ -178,6 +183,7 @@ css3新增属性
 给父级元素设置高度
 简单, 代码少,好掌握 缺点: 只适用于高度固定的布局
 ## 5. 用纯CSS创建一个三角形的原理是什么
+---
 
 之前写三角形, 都是直接记住代码,没有探究原因,我也是直到有一次面试时,面试大哥让我说说css创建三角形的原理,我就......回来就赶紧翻资料.接下来我就将当时我理解的过程列举出来:
 1. 写一个我们最熟悉的 border应用
@@ -234,37 +240,38 @@ css3新增属性
 这样给面试你的人讲,讲明白应该不是问题., 重点就是要理解border的应用
 
 
-## 6. 实现三栏布局有哪些方法, 分别描述一下
+## 6. 实现三栏布局有哪些方法, 分别描述一下?
+---
 
 三栏布局，顾名思义就是两边固定，中间自适应。三栏布局在开发十分常见，那么什么是三栏布局？即左右模块固定宽度，中间模块随浏览器变化自适应，想要完成的最终效果如下图所示：下面列出四种实现方式, 在开发中可以根据实际需求选择适合自己的方法进行编码:
 
 * Flex 布局
 ```
 <style>
-.container{
+#container{
   display:flex;
   justify-content: center;
   height: 200px;
   background: #eee;
 }
-.left {
+#left {
    width: 200px;
    background-color: red;
    height: 100%;
  }
-.main {
+#main {
     background-color: yellow;
     flex: 1;
 }
-.right {
+#right {
     width: 200px;
     background-color: green;
 }
 </style>
-<div class="container">
-  <div class="left">1</div>
-  <div class="main">2</div>
-  <div class="right">3</div>
+<div id="container">
+  <div id="left">1</div>
+  <div id="main">2</div>
+  <div id="right">3</div>
 </div>
 ```
 简单实用，现在比较流行的方案，但是需要考虑浏览器的兼容性。
@@ -272,17 +279,17 @@ css3新增属性
 * 绝对定位布局
 ```
 <style>
-.container {
+#container {
   position: relative;
   background:#eee;
   height:200px;
 	}
-.main {
+#main {
   height: 200px;
   margin: 0 120px;
   background-color: yellow;
 	}
-.left {
+#left {
   position: absolute;
   width: 100px;
   height: 200px;
@@ -290,7 +297,7 @@ css3新增属性
   top: 0;
   background-color: red;
 	}
-.right {
+#right {
   position: absolute;
   width: 100px;
   height: 200px;
@@ -300,35 +307,36 @@ css3新增属性
 }
 </style>
 
-<div class="container">
-  <div class="left">1</div>
-  <div class="main">2</div>
-  <div class="right">3</div>
+<div id="container">
+  <div id="left">1</div>
+  <div id="main">2</div>
+  <div id="right">3</div>
 </div>
-```* 
-这种方案也简单实用, 并且可以将 <div class="main"></div>元素放到第一位,使得主要内容优先加载!
+```
 
-双飞翼布局
+这种方案也简单实用, 并且可以将 `<div class="main"></div>`元素放到第一位,使得主要内容优先加载!
+
+* 双飞翼布局
 ```
 <style>
-.content {
+#content {
   float: left;
   width: 100%;
 }
-.main {
+#main {
   height: 200px;
   margin-left: 110px;
   margin-right: 220px;
   background-color: yellow;
 }
-.left {
+#left {
   float: left;
   height: 200px;
   width: 100px;
   margin-left: -100%;
   background-color: red;
 }
-.right {
+#right {
   width: 200px;
   height: 200px;
   float: right;
@@ -337,27 +345,27 @@ css3新增属性
 }	
 
 </style>
-<div class="content">
-  <div class="main"></div>
+<div id="content">
+  <div id="main"></div>
 </div>
-<div class="left"></div>
-<div class="right"></div>
+<div id="left"></div>
+<div id="right"></div>
 ```
 
 * 圣杯布局
 ```
 <style>
-.container {
+#container {
   margin-left: 120px;
   margin-right: 220px;
 }
-.main {
+#main {
   float: left;
   width: 100%;
   height: 300px;
   background-color: yellow;
 }
-.left {
+#left {
   float: left;
   width: 100px;
   height: 300px;
@@ -366,7 +374,7 @@ css3新增属性
   left: -120px;
   background-color: blue;
 }
-.right {
+#right {
   float: left;
   width: 200px;
   height: 300px;
@@ -376,16 +384,17 @@ css3新增属性
   background-color: green;
 }
 </style>
-<div class="container">
-  <div class="main"></div>
-  <div class="left"></div>
-  <div class="right"></div>
+<div id="container">
+  <div id="main"></div>
+  <div id="left"></div>
+  <div id="right"></div>
 </div>
 ```
 圣杯布局和双飞翼布局解决问题的方案在前一半是相同的，也就是三栏全部float浮动，但左右两栏加上负margin让其跟中间栏div并排，以形成三栏布局。
 
 
 ## 7. css3实现0.5px的细线
+---
 ```
 <style>
 .line {
@@ -408,6 +417,7 @@ css3新增属性
 ```
 
 ## 8. link 与 @import 的区别
+---
 
 * 从属关系区别
 @import是 CSS 提供的语法规则，只有导入样式表的作用；link是HTML提供的标签，不仅可以加载 CSS 文件，还可以定义 RSS、rel 连接属性等
@@ -419,9 +429,11 @@ DOM可控性区别
 可以通过 JS 操作 DOM ，插入link标签来改变样式；由于DOM方法是基于文档的，无法使用@import的方式插入样式。
 css部分就整理到这里, 小伙伴们面试还有什么经常遇到的,可以在评论区给我留言, 我有时间就整理出来, IT(挨踢)都是一大家, 方便你我他
 ## 9. 开发中为什么要初始化css样式
+---
 
 因为浏览器的兼容问题，不同浏览器对有些标签的默认值是不同的，如果没对CSS初始化往往会出现浏览器之间的页面显示差异。
 ## 10. CSS优化、提高性能的方法有哪些?
+---
 
 尽量将样式写在单独的css文件里面，在head元素中引用 将代码写成单独的css文件有几点好处：
 * 内容和样式分离，易于管理和维护
@@ -434,6 +446,7 @@ css部分就整理到这里, 小伙伴们面试还有什么经常遇到的,可�
 * 避免！important，可以选择其他选择器
 
 ## 11. css的预处理器和后处理器都有哪些吗？它们有什么区别呢？
+---
 
 参考链接: https://blog.csdn.net/yushuangyushuang/article/details/79209752.
 
@@ -442,5 +455,7 @@ css部分就整理到这里, 小伙伴们面试还有什么经常遇到的,可�
 市面上有很多CSS预处理器可供选择，且绝大多数CSS预处理器会增加一些原生CSS不具备的特性，例如代码混合，嵌套选择器，继承选择器等。这些特性让CSS的结构更加具有可读性且易于维护。
 * 后处理器 :rework，postcss。对css进行处理，有的可以对css进行压缩，有的可以自动处理兼容性问题。
 
+---
+总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
 参考链接：http://www.pinlue.com/article/2019/05/2002/158990051021.html

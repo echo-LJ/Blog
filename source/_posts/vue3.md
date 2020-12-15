@@ -1,13 +1,12 @@
 ---
 title: 了解vue源码
-date: 2019-09-03 09:47:57
-tags: vue
+date: 2017-10-01 10:00:00
+tags: Vue
 ---
-
-Author: EchodefineProperty
-Time: 2019-09-03 09:47:57
+<meta name="referrer" content="no-referrer"/>
 
 ## new Vue()做了什么？
+---
 new关键字代表实例化一个对象, 而Vue实际上是一个类, 源码位置是
 `/src/core/instance/index.js`
 ```
@@ -60,6 +59,7 @@ Vue.prototype._init = function (options?: Object) {
 * `vm.$mount`，挂载实例。
 
 ## 什么阶段才能访问DOM？
+---
 这个回答可以从beforeCreate以及 created 的调用时机谈起，我们根据上面的概述，来简化下代码:
 ```
 callHook(vm, 'beforeCreate')
@@ -77,6 +77,7 @@ callHook(vm, 'created')
 * 为什么created之后才挂载实例？
 
 ## 谈谈你对Vue的生命周期的理解？
+---
 生命周期函数解释说明（图片）：https://img2018.cnblogs.com/blog/1475079/201810/1475079-20181015102951341-1694919323.png
 ##### 理解:
 每个 Vue 实例在被创建时都要经过一系列的初始化过程——例如，需要设置数据监听、编译模板、将实例挂载到 DOM 并在数据变化时更新 DOM 等。同时在这个过程中也会运行一些叫做 生命周期钩子 的函数，这给了用户在不同阶段添加自己的代码的机会
@@ -124,15 +125,14 @@ var LIFECYCLE_HOOKS = [
 ```
 于是，你可以答多`activated & deactivated`（keep-alive 组件激活/停用）、`errorCaptured`（v2.5 以上版本有的一个钩子，用于处理错误）这三个。
 
------
 
 ## 生命周期钩子的合并策略
+---
 https://www.cnblogs.com/xweizi/p/10572281.html
 
------ 
-单独抽出一天来处理
 
 ## 新生命周期钩子：serverPrefetch是什么？
+---
 ```
 // v2.6.10的变化
 ```
@@ -171,6 +171,7 @@ export default {
 </script>
 ```
 ## Vue-router 路由模式有几种？
+---
 三种 "hash" | "history" | "abstract"，一般人只知道两种"hash" | "history"
 ```
 // 源码：
@@ -274,6 +275,7 @@ abstract模式是使用一个不依赖于浏览器的浏览历史虚拟管理后
 根据平台差异可以看出，在 Weex 环境中只支持使用 abstract 模式。 不过，vue-router 自身会对环境做校验，如果发现没有浏览器的 API，vue-router 会自动强制进入 abstract 模式，所以 在使用 vue-router 时只要不写 mode 配置即可，默认会在浏览器环境中使用 hash 模式，在移动端原生环境中使用 abstract 模式
 
 ## 谈谈你对keep-alive的了解
+---
 先贴一个常规回答：
 `
 keep-alive是 Vue 内置的一个组件，可以使被包含的组件保留状态，或避免重新渲染。
@@ -306,12 +308,14 @@ if (parent && !options.abstract) {
 3.在 2.2.0 及其更高版本中，activated 和 deactivated 将会在 <keep-alive> 树内的所有嵌套组件中触发。
 
 ## vue源码中内置的组件？
+---
 * component
 * transition
 * transition-group
 * keep-alive
 * slot
 ## 了解Vue2.6+新全局API：Vue.observable()吗？
+---
 Vue2.6+新的全局API是Vue.observable(),它的使用方式：
 ```
 // 准备个文件store.js - /store/store.js
@@ -353,6 +357,7 @@ export default {
 </script>
 ```
 ## 了解Vue数据绑定原理？
+---
 参考Vue.js官网介绍响应式原理图，我们进行分析：
 
 这张图比较清晰地展示了整个流程，首先通过一次渲染操作触发Data的getter（这里保证只有视图中需要被用到的data才会触发getter）进行依赖收集，这时候其实Watcher与data可以看成一种被绑定的状态（实际上是data的闭包中有一个Deps订阅者，在修改的时候会通知所有的Watcher观察者），在data发生变化的时候会触发它的setter，setter通知Watcher，Watcher进行回调通知组件重新渲染的函数，之后根据diff算法来决定是否发生视图的更新。
@@ -1001,7 +1006,9 @@ export function defineReactive (
   })
 }
 ```
-----
+---
+总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
+
 整篇文章主要参考链接：https://juejin.im/post/5c959f74f265da610c068fa8
 源码解析参考链接：https://github.com/answershuto/learnVue
 
