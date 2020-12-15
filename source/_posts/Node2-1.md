@@ -1,13 +1,13 @@
 ---
 title: express： 实现本地代码+本地mock+环境接口数据
-date: 2019-09-20 17:29:05
-tags: node
+date: 2017-12-01 10:00:00
+tags: Node
 ---
 
-Author: Echo
-Time: 2019-09-20 17:29:05
+<meta name="referrer" content="no-referrer"/>
 
 ### express
+---
 
 * 简介
 基于 Node.js 平台，快速、开放、极简的 Web 开发框架
@@ -99,6 +99,7 @@ app.listen(local_proxy_port, () => {
 ```
 
 ## 运行express服务器
+---
 
 ```
 "scripts": {
@@ -123,3 +124,5 @@ $ npm install nodemon --save-dev
 ```
 $ npm run devlocal
 ```
+
+总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
