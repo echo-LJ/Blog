@@ -1,12 +1,12 @@
 ---
 title: 模拟element-ui写message组件思路
-date: 2019-08-15 16:05:21
-tags: vue
+date: 2017-05-01 10:00:00
+tags: Vue
 ---
-Author: Echo
-Time: 2019-08-15 16:05:21
+<meta name="referrer" content="no-referrer"/>
 
 ## 前言
+---
 
 在平时的开发过程中，我们总是先写好一个组件，然后在需要的页面中用 `import` 引入即可，但如果是下面这种类型的组件呢👇
 
@@ -25,6 +25,7 @@ this.$message({
 没错，就是这么简单的一句话就万事大吉了（就是用 js 调用组件而已啦🧐）。那这种效果究竟是怎么实现的呢？今天就让我们来（手把手🤝 ）一探究竟吧！
 
 ## 前置知识
+---
 
 不知道小伙伴们有没有用过 `Vue.extend()` 这个东东，反正我是很少碰过，印象不深，所以这里我们先来短暂了解一下 `Vue.extend()` 主要是用来干嘛的。先来个官方说明（不多的，坚持下）：
 
@@ -50,6 +51,7 @@ instance.$mount('#app');
 补充一下🤐：`$mount()` 里面如果没有参数，说明组件只是渲染了但还没有挂载到页面上，如果有正确的（元素）参数则直接挂载到元素下面。
 
 ## 写一个 message 组件
+---
 
 js 调用归调用，最原始的组件还是要有的，只是我们不通过 `import` 来引入到页面中而已。ok，我们就以最开始的那个 message图片来简单写一下这个 vue 组件（element-ui中的message 和 alert 也是一样的）。这里就直接上代码啦，毕竟它的结构简单到爆了，也不是本章节的重点：
 
@@ -100,6 +102,7 @@ export default {
 上面的内容想必大家应该都能看懂，所以这里就直接讲下面的重点了。
 
 ## 写一个 message.js
+---
 
 我们在 message.vue 的同级目录下新建一个 message.js 文件。我们先瞟一眼文件内容（也不多，已经是个最简版了）👇：
 
@@ -131,6 +134,7 @@ export default Message;
 
 
 ## 开始调用
+---
 
 调用方式很简单，首先我们在入口文件 main.js（和上面不是同一个😢） 里加上两行代码，这样我们就能在需要的地方直接用 js 调用它了，
 
@@ -150,6 +154,7 @@ Vue.prototype.$message = EchojoyMessage;
 嗯，挺好，小有成就的 feel 👏👏👏。
 
 ## 支持可传参数
+---
 
 别急，我们好像还漏了点什么🤔。。。对了，现在还不支持传参呢，直接调用 `this.$message()` 就只能显示————服务器错误，请稍后重试（这下全都是后端的锅了😊）。但我们可是个有追求的前端，不能局限于此，所以现在让我们来尝试增加下两个可配置参数，这里拿 `duration` 和 `content` 举个栗子🌰。
 首先我们要修改 message.vue 组件里面的内容（其实没啥大变化），就像下面这样：
@@ -230,6 +235,7 @@ export default {
 当然，这还没完，我们继续添加个小功能点🙄。。。
 
 ## 支持 this.$message.error()
+---
 
 这里我们打算支持 `this.$message.error()` 和 `this.$message.success()` 这两种方式，所以我们第一步还是要先去修改一下 message.vue 文件的内容（主要就是根据 `type` 值来修改组件的样式），就像下面这样：
 
@@ -307,7 +313,8 @@ export default {
 
 
 
-## duration <= 0,message一直存在
+## 配置message一直存在参数
+---
 * 传入参数非number类型
 首先我们为了让组件可以在传入错误类型的duration是能正常使用，做了一个小小的兼容，判断变量类型是否为number，非number类型，控制台输出错误，并强行转化duration为数字1000.（处理办法相当粗暴了！！）
 * 传入参数为number类型移除该组件实例和 DOM 节点
@@ -331,6 +338,7 @@ mounted() {
   },
 ```
 ## 手动关闭message
+---
 在dom结构上设置可以执行关闭的icon图标,添加事件
 ```
 <i class="echojoy-icon-close echojoy-message-close" @click="close"></i>
@@ -344,8 +352,9 @@ methods:{
     }
   }
 ```
-#### 结束语
-再见吧！
+## 结束语
+---
+总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
-参考 连接：https://juejin.im/post/5ca20e426fb9a05e42555d1d
+参考链接：https://juejin.im/post/5ca20e426fb9a05e42555d1d
 
