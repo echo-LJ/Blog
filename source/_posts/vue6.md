@@ -1,8 +1,9 @@
 ---
 title: 解读element-ui-----this.$message()
-date: 2020-07-27 17:15:39
+date: 2018-05-01 10:00:00
 tags: Vue
 ---
+<meta name="referrer" content="no-referrer"/>
 
 
 ## 前言
@@ -342,9 +343,8 @@ methods:{
     }
   }
 ```
-#### 结束语
-
- 大功告成✌️✌️✌️
+----
+总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
 参考链接：https://juejin.im/post/5ca20e426fb9a05e42555d1d
 

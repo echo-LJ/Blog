@@ -1,6 +1,6 @@
 ---
 title: 前端自动化构建工具 ---- Plop
-date: 2020-12-14 10:32:08
+date: 2020-11-01 10:00:00
 tags: 前端工程化
 ---
 <meta name="referrer" content="no-referrer"/>
@@ -94,7 +94,9 @@ $ npm run p
 ![image.png](https://upload-images.jianshu.io/upload_images/11846892-65892955b9098465.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ![image.png](https://upload-images.jianshu.io/upload_images/11846892-2814dec9f30b593b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-大功告成✌️✌️✌️
+----
+
+总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
 
 

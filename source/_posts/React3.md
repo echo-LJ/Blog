@@ -1,8 +1,9 @@
 ---
 title: 使用react搭建组件库--radio组件
-date: 2020-07-27 17:17:30
+date: 2020-05-01 10:00:00
 tags: React
 ---
+<meta name="referrer" content="no-referrer"/>
 
 ## 前言
 你应该需要：[使用react搭建组件库：react+typescript+storybook]([https://www.jianshu.com/p/8ef96e06adcc](https://www.jianshu.com/p/8ef96e06adcc)
@@ -708,6 +709,8 @@ $ npm run storybook
  ✅ ✅ ✅ ✅ ✅
 
  大功告成✌️✌️✌️
+ ----
+总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
 
 

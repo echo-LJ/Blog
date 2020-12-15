@@ -1,8 +1,9 @@
 ---
 title: 使用react搭建组件库：react+typescript+storybook
-date: 2020-06-08 21:12:16
+date: 2020-06-01 10:00:00
 tags: React
 ---
+
 <meta name="referrer" content="no-referrer"/>
 
 ## 一、 安装组件库
@@ -769,4 +770,4 @@ npm run storybook
 * 在根目录下新建一个 .npmignore 文件，内容和 .gitignore 差不多
 最后执行 npm login 登入 npm 账号，再执行 npm publish 发布即可，就这么简单的两步就可以，过一会在 npm 上就能搜到了。当然前提是你有个 npm 账号，没有的话去注册一个吧，很 easy 的，然后还要搜下你的 npm 包名是否有人用，有的话就换一个。
 
-大功告成✌️✌️✌️
+总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️

@@ -1,6 +1,6 @@
 ---
 title: NO3:Node.js + mysql+Sequelize实现注册接口及校验逻辑
-date: 2020-07-27 17:12:00
+date: 2020-09-01 10:00:00
 tags: Node
 ---
 <meta name="referrer" content="no-referrer"/>
@@ -262,4 +262,6 @@ module.exports = {
 
 我们的注册接口就成功啦！
 
-大功告成✌️✌️✌️
+----
+
+总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️

@@ -1,10 +1,9 @@
 ---
 title: 探究vue-router的源码
-date: 2020-05-13 16:30:54
-tags: vue, vueRouter
+date: 2018-06-01 10:00:00
+tags: Vue
 ---
-Author: Echo
-Time: 2020-05-13 16:30:54
+<meta name="referrer" content="no-referrer"/>
 
 ## 一个vue路由的工作流程
 
@@ -129,5 +128,8 @@ VueRouter.install = function (Vue) {
 // 暴露vue类
 export default VueRouter;
 ```
+
+----
+总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
 直接在项目中引入就可以啦！！

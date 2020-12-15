@@ -1,8 +1,9 @@
 ---
 title: 使用react搭建组件库--icon组件
-date: 2020-07-27 17:16:46
+date: 2020-04-01 10:00:00
 tags: React
 ---
+<meta name="referrer" content="no-referrer"/>
 
 ## 前言
 你应该需要：[使用react搭建组件库：react+typescript+storybook]([https://www.jianshu.com/p/8ef96e06adcc](https://www.jianshu.com/p/8ef96e06adcc)
@@ -233,7 +234,7 @@ $ npm run storybook
 ![image.png](https://upload-images.jianshu.io/upload_images/11846892-f5e3bf4ef4168c78.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ## 五、 发布到npm
  ✅ ✅ ✅ ✅ ✅
-
- 大功告成✌️✌️✌️
+----
+总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
 

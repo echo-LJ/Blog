@@ -1,8 +1,9 @@
 ---
 title: vue-cli3项目展示本地Markdown文件的方法
-date: 2020-01-15 15:05:46
-tags:
+date: 2020-01-01 10:00:00
+tags: Vue
 ---
+<meta name="referrer" content="no-referrer"/>
 
 【版本】
 ```
@@ -56,3 +57,6 @@ module.exports = {
 ```
 
 4.保存后重新启动项目(尤其是修改自定义lodaer和vue.config.js配置文件,必须重新启动项目生效)
+
+----
+总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️

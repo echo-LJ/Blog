@@ -1,11 +1,10 @@
 ---
 title: 搭建Vue的SSR服务端渲染
-date: 2020-05-19 11:13:15
-tags:
+date: 2018-07-01 10:00:00
+tags: Vue
 ---
 
-Author: Echo
-Time: 2020-05-19 11:13:15
+<meta name="referrer" content="no-referrer"/>
 
 ## SSR是什么
 ---
@@ -333,3 +332,6 @@ server.listen(2000);
 $ node server.js
 ```
 项目运行之后，会发现切换页面，都会重新请求页面刷新。
+
+---
+总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️

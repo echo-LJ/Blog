@@ -1,9 +1,9 @@
 ---
-layout: ts
 title: [Typescript] 为第三方库添加声明文件 .d.ts
-date: 2020-07-27 17:09:20
-tags: ts
+date: 2019-04-01 10:00:00
+tags: Ts
 ---
+<meta name="referrer" content="no-referrer"/>
 
 #### 一、问题
 在实际开发项目中就遇到了这样的问题，需要在react+Typescript项目中使用`rc-checkbox`第三方包，执行安装命令,并在项目中引用
@@ -34,9 +34,8 @@ declare module 'rc-checkbox';
 
 这个bug就解决了，重启项目就可以了！
 
-* 薅羊毛打广告：
-
-我的博客即将同步至腾讯云+社区，邀请大家一同入驻：https://cloud.tencent.com/developer/support-plan?invite_code=1rptzgs3x7m2h
+---
+总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
 参考连接：[https://www.cnblogs.com/songForU/p/11041222.html](https://www.cnblogs.com/songForU/p/11041222.html)
 

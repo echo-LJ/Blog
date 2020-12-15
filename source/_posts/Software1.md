@@ -3,6 +3,7 @@ title: macOS 上安裝 MySQL
 date: 2020-07-27 17:11:18
 tags: Software
 ---
+<meta name="referrer" content="no-referrer"/>
 
 > 在 macOS 下安裝 MySQL 资料库，并且基本的设定 root 密码。
 ## 一、安装步骤
@@ -28,7 +29,9 @@ tags: Software
 
 >注意！设置密码时，要记得加上引号，假设密码为1234，应该为：
 update user set password=PASSWORD("1234") where User='root';
+----
+总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
-相关参考：[https://www.ioa.tw/macOS/MySQL.html](https://www.ioa.tw/macOS/MySQL.html)
+参考链接：[https://www.ioa.tw/macOS/MySQL.html](https://www.ioa.tw/macOS/MySQL.html)
 
-大功告成✌️✌️
+
