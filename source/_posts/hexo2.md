@@ -1,6 +1,6 @@
 ---
 title: Hexo deplay报错问题
-date: 2017-01-31 10:00:00
+date: 2017-02-01 10:00:00
 tags: Hexo
 ---
 
