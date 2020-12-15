@@ -1,17 +1,16 @@
 ---
 title: 关于前端请求的那些事
-date: 2019-08-19 14:05:42
-tags: js
+date: 2017-06-01 10:00:00
+tags: Js
 ---
-
-Author: Echo
-Time: 2019-08-19 14:05:42
+<meta name="referrer" content="no-referrer"/>
 
 ## 引言
 
 前端是一个快速发展的领域，而在前端的技术栈当中，前端请求又是最见的一个领域，通过请求接口数据，才能将一个静态的页面动态化。本文将以前端发展的时间轴来逐一分析前端请求的技术演变及其优劣。
 
 ## XMLHttpRequest
+---
 
 XMLHttpRequest是最早出现的与服务器交换数据的方案，有了XMLHttpRequest,开发者终于可以在不重新加载页面的情况下更新网页，可以在页面加载后请求接受以及发送数据。而所有的浏览器均支持获取XMLHttpRequest对象
 ```
@@ -73,6 +72,7 @@ function onReadyStateChange() {
 }
 ```
 ## Jquery Ajax
+---
 说到Jquery，这是一个时代，几乎统治了前端10年有余，彻底解决了UI层与数据层交互的问题，直到三大框架(Angular/React/Vue）的出现，前端进入MVVM浪潮。而Ajax将XHR进行封装，让开发者可以更加便捷方便进行使用。
 ```
 $.ajax({   //标准写法
@@ -98,6 +98,7 @@ $.getJSON(url,function(){});  //get请求从服务器加载Json编码
 * 整个Jquery太大，引入成本过高
 
 ## Fetch
+---
 fetch其实是一个新世界，脱离XHR，完全是基于Promise的异步处理机制，使用起来会比ajax更加简单。
 使用fetch的代码会相比xhr来说更具有条理性。
 
@@ -153,6 +154,7 @@ fetch(url,{
 * 无法获取progress状态
 Fetch中的Response.body 中实现了getReader()方法用于读取原始字节流, 该字节流可以循环读取.
 ## Axios
+---
 axios也是比较新的网络请求的类库，并且被尤雨溪尤大推荐，已成为VUE的网络请求标配，也是十分的火爆。它本身也是对原生XHR的封装。
 * 支持node，创建http请求
 * 支持Promise API
@@ -200,10 +202,14 @@ axios.post（‘/user’, {
   });
 ```
 ## 如何选择（个人理解，仅供参考）[](https://qianduan.group/posts/5bebe26f9fd64d5a7458a932#-)
+---
 
 1.  首先可以肯定的是，如果你的代码依旧是基于Jquery，那毫无疑问，ajax就是你最好的选择。
 2.  如果你使用的是任意MVVM框架，建议无脑使用axios，fetch在实际项目使用中，需要各种的封装和异常处理，并非开箱即用，而axios可以做到直接替换$.ajax。
 3.  如果就是要使用fetch，那相信你也一定能封装成自己的一套最佳实践。
+## 结束语
+---
+总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
-参考：[https://qianduan.group/posts/5bebe26f9fd64d5a7458a932](https://qianduan.group/posts/5bebe26f9fd64d5a7458a932)
+参考链接：[https://qianduan.group/posts/5bebe26f9fd64d5a7458a932](https://qianduan.group/posts/5bebe26f9fd64d5a7458a932)
 
