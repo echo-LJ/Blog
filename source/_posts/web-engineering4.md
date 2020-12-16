@@ -90,9 +90,19 @@ $ npm run p
 !!在配置的路径下生成对应的文件
 ![image.png](https://upload-images.jianshu.io/upload_images/11846892-f4864eb0598a116d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-* 生成文件即是模版的内容
-![image.png](https://upload-images.jianshu.io/upload_images/11846892-65892955b9098465.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+* 模版内容
+```
+require('module-alias/register');
+import BaseController from '@base/baseController';
+import { AController } from '@lib/aRouter';
+const __CURCONTROLLER = __filename.substr(__filename.indexOf('/app/controller')).replace('/app/controller', '').split('.')[0].split('/').filter(item => item !== 'index').join('/').toLowerCase();
 
+
+@AController(__CURCONTROLLER)
+export default class {{ name }}Controller extends BaseController {
+}
+```
+生成文件即是模版的内容
 ![image.png](https://upload-images.jianshu.io/upload_images/11846892-2814dec9f30b593b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ----
 

@@ -2,6 +2,13 @@
 title: question
 tags:
 ---
+
+
+## 待做事情？
+* 丰富简历，将前端工程化中标红的句子丰富到简历中。
+* 了解MvvM 和Node.js的作用和带来的消耗成本。
+* 将npm的小技巧和为什么开发私服源整理出文档
+
 ## 安装全局包报没权限
 解决方法，运行：sudo npm install -g @vue/cli
 ## 打开/usr/local
