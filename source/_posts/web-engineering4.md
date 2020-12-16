@@ -89,7 +89,18 @@ $ npm run p
 * 输入文件名
 !!在配置的路径下生成对应的文件
 ![image.png](https://upload-images.jianshu.io/upload_images/11846892-f4864eb0598a116d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
+```
+// util.js
+exports.notEmpty = (name) => {
+    return (v) => {
+        if (!v || v.trim === '') {
+            return `${name} is required`;
+        } else {
+            return true;
+        }
+    };
+};
+```
 * 模版内容
 ```
 require('module-alias/register');
