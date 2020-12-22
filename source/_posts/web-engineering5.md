@@ -207,6 +207,129 @@ require(' child_process').exec('npm config get registry', function(error, stdout
 * cnpm
 ```
 
+## Yarn 的安装理念
+----
+它的出现(npm v3时期，还没有package-lock.json)是为了解决历史上 npm 的某些不足（比如 npm 对于依赖的完整性和一致性保障，以及 npm 安装速度过慢的问题等）
+* 确定性：通过 yarn.lock 等机制，保证了确定性。即不管安装顺序如何，相同的依赖关系在任何机器和环境下，都可以以相同的方式被安装。
+* 采用模块扁平安装模式：将依赖包的不同版本，按照一定策略，归结为单个版本，以避免创建多个副本造成冗余（npm 目前也有相同的优化）。
+* 采用缓存机制，实现了离线模式
+
+> 相比 npm，Yarn 另外一个显著区别是 yarn.lock 中子依赖的版本号不是固定版本。这就说明单独一个 yarn.lock 确定不了 node_modules 目录结构，还需要和 package.json 文件进行配合。
+
+甚至还有一个专门的 synp 工具，它可以将 yarn.lock 转换为 package-lock.json
+
+#### Yarn 缓存
+
+查看缓存内容
+```
+yarn cache dir
+```
+
+Yarn 默认使用 `prefer-online` 模式，即优先使用网络数据。如果网络数据请求失败，再去请求缓存数据
+
+#### Yarn 安装机制
+* 检测（checking）: 
+  检测项目中是否存在一些 npm 相关文件，比如 package-lock.json 等。如果有，会提示用户注意：这些文件的存在可能会导致冲突。在这一步骤中，也会检查系统 OS、CPU 等信息。
+* 解析包（Resolving Packages）
+  解析package.json 定义的 dependencies、devDependencies、optionalDependencies 的内容，这属于首层依赖。
+  接着采用遍历首层依赖的方式获取依赖包的版本信息 
+* 获取包（Fetching Packages）
+  检查缓存中是否存在当前的依赖包，同时将缓存中不存在的依赖包下载到缓存目录。
+* *链接包（Linking Packages）
+* 构建包（Building Packages
+
+
+## 破解依赖管理困境
+----
+> 如何理解“嵌套地狱”呢？
+项目依赖树的层级非常深，不利于调试和排查问题；
+依赖树的不同分支里，可能存在同样版本的相同依赖。比如直接依赖 A 和 B，但 A 和 B 都依赖相同版本的模块 C，那么 C 会重复出现在 A 和 B 依赖的 node_modules 中。
+
+* npm 包的安装顺序对于依赖树的影响很大。模块安装顺序可能影响 node_modules 内的文件数量。
+
+解决方案：优雅的方式是使用 `npm dedupe` 命令
+
+## CI 环境上的 npm 优化
+----
+#### 合理使用 npm ci 和 npm install
+npm ci 就是专门为 CI 环境准备的安装命令，相比 npm install 它的不同之处在于：
+* npm ci 要求项目中必须存在 package-lock.json 或 npm-shrinkwrap.json；
+* npm ci 完全根据 package-lock.json 安装依赖，这可以保证整个开发团队都使用版本完全一致的依赖； 
+* 正因为 npm ci 完全根据 package-lock.json 安装依赖，在安装过程中，它不需要计算求解依赖满足问题、构造依赖树，因此安装过程会更加迅速；
+**package-lock.json 中已经缓存了每个包的具体版本和下载链接，你不需要再去远程仓库进行查询，即可直接进入文件完整性校验环节，减少了大量网络请求。**
+* npm ci 在执行安装时，会先删除项目中现有的 node_modules，然后全新安装；
+* npm ci 只能一次安装整个项目所有依赖包，无法安装单个依赖包；
+* 如果 package-lock.json 和 package.json 冲突，那么 npm ci 会直接报错，并非更新 lockfiles；
+* npm ci 永远不会改变 package.json 和 package-lock.json。
+
+**我们在 CI 环境使用 npm ci 代替 npm install，一般会获得更加稳定、一致和迅速的安装体验。**
+
+#### 为什么要 lockfiles，要不要提交 lockfiles 到仓库？
+
+**package-lock.json 文件的作用是锁定依赖安装结构，目的是保证在任意机器上执行 npm install 都会得到完全相同的 node_modules 安装结果。**
+
+>为什么单一的 package.json 不能确定唯一的依赖树：
+
+* 不同版本的 npm 的安装依赖策略和算法不同；
+
+* npm install 将根据 package.json 中的 semver-range version 更新依赖，某些依赖项自上次安装以来，可能已发布了新版本。
+
+package-lock.json中并不是所有的子依赖都有 `dependencies` 属性，只有子依赖的依赖和当前已安装在根目录的 node_modules 中的依赖冲突之后，才会有这个属性
+#### 要不要提交 lockfiles 到仓库？
+* 如果开发一个应用，我建议把 package-lock.json 文件提交到代码版本仓库。这样可以保证项目组成员、运维部署成员或者 CI 系统，在执行 npm install 后，能得到完全一致的依赖安装内容。
+* 如果你的目标是开发一个给外部使用的库，那就要谨慎考虑了，因为库项目一般是被其他项目依赖的，在不使用 package-lock.json 的情况下，就可以复用主项目已经加载过的包，减少依赖重复和体积。
+**`一个推荐的做法是：`**把 package-lock.json 一起提交到代码库中，不需要 ignore。但是执行 npm publish 命令，发布一个库的时候，它应该被忽略而不是直接发布出去。
+
+#### 为什么有 xxxDependencies？
+npm 设计了以下几种依赖类型声明：
+
+* dependencies 项目依赖
+
+* devDependencies 开发依赖: 不会被自动下载,比如 Webpack，预处理器 babel-loader、scss-loader，测试工具 E2E、Chai 等，这些都是辅助开发的工具包，无须在生产环境使用
+
+* peerDependencies 同版本依赖:如果你安装我，那么你最好也安装我对应的依赖。
+>peerDependencies 主要的使用场景:
+插件不能单独运行
+插件正确运行的前提是核心依赖库必须先下载安装
+我们不希望核心依赖库被重复下载
+插件 API 的设计必须要符合核心依赖库的插件编写规范
+在项目中，同一插件体系下，核心依赖库版本最好相同
+
+* bundledDependencies 捆绑依赖: bundledDependencies 和 npm pack 打包命令有关.
+在 bundledDependencies 中指定的依赖包，必须先在 dependencies 和 devDependencies 声明过，否则在 npm pack 阶段会进行报错。
+
+* optionalDependencies 可选依赖: 不建议大家使用，因为它大概率会增加项目的不确定性和复杂性.
+#### 团队最佳实操建议
+* 优先使用 npm v5.4.2 以上的 npm 版本，以保证 npm 的最基本先进性和稳定性。
+
+* 项目的第一次搭建使用 npm install 安装依赖包，并提交 package.json、package-lock.json，而不提交 node_modules 目录。
+
+* 其他项目成员首次 checkout/clone 项目代码后，执行一次 npm install 安装依赖包。
+
+对于升级依赖包的需求：
+
+依靠 npm update 命令升级到新的小版本；
+
+依靠 npm install @ 升级大版本；
+
+也可以手动修改 package.json 中版本号，并执行 npm install 来升级版本；
+
+* 本地验证升级后新版本无问题，提交新的 package.json、package-lock.json 文件。
+
+* 对于降级依赖包的需求：执行 npm install @ 命令，验证没问题后，提交新的 package.json、package-lock.json 文件。
+
+删除某些依赖：
+
+* 执行 npm uninstall 命令，验证没问题后，提交新的 package.json、package-lock.json 文件；
+
+* 或者手动操作 package.json，删除依赖，执行 npm install 命令，验证没问题后，提交新的 package.json、package-lock.json 文件。
+
+* 任何团队成员提交 package.json、package-lock.json 更新后，其他成员应该拉取代码后，执行 npm install 更新依赖。
+
+* 任何时候都不要修改 package-lock.json。
+
+* 如果 package-lock.json 出现冲突或问题，建议将本地的 package-lock.json 文件删除，引入远程的 package-lock.json 文件和 package.json，再执行 npm install 命令。
+
 
 
 
@@ -214,6 +337,8 @@ require(' child_process').exec('npm config get registry', function(error, stdout
 
 ----
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
+
+参考链接：https://kaiwu.lagou.com/course/courseInfo.htm?courseId=584#/detail/pc?id=5907
 
 
 
