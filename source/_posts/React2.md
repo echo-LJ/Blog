@@ -207,7 +207,7 @@ storiesOf('Icon 组件', module)
             text: `
             ## 引用方法
             ~~~js
-            import {Icon} from 'lin-react-ui
+            import {Icon} from 'echo-rui
             ~~~
             `
         }
@@ -219,7 +219,7 @@ storiesOf('Icon 组件', module)
             text: `
             ## 引用方法
             ~~~js
-            import {Icon} from 'lin-react-ui
+            import {Icon} from 'echo-rui
             ~~~
             更多例子请参见：https://github.com/FortAwesome/react-fontawesome#basic
             `
