@@ -41,8 +41,7 @@ tags: Js
 
 ```
 
-![ReverseProxy](https://img2018.cnblogs.com/blog/612653/201902/612653-20190226142038241-1287539351.png)
-
+![612653-20190226142303336-49757621.png](https://upload-images.jianshu.io/upload_images/11846892-6da0da0820a53e49.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 **反向代理，其实是"代理服务器"代理了"目标服务器"，去和"客户端"进行交互。**
 #### 用途：
 * 负载均衡 

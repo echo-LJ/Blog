@@ -6,18 +6,23 @@ tags: Node
 <meta name="referrer" content="no-referrer"/>
 
 ## 一、 准备工作
+
 ---
+
 #### 1.安装Express
+
 ```
-$ npm install express -g
-$ npm install express-generator -g
+npm install express -g
+npm install express-generator -g
 ```
 
 #### 2.初始化项目
+
 ```
-$ cd /Users/SPRINT/Desktop 进入桌面
-$ express 项目名称
+cd /Users/SPRINT/Desktop 进入桌面
+express 项目名称
 ```
+
 项目名称我们指定为APIServer，从项目名称可以看出 我们是模拟服务器API
 在这里我们将提供一个获取用户详情接口 并输出JSON数据。
 ![image.png](https://upload-images.jianshu.io/upload_images/11846892-f958d66e6ce428e4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -32,10 +37,12 @@ run the app:
 ```
 
 执行如下命令：
+
 ```
-$ cd APIServer //进入项目根目录
-$ npm install  //安装依赖
+cd APIServer //进入项目根目录
+npm install  //安装依赖
 ```
+
 回到项目中，会看到一个APIServer目录
 > bin: 用来启动应用（服务器）
  >public: 存放静态资源目录
@@ -44,17 +51,24 @@ $ npm install  //安装依赖
 目录app.js程序main文件 这个是服务器启动的入口
 
 ![image.png](https://upload-images.jianshu.io/upload_images/11846892-5d35fab3915217e4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 ## 二、 启动服务器
+
 ---
 首先启动服务器
+
 ```
-$ npm start
+npm start
 ```
+
 ![image.png](https://upload-images.jianshu.io/upload_images/11846892-9bac37c86b235821.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 在浏览器中访问 [http://localhost:3000/](https://links.jianshu.com/go?to=http%3A%2F%2Flocalhost%3A3000%2F)
+
 ## 三、 基本使用
+
 ---
 打开`app.js` 这里介绍下主要代码
+
 ```
   var express = require('express');
   var path = require('path');
@@ -82,8 +96,10 @@ $ npm start
   app.set('view engine', 'jade');
 ///=======模板 结束===========//
 ```
+
 当我们在浏览器中 访问 [http://localhost:3000/](https://links.jianshu.com/go?to=http%3A%2F%2Flocalhost%3A3000%2F) 调用的就是index中的接口
 我们打开index.js就可以看到该接口的定义：
+
 ```
 var express = require('express');
 var router = express.Router();
@@ -97,6 +113,7 @@ router.get('/', function(req, res, next) {
 
 module.exports = router;
 ```
+
 定义一个路由的基本格式为：
 
 ```
@@ -127,7 +144,9 @@ function User() {
 module.exports = User;
 
 ```
+
 修改`users.js`文件
+
 ```
 var express = require('express');
 var router = express.Router();
@@ -167,8 +186,9 @@ module.exports = router;
 
 由于users.js路由信息已经在app.js注册
 停止服务器 重新start服务器即可直接访问
+
 ```
-$ npm start
+npm start
 ```
 
 调用方式`http://localhost:3000/users/getUserInfo?id=1`
