@@ -47,7 +47,22 @@ $ hexo g
 $ hexo d
 ```
 本人的问题成功解决了，希望帮到大家哈哈哈哈哈开心！
+#### 3.部署Hexo踩过的坑：
+hexo d -g 出现的问题
 
+如果出现如下情况
+```
+INFO  Deploying: git
+INFO  Clearing .deploy_git folder...
+INFO  Copying files from public folder...
+FATAL Something's wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html
+TypeError [ERR_INVALID_ARG_TYPE]: The "mode" argument must be integer. Received an instance of Object
+    at copyFile (node:fs:2049:10)
+    at tryCatcher (/Users/admin/othproject/blogs/blog/node_modules/bluebird/js/release/util.js:16:23)
+    at ret (eval at makeNodePromisifiedEval (/usr/local/lib/node_modules/hexo/node_modules/bluebird/js/release/promisify.js:184:12), <anonymous>:13:39)
+```
+出现这些是因为node版本太高，切换成低版本的node来安装Hexo就可以了.
+其他的坑🉑️参考：https://zhuanlan.zhihu.com/p/136552969
 ---
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
