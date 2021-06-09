@@ -20,7 +20,7 @@ npm install
 
 ## 文件目录介绍
 ---
-安装依赖结束后，打开项目工程目录，TypeScript library starter 生成的目录结构如下：
+安装依赖结束后，打开项目工程目录，**`TypeScript library starter`** 生成的目录结构如下：
 ```
 ├── CONTRIBUTING.md
 ├── LICENSE 
@@ -39,7 +39,7 @@ npm install
 
 ## 工具集成
 ---
-使用 TypeScript library starter 创建的项目集成了很多优秀的开源工具：
+使用 **`TypeScript library starter`** 创建的项目集成了很多优秀的开源工具：
 * 使用 `RollupJS` 帮助我们打包。
 * 使用 `Prettier` 和 `TSLint` 帮助我们格式化代码以及保证代码风格一致性。
 * 使用 `TypeDoc` 帮助我们自动生成文档并部署到 GitHub pages。
@@ -338,6 +338,7 @@ describe('TsSdk test', () => {
 ![截屏2021-06-02 下午1.55.25.png](https://upload-images.jianshu.io/upload_images/11846892-4a2a99faa3872ab1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 由于我们的功能函数较简单，所以覆盖率很简单就达到了百分之百。
+
 ⚠️注意: 在自己编写过程中，不是语法层面错误时，测试失败是因为测试覆盖率的阈值设定，当我们的测试覆盖率达不到阈值的时候，测试会失败。可以根据自己需要将阈值调低，或者尽可能编写完善的单元测试。
 
 ## 五、打包
@@ -408,7 +409,8 @@ export default {
 }
 ```
 ⚠️说明：在控制台执行 `npm run build`，会编译输出 dist 目录，其中 lib 目录是单个 .ts 文件编译后的 .js 文件。types 目录是所有 .ts 文件编译后生产的 .d.ts 声明文件。
-***.es5.js是编译后生成的 es 模式的入口文件，用在 package.json 的 module 字段，***.umd.js 文件是编译后生成的 umd 模式的入口文件，用在 package.json 的 main 字段。
+
+ `***.es5.js`是编译后生成的 es 模式的入口文件，用在 package.json 的 module 字段，`***.umd.js` 文件是编译后生成的 umd 模式的入口文件，用在 package.json 的 main 字段。
 
 `增加 2 个 npm scripts：`
 ```
