@@ -1,5 +1,5 @@
 ---
-title: TypeScript+Rollup快速构建完整配置并发布npm包
+title: TypeScript+Rollup快速构建JS-SDK
 date: 2021-06-02 10:04:47
 tags: npm
 ---
