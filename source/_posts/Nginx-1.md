@@ -310,7 +310,7 @@ location = /50x.html {
 在前后端分离的开发中，跨域问题是一个非常常见的问题，现在解决跨域问题比较常用的两种方式为：
 
 * 跨域资源请求（CORS）
-* Nginx反响代理
+* Nginx反向代理
 ![612653-20190226142303336-49757621.png](https://upload-images.jianshu.io/upload_images/11846892-6da0da0820a53e49.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ![截屏2021-05-31 下午4.29.29.png](https://upload-images.jianshu.io/upload_images/11846892-a382f291e2bb04e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
