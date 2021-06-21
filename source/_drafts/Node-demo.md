@@ -7,7 +7,7 @@ tags: Node
 
 
 #### 前言
-    基于去年发布的几篇关于Node.js的文章，为方便回顾，整合成一篇文章，基于 Node.js + Express 开发服务端，基于 Node JS + MySQL实现接口的增删改查。
+    基于去年发布的几篇关于Node.js的文章，为方便回顾，整合成一篇文章，基于 Node.js + Express 开发服务端，基于 Node JS + MySQL实现接口的增删改查，基于Node.js + mysql+Sequelize实现注册接口及校验逻辑。
 ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️首先：基于 Node.js + Express 开发服务端⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
 ## 一、 准备工作
 ---
@@ -478,7 +478,8 @@ router.get('/deletepost/:id', (req,res)=> {
 ![image.png](https://upload-images.jianshu.io/upload_images/11846892-5c34c189dee174cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
-## 五、 通过模版语言展示数据库数据
+**`4.10 通过代码删除table中数据`**
+
 
 在`routes/index.js`新增如下内容
 ```
@@ -512,7 +513,28 @@ router.get('/getpostsData', (req,res)=> {
   <% }); %>
 </table>
 ```
+在浏览器中访问`http://localhost:3000/getpostsData`,可以看到数据展示成功！
+![image.png](https://upload-images.jianshu.io/upload_images/11846892-f58fed086c4ac67d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
+我们同样可以使用模版语言实现通过页面进行`增删改查`操作。
+
+👇👇👇👇👇接下来：Node.js + mysql+Sequelize实现注册接口及校验逻辑👇👇👇👇👇
+
+## 五、 实现注册接口及校验逻辑
+---
+
+**`5.1 安装依赖`**
+
+安装`mysql2`+`sequelize` +  `jsonwebtoken` + `joi`
+
+* `sequelize`
+`sequelize.js` 提供对 [MySQL](http://www.oschina.net/p/mysql)，[MariaDB](http://www.oschina.net/p/mariadb)，[SQLite](http://www.oschina.net/p/sqlite) 和 [PostgreSQL](http://www.oschina.net/p/postgresql) 数据库的简单访问，通过映射数据库条目到对象，或者对象到数据库条目。简而言之，就是 ORM（Object-Relational-Mapper）。Sequelize.js 完全是使用 JavaScript 编写，适用于 Node.js 的环境。
+
+```
+ $ npm install --save sequelize mysql2 joi jsonwebtoken
+```
+
+**`5.2 添加+修改配置文件`**
 
 
 
@@ -537,6 +559,8 @@ router.get('/getpostsData', (req,res)=> {
 [nodejs解析url](https://cloud.tencent.com/developer/article/1653911)
 
 
-
+* [使用Sequelize](https://www.liaoxuefeng.com/wiki/1022910821149312/1101571555324224)
+* [sequelize](https://sequelize.org/)
+* [https://github.com/caiya/node-sequelize/tree/master/bin](https://github.com/caiya/node-sequelize/tree/master/bin)
 
 
