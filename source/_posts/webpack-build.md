@@ -1,7 +1,7 @@
 ---
 title: 前端性能优化-webpack
 date: 2018-08-01 10:00:00
-tags: Es6
+tags: webpack
 ---
 
 <meta name="referrer" content="no-referrer"/>
