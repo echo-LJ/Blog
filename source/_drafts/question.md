@@ -10,6 +10,7 @@ tags:
   实现SSR（服务端渲染直出）技术，达到提升首屏性能以及 SEO 友好的目的；
 * 了解 MvvM 和 Node.js的作用和带来的消耗成本。
 * 将npm的小技巧和为什么开发私服源整理出文档
+* Vue CLI 3配置svg-sprite-loader与svgo-loader： https://juejin.cn/post/6854573215646875655
 
 ## 安装全局包报没权限
 解决方法，运行：sudo npm install -g @vue/cli

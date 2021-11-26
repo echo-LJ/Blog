@@ -1,56 +1,90 @@
 ---
-title: 4 个你从未听说过的强大 JavaScript 运算符
-date: 2021-06-16 13:35:22
+title: 4 个你从未听说过的更强大 JavaScript 运算符
+date: 2021-11-22 13:35:22
 tags: Js
 ---
 <meta name="referrer" content="no-referrer"/>
 
-![1_U16Sxl3a_xpV8R3xDGgMdQ (1).jpeg](https://upload-images.jianshu.io/upload_images/11846892-6597b3cbb438f927.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![1_Whvjdise1A-cNdXqTkiUVw.png](https://upload-images.jianshu.io/upload_images/11846892-93347174e21f02b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
-你有没有花一个下午阅读[Mozilla 文档](https://developer.mozilla.org/zh-CN/docs/Web)？如果您有的话，您就会知道网上有很多关于 JavaScript 的信息。这使得很容易忽略更不寻常的 JavaScript 运算符。
-然而，仅仅因为这些运算符不常见并不意味着它们不强大！它们在语法上看起来很相似，但一定要阅读它们，因为它们以不同的方式工作。
+JavaScript 很难掌握。写这篇文章是因为 JavaScript 是一种庞大的语言，其功能即使是经验丰富的开发人员也可能无法完全理解。[在上一篇文章中](https://javascript.plainenglish.io/4-powerful-javascript-operators-youve-never-heard-of-487df37114ad)，我重点介绍了您可能从未听说过的四个运算符。让我们通过学习另外四个未充分利用的运算符来继续加强我们的 JavaScript 技能
 
-让我们开始吧！
+## 1. **`delete`**
+`delete` 运算符的作用是从对象中删除属性。如果删除成功则返回真，否则返回假。虽然看起来很简单，但是`delete`有许多边缘情况使其行为变得棘手。
+例如，如果您尝试删除一个不存在的属性，则不会删除任何属性并且返回 true。
 
-## 1. **`??运算符`**
-在 JavaScript 中，该`??`运算符被称为`nullish`运算符(null/undefined)。如果它不是null/undefined，则此运算符将返回第一个参数，否则，它将返回第二个参数。
-![下载 (3).png](https://upload-images.jianshu.io/upload_images/11846892-db18391e1cc3c50d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ```
-null ?? 5 // => 5
-3 ?? 5 // => 3
-```
-在为变量分配默认值时，JavaScript 开发人员传统上依赖于逻辑`OR`运算符，如下所示。
-```
-var prevMoney = 1
-var currMoney = 0
-var noAccount = null
-var futureMoney = -1
-
-function moneyAmount(money) {
-  return money || `You currently do not own an account in the bank`
+const myTrip = {
+    location: "Boston",
+    budget: 600,
+    duration: function(arg) { return arg }
 }
 
-console.log(moneyAmount(prevMoney)) // => 1
-console.log(moneyAmount(currMoney)) // => `You currently do not own an account in the bank`
-console.log(moneyAmount(noAccount)) // => `You currently do not own an account in the bank`
-console.log(moneyAmount(futureMoney))//  => -1
-```
-上面我们创建了一个函数`moneyAmount`，负责返回用户的当前余额。我们使用`||`来识别没有帐户的用户。当 money 为 0 或者 null 的时候都会返回在当前银行没有这个账户，但是实际上账户是可能为 0 的 。在上面的示例中，`||`运算符将 0 视为虚假值，因此不会识别出我们的用户拥有 0 美元的帐户。下面，让我们通过使用`??`运算符来解决这个问题。
-
-```
-var currMoney = 0
-var noAccount = null
-
-function moneyAmount(money) {
-  return money ?? `You currently do not own an account in the bank`
+function deleteProperty(object, property) {
+    return delete object[property]
 }
- moneyAmount(currMoney) // => 0
- moneyAmount(noAccount) // => `You currently do not own an account in the bank`
-```
-总结一下， `??` 运算符允许我们分配默认值，同时识别出0 并忽略null等虚假值。
 
-## 2. **`??=运算符`**
+console.log(deleteProperty(myTrip, 'budget')) // deleted budget property returns -> true 
+console.log(deleteProperty(myTrip, 'trainTickets')) // failed to locate and delete train-tickets -> true 
+
+console.log(myTrip) // { location: 'Boston', duration: 6 }
+```
+通过let、var、const声明的基本类型的变量不能被`delete`删除，但是可以删除未用let、var、const声明的变量
+
+```
+const hello = 'hello'
+goodbye = 'goodbye'
+
+console.log(delete hello) // false
+console.log(delete goodbye) // true
+
+
+console.log(hello, goodbye=undefined) // hello undefined
+```
+创建变量而不正确声明它们通常是一个非常糟糕的想法。展望未来，我们假设所有原始类型都已正确声明并且不可删除。与函数不同，方法可以从对象中删除。
+```
+const myTrip = {
+    location: "Boston",
+    budget: 600,
+    duration: function(arg) { return arg }
+}
+
+function deleteProperty(object, property) {
+    return delete object[property]
+}
+console.log(myTrip) // { location: 'Boston', budget: 600, duration: [Function: duration] }
+
+console.log(deleteProperty(myTrip, 'duration')) // deleted duration method returns -> true 
+
+console.log(myTrip) // { location: 'Boston', budget: 600 }
+```
+
+内置对象上存在的属性，如`Array`和`Error`不能删除。它们被认为是不可配置的。非内置对象也可以使用方法`Object.defineProperty()`设置成不可配置的属性.
+```
+let myTrip = {
+    location: "Boston",
+    budget: 600,
+    passports: true
+}
+
+Object.defineProperty(myTrip, 'passports', {configurable: false} )
+
+
+function deleteProperty(object, property) {
+    return delete object[property]
+}
+
+console.log(deleteProperty(myTrip, 'passports')) // can not delete non-config property 
+                                                   // returns -> false
+
+console.log(myTrip) // { location: 'Boston', budget: 600, passports: true }
+```
+
+最后，虽然`delete`可以与数组一起使用，但通常该方法`Array.splice()` 更可取。
+
+## 2. **`instanceof`**
+
 `??=`又称为逻辑 null/undefined 赋值操作符，与我们之前学到的内容密切相关。让我们看看它们是如何联系在一起的。
 ```
 var x = null
@@ -170,5 +204,5 @@ function addPlansWhenUndefined(plans, location, budget) {
 ---
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
-原文链接：[4 Powerful JavaScript Operators You’ve Never Heard Of](https://javascript.plainenglish.io/4-powerful-javascript-operators-youve-never-heard-of-487df37114ad)
+原文链接：[Four More Powerful JavaScript Operators You’ve Never Heard Of](https://javascript.plainenglish.io/4-powerful-javascript-operators-youve-never-heard-of-487df37114ad)
 
