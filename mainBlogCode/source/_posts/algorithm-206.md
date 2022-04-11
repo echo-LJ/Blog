@@ -1,15 +1,13 @@
 ---
-title: 206反转链表
+title: leeCode-206反转链表(迭代、递归两种解法)
 date: 2022-04-11 14:44:59
-tags:
+tags: 算法
 ---
 <meta name="referrer" content="no-referrer"/>
-什么是链表？链表结构参考：
-
 
 ## 题目描述：给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。
 
-示例1:
+**示例1:**
 
 ![demo1.png](https://upload-images.jianshu.io/upload_images/11846892-e379a9cc3764efd8.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
@@ -18,7 +16,7 @@ tags:
 输出：[5,4,3,2,1]
 ```
 
-示例 3：
+**示例2:**
 ```
 
 输入：head = []
@@ -31,9 +29,9 @@ tags:
 `在遍历链表时，将当前节点的 next 指针改为指向前一个节点。由于节点没有引用其前一个节点，因此必须事先存储其前一个节点。在更改引用之前，还需要存储后一个节点。最后返回新的头引用。`
 
 * 存储当前节点的下一节点；
-* 更改next为前一个节点，
-* 存储前节点为当前节点，以供下次更改next使用
-* 更改当前节点为自己的下节点。
+* 更改next为前一个节点；
+* 存储前节点为当前节点，以供下次更改next使用；
+* 更改当前节点为自己的下节点；
 
 代码实现如下：
 ```
@@ -52,7 +50,7 @@ var reverseList = function(head) {
 
 下面通过图解 来实现 反转链表：
 
-第一行代码图解：
+* 第一行代码图解：
 
 ```
  var reverseList = function(head) { //1
@@ -63,7 +61,7 @@ var reverseList = function(head) {
 ![截屏2022-04-11 下午3.48.54.png](https://upload-images.jianshu.io/upload_images/11846892-ae51cab1329393ff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
-第二行代码图解：
+* 第二行代码图解：
 ```
  let prev = null;   // 2
 ```
@@ -71,7 +69,7 @@ var reverseList = function(head) {
 
 ![截屏2022-04-11 下午3.52.00.png](https://upload-images.jianshu.io/upload_images/11846892-7047e1b88c9f2346.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-第三行代码图解：
+* 第三行代码图解：
 ```
  let curr = head; //3
 ```
@@ -79,7 +77,7 @@ var reverseList = function(head) {
 
 ![截屏2022-04-11 下午3.53.54.png](https://upload-images.jianshu.io/upload_images/11846892-5a23ea506a26afb3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-循环部分代码图解：
+* 循环部分代码图解：
 ```
   while (curr) {  //4
         const next = curr.next; //5
@@ -92,7 +90,7 @@ var reverseList = function(head) {
 
 因为curr指向了head，head不为null，所以进入循环。先来看第5行：
 
-第五行代码图解：
+* 第五行代码图解：
 ```
  const next = curr.next; //5
 ```
@@ -100,7 +98,7 @@ var reverseList = function(head) {
 
 ![截屏2022-04-11 下午3.58.13.png](https://upload-images.jianshu.io/upload_images/11846892-b62650e4fa713e6f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-第六行代码图解：
+* 第六行代码图解：
 ```
  curr.next = prev; //6
 ```
@@ -108,7 +106,7 @@ var reverseList = function(head) {
 
 ![截屏2022-04-11 下午4.03.42.png](https://upload-images.jianshu.io/upload_images/11846892-deab58010f4a1f98.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-第七行代码图解：
+* 第七行代码图解：
 ```
  prev = curr; //7
 ```
@@ -116,7 +114,7 @@ var reverseList = function(head) {
 
 ![截屏2022-04-11 下午4.05.35.png](https://upload-images.jianshu.io/upload_images/11846892-53fd2349465757bf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-第八行代码图解：
+* 第八行代码图解：
 ```
  curr = next;; //8
 ```
@@ -148,8 +146,6 @@ curr = next; //8
 return prev； //9
 ```
 
-
-题型讲解参考；https://juejin.cn/post/6844904058562543623
 
 ## 题解方法二：递归
 
@@ -220,7 +216,10 @@ var reverseList = function(head) {  //  head： 1->2->3->4->5->null
 * 设置一个新的指针[newHead]作为翻转后的链表的链头。由于整个链表翻转之后的头就是最后一个数，所以整个过程newHead指针一直存放5的地址空间。
 * head指针逐层返回的时候依次将H的指针复制给head.next.next， 并且一定要将head.next设置为null, 即断开现在指针的链接，否则会新的链表会形成闭环。
 
-题型讲解参考:
-1、https://blog.csdn.net/FX677588/article/details/72357389
+ ---
+总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
-2、https://leetcode-cn.com/problems/reverse-linked-list/solution/dong-hua-yan-shi-206-fan-zhuan-lian-biao-by-user74/
+参考链接：
+https://juejin.cn/post/6844904058562543623
+https://blog.csdn.net/FX677588/article/details/72357389
+https://leetcode-cn.com/problems/reverse-linked-list/solution/dong-hua-yan-shi-206-fan-zhuan-lian-biao-by-user74/
