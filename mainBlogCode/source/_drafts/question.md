@@ -46,7 +46,7 @@ git rm -rf --cached .
 
 eval $(ssh-agent -s)
 windows:ssh-add ~/.ssh/lujing163
-mac: ssh-add ~/.ssh/github
+mac: ssh-add ~/.ssh/id_rsa.github 
 wx8e506d9ea5a0a3de
 https://ssr.vuejs.org/zh/
 https://cn.vuejs.org/v2/guide/ssr.html
