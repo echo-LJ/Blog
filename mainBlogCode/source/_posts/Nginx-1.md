@@ -45,6 +45,7 @@ $ brew install nginx
 * 重新启动nginx: `nginx -s reload`
 * 优雅重启，并重新载入配置文件nginx.conf: `/usr/local/nginx/sbin/nginx  -s  reload`
 * 优雅停止nginx，有连接时会等连接请求完成再杀死worker进程 `/usr/local/nginx/sbin/nginx  -s  quit`
+* 编辑配置文件:`vim /usr/local/etc/nginx/nginx.conf`
 具体常用的命令参考如下：
 ```
 nginx -s stop       快速关闭Nginx，可能不保存相关信息，并迅速终止web服务。
@@ -55,6 +56,7 @@ nginx -c filename   为 Nginx 指定一个配置文件，来代替缺省的。
 nginx -t            不运行，仅测试配置文件。nginx 将检查配置文件的语法的正确性，并尝试打开配置文件中所引用到的文件。
 nginx -v            显示 nginx 的版本。
 nginx -V            显示 nginx 的版本，编译器版本和配置参数。
+ps -ef | grep nginx 检查一下nginx服务是否在运行
 ```
 成功看到欢迎页面～！（对应的html是/usr/local/var/www/index.html）
 ![截屏2021-05-31 下午3.14.28.png](https://upload-images.jianshu.io/upload_images/11846892-2f6135da18e116c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -253,7 +255,16 @@ nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 nginx: configuration file /etc/nginx/nginx.conf test is successful
 ```
 然后执行`nginx -s reload` 更新Nginx配置文件,这时候打开浏览器 输入 localhost:8080 应该就能看到你的页面了。
+* 如果启动失败
+```nginx: [emerg] bind() to 0.0.0.0:8080 failed (48: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:8080 failed (48: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:8080 failed (48: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:8080 failed (48: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:8080 f
+```
+排查原因：可能是nginx自己占用了80端口，又把自己block住，只要`killall -9 nginx` 即可
 
+参考链接: https://blog.csdn.net/msbls5/article/details/14165519
 
 ### 动态匹配（请求过滤）
 > 通常在开发环境或者测试环境的时候呢我们修改了代码，因为浏览器缓存，可能不会生效，需要手动清除缓存，才能看到修改后的效果，这里我们做一个配置让浏览器不缓存相关的资源。
