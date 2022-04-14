@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+let PENDING = 'PENDING';
+let FULFILLED = 'FULFILLED';
+let REJECTED = 'REJECTED';
+
+
+class Promise {
+    constructor(executor){
+        this.status = PENDING;
+    this.value = undefined;
+    this.reason = undefined;
+    this.onResolvedCallbacks =[]
+    this.onRejectedCallbacks = []
+         // 调用此方法就是成功
+    let resolve = (value) => {
+      // 状态为 PENDING 时才可以更新状态，防止 executor 中调用了两次 resovle/reject 方法
+      if(this.status ===  PENDING) {
+        this.status = FULFILLED;
+        this.value = value;
+      }
+    } 
+        // 调用此方法就是失败
+    let reject = (reason) => {
+      // 状态为 PENDING 时才可以更新状态，防止 executor 中调用了两次 resovle/reject 方法
+      if(this.status ===  PENDING) {
+        this.status = REJECTED;
+        this.reason = reason;
+      }
+    }
+    try {
+      // 立即执行，将 resolve 和 reject 函数传给使用者  
+      executor(resolve,reject)
+    } catch (error) {
+      // 发生异常时执行失败逻辑
+      reject(error)
+    }
+    }
+    then(onFulfilled, onRejected){
+        if(this.status = FULFILLED){
+            onFulfilled(this.value)
+        }
+        if(this.status = REJECTED){
+            onRejected(this.reason)
+        }
+        if (this.status = PENDING) {
+            this.onResolvedCallbacks.push(() => {
+                onFulfilled(this.value)
+            });
+            this.onRejectedCallbacks.push(()=> {
+        onRejected(this.reason);
+      })
+        } 
+    }
+}
+
+const promise = new Promise((resolve, reject) => {
+  resolve('成功');
+}).then(
+  (data) => {
+    console.log('success', data)
+  },
+  (err) => {
+    console.log('faild', err)
+  }
+)
+
+    </script>
+    
+</body>
+</html>
