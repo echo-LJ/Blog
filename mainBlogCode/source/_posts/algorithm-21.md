@@ -1,7 +1,7 @@
 ---
-title: leeCode-21合并两个有序链表: (迭代、递归两种解法)-简单
+title: leeCode-21合并两个有序链表： (迭代、递归两种解法)-简单
 date: 2022-04-14 13:51:14
-tags:
+tags: 算法
 ---
 
 <meta name="referrer" content="no-referrer"/>
