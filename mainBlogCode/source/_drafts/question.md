@@ -45,7 +45,6 @@ git rm -rf --cached .
 #### 在jd的电脑提交代码到github上需要重定向密钥：
 
 eval $(ssh-agent -s)
-windows:ssh-add ~/.ssh/lujing163
 mac: ssh-add ~/.ssh/id_rsa.github 
 longfor mac: ssh-add ~/.ssh/github 
 ssh -T git@github.com
