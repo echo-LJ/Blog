@@ -1,7 +1,7 @@
 ---
-title: leeCode-141： 环形链表(遍历、双指针两种解法)-初级
+title: leeCode-141： 环形链表：(遍历、双指针两种解法)-初级
 date: 2022-04-19 13:46:46
-tags:算法
+tags: 算法
 ---
 
 <meta name="referrer" content="no-referrer"/>
