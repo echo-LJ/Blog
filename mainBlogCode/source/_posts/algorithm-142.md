@@ -68,32 +68,33 @@ var detectCycle = function(head) {
 ```
 
 
-## 题解方法二：需要参考理解题-141的第二种解法，双指针，找到相遇的节点，
+## 题解方法二：需要参考理解题-141的第二种解法，双指针，找到相遇的节点，我真是费了好大的力气才理解了这道题，难受，智商不够！！！
 
 
 `解题思路:`
-1、 链表第一次相遇，fast === slow时，两指针第一次相遇，分析fast与slow走过的步数的关系：
-* 设链表共有a+b个节点，其中链表头部到环形链表入口有a个节点，链表环有b个节点，设两指针分别走f、s步。则f=2s;
-* fast比slow走多了n个环的长度，则f = s+nb;
-* 以上两等式像减， s = nb;
-2、第二次相遇，
-* 此轮新的指针fast指向head, slow保持在第一次相遇地点不变，两指针同时向前走1步；
-   此时f = 0; s =nb;
-* 
 
+![截屏2022-04-21 下午5.02.08.png](https://upload-images.jianshu.io/upload_images/11846892-d32a6d928ac28eb2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
 ```
-var hasCycle = function(head) {
-    let fast = slow = head
-    while(fast && fast.next) {
+var detectCycle = function(head) {
+    let fast = slow = head;
+    while(fast !== null && fast.next !==null) {
         fast = fast.next.next;
         slow = slow.next;
-        if (fast === slow) {
-            return true
+        if (slow ===fast) {
+            break
         }
     }
-    return false
+    if (!fast || !fast.next) {
+        return null
+    }
+   fast = head;
+    while(fast  !== slow) {
+        fast = fast.next;
+        slow = slow.next;
+    }
+    return slow
 };
 ```
 
