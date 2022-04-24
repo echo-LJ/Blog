@@ -36,3 +36,19 @@ ssh-add ~/.ssh/github
 ssh -T git@github.com
 
 ```
+
+```
+
+Host github.com
+HostName github.com
+User xxx@163.com
+IdentityFile ~/.ssh/id_rsa_github
+
+Host git.xxx.net  //gitlab域名
+HostName git.xxx.net //gitlab域名
+User xxx@xxxx //gitlab邮箱
+IdentityFile ~/.ssh/id_rsa
+
+
+```
+可参考文章:https://blog.csdn.net/MichelleZhai/article/details/123106175
