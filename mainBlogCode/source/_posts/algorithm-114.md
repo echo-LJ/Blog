@@ -440,10 +440,10 @@ while(curr !== null) {
                 predecessor = predecessor.right;
             }
             predecessor.right = curr.right; //第1次while循环第3步: predecessor.right = 5
-            curr.left = null;
+            curr.left = null; //第1次while循环第4步: curr.right = 2
             curr.right = next;
         }
-        curr = curr.right
+        curr = curr.right //第1次while循环第5步: curr = 2
     }
 
 ```
@@ -459,3 +459,63 @@ while(curr !== null) {
 第1次while循环第3步: predecessor.right = 5
 
 ![截屏2022-04-26 上午10.11.57.png](https://upload-images.jianshu.io/upload_images/11846892-c3aef6805e645e03.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+//第1次while循环第4步: curr.right = 2
+
+![截屏2022-04-26 上午10.13.36.png](https://upload-images.jianshu.io/upload_images/11846892-45ba3e13cbeb07c7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+//第1次while循环第5步: curr.right = 2
+
+![截屏2022-04-26 上午10.14.31.png](https://upload-images.jianshu.io/upload_images/11846892-1f01ae17efa25e19.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+进入第2次while循环☝️：
+
+```
+while(curr !== null) {  // curr = 2
+        if(curr.left !==null) { // curr.left = 3
+            const next = curr.left; //第2次while循环第1步: next = predecessor = 3
+            let predecessor = next;
+            while(predecessor.right!==null){ 
+                predecessor = predecessor.right;
+            }
+            predecessor.right = curr.right; //第2次while循环第2步: predecessor.right = 4
+            curr.left = null; //第2次while循环第3步: curr.right = 3
+            curr.right = next;
+        }
+        curr = curr.right //第2次while循环第4步: curr = 3
+    }
+
+```
+
+
+//第2次while循环第1步: next = predecessor = 2
+
+![截屏2022-04-26 上午10.16.55.png](https://upload-images.jianshu.io/upload_images/11846892-c7a92718c73d9a71.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+此时predecessor = 3没有right节点，不执行内部的while循环继续向下执行
+
+//第2次while循环第2步: predecessor.right = 4
+
+![截屏2022-04-26 上午10.18.58.png](https://upload-images.jianshu.io/upload_images/11846892-b89622b0261fe655.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+//第2次while循环第3步: curr.right = 3
+
+![截屏2022-04-26 上午10.21.50.png](https://upload-images.jianshu.io/upload_images/11846892-373f6fc4470749fe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+curr = curr.right //第2次while循环第4步: curr = 3
+
+
+![截屏2022-04-26 上午10.22.08.png](https://upload-images.jianshu.io/upload_images/11846892-1b92825d6ed00c84.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+进入第3次while循环☝️：
+
+```
+while(curr !== null) {  // curr = 3
+        curr = curr.right //第3次while循环第1步: curr = 4
+    }
+
+```
+
+执行第3\4\5、6次while循环，curr.left 都为null,则curr = curr.right
+执行第6次while循环 ,此时curr为null, 则整个function执行完毕。

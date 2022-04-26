@@ -1,5 +1,5 @@
 ---
-title: leeCode-144： 二叉树的前序遍历： (迭代、递归两种解法)-简单
+title: leeCode-144： 二叉树的前序遍历： (迭代、递归、Morris遍历三种解法)-简单
 date: 2022-04-24 16:25:41
 tags: 算法
 ---
@@ -67,7 +67,7 @@ var preorder = (root, arr) => {
 }
 ```
 
-## 题解方法一：迭代
+## 题解方法二：迭代
 
 解题思路：我们也可以用迭代的方式实现方法一的递归函数，两种方式是等价的，区别在于递归的时候隐式地维护了一个栈，而我们在迭代的时候需要显式地将这个栈模拟出来，其余的实现与细节都相同。
 
@@ -115,6 +115,43 @@ stack.length不为0 ，进入while循环
 
 
 结束循环，执行完毕！！
+
+
+## 题解方法三：Morris遍历 !!没看懂
+
+解题思路：当前节点 curr，一开始来到整棵树的头节点 curr = root，当当前节点不为空 curr != null：
+
+若当前节点无左树 curr.left == null，当前节点直接向右移动 curr = curr.right；
+若当前节点有左树 curr.left != null，找到当前节点左树的最右节点 mostRight：
+2.1. 若最右节点的右指针为空 mostRight.right == null，将最右节点的右指针指向当前节点 mostRight.right = curr，然后当前节点向左移动 curr = curr.left；
+2.2. 若最右节点的右指针指向当前节点 mostRight.right === curr，将最右节点的右指针置空 mostRight.right = null，然后当前节点向右移动 curr = curr.right
+
+
+
+Morris遍历代码实现如下：
+```
+var morrisTraversal = function(root) {
+    if (!root) return []
+    const [curr, mostRight] = [root, null]
+    while (curr !== null) {
+        mostRight = curr.left
+        if (mostRight !== null) {
+            while(mostRight.right !== null && mostRight.right !== curr) {
+                mostRight = mostRight.right
+            }
+            if (mostRight.right == null) {// 情况2.1
+                mostRight.right = curr;
+                continue;
+            } else { // 情况2.2
+                mostRight.right = null;
+            }
+        }
+        curr = curr.right
+    }
+    return res
+};
+```
+
 
 
 
