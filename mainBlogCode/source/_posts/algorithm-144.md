@@ -126,7 +126,49 @@ stack.length不为0 ，进入while循环
 2.1. 若最右节点的右指针为空 mostRight.right == null，将最右节点的右指针指向当前节点 mostRight.right = curr，然后当前节点向左移动 curr = curr.left；
 2.2. 若最右节点的右指针指向当前节点 mostRight.right === curr，将最右节点的右指针置空 mostRight.right = null，然后当前节点向右移动 curr = curr.right
 
+代码实现如下：
 
+```
+
+var morrisTraversal = (root) => {
+    let ans = []
+    if (root == null) return ans;
+    let p1 = root, p2 = null;
+    while (p1 != null) {
+      p2 = p1.left;
+      if (p2 != null) {
+        // 左不为空   寻找左子树的最右节点
+        while (p2.right != null && p2.right != p1) p2 = p2.right;
+        if (p2.right == null) {
+          // p2.right==null 说明 p2与p1 之间未建立线索，并且p1未访问
+          // 因此，访问p1，并建立线索，然后直接进入下一个循环
+          // 这里continue很重要
+          ans.push(p1.val);
+          p2.right = p1;
+          p1 = p1.left;
+          continue;
+        } else {
+          // else p2.right != p1 说明p1，p2之间有线索，已经访问过p1了
+          // 该情况是因为，p1执行了p1 = p1->right p1顺着p2->right = p1的线索回来了。
+          // 因此直接切断线索
+          // （p1左子树的最右节点已经访问，说明左子树已经遍历完成，通过p1 = p1->right进入右子树）
+          p2.right = null;
+        }
+      } else {
+        // 左为空，直接访问根节点
+        ans.push(p1.val);
+      }
+      // 通过“线索” 返回原来的路径，或者进入右子树。
+      p1 = p1.right;
+    }
+    return ans;
+
+}
+
+```
+
+
+参考地址：https://leetcode-cn.com/problems/binary-tree-preorder-traversal/solution/bao-ni-hui-de-dui-ge-lei-ti-jie-zhong-ge-mlgr/
 
 
 
