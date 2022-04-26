@@ -93,7 +93,6 @@ var mergeTwoLists = function(l1, l2) {
 
 ![截屏2022-04-18 下午4.13.31.png](https://upload-images.jianshu.io/upload_images/11846892-97541bc443032697.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-
 ```
 
 var mergeKLists = function(lists) {

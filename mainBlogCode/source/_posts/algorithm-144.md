@@ -128,29 +128,6 @@ stack.length不为0 ，进入while循环
 
 
 
-Morris遍历代码实现如下：
-```
-var morrisTraversal = function(root) {
-    if (!root) return []
-    const [curr, mostRight] = [root, null]
-    while (curr !== null) {
-        mostRight = curr.left
-        if (mostRight !== null) {
-            while(mostRight.right !== null && mostRight.right !== curr) {
-                mostRight = mostRight.right
-            }
-            if (mostRight.right == null) {// 情况2.1
-                mostRight.right = curr;
-                continue;
-            } else { // 情况2.2
-                mostRight.right = null;
-            }
-        }
-        curr = curr.right
-    }
-    return res
-};
-```
 
 
 
