@@ -99,7 +99,7 @@ var removeNthFromEnd = (head, n ) => {
     for (let i = 0; i< n ; i++) {
         stack.pop();
     }
-    let prev = stack.peek();
+    let prev = stack.pop();
     prev.next = prev.next.next;
     let ans = dummyNode.next;
     return ans
