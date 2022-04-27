@@ -119,51 +119,68 @@ stack.length不为0 ，进入while循环
 
 ## 题解方法三：Morris遍历 !!没看懂
 
-解题思路：当前节点 curr，一开始来到整棵树的头节点 curr = root，当当前节点不为空 curr != null：
+解题思路：Morris遍历的详细解释+注释版
 
-若当前节点无左树 curr.left == null，当前节点直接向右移动 curr = curr.right；
-若当前节点有左树 curr.left != null，找到当前节点左树的最右节点 mostRight：
-2.1. 若最右节点的右指针为空 mostRight.right == null，将最右节点的右指针指向当前节点 mostRight.right = curr，然后当前节点向左移动 curr = curr.left；
-2.2. 若最右节点的右指针指向当前节点 mostRight.right === curr，将最右节点的右指针置空 mostRight.right = null，然后当前节点向右移动 curr = curr.right
+一些前置知识：
 
-代码实现如下：
+前驱节点，如果按照中序遍历访问树，访问的结果为ABC，则称A为B的前驱节点，B为C的前驱节点。
+前驱节点pre是curr左子树的最右子树（按照中序遍历走一遍就知道了）。
+由此可知，前驱节点的右子节点一定为空。
+主要思想：
+
+树的链接是单向的，从根节点出发，只有通往子节点的单向路程。
+
+中序遍历迭代法的难点就在于，需要先访问当前节点的左子树，才能访问当前节点。
+
+但是只有通往左子树的单向路程，而没有回程路，因此无法进行下去，除非用额外的数据结构记录下回程的路。
+
+在这里可以利用当前节点的前驱节点，建立回程的路，也不需要消耗额外的空间。
+
+根据前置知识的分析，当前节点的前驱节点的右子节点是为空的，因此可以用其保存回程的路。
+
+但是要注意，这是建立在破坏了树的结构的基础上的，因此我们最后还有一步“消除链接”’的步骤，将树的结构还原。
+
+重点过程： 当遍历到当前节点curr时，使用cuur的前驱节点pre
+
+标记当前节点是否访问过
+记录回溯到curr的路径（访问完pre以后，就应该访问curr了）
+以下为我们访问curr节点需要做的事儿：
+
+访问curr的节点时候，先找其前驱节点pre
+找到前驱节点pre以后，我们根据其右指针的值，来判断curr的访问状态：
+pre的右子节点为空，说明curr第一次访问，其左子树还没有访问，此时我们应该将其指向curr，并访问curr的左子树
+pre的右子节点指向curr，那么说明这是第二次访问curr了，也就是说其左子树已经访问完了，此时将curr.val加入结果集中
+更加细节的逻辑请参考代码：
 
 ```
-
-var morrisTraversal = (root) => {
-    let ans = []
-    if (root == null) return ans;
-    let p1 = root, p2 = null;
-    while (p1 != null) {
-      p2 = p1.left;
-      if (p2 != null) {
-        // 左不为空   寻找左子树的最右节点
-        while (p2.right != null && p2.right != p1) p2 = p2.right;
-        if (p2.right == null) {
-          // p2.right==null 说明 p2与p1 之间未建立线索，并且p1未访问
-          // 因此，访问p1，并建立线索，然后直接进入下一个循环
-          // 这里continue很重要
-          ans.push(p1.val);
-          p2.right = p1;
-          p1 = p1.left;
-          continue;
-        } else {
-          // else p2.right != p1 说明p1，p2之间有线索，已经访问过p1了
-          // 该情况是因为，p1执行了p1 = p1->right p1顺着p2->right = p1的线索回来了。
-          // 因此直接切断线索
-          // （p1左子树的最右节点已经访问，说明左子树已经遍历完成，通过p1 = p1->right进入右子树）
-          p2.right = null;
+public List<Integer> method3(TreeNode root) {
+        List<Integer> ans=new LinkedList<>();
+        while(root!=null){
+            //没有左子树，直接访问该节点，再访问右子树
+            if(root.left==null){
+                ans.add(root.val);
+                root=root.right;
+            }else{
+            //有左子树，找前驱节点，判断是第一次访问还是第二次访问
+                TreeNode pre=root.left;
+                while(pre.right!=null&&pre.right!=root)
+                    pre=pre.right;
+                //是第一次访问，访问左子树
+                if(pre.right==null){
+                    pre.right=root;
+                    root=root.left;
+                }
+                //第二次访问了，那么应当消除链接
+                //该节点访问完了，接下来应该访问其右子树
+                else{
+                    pre.right=null;
+                    ans.add(root.val);
+                    root=root.right;
+                }
+            }
         }
-      } else {
-        // 左为空，直接访问根节点
-        ans.push(p1.val);
-      }
-      // 通过“线索” 返回原来的路径，或者进入右子树。
-      p1 = p1.right;
-    }
-    return ans;
-
-}
+        return ans;
+    }    
 
 ```
 
