@@ -87,6 +87,7 @@ var inorderTraversal = function(root) {
     }
     return res;
 };
+```
 
 我们以如下示例为例，进行图解分析：
 
@@ -270,9 +271,6 @@ var inorderTraversal = function(root) {
 
 
 参考地址：https://leetcode-cn.com/problems/binary-tree-preorder-traversal/solution/bao-ni-hui-de-dui-ge-lei-ti-jie-zhong-ge-mlgr/
-
-
-
 
 
 

@@ -114,7 +114,8 @@ var removeNthFromEnd = (head, n ) => {
 * 慢指针跳过倒数第n个节点
 
 
-![截屏2022-04-26 下午1.42.06.png](https://upload-images.jianshu.io/upload_images/11846892-15ea2df330da5c0c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![截屏2022-04-29 下午3.39.05.png](https://upload-images.jianshu.io/upload_images/11846892-cc4c2eda5e5f6ef3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 
 双指针实现代码实现如下：
 
