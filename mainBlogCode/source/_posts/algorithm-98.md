@@ -1,7 +1,10 @@
-
 ---
-title: leeCode-98：验证二叉搜索树： -中等
+title: leeCode-98： 二叉搜索树：(递归、中序遍历两种解法)-初级
 date: 2022-06-04 17:32:26
+tags: 算法
+---
+
+
 tags: 算法
 ---
 <meta name="referrer" content="no-referrer"/>

@@ -1,6 +1,5 @@
-
 ---
-title: leeCode-543：二叉树的直径： -中等
+title: leeCode-98： 二叉树的直径：(深度优先搜索)-中等
 date: 2022-06-05 15:29:45
 tags: 算法
 ---
@@ -34,7 +33,7 @@ tags: 算法
 var diameterOfBinaryTree = function(root) {
     
     
-        var deep = function(root) {
+    var deep = function(root) {
         if(root ==null) return 0 
         let L= deep(root.left)
         let R= deep(root.right)
