@@ -63,7 +63,8 @@ var isValidBST = function(root) {
 
 
 代码实现如下：
-```var isValidBST = function(root) {
+```
+var isValidBST = function(root) {
     let stack = [];
     let inorder = -Infinity;
 

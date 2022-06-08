@@ -519,3 +519,7 @@ while(curr !== null) {  // curr = 3
 
 执行第3\4\5、6次while循环，curr.left 都为null,则curr = curr.right
 执行第6次while循环 ,此时curr为null, 则整个function执行完毕。
+
+ ---
+总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
+
