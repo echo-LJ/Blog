@@ -191,7 +191,7 @@ var inorder = (root) => {
 
 执行完毕！
 
-## 题解方法一：Morris遍历
+## 题解方法二：Morris遍历
 
 ```
 var convertBST = function(root) {
