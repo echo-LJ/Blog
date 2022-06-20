@@ -39,18 +39,6 @@ tags: 算法
 
 代码实现如下： 
 ```
-var buildTree = function(preorder, inorder) {
-    if (preorder.length === 0) return null; // 在数组长度为0时结束递归
-    const root = new TreeNode(preorder[0]); // 前序遍历第一个元素为根节点
-    const mid = inorder.indexOf(preorder[0]); // 获取根节点中序遍历中的索引
-    // 根据索引来切割数组 对子数数组继续递归
-    root.left = buildTree(preorder.slice(1, mid + 1), inorder.slice(0, mid));
-    root.right = buildTree(preorder.slice(mid + 1), inorder.slice(mid + 1));
-    return root;
-};
-```
-递归方法代码实现如下2： 
-```
 
 var pathSum = function(root, targetSum) {
     const prefix = new Map();
