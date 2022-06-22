@@ -84,7 +84,8 @@ var rob = function(root) {
     return Math.max(rootStatus[0], rootStatus[1]);
 }; 
 
-``` ---
+```
+ ---
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
 参考链接：
