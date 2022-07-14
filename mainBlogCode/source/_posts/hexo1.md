@@ -72,7 +72,7 @@ npm install hexo-deployer-git --save
 ```
 hexo deploy
 ```
-然后再浏览器中输入http://username.github.io/就行了，把 `username` ,改成你 github 的账户名就行了
+然后再浏览器中输入http://username.github.io/ 就行了，把 `username` ,改成你 github 的账户名就行了
 
 * 发布文章
 每次部署的步骤，可按以下三步来进行。
