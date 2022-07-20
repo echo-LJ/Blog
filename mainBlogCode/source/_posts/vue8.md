@@ -63,7 +63,7 @@ SPA仅在Web页面初始化时加载相应的HTML、JavaScript 和CSS。 一旦�
 
 在vue项目过中安装vue-server-renderer
 ```
- $ npm i vue-server-renderer
+$ npm i vue-server-renderer
 $ npm i server
 ```
 在vue项目中创建server.js文件

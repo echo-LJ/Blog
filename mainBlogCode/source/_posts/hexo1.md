@@ -94,8 +94,5 @@ hexo version  #查看Hexo的版本
 ---
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
-参考链接：
+参考链接：[搭建个人博客，最想推荐的 10 大框架，强烈建议收藏](https://juejin.cn/post/7002911266385707022)
 
-http://www.jianshu.com/p/465830080ea9
-http://www.chinaz.com/web/2016/0105/491998.shtml
-https://juejin.cn/post/7002911266385707022

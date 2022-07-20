@@ -21,21 +21,22 @@ Vue.use(Loading);
 ### 搭建目录
 
 #### 快速创建项目
-* vue-cli3
+* `vue-cli3`
 ```
-vue create projectName
+$ vue create projectName
 ```
 ### 修改目录结构
 
-*  把 src 目录名字改成 examples，这是用于展示组件示例的
-*  在根目录下新建一个 packages 文件夹，这是用来放组件的
+*  把 `src` 目录名字改成 `examples`，这是用于展示组件示例的.
+*  在根目录下新建一个 `packages` 文件夹，这是用来放组件的.
 ![1ll.png](https://upload-images.jianshu.io/upload_images/11846892-ded6c43e63e7097f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-    你可能会问为什么要建这样的目录结构，问得好，原因很简单，因为别人是这样做的，所以借鉴（模仿）罗。。。我们可以看到 Element 的源码也是这样的结构：
+
+    你可能会问为什么要建这样的目录结构，问得好，原因很简单，因为别人是这样做的，所以借鉴（模仿）喽。。。
 当我们水平不够的时候，模仿是一种强大的学习能力👏。
 
 ### 添加配置文件
 
-小改了一下目录之后，你会惊奇的发现项目运行不了了。没关系，这很正常，毕竟 src 都不见了，路径啥的肯定得报错。所以现在我们来解决这个问题。 在根目录下新建一个 vue.config.js 文件（新项目是没有这个文件的），并写入以下内容：
+小改了一下目录之后，你会惊奇的发现项目不能运行了,没关系，这很正常，毕竟 src 都不见了，路径啥的肯定得报错。所以现在我们来解决这个问题。 在根目录下新建一个 `vue.config.js` 文件（新项目是没有这个文件的），并写入以下内容：
 
 ```
 const path = require('path')
@@ -72,14 +73,13 @@ module.exports = {
 
 ```
 
-上面的注释应该都写的挺明了，主要就是修改别名、修改入口文件以及把新文件加入 webpack 编译这几个步骤。然后我们再运行一下程序就可以跑得通了。至于为什么这么配置、或者怎么配置，不了解的同学可以去 ![Vue Cli](https://link.juejin.im/?target=https%3A%2F%2Fcli.vuejs.org%2Fzh%2Fconfig%2F%23%25E5%2585%25A8%25E5%25B1%2580-cli-%25E9%2585%258D%25E7%25BD%25AE) 官网看下，上面写的是清清楚楚、明明白白，然而我也只是懂那么一两个配置而已😭😭😭，还没学会 webpack 的套路，因为常常是用的时候看一眼，一阵子不用就又忘了，没办法🤷‍♀️脑子不行。
+上面的注释应该都写的挺明了，主要就是`修改别名`、`修改入口文件`以及把新文件加入 `webpack` 编译这几个步骤。然后我们再运行一下程序就可以跑得通了。至于为什么这么配置、或者怎么配置，不了解的同学可以去 [Vue Cli](https://cli.vuejs.org/zh/guide/) 官网看下，上面写的是清清楚楚、明明白白.
 
 ### 编写组件
 
-一个组件库没有组件怎么行呢，所以我们要先写个 test 组件（你可以随便写，这不重要）。ok👌，我们先在 packages 目录下新建一个 test 文件夹，再在 test 文件夹下下面新建一个 src 文件夹，在 src 文件夹下面新建一个 test.vue 组件，大概长下面这样子👇：
-
-![![](https://upload-images.jianshu.io/upload_images/11846892-72c3c6fb69c57a58.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-](https://upload-images.jianshu.io/upload_images/11846892-fd699b8260d3fcb9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+一个组件库没有组件怎么行呢，所以我们要先写个 `test` 组件（你可以随便写，这不重要）,ok👌。
+我们先在 `packages` 目录下新建一个 `test` 文件夹，再在 `test` 文件夹下下面新建一个 src 文件夹，在 src 文件夹下面新建一个 `test.vue` 组件，大概长下面这样子👇：
+![](https://upload-images.jianshu.io/upload_images/11846892-72c3c6fb69c57a58.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
 ```
@@ -120,11 +120,13 @@ export default {
 
 ```
 
-应该都能看懂吧，不过多解释。⚠️这里主要强调一点，就是 name 这个名字尤为重要，我就在这个坑里呆了挺久。首先它是必须要写的，为啥呢，你可以把它理解为 id，具有唯一标识组件的作用，将来我们可是要通过这个 name 来找到和判定这是什么组件，所以你写的所有组件应该是不重名的；其次这个 name 就是我们最终的标签名，比如这里我们的 name 是 `EchojoyTest`，到时候我们写的标签就长这样 `<echojoy-test></echojoy-test>`，就像 Element 一样，name 是 `ElButton`，用的时候就是 `<el-button></el-button>`。
+⚠️这里主要强调一点，就是 `name` 这个名字尤为重要, 否则可能会遇到坑。
+* 首先它是必须要写的，可以把它理解为 id，具有唯一标识组件的作用，将来我们可是要通过这个 name 来找到和判定这是什么组件，所以你写的所有组件应该是不重名的；
+* 其次这个 name 就是我们最终的标签名，比如这里我们的 name 是 `EchojoyTest`，到时候我们写的标签就长这样 `<echojoy-test></echojoy-test>`，就像 Element 一样，name 是 `ElButton`，用的时候就是 `<el-button></el-button>`。
 
 ### 暴露组件
 
-让我们在 packages/test 下面新建一个 index.js 文件，具体代码如下：
+让我们在 `packages/test` 下面新建一个 `index.js` 文件，具体代码如下：
 
 ```
 // 对外提供对组件的引用，注意组件必须声明 name
@@ -137,7 +139,8 @@ export default EchojoyTest
 
 ```
 
-这步的精髓就在于给组件扩展一个 install 方法，至于为什么要扩展这个方法，文章开头已经说到了，是因为 `Vue.use()` 的需要，use 会默认调用 install 方法安装，仅此而已。接着我们在 packages 下面也新建一个 index.js 文件，注意和上面那个 index.js 区别开，上面那个是针对单个组件安装的，这个是针对所有组件全局安装的，先看代码：
+这步的精髓就在于给组件扩展一个 `install` 方法，至于为什么要扩展这个方法，文章开头已经说到了，是因为 `Vue.use()` 的需要，use 会默认调用 `install` 方法安装，仅此而已。
+接着我们在 `packages` 下面也新建一个 `index.js` 文件，注意和上面那个 `index.js` 区别开，上面那个是针对单个组件安装的，这个是针对所有组件全局安装的，先看代码：
 
 ```
 import EchojoyTest from './test'
@@ -171,22 +174,22 @@ export default {
 
 ```
 
-这步的主要作用就是统一导出所有组件及暴露 install 方法。之前的 index.js 只是安装单个组件，而现在这个 index.js 是循环安装所有组件，具体使用就看你是不是要按需引用了。这里给个目录结构方便大家观看：
+这步的主要作用就是统一导出所有组件及暴露 `install` 方法。之前的 `index.js` 只是安装单个组件，而现在这个 `index.js` 是循环安装所有组件，具体使用就看你是不是要按需引用了。这里给个目录结构方便大家观看：
 
 
 ![4ll.png](https://upload-images.jianshu.io/upload_images/11846892-b539cdd4f6327d1e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 因为这步挺重要的，所以建议好好停下来理解消化一下🤔。。。
-当然你可能会问道，为什么这样建目录？还能什么原因，因为 Element 是这样（如下图），所以我们这样写，仅此而已。
+当然你可能会问道，为什么这样建目录？还能什么原因，因为 `Element` 是这样（如下图），所以我们这样写，仅此而已。
 
 ### 组件测试
 
-ok，组件写完了，接下来我们就在 examples 下面测试一下，看看能不能引用成功。 首先在 examples 下的 main.js 中引入刚刚写好的包，就像下面这样：
+ok，组件写完了，接下来我们就在 `examples` 下面测试一下，看看能不能引用成功。 首先在 `examples` 下的 `main.js` 中引入刚刚写好的包，就像下面这样：
 ```
 import EchojoyUI from './../packages'
 Vue.use(EchojoyUI);
 ```
-然后把 examples/components下面的 HelloWorld里面的内容删了，写入自己标签组件，就像下面这样：
+然后把 `examples/components`下面的 `HelloWorld`里面的内容删了，写入自己标签组件，就像下面这样：
 
 ![image.png](https://upload-images.jianshu.io/upload_images/11846892-af5876cc2dfddcf0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
@@ -195,7 +198,7 @@ Vue.use(EchojoyUI);
 
 ### 库模式打包
 
-在 vue-cli3 中我们通过以下命令可以将一个单独的入口打包成一个库：
+在 `vue-cli3` 中我们通过以下命令可以将一个单独的入口打包成一个库：
 
 ```
 // target: 默认为构建应用，改为 lib 即可启用构建库模式
@@ -206,7 +209,7 @@ vue-cli-service build --target lib --name lib [entry]
 
 ```
 
-要注意的是在库模式中，打包出来的库中是不包含 Vue 的。 然后我们修改一下 package.json 文件，就像下面这样：
+要注意的是在库模式中，打包出来的库中是不包含 Vue 的。 然后我们修改一下 `package.json` 文件，就像下面这样：
 
 ![xxxxx.png](https://upload-images.jianshu.io/upload_images/11846892-202f788eec24a66d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
@@ -217,15 +220,15 @@ vue-cli-service build --target lib --name lib [entry]
 
 
 
-补充下，lib 目录下面的 js 之所以有好几种，是因为有两种规范（common 和 umd）、是否压缩（min）和映射（map）的区别，暂且知道有这么回事就行，不用深究。
+补充下，lib 目录下面的 js 之所以有好几种，是因为有两种规范`（common 和 umd）`、是否压缩`（min）`和映射 `（map）`的区别，暂且知道有这么回事就行，不用深究。
 
 ## 发布到npm
 ---
 
 万事俱备，只欠发布。
 
-1.  完善一下 README.md 文档，这个随便写两句就好
-2.  修改一下 package.json 文件：
+1.  完善一下 `README.md` 文档，这个随便写两句就好
+2.  修改一下 `package.json` 文件：
 
 ```
 { 
@@ -241,7 +244,7 @@ vue-cli-service build --target lib --name lib [entry]
 
 ```
 
-3.  在根目录下新建一个 .npmignore 文件，内容和 .gitignore 差不多：
+3.  在根目录下新建一个 `.npmignore` 文件，内容和 `.gitignore` 差不多：
 
 ```
 # 这是复制 .gitignore 里面的
@@ -279,12 +282,12 @@ babel.config.js
 
 ```
 
-最后执行 `npm login` 登入 npm 账号，再执行 `npm publish` 发布即可，就这么简单的两步就可以，过一会在 npm 上就能搜到了。当然前提是你有个 npm 账号，没有的话去注册一个吧，很 easy 的，然后还要搜下你的 npm 包名是否有人用，有的话就换一个。
+最后执行 `npm login` 登入 npm 账号，再执行 `npm publish` 发布即可，就这么简单的两步就可以，过一会在 `npm` 上就能搜到了。当然前提是你有个 `npm` 账号，没有的话去注册一个吧，很 easy 的，然后还要搜下你的 `npm` 包名是否有人用，有的话就换一个。
 
 ## 小试牛刀
 ---
 
-终于，历尽千辛万苦，我们可以引用自己写的库拉，想想就牛叉。别激动，让我们试验一下，用 `vue create echojoy-ui-use` 另起一个新项目，然后 `npm i echojoy-ui -S`，可以在 node_modules 里面看到我们的包大概长这样：
+终于，历尽千辛万苦，我们可以引用自己写的库拉，想想就牛叉。别激动，让我们试验一下，用 `vue create echojoy-ui-use` 另起一个新项目，然后 `npm i echojoy-ui -S`，可以在 `node_modules` 里面看到我们的包大概长这样：
 ![zzzz.png](https://upload-images.jianshu.io/upload_images/11846892-481e0f1c018096c0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
@@ -322,7 +325,7 @@ http://localhost:8080
 ```
 #### 编写组件
 
-在src的components新建组件limit：即文件夹`EchoLimit`->文件`index.vue` + 文件`index+css`
+在`src`的`components`新建组件`limit`：即文件夹`EchoLimit`->文件`index.vue` + 文件`index+css`
 ```
 // index.vue
 <template>
@@ -359,13 +362,13 @@ export default {
 ```
    
 
-⚠️这里主要强调一点，就是 name 这个名字尤为重要，你可以把它理解为 id，具有唯一标识组件的作用，将来我们可是要通过这个 name 来找到和判定这是什么组件，所以你写的所有组件应该是不重名的；其次这个 name 就是我们最终的标签名，比如这里我们的 name 是 EchoLimit，到时候我们写的标签就长这样 <echo-limit></echo-limit>，就像 Element 一样，name 是 ElButton，用的时候就是 <el-button></el-button>。
+⚠️这里主要强调一点，就是 name 这个名字尤为重要，你可以把它理解为 id，具有唯一标识组件的作用，将来我们可是要通过这个 name 来找到和判定这是什么组件，所以你写的所有组件应该是不重名的；其次这个 name 就是我们最终的标签名，比如这里我们的 name 是 EchoLimit，到时候我们写的标签就长这样 <echo-limit></echo-limit>，就像` Element` 一样，name 是 `ElButton`，用的时候就是 <el-button></el-button>。
 
 #### 暴露组件
 
 * 注册单个组件
 
-在 components 的 EchoLimit下面新建一个 index.js 文件，具体代码如下：
+在 `components` 的 `EchoLimit`下面新建一个 `index.js` 文件，具体代码如下：
 // 为组件提供 install 方法，供组件对外按需引入
 ```
 import EchoLimit from "./EchoLimit/index.vue";
@@ -375,7 +378,7 @@ EchoLimit.install = Vue => {
 export default EchoLimit;
 ```
 
-这步的精髓就在于给组件扩展一个 install 方法，至于为什么要扩展这个方法，文章开头已经说到了，是因为 Vue.use() 的需要，use 会默认调用 install 方法安装。
+这步的精髓就在于给组件扩展一个 `install` 方法，至于为什么要扩展这个方法，文章开头已经说到了，是因为 `Vue.use()` 的需要，use 会默认调用 `install` 方法安装。
 
 * 注册全局组件
 让我们在 components 下面新建一个 index.js 文件，具体代码如下：
@@ -417,7 +420,7 @@ export default {
 
 #### 组件测试
 
-ok，组件写完了，接下来我们就在 HelloWorld.vue下面测试一下，看看能不能引用成功。 首先在 src下的 main.js 中引入刚刚写好的包，如下所示：
+ok，组件写完了，接下来我们就在 `HelloWorld.vue`下面测试一下，看看能不能引用成功。 首先在 src下的 `main.js` 中引入刚刚写好的包，如下所示：
 
 ```
 import EchoUI from './components'
