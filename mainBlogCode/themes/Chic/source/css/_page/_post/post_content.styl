@@ -9,39 +9,47 @@
   h6
     padding-top .8em
     padding-bottom .3em
+    color $light-post-title-color
+  h1
+    color $light-post-title-color
   h1::before
-       content "#"
+       content ""
        margin-right 5px
-       color $light-post-link-color
+       color $light-post-title-color
        .dark-theme &
          color $dark-post-link-color
   h2::before
-       content "#"
+       content "☀"
        margin-right 5px
-       color $light-post-link-color
+       color $light-post-title-color
        .dark-theme &
          color $dark-post-link-color
-
+  h3
+        border-bottom 4px solid #4dd0e1
+        position relative
+  
   h3::before
-       content "|"
+       content "◈"
        margin-right 5px
-       color $light-post-link-color
+       color $light-post-title-color
        .dark-theme &
          color $dark-post-link-color
   h4::before
-       content "*"
+       content "◪"
        margin-right 5px
-       color $light-post-link-color
+       color $light-post-title-color
        .dark-theme &
          color $dark-post-link-color
 
   a
-    color $light-post-link-color
+    color $light-post-a-color
+    border-bottom 1px solid $light-post-a-color
     .dark-theme &
       color $dark-post-link-color
 
   a:hover
     color $light-post-link-hover-color
+    border-bottom 1px solid $light-post-link-hover-color
     .dark-theme &:hover
       color $dark-post-link-hover-color
       text-decoration underline
@@ -87,6 +95,7 @@
 
   ul
     padding-left 2em
+    list-style-type circle
 
   table
     max-width 100%
