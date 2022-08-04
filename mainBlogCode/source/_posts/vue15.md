@@ -29,7 +29,7 @@ tags: Vue.js3.0
 ### 源码优化
 
 源码的优化主要体现在使用 monorepo 和 TypeScript 管理和开发源码，这样做的目标是提升自身代码可维护性
-**`1、更好的代码管理方式：`**[monorepo](https://qwqaq.com/2021/08/what-is-monorepo/)
+**`1、更好的代码管理方式：`**[monorepo](https://echo-lj.github.io/2022/08/03/monorepo/)
 
 Vue.js 2.x 的源码托管在 src 目录，然后依据功能拆分出了 `compiler`（模板编译的相关代码）、`core`（与平台无关的通用运行时代码）、`platforms`（平台专有代码）、`server`（服务端渲染的相关代码）、`sfc`（.vue 单文件解析相关代码）、`shared`（共享工具代码） 等目录：
 
@@ -299,10 +299,8 @@ export default function useMousePosition() {
 
 到了 Vue.js 3.0 在实现代码前就大规模启用 RFC，来确保他的改动和设计都是经过讨论并确认的，这样可以避免走弯路。Vue.js 3.0 版本有很多重大的改动，每一条改动都会有对应的 RFC，通过阅读这些 RFC，你可以了解每一个 feature 采用或被废弃掉的前因后果。
 
-Vue.js 3.0 目前已被实现并合并的 RFC 都在这里，通过阅读它们，你也可以大致了解 Vue.js 3.0 的一些变化，以及为什么会产生这些变化，帮助你了解它的前因后果。
+Vue.js 3.0 目前已被实现并合并的 RFC 都在[这里](https://github.com/vuejs/rfcs/pulls?q=is%3Apr+is%3Amerged+label%3A3.x)，通过阅读它们，你也可以大致了解 Vue.js 3.0 的一些变化，以及为什么会产生这些变化，帮助你了解它的前因后果。
 
-
-这里留一个缺口！！看一下RFC在哪里阅读。
 
 
 
