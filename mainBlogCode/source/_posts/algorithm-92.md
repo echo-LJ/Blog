@@ -80,7 +80,7 @@ var reverseBetween = function(head, left, right) {
 ```
 创建了一个节点，它的指针指向head：
 
-`举例解释如下`：dummy_node可以把它理解为一个"哨兵"，因为我们的头结点可能会涉及到反转，当反转之后，原来的头结点就不是返回后的头结点了，举个例子,[5,3]进行1，2的反转，此时head指向的是5节点，而反转之后结果为[3,5]，而此时的head还是指向5，所以我们需要一个哨兵，来坚定不移的站在头结点前，这样不管他如何反转，哨兵dummy_node指向的下一个节点dummy_node.next就是我们要的头结点
+`举例解释如下`：dummy_node可以把它理解为一个"哨兵"，因为我们的头结点可能会涉及到反转，当反转之后，原来的头结点就不是返回后的头结点了，举个例子:[5,3]进行1，2的反转，此时head指向的是5节点，而反转之后结果为[3,5]，而此时的head还是指向5，所以我们需要一个哨兵，来坚定不移的站在头结点前，这样不管他如何反转，哨兵dummy_node指向的下一个节点dummy_node.next就是我们要的头结点
 
 ![截屏2022-04-12 下午3.02.30.png](https://upload-images.jianshu.io/upload_images/11846892-e1a6db1ed0e604b0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
