@@ -10,6 +10,9 @@ tags: Vue.js3.0
 
 ## 概览
 
+![截屏2022-08-05 上午10.59.00.png](https://upload-images.jianshu.io/upload_images/11846892-64395ade5a45268b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
 组件系统是 Vue.js 的一个重要概念，它是一种对 DOM 结构的抽象，我们可以使用小型、独立和通常可复用的组件构建大型应用。几乎任意类型的应用界面都可以抽象为一个组件树，如下：
 ![截屏2022-08-04 上午10.26.49.png](https://upload-images.jianshu.io/upload_images/11846892-1dfb7e998f929e66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
