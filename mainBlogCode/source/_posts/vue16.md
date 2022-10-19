@@ -217,4 +217,32 @@ app.mount = (containerOrSelector) => {
 从 app.mount 开始，才算真正进入组件渲染流程，那么接下来，我们就重点看一下核心渲染流程做的两件事情：`创建 vnode` 和`渲染 vnode`。
 
 
+### 核心渲染流程：创建 vnode 和渲染 vnode
 
+##### 1. 创建 vnode**
+
+`什么是vnode？`用来描述DOM的JavaScript对象，在Vue.js中可以描述不同类型的节点，普通元素节点，组件节点等。
+**普通元素节点**
+举例如下：
+```
+<button class="btn" style="width:100px;height:50px">click me</button>
+// vnode
+const vnode = {
+  type: 'button',
+  props: { 
+    'class': 'btn',
+    style: {
+      width: '100px',
+      height: '50px'
+    }
+  },
+  children: 'click me'
+}
+```
+
+**组件节点**
+
+距离
+```
+<custom-component msg="test"></custom-component>
+```

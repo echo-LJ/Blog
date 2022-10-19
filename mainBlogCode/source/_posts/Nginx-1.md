@@ -370,10 +370,7 @@ server
 
 
 参考链接：
+Mac连接远程服务器https://www.jianshu.com/p/7cf4b2b28721
 1. https://juejin.cn/post/6844903817595584525
 2. https://juejin.cn/post/6844904082067423246
 3. https://juejin.cn/post/6844904020360986631
-
-
-
-
