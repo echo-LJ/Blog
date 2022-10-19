@@ -3,8 +3,8 @@ title: 在JS中栈内存和堆内存分别存储什么数据？
 date: 2022-10-19 11:18:20
 tags: JS
 ---
-
-* 前言
+<meta name="referrer" content="no-referrer"/>
+# 前言
 
 JS的内存空间分为栈(stack)、堆(heap)、池(一般也会归类为栈中)。
 
@@ -12,14 +12,15 @@ JS的内存空间分为栈(stack)、堆(heap)、池(一般也会归类为栈中)
 
 # 栈内存
 
-**访问顺序：** 先进后出。(栈内的元素只能通过列表的一端访问，这一端称为栈顶，另一端称为栈底。)
-**存储数据：** 主要用于存储各种基本类型的变量，例如：`Boolean`、`Number`、`String`、`Undefined`、`Null`、`Symbol`以及`对象变量的指针（地址值）`、、、
-    * 
+**访问顺序：** 先进后出(栈内的元素只能通过列表的一端访问，这一端称为栈顶，另一端称为栈底)。
+**存储数据：** 主要用于存储各种基本类型的变量，例如：`Boolean`、`Number`、`String`、`Undefined`、`Null`、`Symbol`以及`对象变量的指针（地址值）`。
 **❗️：** 闭包中的基本类型的变量不保存在栈内存中，而是保存在堆内存中。
-**垃圾回收：** 一般在它的当前执行环境结束就会被销毁被垃圾回收制回收
+**垃圾回收：** 一般在它的当前执行环境结束就会被销毁被垃圾回收制回收。
 **图示：**
 
-![stack.jpeg](https://upload-images.jianshu.io/upload_images/11846892-2152af184c5782ff.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![stack.jpeg](https://upload-images.jianshu.io/upload_images/11846892-a198a5ade04f91eb.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
 
 # 堆内存
 

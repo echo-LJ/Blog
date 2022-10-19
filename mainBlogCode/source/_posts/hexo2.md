@@ -41,7 +41,7 @@ repo：git@github.com:username/username.github.io.git
 一般这步基本就可以部署了！！！
 如果部署还是失败，可以试试如下步骤（还是不行，就多试几遍。。。有点坑）
 ```
-删除.deploy_git
+$ sudo rm -rf .deploy_git
 $ hexo clean 
 $ hexo g
 $ hexo d
@@ -63,12 +63,38 @@ TypeError [ERR_INVALID_ARG_TYPE]: The "mode" argument must be integer. Received 
 ```
 出现这些是因为node版本太高，切换成低版本的node来安装Hexo就可以了.
 
+
+* `hexo d` 出现权限问题
+![err.png](https://upload-images.jianshu.io/upload_images/11846892-80dbf7ebb4178183.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+**执行此步骤**：
+```
+$ sudo rm -rf .deploy_git
+$ ls -all
+// 查看是否还有.deploy_git文件
+$ hexo clean 
+$ hexo g
+$ hexo d
+// 或者
+$ sudo hexo d
+```
+**依然报错-继续执行此步骤**：
+`可能原因`：key不是在root账户生成的原因
+```
+
+$ sudo ssh-keygen -t rsa -C “idealife@github.com”
+// 对应路径为/var/root/.ssh
+
+$ sudo cat /var/root/.ssh/id_rsa.pub
+
+$ sudo hexo deploy
+```
 ---
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
 其他的坑🉑️参考：[部署Hexo踩过的坑—node14.0配置hexo](https://zhuanlan.zhihu.com/p/136552969)
 
-
+[解决hexo d的权限问题](http://www.nbpilot.com.cn/2017/11/30/%E8%A7%A3%E5%86%B3hexo-d%E7%9A%84%E6%9D%83%E9%99%90%E9%97%AE%E9%A2%98/)
 
 
 
