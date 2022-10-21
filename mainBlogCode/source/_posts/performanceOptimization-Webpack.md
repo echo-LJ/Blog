@@ -108,8 +108,8 @@ module.exports = {
 webpack v5 自带最新的 `terser-webpack-plugin`。
 如果使用 webpack v4，则必须安装 `terser-webpack-plugin` v4 的版本。
 
-
-**`2.1 安装依赖`**  
+#### terser-webpack-plugin 插件删除 debugger 或 console
+**`2.1 安装依赖：terser-webpack-plugin`**  
 ```
 $ npm install terser-webpack-plugin -D
 ```
@@ -163,6 +163,48 @@ if (process.env.NODE_ENV === 'production') {
             config.optimization.minimize(false)
         }
 
+```
+#### UglifyJsPlugin 插件删除 debugger 或 console
+
+* 删除文件里的注释和 console，删除冗余代码，减小打包体积的目的。还可以删除 debugger，设置 cache 缓存等配置。
+
+**`2.3 webpack 3.x 版本：通过 webpack.optimize.UglifyJsPlugin 设置`**  
+```
+/* webpack.config.js */
+···
+plugins: [
+  ···
+  new webpack.optimize.UglifyJsPlugin({
+      cache: true,
+      compress: {
+        warnings: false, // 是否在UglifyJS删除没有用到的代码时输出警告信息，默认为false
+        drop_debugger: true, //自动删除debugger
+        drop_console: true, //自动删除console.log
+      },
+  }),
+  ···
+]
+```
+**`2.4 webpack 4.x 版本：安装依赖uglifyjs-webpack-plugin`**  
+webpack 4.x 版本移除了 webpack.optimize.UglifyJsPlugin 的使用，通过配置 optimization.minimize 与 optimization.minimizer 来自定义压缩相关的操作
+```
+npm i -D uglifyjs-webpack-plugin
+```
+
+```
+/* webpack.config.js */
+
+···
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+module.exports = {
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+    		// 相关配置
+    	})
+    ],
+  },
+};
 ```
 
 ❗️扩展：为什么删除生产环境的console?
@@ -469,7 +511,51 @@ config.plugin('prefetch').tap(options => {
 })
 ```
 上面代码修改`vue.config.js`的`chainWebpack`来添加配置。
+## 九、提升打包速度
 
+* 提升编译打包时 js 压缩速度，还可设置打包时删除注释和 console 等代码，可以合并上文中的` UglifyJsPlugin`
+
+#### webpack-parallel-uglify-plugin 插件删除 debugger 或 console
+
+**`9.1 安装依赖webpack-parallel-uglify-plugin`**  
+```
+$ npm i -D webpack-parallel-uglify-plugin
+```
+
+**`9.2 webpack配置`** 
+
+```
+/* webpack.config.js */
+
+const ParallelUglifyPlugin = require('webpack-parallel-uglify-plugin');
+plugin: [
+	···
+  new ParallelUglifyPlugin({
+    cacheDir: '.cache/', // 用作缓存的可选绝对路径。如果未提供，则不使用缓存。
+    uglifyJS: {
+      output: {
+        comments: false, // 是否保留代码中的注释，默认为保留
+      },
+      warnings: false, // 是否在UglifyJS删除没有用到的代码时输出警告信息，默认为false
+      compress: {
+        drop_console: true, // 是否删除代码中所有的console语句，默认为false
+        collapse_vars: true, // 是否内嵌虽然已经定义了，但是只用到一次的变量， 默认值false
+        reduce_vars: true, // 是否提取出现了多次但是没有定义成变量去引用的静态值，默认为false
+      },
+    },
+  }),
+  ···
+]
+```
+
+#### happypack:开启多进程编辑，提升 loader 解析速度
+
+
+
+
+
+
+---
 ---
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
