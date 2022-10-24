@@ -37,6 +37,6 @@ declare module 'rc-checkbox';
 ---
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
-参考连接：[https://www.cnblogs.com/songForU/p/11041222.html](https://www.cnblogs.com/songForU/p/11041222.html)
+参考连接：[在typescript中import第三方类库clipboard报错](https://www.cnblogs.com/songForU/p/11041222.html)
 
 
