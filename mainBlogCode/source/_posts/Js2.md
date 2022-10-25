@@ -235,9 +235,14 @@ setTimeout(() => {
 * 渲染完毕后，`JS线程`继续接管，开始下一个`宏任务`（从事件队列中获取）
 
 
+## 结束语
+---
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
 ![image](https://user-gold-cdn.xitu.io/2019/8/21/16cb1d7bb4bd9fd2?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
 
-参考链接：https://juejin.im/post/5d5b4c2df265da03dd3d73e5
+
+参考链接:
+* [「前端进阶」从多线程到Event Loop全面梳理](https://juejin.im/post/5d5b4c2df265da03dd3d73e5)
+
 

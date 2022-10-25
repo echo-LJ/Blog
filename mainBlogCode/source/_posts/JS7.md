@@ -23,7 +23,8 @@ tags: JS
 * 使用let和const声明时，引擎会同时检查`Object Enviroment Record`和`Declarative Enviroment Record`，如果有，则报错，否则将将变量添加入`Declarative Enviroment Record`中。
 
 这就解释了为什么使用var声明的变量可以重复声明，而是用let和const声明的变量不可以重复声明。
+---
+总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
-### 参考链接：
-
+参考链接:
 * [为什么let和const不能重复声明？为什么let和const存在暂时性死区？](https://juejin.cn/post/6950193996538839077)

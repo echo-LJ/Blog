@@ -88,7 +88,7 @@ https://cn.vuejs.org/v2/guide/ssr.html
 
 
 * React Intl是什么原理？  在react项目中实现国际化
-参考链接：https://www.jianshu.com/p/c57e000c2bbf
+参考链接:https://www.jianshu.com/p/c57e000c2bbf
 
 
 

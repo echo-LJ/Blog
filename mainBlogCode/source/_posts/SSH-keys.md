@@ -67,7 +67,7 @@ $ ssh-add ~/.ssh/id_rsa.github
 ---
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
-### 参考链接：
+### 参考链接:
 
 * [MAC同时配置gitlab和github的sshKey](https://blog.csdn.net/MichelleZhai/article/details/123106175)
 

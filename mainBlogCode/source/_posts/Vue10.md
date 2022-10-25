@@ -161,7 +161,7 @@ Vue3.0是使用ES2015的语法开发的，有些API如Proxy是没有polyfill的�
 ----
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
-参考链接： 
-* https://segmentfault.com/a/1190000019309820?utm_source=tag-newest
-* https://kaiwu.lagou.com/course/courseInfo.htm?courseId=326#/detail/pc?id=4054
 
+参考链接:
+* [Monorepo——大型前端项目的代码管理方式](https://segmentfault.com/a/1190000019309820?utm_source=tag-newest)
+* [https://kaiwu.lagou.com/course/courseInfo.htm?courseId=326#/detail/pc?id=4054](https://kaiwu.lagou.com/course/courseInfo.htm?courseId=326#/detail/pc?id=4054)

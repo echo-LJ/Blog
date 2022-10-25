@@ -15,7 +15,7 @@ tags: Node
 
 * `sequelize`
 `sequelize.js` 提供对 [MySQL](http://www.oschina.net/p/mysql)，[MariaDB](http://www.oschina.net/p/mariadb)，[SQLite](http://www.oschina.net/p/sqlite) 和 [PostgreSQL](http://www.oschina.net/p/postgresql) 数据库的简单访问，通过映射数据库条目到对象，或者对象到数据库条目。简而言之，就是 ORM（Object-Relational-Mapper）。Sequelize.js 完全是使用 JavaScript 编写，适用于 Node.js 的环境。
-参考链接：
+参考链接:
 * [使用Sequelize](https://www.liaoxuefeng.com/wiki/1022910821149312/1101571555324224)
 * [sequelize](https://sequelize.org/)
 * [https://github.com/caiya/node-sequelize/tree/master/bin](https://github.com/caiya/node-sequelize/tree/master/bin)

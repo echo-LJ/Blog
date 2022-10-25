@@ -37,7 +37,13 @@ ListNodelist=newListNode()初始化一个空节点，无值,不提倡此种写�
 L i s t N o d e l i s t = n e w L i s t N o d e ( 0 ) ListNode list=new ListNode(0)ListNodelist=newListNode(0) 初始化一个节点值为0的空节点，最常用最正规写法；
 
 L i s t N o d e l i s t = n u l l ListNode list=nullListNodelist=null 为空，什么都没有，一般不这么写。
-参考链接：https://blog.csdn.net/weixin_47872288/article/details/118080241
 
 
-参考链接：https://www.jianshu.com/p/73d56c3d228c
+## 结束语
+---
+总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
+
+参考链接:
+* [java中new ListNode(0)常见用法详细区别（全）](https://blog.csdn.net/weixin_47872288/article/details/118080241)
+* [数据结构：链表](https://www.jianshu.com/p/73d56c3d228c)
+

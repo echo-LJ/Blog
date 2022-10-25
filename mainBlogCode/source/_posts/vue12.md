@@ -256,5 +256,6 @@ handleSetupResult(instance, setupResult)
 ---
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
-参考链接： 
-* https://kaiwu.lagou.com/course/courseInfo.htm?courseId=326#/detail/pc
+
+参考链接:
+* [https://kaiwu.lagou.com/course/courseInfo.htm?courseId=326#/detail/pc](https://kaiwu.lagou.com/course/courseInfo.htm?courseId=326#/detail/pc)

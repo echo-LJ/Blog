@@ -118,13 +118,13 @@ component --> actionCreator(data) --> reducer --> component
 store的三大功能：dispatch，subscribe，getState都不需要手动来写了。react-redux帮我们做了这些，同时它提供了两个好基友Provider和connect。
 
 
-参考链接：https://github.com/bailicangdu/react-pxq
+参考链接:https://github.com/bailicangdu/react-pxq
 
 
 # React
 
 #### 1. 什么时候使用状态管理器？
-参考链接：https://baijiahao.baidu.com/s?id=1590300061305698080&wfr=spider&for=pc
+参考链接:https://baijiahao.baidu.com/s?id=1590300061305698080&wfr=spider&for=pc
 
 #### 2. render函数中return如果没有使用()会有什么问题？
 在使用JSX语法书写react代码时，babel会将JSX语法编译成js，同时会在每行自动添加分号（；），如果return后换行了，那么就会变成 return； 一般情况下会报错：
@@ -156,7 +156,7 @@ react 组件在每次需要重新渲染时候都会调用 componentWillUpdate(),
 使用例子：比如react-redux的<Provider />，就是通过Context提供一个全局态的store，拖拽组件react-dnd，通过Context在组件中分发DOM的Drag和Drop事件，路由组件react-router通过Context管理路由状态
 * 使用Context，可以跨越组件进行数据传递。
 * 如何使用Context
-参考链接：https://www.jianshu.com/p/eba2b76b290b
+参考链接:https://www.jianshu.com/p/eba2b76b290b
 
 #### 5. 为什么 React 并不推荐我们优先考虑使用 Context？
 
@@ -260,7 +260,7 @@ react中的class是基于es6的规范实现的，继承是使用extends关键字
 
 
 #### 14.怎样使用Hooks获取服务端数据？
-参考链接： https://zhuanlan.zhihu.com/p/57214270
+参考链接: https://zhuanlan.zhihu.com/p/57214270
 
 #### 15.使用Hooks要遵守哪些原则？
 * 只在最顶层使用 Hook

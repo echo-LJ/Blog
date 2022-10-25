@@ -151,7 +151,10 @@ $ conventional-changelog -p -i CHANGELOG.md -s
 ```
 $ git log > 文件名
 ```
-
+## 结束语
+---
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
-参考链接： https://segmentfault.com/a/1190000019579621
+
+参考链接:
+* [Commit message 代码提交规范](https://segmentfault.com/a/1190000019579621)

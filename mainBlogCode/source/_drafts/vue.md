@@ -6,7 +6,7 @@ tags: 前端面试题
 
 ##### 孙子组件或更深层次的组件通信（除了props和vuex的其他用法）
 ##### 子组件访问父组件数据（除了props） 
-答案参考链接：https://lujinggirl.github.io/2019/09/03/vueTitle/
+答案参考链接:https://lujinggirl.github.io/2019/09/03/vueTitle/
 
 ##### new Vue()做了什么？
 ##### 什么阶段才能访问DOM？
@@ -18,4 +18,4 @@ tags: 前端面试题
 ##### vue源码中内置的组件？
 ##### 了解Vue2.6+新全局API：Vue.observable()吗？
 ##### 了解Vue数据绑定原理？
-答案参考链接：https://lujinggirl.github.io/2019/09/03/vueSourceCoding/
+答案参考链接:https://lujinggirl.github.io/2019/09/03/vueSourceCoding/

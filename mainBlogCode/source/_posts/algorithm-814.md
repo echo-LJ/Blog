@@ -65,11 +65,15 @@ var containsOne = function(root){
 
 ```
 
- ---
+## 结束语
+---
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
-参考链接：
-https://leetcode.cn/problems/binary-tree-pruning/solution/er-cha-shu-jian-zhi-by-leetcode/
+
+参考链接:
+* [二叉树剪枝](https://leetcode.cn/problems/binary-tree-pruning/solution/er-cha-shu-jian-zhi-by-leetcode/)
+
+
 
 
 

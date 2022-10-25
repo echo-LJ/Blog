@@ -445,5 +445,7 @@ Vue.use(EchoUI)
 ---
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
-参考 连接：https://www.jianshu.com/p/41cc796488df
-参考 链接：https://juejin.im/post/5c95c61f6fb9a070c40acf65
+参考链接:
+* [npm 部署自己的组件库](https://www.jianshu.com/p/41cc796488df)
+* [基于 vue-cli3 打造属于自己的 UI 库](https://juejin.im/post/5c95c61f6fb9a070c40acf65)
+

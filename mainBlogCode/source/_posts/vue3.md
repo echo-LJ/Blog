@@ -1009,8 +1009,11 @@ export function defineReactive (
 ---
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
-整篇文章主要参考链接：https://juejin.im/post/5c959f74f265da610c068fa8
-源码解析参考链接：https://github.com/answershuto/learnVue
+
+参考链接:
+* [「从源码中学习」面试官都不知道的Vue题目答案](https://juejin.im/post/5c959f74f265da610c068fa8)
+* [https://github.com/answershuto/learnVue](https://github.com/answershuto/learnVue)
+
 
 
 

@@ -103,11 +103,8 @@ Lighthouse是一个Google开源的自动化工具，主要用于改进网络应�
 >一个大的 DOM 会增加内存使用量，导致更长的样式计算，可能会产生很高代价的布局回流。 学到更多。
 ![image.png](https://upload-images.jianshu.io/upload_images/11846892-2d4ad5a57369b83a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-*
-参考：https://zhuanlan.zhihu.com/p/29609078
-https://jingyan.baidu.com/article/fdffd1f83e5b2eb2e98ca19e.html
-https://juejin.cn/post/6917202819351052295
-
-参考链接： 
-1. https://juejin.cn/post/6959333330277892133#heading-14
-2. https://juejin.cn/post/6917202819351052295
+参考链接:
+* [怎样把网站升级到http/2](https://zhuanlan.zhihu.com/p/29609078)
+* [39条性能优化建议-前端性能优化大全：使用Lighthouse来针对性提高页面性能](https://juejin.cn/post/6917202819351052295)
+* [chrome浏览器怎样查看http协议版本](https://jingyan.baidu.com/article/fdffd1f83e5b2eb2e98ca19e.html)
+* [我给网站做了一场性能手术](https://juejin.cn/post/6959333330277892133#heading-14)

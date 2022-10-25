@@ -356,5 +356,6 @@ methods:{
 ---
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
-参考链接：https://juejin.im/post/5ca20e426fb9a05e42555d1d
 
+参考链接:
+* [this.$toast() 了解一下？](https://juejin.im/post/5ca20e426fb9a05e42555d1d)

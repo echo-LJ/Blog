@@ -85,7 +85,7 @@ function helper(preorder, p_start, p_end, inorder, i_start, i_end, map) {
  ---
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
-参考链接：
+参考链接:
 https://github.com/sisterAn/JavaScript-Algorithms/issues/41
 https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/solution/xiang-xi-tong-su-de-si-lu-fen-xi-duo-jie-fa-by--22/
 

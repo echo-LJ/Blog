@@ -32,6 +32,7 @@ update user set password=PASSWORD("1234") where User='root';
 ----
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
-参考链接：[https://www.ioa.tw/macOS/MySQL.html](https://www.ioa.tw/macOS/MySQL.html)
 
+参考链接:
+* [macOS 上安裝 MySQL](https://www.ioa.tw/macOS/MySQL.html)
 

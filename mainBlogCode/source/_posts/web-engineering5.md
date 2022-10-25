@@ -338,8 +338,8 @@ npm 设计了以下几种依赖类型声明：
 ----
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
-参考链接：https://kaiwu.lagou.com/course/courseInfo.htm?courseId=584#/detail/pc?id=5907
-
+参考链接:
+* [https://kaiwu.lagou.com/course/courseInfo.htm?courseId=326#/detail/pc](https://kaiwu.lagou.com/course/courseInfo.htm?courseId=326#/detail/pc)
 
 
 

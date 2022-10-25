@@ -650,4 +650,7 @@ window.addEventListener('unhandledrejection',(e)=>{
 
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
-参考链接：https://juejin.im/post/5d06e9c76fb9a07ee4636235
+
+参考链接:
+* [「ES6系列」彻底弄懂Promise](https://juejin.im/post/5d06e9c76fb9a07ee4636235)
+

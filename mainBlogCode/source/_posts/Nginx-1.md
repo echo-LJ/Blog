@@ -369,8 +369,8 @@ server
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
 
-参考链接：
-Mac连接远程服务器https://www.jianshu.com/p/7cf4b2b28721
-1. https://juejin.cn/post/6844903817595584525
-2. https://juejin.cn/post/6844904082067423246
-3. https://juejin.cn/post/6844904020360986631
+参考链接:
+* [Mac连接远程服务器](https://www.jianshu.com/p/7cf4b2b28721)
+* [前端需要掌握的Nginx知识点](https://juejin.cn/post/6844903817595584525)
+* [Nginx 入门实战](https://juejin.cn/post/6844904082067423246)
+* [前端不能不会的 Nginx 入门 （图文并茂的服务器环境教程）](https://juejin.cn/post/6844904020360986631)

@@ -22,6 +22,6 @@ vue中的虚拟DOM树只会重新渲染页面修改的地方，大大减少了�
 vue不直接操作真实的DOM树，通过虚拟DOM树就可以重新渲染修改的地方，影藏在背后的原理其实就是 diff 算法。
 key的作用是为了高效的更新虚拟DOM树，提高查找的效率，一次性定位到要修改的元
 
-参考链接： https://www.cnblogs.com/javascript9527/p/11327924.html
+参考链接: https://www.cnblogs.com/javascript9527/p/11327924.html
 
-实现一个Virtual DOM算法参考链接： https://www.cnblogs.com/ssw-men/p/10818585.html
+实现一个Virtual DOM算法参考链接: https://www.cnblogs.com/ssw-men/p/10818585.html

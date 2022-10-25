@@ -121,9 +121,11 @@ Axios.interceptors.response.use(function(){
 
 });
 ```
+## 结束语
 ---
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
-接下来你可能想要了解的：
-[axios文档地址](https://www.npmjs.com/package/Axios1)
-[Axios封装示例代码+封装思路](https://www.jianshu.com/p/7f7b655bd3c4)
+
+参考链接:
+* [axios文档地址](https://www.npmjs.com/package/Axios1)
+* [Axios封装示例代码+封装思路](https://www.jianshu.com/p/7f7b655bd3c4)

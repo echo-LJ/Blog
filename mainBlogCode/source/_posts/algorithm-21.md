@@ -11,7 +11,7 @@ tags: 算法
 
 
 
-可参考链接：https://leetcode-cn.com/problems/merge-two-sorted-lists/solution/yi-kan-jiu-hui-yi-xie-jiu-fei-xiang-jie-di-gui-by-/
+可参考链接:https://leetcode-cn.com/problems/merge-two-sorted-lists/solution/yi-kan-jiu-hui-yi-xie-jiu-fei-xiang-jie-di-gui-by-/
 
 **示例1:**
 ![截屏2022-04-14 下午1.54.33.png](https://upload-images.jianshu.io/upload_images/11846892-0f2e389a502cec00.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)

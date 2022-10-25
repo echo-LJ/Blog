@@ -188,4 +188,5 @@ Bingo! 你做到了～
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
 
-原文链接：https://www.freecodecamp.org/news/introduction-to-chrome-lighthouse/
+原文链接:
+* [Introduction to Chrome Lighthouse](https://www.freecodecamp.org/news/introduction-to-chrome-lighthouse/)

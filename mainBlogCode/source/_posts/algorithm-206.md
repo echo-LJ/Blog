@@ -217,7 +217,7 @@ var reverseList = function(head) {  //  head： 1->2->3->4->5->null
  ---
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
-参考链接：
+参考链接:
 https://juejin.cn/post/6844904058562543623
 https://blog.csdn.net/FX677588/article/details/72357389
 https://leetcode-cn.com/problems/reverse-linked-list/solution/dong-hua-yan-shi-206-fan-zhuan-lian-biao-by-user74/

@@ -519,6 +519,7 @@ export default {
 ----
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
-参考链接： 
-* https://www.yuque.com/u188805/ewtgo7/lmvqwh?language=en-us
-* https://www.tslang.cn/docs/handbook/tsconfig-json.html
+
+参考链接:
+* [TypeScript+Rollup快速构建完整配置并发布npm包](https://www.yuque.com/u188805/ewtgo7/lmvqwh?language=en-us)
+* [tsconfig.json](https://www.tslang.cn/docs/handbook/tsconfig-json.html)

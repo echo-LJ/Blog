@@ -560,7 +560,7 @@ plugin: [
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
 
-参考链接：
+参考链接:
 * [解读生产环境为何避免使用console](https://segmentfault.com/a/1190000012295395)
 * [Vue Cli项目B端系统常见性能优化技巧](https://zhuanlan.zhihu.com/p/362547907)
 * [vue打包优化——vendor体积过大](https://www.jianshu.com/p/4f8f36944a46)
