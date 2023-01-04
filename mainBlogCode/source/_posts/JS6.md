@@ -4,6 +4,7 @@ date: 2022-10-19 11:18:20
 tags: JS
 ---
 <meta name="referrer" content="no-referrer"/>
+
 # 前言
 
 JS的内存空间分为栈(stack)、堆(heap)、池(一般也会归类为栈中)。
