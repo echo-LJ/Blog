@@ -9,12 +9,8 @@ tags: Nginx
 
 * `Tomcat服务器`：面向Java语言、轻量级应用服务器。
 `缺点`：可以说Tomcat 只能用做java服务器.
-`优点`：动态解析容器，处理动态请求，是编译JSP/Servlet的容器。`
-
-Tomcat有三个端口：
-1）8005：关闭tomcat通信接口 
-2）8009：与其他http服务器通信接口，用于http服务器集合
-3）8080：建立http连接 用，如浏览器访问
+`优点`：动态解析容器，处理动态请求，是编译JSP/Servlet的容器。
+`Tomcat有三个端口`： 1）8005：关闭tomcat通信接口  2）8009：与其他http服务器通信接口，用于http服务器集合 3）8080：建立http连接用，如浏览器访问.
 
 * `Jetty服务器`：面向Java语言，Jetty的架构是基于Handler来实现的，主要的扩展功能都可以用Handler来实现，扩展简单。 Tomcat的架构是基于容器设计的，进行扩展是需要了解Tomcat的整体设计结构，不易扩展。 Jetty和Tomcat性能方面差异不大。 Jetty可以同时处理大量连接而且可以长时间保持连接，适合于web聊天应用等等。
 
