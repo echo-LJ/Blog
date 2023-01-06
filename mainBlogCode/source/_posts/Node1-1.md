@@ -1,7 +1,7 @@
 ---
 title: Node即学即用-创建聊天服务器
 date: 2023-01-05 14:31:38
-tags: Nginx
+tags: Node
 ---
 <meta name="referrer" content="no-referrer"/>
 
