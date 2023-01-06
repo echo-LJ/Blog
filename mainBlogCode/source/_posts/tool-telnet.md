@@ -65,7 +65,7 @@ telnet>
 ```
 到这一步就安装完成了
 
-## 5、telnet使用
+## 5、telnet连接使用
 
 ```
 $ telnet www.baidu.com 80
@@ -73,6 +73,9 @@ Trying 115.239.210.27...
 Connected to www.a.shifen.com.
 Escape character is '^]'.
 ```
+
+## 6、telnet退出
+control+]快捷键，然后输入quit退出。
 
 ---
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
