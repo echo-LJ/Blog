@@ -1,5 +1,5 @@
 ---
-title: 五个开发者工具
+title: 5个Chrome DevTools
 date: 2023-02-22 13:53:23
 tags: tool
 ---
