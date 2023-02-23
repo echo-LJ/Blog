@@ -70,6 +70,10 @@ tags: tool
 
 这些只是一些鲜为人知的 `Chrome DevTools` 功能，可以使您的开发过程更轻松。通过一些探索，您将能够找到更多有助于简化工作流程的技巧。
 
+---
+
+总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
+
 ## 参考链接
 1、https://isamatov.com/chrome-devtools-tips/#logpoints
 2、https://learn.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/console/live-expressions
