@@ -1,11 +1,9 @@
 ---
-title: devtools
+title: 五个开发者工具
 date: 2023-02-22 13:53:23
-tags:
+tags: tool
 ---
 
-
-我正在参加「掘金·启航计划」！
 
 
 `Chrome DevTools` 是网络开发人员最好的朋友，它有很多技巧和一些不为人知的功能。
