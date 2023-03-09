@@ -41,8 +41,6 @@ $ let fileId = file.name + '-' + file.size + '-' + file.lastModified;
 当我们改变文件名字或者大小或者修改时间，都会有一个新的id.
 * 向服务器发送一个请求，询问已经有多少个字节了。
 
-* 向服务器发送一个请求，询问已经有多少个字节了。
-
 ```
 let response = await fetch('status', {
   headers: {
