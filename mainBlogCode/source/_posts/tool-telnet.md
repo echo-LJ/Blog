@@ -1,5 +1,5 @@
 ---
-title: 工具-Telnet
+title: 工具-Telnet & homebrew
 date: 2023-01-05 16:00:35
 tags: tool
 ---
@@ -23,7 +23,17 @@ $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/
 
 * 这一步，输入密码之后一直回车就可以了
 
-##  2、查看homebrew 是否安装成功
+也可以使用以下命令来使用清华大学的镜像源来安装和管理软件包
+```
+$ /bin/bash -c "$(curl -fsSL https://cdn.jsdelivr.net/gh/ineo6/homebrew-install/install.sh)"
+```
+
+## 2、卸载 homebrew
+
+```
+$
+```
+##  3、查看homebrew 是否安装成功
 
 ```
 
@@ -53,19 +63,28 @@ Further help:
   https://docs.brew.sh
 ```
 
-## 3、使用 homebrew 安装telnet
+* 等待安装完成后，您可以使用以下命令来测试Homebrew是否成功安装：
+```
+$ brew doctor
+```
+
+* 如果您已经安装了Homebrew，可以通过以下命令来更新Homebrew：
+```
+$ brew update
+```
+## 4、使用 homebrew 安装telnet
 
 ```
 $ brew install telnet
 ```
-## 4、查看是否安装成功
+## 5、查看是否安装成功
 ```
 $ telnet
 telnet> 
 ```
 到这一步就安装完成了
 
-## 5、telnet连接使用
+## 6、telnet连接使用
 
 ```
 $ telnet www.baidu.com 80
@@ -74,7 +93,7 @@ Connected to www.a.shifen.com.
 Escape character is '^]'.
 ```
 
-## 6、telnet退出
+## 7、telnet退出
 control+]快捷键，然后输入quit退出。
 
 ---

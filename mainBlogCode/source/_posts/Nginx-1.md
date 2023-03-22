@@ -41,6 +41,12 @@ mac下镜像飞速安装Homebrew教程: https://zhuanlan.zhihu.com/p/90508170
 $ brew install nginx
 ```
 
+## 查看macos中nginx所在目录
+
+```
+$ which nginx
+```
+
 ### Nginx常用的命令
 ---
 * 启动: `nginx`
