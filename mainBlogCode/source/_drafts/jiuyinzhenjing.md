@@ -8,36 +8,75 @@ tags: 面经
 
 
 # 1、Vue组件通信方式
+# 10086、快应用和轻应用的区别
 
-### 组件通信常用方式有以下9种
+# 2、new vue中的render的方法是什么
 
-![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3b81aa2acb07446daaf97e001310c9ce~tplv-k3u1fbpfcp-watermark.image?)
+在Vue中，render是一个函数，用于将VNode渲染成真实的DOM节点。render函数需要返回一个VNode，它描述了将要被渲染的节点，包括节点的类型、属性、子节点以及事件等信息。Vue的渲染引擎将根据这个VNode来生成真实的DOM节点，然后将其插入到页面中。
 
-- props
-- $emit/$on
-- $children/$parent
-- $attrs/$listener
-- ref
-- $root
-- eventbus
-- vux
-- provide/inject
+render函数的模板如下：
 
-但是在vue3中$on、$children、$listener已被废弃，eventbus的使用也建议引入第三方工具包[tiny-emitter](https://github.com/scottcorgan/tiny-emitter).使用
+copy code
+createElement(tag, [data], [children])
+其中，tag参数是一个字符串，用于指定要渲染的节点类型，比如'div'、'span'等；data参数是一个对象，用于指定节点的属性，比如class、style、props等；children参数是一个数组，表示当前节点的子节点。createElement函数将返回一个VNode节点。
 
-### 根据组件之间关系讨论组件通信最为清晰有效
+在使用render函数时，你需要根据当前组件的状态、属性和其他数据来动态生成VNode节点。示例代码：
 
-1、父子组件
+copy code
+// myComponent.vue
+export default {
+  props: {
+    msg: String
+  },
+  render(h) {
+    return h('div', {
+      class: 'my-component',
+      style: {
+        fontSize: '16px'
+      }
+    }, [
+      h('span', 'Hello'),
+      h('span', this.msg)
+    ])
+  }
+}
+在上面这个例子中，我们定义了一个名为myComponent的组件，它接收一个名为msg的属性。在render函数中，我们通过h方法生成一个div节点，并设置了该节点的class和style属性。然后，我们使用h方法创建了两个span节点，分别用于展示文本'Hello'和this.msg。最后，我们将这两个span节点作为div节点的子节点，并作为render函数的返回值返回。
 
--   `props`/`$emit`/`$parent`/`ref`/`$attrs`
+当组件被渲染时，Vue将执行render函数生成对应的VNode节点，在根据这个VNode节点生成真实的DOM节点并插入到页面中。
 
-2、兄弟组件
--   `$parent`/`$root`/`eventbus`/`vuex`
+# 2、子组件实例如何挂载到根vue实例上的
 
-3、跨层级关系
--   `eventbus`/`vuex`/`provide`+`inject`
+在Vue应用程序中，可以通过Vue实例化挂载一个根组件，然后在根组件中注册其他子组件，这些子组件将会被挂载到根组件上。例如：
+
+copy code
+// main.js
+import Vue from 'vue'
+import App from './App.vue'
+import ChildComponent from './components/ChildComponent.vue'
+
+Vue.component('child-component', ChildComponent)
+
+new Vue({
+  render: h => h(App)
+}).$mount('#app')
+在上面的代码中，我们首先引入了Vue和App组件和一个名为ChildComponent的子组件。然后，我们使用Vue.component()方法将ChildComponent注册为全局组件。
+
+最后，我们通过new Vue()创建了一个Vue实例，并将该实例挂载到id为“app”的DOM元素上。这样，如果App组件中包含所有其他组件，那么这些组件都将被加载和挂载到根Vue实例中。
+
+在根Vue实例中，所有组件都可以通过this关键字访问到全局的Vue实例。通过引用根Vue实例，我们可以在组件中进行跨层次通信和跨组件状态管理。
 
 
+# 2、结构化的组件 和嵌套组件的区别
+
+在Vue中，组件通常可以分为结构化组件和嵌套组件两种类型。
+
+结构化组件是可复用的UI组件，只用于展示和交互，没有太多的业务逻辑。结构化组件通常定义为无状态组件（Stateless Component），其主要作用是接收props属性，渲染出可复用的UI元素，从而支持在不同的业务场景中复用。
+
+嵌套组件则是用于业务组合的组件，通常具有业务逻辑和数据状态，包含多个结构化组件以及其他业务代码。嵌套组件主要用于实现更复杂的业务场景。嵌套组件通常需要定义为有状态组件（Stateful Component），并在内部管理自己的状态（data）和行为（methods）。
+
+区别在于，结构化组件关注的是UI元素的展示和交互，通常只需要接收父组件传递的props属性，并根据props渲染出UI元素即可；而嵌套组件关注的是业务逻辑，需要自己管理状态和行为，并根据状态相应地管理UI元素。
+
+需要注意的是，结构化组件和嵌套组件并不是两种互相排斥的概念，使用者在实际开发中需要根据具体的业务场景，合理地使用结构化组件和嵌套组件来支持灵活且高效的开发。
 # 2、v-for和v-if哪个优先级更高
 
 -   实践中**不应该把v-for和v-if放一起**
