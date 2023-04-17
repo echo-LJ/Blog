@@ -10,6 +10,8 @@ tags: 面经
 # 1、Vue组件通信方式
 # 10086、快应用和轻应用的区别
 
+Vue2.6+新全局API：Vue.observable()
+
 # 2、new vue中的render的方法是什么
 
 在Vue中，render是一个函数，用于将VNode渲染成真实的DOM节点。render函数需要返回一个VNode，它描述了将要被渲染的节点，包括节点的类型、属性、子节点以及事件等信息。Vue的渲染引擎将根据这个VNode来生成真实的DOM节点，然后将其插入到页面中。
