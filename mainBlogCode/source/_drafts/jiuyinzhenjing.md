@@ -9,6 +9,46 @@ tags: 面经
 
 # 10086、快应用和轻应用的区别
 
+# created中定义a = 1，使用Vue.observable实现响应式，实现监听
+
+在Vue中，可以使用Vue.observable()方法将一个普通的Javascript对象转化为可观察（响应式）对象，使其能够被Vue的依赖追踪系统所追踪和更新。如果在created钩子函数中定义的变量需要被监听，可以将其包装为可观察（响应式）对象，然后使用$watch方法进行监听。
+
+示例如下：
+
+copy code
+import Vue from 'vue'
+
+export default {
+  created() {
+    const state = Vue.observable({ a: 1 })
+    this.$watch(() => state.a, (newValue, oldValue) => {
+      console.log(`a变为 ${newValue}`)
+    })
+  }
+}
+在上面的代码中，我们通过Vue.observable()方法将一个普通Javascript对象{a: 1}转化为可观察（响应式）对象，并保存在变量state中。然后，我们使用$watch方法监听state.a属性的变化，并在变化时输出变化信息。
+
+需要注意的是，如果要使用Vue.observable()方法包装一个对象，这个对象必须是可扩展的（Extensible）。如果对象不可扩展（Non-extensible），包装后也无法将其中的属性变为可观察对象。可以使用Object.freeze()方法将对象冻结（Frozen）以确保其不可扩展，这样就无法将其包装为可观察对象。
+
+# 在created定义了一个变量 let a = 1 watch怎么监听a？
+
+在Vue中，可以使用$watch方法来监听组件数据的变化，包括在created钩子函数中定义的变量。
+
+如果要监听在created中定义的变量a的变化，可以在组件的created钩子函数中使用$watch方法：
+
+copy code
+export default {
+  created() {
+    let a = 1;
+    this.$watch(() => this.a, (newValue, oldValue) => {
+      console.log(`a变为 ${newValue}`);
+    });
+  }
+}
+在上面的代码中，我们定义了一个变量a，并使用$watch方法监听其变化。$watch方法接收两个参数，第一个参数是一个函数，返回要监听的数据值，这里使用箭头函数返回组件的数据a；第二个参数是一个回调函数，监听到数据变化时触发。在回调函数中，我们可以进行自定义的操作，例如输出变化信息。
+
+需要注意的是，如果要在$watch中监听定义在created钩子函数中的变量，需要将变量a保存在组件实例中，例如通过this.a = 1。如果在created中直接定义变量而不挂载到组件实例上，则无法在$watch中监听其变化。
+
 # 10086、Vue2.6+新全局API：Vue.observable()
 
 # 2、new vue中的render的方法是什么
