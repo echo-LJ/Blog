@@ -126,29 +126,6 @@ new Vue({
 
 综上所述，为了保障数字证书在传输过程中的安全性，需要采取综合的安全保护措施，并充分考虑数字证书在传输过程中的风险和潜在威胁。
 
-# 3、Vue 的生命周期的理解
-
-1.每个Vue组件实例被创建后都会经过一系列初始化步骤，比如，它需要数据观测，模板编译，挂载实例到dom上，以及数据变化时更新dom。这个过程中会运行叫做生命周期钩子的函数，以便用户在特定阶段有机会添加他们自己的代码。
-
-2.Vue生命周期总共可以分为8个阶段：**创建前后, 载入前后, 更新前后, 销毁前后**，以及一些特殊场景的生命周期。vue3中新增了三个用于调试和服务端渲染场景。
-
-
-| vue2 | vue3 | description | function
-| --- | --- | --- | --- |
-| beforeCreate | beforeCreate | 组件实例被创建之初 | 用于插件开发执行初始化任务 |
-| created | created | 组件实例已经被完全创建 | 组件初始化完毕，可以访问各种数据 |
-| beforeMount | beforeMount | 组件挂载之前 |
-| mounted | mounted | 组件挂载到实例上去之后 | dom已创建，可用于获取访问数据和dom元素；访问子组件等 |
-| beforeUpdate | beforeUpdate | 组件数据更新之前 | 此时view层还未更新，可用于获取更新前各种状态 |
-| updated | updated | 组件数据更新之后 | 完成view层的更新，更新后，所有状态已是最新 |
-| beforeDestroy | beforeUnmount | 组件实例销毁之前 | 可用于一些定时器或订阅的取消 |
-| destroyed | **unmounted** | 组件实例销毁之后 | 可清理它与其它实例的连接，解绑它的全部指令及事件监听器|
-| acivated | acivated | keep-alive缓存的组件激活时
-| deactivated | deactivated | keep-alive缓存的组件停用时
-| errorCaptured | errorCaptured | 捕获来自子孙组件的错误时
-| - | **renderTracked** | 调试钩子，响应式依赖被收集时
-| - | **renderTriggered** | 调试钩子，响应式依赖被触发时
-| - | **serverPrefetch** | ssr only，组件实例在服务器上被渲染前调用
 
 # 4、Vue双向绑定的使用原理
 
@@ -3792,7 +3769,6 @@ https://juejin.cn/post/7202246519080304697#heading-2
 # 12、说说dom的生成和渲染
 
 
-# 12、vue生命周期
 # 12、ES6有哪些新增属性
 # 12、闭包
 # 12、有哪几种路由守卫？组件路由守卫和组件生命周期先后？
