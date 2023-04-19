@@ -6,7 +6,7 @@ tags: Vue.js
 
 <meta name="referrer" content="no-referrer"/>
 
-
+![vue.png](https://img2018.cnblogs.com/blog/1475079/201810/1475079-20181015102951341-1694919323.png)
 
 1.每个Vue组件实例被创建后都会经过一系列初始化步骤，比如，它需要`数据观测`，`模板编译`，`挂载实例到DOM`上，以及`数据变化时更新DOM`。这个过程中会运行叫做生命周期钩子的函数，以便用户在特定阶段有机会添加他们自己的代码。
 
@@ -80,6 +80,97 @@ tags: Vue.js
 在使用懒加载（也称为按需加载）方式加载组件时，组件实例并不会在组件被切换后立即被销毁，而是会等待一段时间，直到没有其它组件依赖于它才被销毁。在这种情况下，组件的 `destroyed` 钩子函数也可能不会被调用。
 
 为了避免由于未执行 `destroyed` 钩子函数而导致的内存泄漏等问题，可以在组件中手动监听路由的变化，并在路由变化时手动清理组件，在 `beforeUnmount `钩子函数中执行清理工作以确保在组件卸载之前清理组件。
+
+
+### 新生命周期钩子：serverPrefetch是什么？
+
+
+`serverPrefetch` 是 Vue 3 中新增的一种异步数据预取技术，用于在组件渲染之前，提前获取组件所需的异步数据，以便在渲染时直接使用，从而提升页面加载速度和用户体验。
+
+在 Vue 3 中，通过在组件内部定义 serverPrefetch 静态方法，可以在`服务器端渲染时`、`客户端路由导航时`或`预渲染时调用`该方法，预取组件所需的异步数据。在执行 serverPrefetch 方法时，可以返回一个 Promise 对象，该 Promise 对象用于异步获取组件所需的数据，并在完成后将其返回。在组件渲染时，可以通过 `ssrContext` 对象访问到预取的数据，然后渲染出组件所需要的 HTML 代码。
+
+使用 serverPrefetch 技术，可以充分利用服务器端的异步数据获取能力，提前获取组件所需的数据，从而降低客户端渲染的延迟和带宽占用，提高用户体验和搜索引擎优化效果。
+
+需要注意的是，serverPrefetch 技术需要与服务器端渲染（SSR）、客户端路由导航等技术密切配合，才能实现最佳效果。同时，在使用 serverPrefetch 时需要注意数据的格式、缓存策略等问题，以便避免数据重复请求、数据不一致等问题。
+
+
+这里我们贴出一段官方例子：
+```
+<!-- Item.vue -->
+<template>
+  <div v-if="item">{{ item.title }}</div>
+  <div v-else>...</div>
+</template>
+
+<script>
+export default {
+  computed: {
+    item () {
+      return this.$store.state.items[this.$route.params.id]
+    }
+  },
+  serverPrefetch () {
+    return this.fetchItem()
+  },
+  mounted () {
+    if (!this.item) {
+      this.fetchItem()
+    }
+  },
+  methods: {
+    fetchItem () {
+      // return the Promise from the action
+      return this.$store.dispatch('fetchItem', this.$route.params.id)
+    }
+  }
+}
+</script>
+```
+
+### ssrContext的使用方法
+
+在 Vue 3 中，`ssrContext `变量是在服务器端渲染（SSR）时使用的`上下文对象`，在组件渲染过程中用于传递一些额外的数据或方法。
+
+`ssrContext` 变量是在渲染过程中被注入到组件上下文中的一个特殊对象，它包括了一些与服务器渲染相关的属性和方法。在组件中，可以通过 `this.$ssrContext` 访问到当前上下文的 ssrContext 对象。
+
+在服务器渲染过程中，可以在创建 Vue 应用程序实例时，将其作为参数传递给 `createApp` 方法，例如：
+
+```
+const app = createApp({
+  // 应用程序组件
+  /* ... */
+}).provide('ssrContext', ssrContext);
+
+app.mount('#app');
+```
+在组件的 `serverPrefetch` 钩子函数中，可以通过 `this.$ssrContext` 访问到 `ssrContext` 对象，从而获取服务器端渲染过程中预取的数据。例如：
+
+```
+export default {
+  serverPrefetch() {
+    const { ssrContext } = this.$ssrContext;
+    return fetch('/api/data').then((res) => {
+      ssrContext.data = res.data;
+    });
+  },
+};
+```
+
+在上面的例子中，`serverPrefetch` 函数通过 fetch 方法异步获取了 `/api/data` 接口的数据，并将其存储到 `ssrContext` 对象中的 data 属性中。在组件渲染过程中，可以通过访问 `ssrContext 对象`来获取预取的数据，例如：
+
+```
+
+<template>
+  <div>
+    <p>{{ $ssrContext.data }}</p>
+  </div>
+</template>
+```
+
+在上面的例子中，`$ssrContext` 对象的 data 属性就是在 `serverPrefetch` 中存储到 `ssrContext 对象`中的数据。
+
+综上所述，ssrContext 变量是 Vue 3 中在服务器端渲染过程中使用的上下文对象，在组件渲染过程中用于传递一些额外的数据或方法。通过在创建 Vue 应用程序实例时传递给 createApp 方法，可以将其注入到组件上下文中，从而在组件中访问 ssrContext 对象，实现服务器端渲染过程中数据的传递和获取。
+
 
 ## 结束语
 ---

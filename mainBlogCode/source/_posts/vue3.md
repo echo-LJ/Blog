@@ -131,45 +131,6 @@ var LIFECYCLE_HOOKS = [
 https://www.cnblogs.com/xweizi/p/10572281.html
 
 
-## 新生命周期钩子：serverPrefetch是什么？
----
-```
-// v2.6.10的变化
-```
-可以看到，`serverPrefetch`前身是`ssrPrefetch`。顾名思义，这是用来处理ssr的。允许我们在渲染过程中“等待”异步数据。可在任何组件中使用，而不仅仅是路由组件。
-![image](https://user-gold-cdn.xitu.io/2019/3/25/169b418d400ff0b7?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
-这里我们贴出一段官方例子：
-```
-<!-- Item.vue -->
-<template>
-  <div v-if="item">{{ item.title }}</div>
-  <div v-else>...</div>
-</template>
-
-<script>
-export default {
-  computed: {
-    item () {
-      return this.$store.state.items[this.$route.params.id]
-    }
-  },
-  serverPrefetch () {
-    return this.fetchItem()
-  },
-  mounted () {
-    if (!this.item) {
-      this.fetchItem()
-    }
-  },
-  methods: {
-    fetchItem () {
-      // return the Promise from the action
-      return this.$store.dispatch('fetchItem', this.$route.params.id)
-    }
-  }
-}
-</script>
-```
 ## Vue-router 路由模式有几种？
 ---
 三种 "hash" | "history" | "abstract"，一般人只知道两种"hash" | "history"
