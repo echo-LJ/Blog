@@ -243,3 +243,4 @@ export function initLifecycle (vm: Component) {
 参考链接:
 * [靓仔，说一下keep-alive缓存组件后怎么更新及原理？](https://juejin.cn/post/7165675789885636616)
 * [keep-alive实现原理](https://zhuanlan.zhihu.com/p/368238830)
+* [keep-alive](https://ustbhuangyi.github.io/vue-analysis/v2/extend/keep-alive.html#%E5%86%85%E7%BD%AE%E7%BB%84%E4%BB%B6)
