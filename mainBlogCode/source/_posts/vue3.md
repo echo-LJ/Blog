@@ -235,38 +235,6 @@ abstract模式是使用一个不依赖于浏览器的浏览历史虚拟管理后
 
 根据平台差异可以看出，在 Weex 环境中只支持使用 abstract 模式。 不过，vue-router 自身会对环境做校验，如果发现没有浏览器的 API，vue-router 会自动强制进入 abstract 模式，所以 在使用 vue-router 时只要不写 mode 配置即可，默认会在浏览器环境中使用 hash 模式，在移动端原生环境中使用 abstract 模式
 
-## 谈谈你对keep-alive的了解
----
-先贴一个常规回答：
-`
-keep-alive是 Vue 内置的一个组件，可以使被包含的组件保留状态，或避免重新渲染。
-在vue 2.1.0 版本之后，keep-alive新加入了两个属性: include(包含的组件缓存) 与 exclude(排除的组件不缓存，优先级大于include) 。
-<keep-alive> 是一个抽象组件：它自身不会渲染一个 DOM 元素，也不会出现在父组件链中。
-`
-
-`然后你可以开始骚了：`
-
-1. `<keep-alive>`是 Vue 源码中实现的一个全局抽象组件，通过自定义 `render` 函数并且利用了`插槽`来实现数据缓存和更新。它的定义在`src/core/components/keep-alive.js` 中：
-```
-export default {
-  name: 'keep-alive',
-  abstract: true,
-  ...
-}
-```
-2. 所有的抽象组件是通过定义abstract选项来声明的。抽象组件不渲染真实DOM，且不会出现在父子关系的路径上（initLifecycle会忽略抽象组件），相关代码片段：
-```
-if (parent && !options.abstract) {
-  // abstract 即 `ptions.abstract`
-  // while 循环查找第一个非抽象的父组件
-  while (parent.$options.abstract && parent.$parent) {
-    parent = parent.$parent
-  }
-  parent.$children.push(vm)
-}
-```
-
-3.在 2.2.0 及其更高版本中，activated 和 deactivated 将会在 <keep-alive> 树内的所有嵌套组件中触发。
 
 ## vue源码中内置的组件？
 ---

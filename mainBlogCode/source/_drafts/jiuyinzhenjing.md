@@ -471,130 +471,6 @@ watchEffect(async () => {
 -   之所以会这样是因为Vue创建过程是一个递归过程，先创建父组件，有子组件就会创建子组件，因此创建时先有父组件再有子组件；子组件首次创建时会添加mounted钩子到队列，等到patch结束再执行它们，可见子组件的mounted钩子是先进入到队列中的，因此等到patch结束执行这些钩子时也先执行。
 
   
-# 12、keep-alive
-
-https://juejin.cn/post/7165675789885636616 
-https://zhuanlan.zhihu.com/p/368238830
-1.  缓存用keep-alive，它的作用与用法
-2.  使用细节，例如缓存指定/排除、结合router和transition
-3.  组件缓存后更新可以利用activated或者beforeRouteEnter
-4.  原理阐述
-
-* * *
-
-### 回答范例
-
-1.  keep-alive包裹动态组件component时，会缓存不活动的组件实例，而不是销毁它们，这样在组件切换过程中将状态保留在内存中，防止重复渲染DOM。
-
-    ```
-    <keep-alive>
-      <component :is="view"></component>
-    </keep-alive>
-    复制代码
-    ```
-
-2.  keep-alive接受三个参数，属性include和exclude可以明确指定缓存哪些组件或排除缓存指定组件，max指定最多缓存几个组件，超过max则按照LRU算法进行置换。vue3中结合vue-router时变化较大，之前是`keep-alive`包裹`router-view`，现在需要反过来用`router-view`包裹`keep-alive`：
-
-    ```
-    <router-view v-slot="{ Component }">
-      <keep-alive>
-        <component :is="Component"></component>
-      </keep-alive>
-    </router-view>
-    复制代码
-    ```
-
-* * *
-
-3.  缓存后如果要获取数据，解决方案可以有以下两种：
-
-    -   beforeRouteEnter：在有vue-router的项目，每次进入路由的时候，都会执行`beforeRouteEnter`
-
-        ```
-        beforeRouteEnter(to, from, next){
-          next(vm=>{
-            console.log(vm)
-            // 每次进入路由执行
-            vm.getData()  // 获取数据
-          })
-        },
-        复制代码
-        ```
-
-    -   actived：在`keep-alive`缓存的组件被激活的时候，都会执行`actived`钩子
-
-        ```
-        activated(){
-        	  this.getData() // 获取数据
-        },
-        复制代码
-        ```
-
-* * *
-
-4.  keep-alive是一个通用组件，它内部定义了一个map，缓存创建过的组件实例，它返回的渲染函数内部会查找内嵌的component组件对应组件的vnode，如果该组件在map中存在就直接返回它。由于component的is属性是个响应式数据，因此只要它变化，keep-alive的render函数就会重新执行。
-
-先说一下，keep-alive在各个生命周期里都做了啥吧。
-
--   `created`：初始化一个`cache、keys`，cache用来存缓存组件的虚拟dom集合，keys用来存缓存组件的key集合。
--   `mounted`：实时监听include、exclude这两个的变化，并执行相应操作。
--   `destroyed`：删除掉所有缓存相关的东西。
--   `render`函数里主要做了这些事：
-
-    -   第一步：获取到keep-alive包裹的第一个组件以及它的**组件名称**
-    -   第二步：判断此**组件名称**是否能被**白名单、黑名单**匹配，如果不能则直接返回`VNode`，如果能，则往下执行**第三步**
-    -   第三步：根据组件`ID、tag`生成缓存key，并在缓存集合中查找是否已缓存过此组件。
-    
-        -   如果已缓存过，直接取出缓存组件，并更新**缓存key**在keys中的位置（这是LRU算法的关键）
-        -   如果没缓存过，则分别在`cache、keys`中保存**此组件**以及他的**缓存key**，并检查数量是否超过`max`，超过则根据LRU算法进行删除
-
-##### keep-alive本身渲染
-
-keep-alive自身组件不会被渲染到页面上，那是怎么做到的呢？其实就是通过判断组件实例上的`abstract`的属性值，如果是true的话，就跳过该实例，该实例也不会出现在父级链上
-  
-##### keep-alive包裹的组件是如何使用缓存的
-
-1.  在首次加载被包裹组建时，由keep-alive.js中的render函数可知，vnode.componentInstance的值是undfined，keepAlive的值是true，因为keep-alive组件作为父组件，它的render函数会先于被包裹组件执行；那么只执行到i(vnode,false)，后面的逻辑不执行；
-2.  再次访问被包裹组件时，vnode.componentInstance的值就是已经缓存的组件实例，那么会执行insert(parentElm, vnode.elm, refElm)逻辑，这样就直接把上一次的DOM插入到父元素中
- 
-```
-/**
- * @param {number} capacity
- */
-var LRUCache = function(capacity) {
-    this.cache = new Map()
-    this.capacity = capacity
-};
-
-/** 
- * @param {number} key
- * @return {number}
- */
-LRUCache.prototype.get = function(key) {
-    if(this.cache.has(key)){
-        let val = this.cache.get(key)
-        this.cache.delete(key)
-        this.cache.set(key,val)
-        return val
-    }
-    return -1
-};
-
-/** 
- * @param {number} key 
- * @param {number} value
- * @return {void}
- */
-LRUCache.prototype.put = function(key, value) {
-    if(this.cache.has(key)){
-        this.cache.delete(key)
-    }
-    this.cache.set(key,value)
-    if(this.cache.size>this.capacity){
-        this.cache.delete(this.cache.keys().next().value)
-    }
-};
-```
 
 # 11、从0到1自己构架一个vue项目
 1.  构建项目，创建项目基本结构
@@ -3887,3 +3763,13 @@ Iframe优化
 最后，当用户关闭窗口或者打开新的页面时，浏览器会停止渲染，并释放页面相关的资源。
 
 总体来说，浏览器的工作原理涵盖了从网络请求到页面呈现的整个过程，需要涉及HTML、CSS、JavaScript、HTTP、TCP/IP等多个领域的知识。对于前端开发者而言，了解浏览器的工作原理和机制是非常重要的，有助于优化页面性能、调试和排查问题，提高开发效率和用户体验。
+
+### LRU是什么
+LRU 是 Least Recently Used 的缩写，翻译为“最近最少使用”。它是一种缓存淘汰算法，用于在计算机内存（缓存）中管理数据。当缓存达到最大容量时，新的数据需要进入缓存时，需要淘汰缓存中最近最少使用的数据，以腾出空间存储新的数据。这种策略是基于这样一个观察：最近最少使用的数据在未来被访问的概率很小，因此选择淘汰这些数据可以最大程度上利用缓存容量。被淘汰的数据可能被移至磁盘或者被释放空间。
+
+
+### css scoped原理
+
+### 基本类型
+
+## 源码解析：https://cn.vuejs.org/guide/built-ins/keep-alive.html
