@@ -14,7 +14,6 @@ tags: 前端面试题
 ##### 生命周期钩子的合并策略
 ##### 新生命周期钩子：serverPrefetch是什么？
 ##### Vue-router 路由模式有几种？
-##### 谈谈你对keep-alive的了解
 ##### vue源码中内置的组件？
 ##### 了解Vue2.6+新全局API：Vue.observable()吗？
 ##### 了解Vue数据绑定原理？

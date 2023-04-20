@@ -21,6 +21,13 @@ tags: Vue.js
 2、如果`动态组件`或`路由`被缓存,再次渲染时就不会重新创建和挂载VNode,只需直接从缓存中取出VNode,并将其挂载到对应的位置上即可。
 3、当缓存中的`动态组件`或`路由`被离开时,`keep-alive`不会销毁实例,而是将其保存到缓存中。如果缓存中的实例数超过`max`值,会触发`LRU`淘汰策略,将最近未使用的实例销毁。
 
+```
+const key = componentOptions.Ctor.cid + (componentOptions.tag ? `::${componentOptions.tag}` : '')
+
+// componentOptions.Ctor.cid 表示当前组件的唯一标识符，这个值是在组件创建时生成的，用于区分不同的组件类型
+// componentOptions.tag 则表示当前组件使用的 HTML 标签名或组件名称。
+```
+
 ### 首次渲染动态组件或路由时,为什么将其从DOM中移除？
 
 **操作步骤如下：**
