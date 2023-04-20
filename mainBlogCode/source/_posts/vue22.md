@@ -24,7 +24,11 @@ tags: Vue.js
 ```
 const key = componentOptions.Ctor.cid + (componentOptions.tag ? `::${componentOptions.tag}` : '')
 
-// componentOptions.Ctor.cid 表示当前组件的唯一标识符，这个值是在组件创建时生成的，用于区分不同的组件类型
+// componentOptions.Ctor.cid 表示当前组件的唯一标识符
+
+// componentOptions.Ctor.cid 表示的是组件构造函数的唯一标识符，这个值在组件创建时就已经生成。这个值是通过 Vue 内部的组件注册机制给每个组件分配的，在组件定义时生成。在组件渲染时，Vue 会通过这个值来判断当前组件是否已经存在、是否需要重新渲染等。
+
+
 // componentOptions.tag 则表示当前组件使用的 HTML 标签名或组件名称。
 ```
 

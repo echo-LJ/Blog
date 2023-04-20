@@ -110,6 +110,9 @@ new Vue({
 
 
 
+
+
+
 # 3、数字证书在传输过程中可以被替换吗
 
 数字证书是一种用于验证身份和提供安全通信的电子证书，包括公钥、私钥等重要信息，被广泛应用于网络通信和电子商务等领域。数字证书的安全性与其在传输过程中是否会被替换有关。
@@ -3758,3 +3761,40 @@ LRU 是 Least Recently Used 的缩写，翻译为“最近最少使用”。它�
 ### 基本类型
 
 ## 源码解析：https://cn.vuejs.org/guide/built-ins/keep-alive.html
+
+## 子组件多个匿名slot 父组件传参时怎么传
+Vue 组件的匿名插槽数量没有限制，可以定义多个匿名插槽来给父组件传递内容。在组件的 `<template>` 标签中，可以通过 `<slot>` 标签来定义匿名插槽，如下所示：
+
+```Vue
+<template>
+  <div>
+    <slot>默认内容</slot>
+    <slot>默认内容2</slot>
+    <slot>默认内容3</slot>
+  </div>
+</template>
+```
+
+在上面的例子中，组件定义了三个匿名插槽，父组件可以通过 `<template>` 标签来为这些插槽传递不同的内容。
+
+当父组件在传入内容时，也需要为每个插槽分别传入相应的内容。例如：
+
+```Vue
+<template>
+  <div>
+    <my-component>
+      <template v-slot:default>
+        这是第一个插槽的内容
+      </template>
+      <template v-slot:default="{ message }">
+        这是第二个插槽的内容{{ message }}
+      </template>
+      <template v-slot:default>
+        这是第三个插槽的内容
+      </template>
+    </my-component>
+  </div>
+</template>
+```
+
+在上面的例子中，使用 `v-slot` 指令为每个匿名插槽传入不同的内容。第二个插槽使用了解构语法，可以获取插槽传入的值。如果父组件没有为某个插槽传入内容，那么会默认显示组件中 `<slot>` 标签的内容，即 "默认内容"、"默认内容2" 或 "默认内容3"。
