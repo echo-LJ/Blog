@@ -85,6 +85,26 @@ export default {
 
 当组件被渲染时，Vue将执行render函数生成对应的VNode节点，在根据这个VNode节点生成真实的DOM节点并插入到页面中。
 
+
+
+
+
+
+
+### 高效的依赖追踪机制
+
+
+
+
+
+
+
+
+**vue2和vue3中区别：** 在vue2中使用v-bind添加sync修饰符:value.sync，实现和v-model相同的作用，而vue3中废除了sync修饰符，vue3中的v-model默认相当于modelValue和@update:modelValue,vue3中甚至可以用参数形式指定多个不同的绑定，如v-model:foo和v-model:bar
+
+
+
+
 # 2、子组件实例如何挂载到根vue实例上的
 
 在Vue应用程序中，可以通过Vue实例化挂载一个根组件，然后在根组件中注册其他子组件，这些子组件将会被挂载到根组件上。例如：
@@ -3763,38 +3783,16 @@ LRU 是 Least Recently Used 的缩写，翻译为“最近最少使用”。它�
 ## 源码解析：https://cn.vuejs.org/guide/built-ins/keep-alive.html
 
 ## 子组件多个匿名slot 父组件传参时怎么传
-Vue 组件的匿名插槽数量没有限制，可以定义多个匿名插槽来给父组件传递内容。在组件的 `<template>` 标签中，可以通过 `<slot>` 标签来定义匿名插槽，如下所示：
 
-```Vue
-<template>
-  <div>
-    <slot>默认内容</slot>
-    <slot>默认内容2</slot>
-    <slot>默认内容3</slot>
-  </div>
-</template>
-```
+### iframe和qiankun啥区别？iframe有没有样式隔离[失望]
+### webpack和vite啥区别？
+### 不支持esmodule的插件，怎么转换？在哪个阶段转换？
+### 签名的实现原理
+### http2的原理
 
-在上面的例子中，组件定义了三个匿名插槽，父组件可以通过 `<template>` 标签来为这些插槽传递不同的内容。
+### css命名规范
 
-当父组件在传入内容时，也需要为每个插槽分别传入相应的内容。例如：
+### 从template到dom发生了什么
 
-```Vue
-<template>
-  <div>
-    <my-component>
-      <template v-slot:default>
-        这是第一个插槽的内容
-      </template>
-      <template v-slot:default="{ message }">
-        这是第二个插槽的内容{{ message }}
-      </template>
-      <template v-slot:default>
-        这是第三个插槽的内容
-      </template>
-    </my-component>
-  </div>
-</template>
-```
 
-在上面的例子中，使用 `v-slot` 指令为每个匿名插槽传入不同的内容。第二个插槽使用了解构语法，可以获取插槽传入的值。如果父组件没有为某个插槽传入内容，那么会默认显示组件中 `<slot>` 标签的内容，即 "默认内容"、"默认内容2" 或 "默认内容3"。
+哪些浏览器支持ES5 哪些支持Es6
