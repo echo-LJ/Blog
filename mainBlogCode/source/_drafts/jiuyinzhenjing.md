@@ -3795,4 +3795,4 @@ LRU 是 Least Recently Used 的缩写，翻译为“最近最少使用”。它�
 ### 从template到dom发生了什么
 
 
-哪些浏览器支持ES5 哪些支持Es6
+有些plugin不支持esmodule语法 是在哪个阶段转换的
