@@ -26,7 +26,7 @@ tags: Babel
  
  Parser支持多个 JS 语言规范，包括 ES6 / ES7 / JSX / TS / Flow 等
 
-**1、词法分析阶段`Tokenizer`:** Tokenizer把代码字符串拆分成Token数组
+**1、词法分析阶段`Tokenizer`:** Tokenizer通过正则表达式把代码字符串拆分成Token数组
 
 字符串形式的代码转换为令牌（tokens）流,令牌类似于AST中的节点。
 
