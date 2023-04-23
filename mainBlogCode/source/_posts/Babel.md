@@ -6,7 +6,7 @@ tags: Babel
 <meta name="referrer" content="no-referrer"/>
 
 
-[Babel](https://Babeljs.io/docs/Babel-traverse)是一个广泛使用的 JavaScript 编译器，本质上是对`AST`的操控，从`js`到`js`的转化。
+[Babel](https://www.babeljs.cn/docs/)是一个广泛使用的 JavaScript 编译器，本质上是对`AST`的操控，从`js`到`js`的转化。
 
 ![image.png](https://res.cloudinary.com/dvtfhjxi4/image/upload/v1624407593/origin-of-ray/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210623081837_ikbdn8.png)
 

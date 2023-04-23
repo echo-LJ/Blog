@@ -3796,3 +3796,8 @@ LRU 是 Least Recently Used 的缩写，翻译为“最近最少使用”。它�
 
 
 有些plugin不支持esmodule语法 是在哪个阶段转换的
+
+说说你对polyfill的理解
+
+
+webpack开始打包的时候，会加载所有plugin，那么如果plugin不支持es6语法的话，plugin是不是就不会生效？这个兼容问题是怎么解决的？如果你要手写一个plugin，你的思路是什么？
