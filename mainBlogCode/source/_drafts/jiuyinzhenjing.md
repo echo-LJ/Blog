@@ -3797,7 +3797,31 @@ LRU 是 Least Recently Used 的缩写，翻译为“最近最少使用”。它�
 
 有些plugin不支持esmodule语法 是在哪个阶段转换的
 
-说说你对polyfill的理解
+手写一个plugin的思路？
+
+这几个差价需要学习(了解babel：polyfill、loader、 preset-env及 core之间的关系)[https://zhuanlan.zhihu.com/p/138108118]
+(9个常见的 Webpack 面试题，中高级前端必会！)[https://juejin.cn/post/7157998164627161095]
+
+
+less-loader和scss-loader的区别
+css-loader的原理
+
+webpack做的事情，仅仅是分析出各种模块的依赖关系，然后形成资源列表，最终打包生成到指定的文件中。 更多的功能需要借助loaders和plugins完成。比如说：在代码中有一张图片需要进行打包，webpack可以把图片读出来，但是不能将图片当做js代码来读，所以需要一个加载器loader来帮助我们把图片的二进制数据转变为js代码，loader的作用说白了就是将一种形式的代码通过逻辑转变成另一种形式的代码，转换后的代码webpack就能识别了。loader的功能定位是转换代码
+
+以下就是常见的loader：
+
+image-loader：加载并且压缩图片文件
+css-loader：帮助webpack打包处理css文件，使用css-loader必须要配合使用style-loader
+style-loader：用于将css编译完成的样式，挂载到页面的style标签上。但是要注意loader执行顺序，style-loader要放在第一位，loader都是从后往前执行
+babel-loader：把 ES6 转换成 ES5
+sass-loader: css预处理器，能更好的编写css
+postcss-loader: 用于补充css样式在各种浏览器的前缀，很方便，不需要手动写了
+eslint-loader:用于检查代码是否符合规范，是否存在语法错误
+url-loader:处理图片类型资源，可以根据图片的大小进行不同的操作，如果图片大小大于指定大小，则将图片进行资源打包，否则将图片转换为base64格式字符串，再把这个字符串打包到 JS文件里。
+
 
 
 webpack开始打包的时候，会加载所有plugin，那么如果plugin不支持es6语法的话，plugin是不是就不会生效？这个兼容问题是怎么解决的？如果你要手写一个plugin，你的思路是什么？
+
+
+模块化管理是指将代码按照功能或业务划分成一个个独立的模块，每个模块对外暴露出接口和实现细节，方便其他模块调用和使用。在前端开发中，模块化管理通常使用 ES6 模块化规范、CommonJS 规范或 AMD 规范等方式实现。

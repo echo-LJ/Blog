@@ -1,14 +1,23 @@
 ---
 title: Babel源码详解
 date: 2023-04-23 13:41:30
-tags: Babel
+tags: tool
 ---
 <meta name="referrer" content="no-referrer"/>
 
 
 [Babel](https://www.babeljs.cn/docs/)是一个广泛使用的 JavaScript 编译器，本质上是对`AST`的操控，从`js`到`js`的转化。
 
+**Babel的功能：**
+* 语法转换
+* 通过 Polyfill 方式在目标环境中添加缺失的特性 (通过 @babel/polyfill 模块)
+* 源码转换 (codemods)
+
+
 ![image.png](https://res.cloudinary.com/dvtfhjxi4/image/upload/v1624407593/origin-of-ray/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210623081837_ikbdn8.png)
+
+
+l
 
 **`编译器的三个阶段：`** `解析【Parser】 => 转换【Transformer】 => 生成【Generator】`
 
@@ -240,6 +249,21 @@ State 对象是一个状态对象，用于在`遍历 AST 树时存储一些上�
 @babel/generator 采用源代码映射的方式将 JavaScript 代码字符串对应到源代码的位置。这个过程主要依赖于`source-map` 模块。在生成 JavaScript 代码字符串和对应的 source map 后，@babel/generator 返回一个对象，包含了代码字符串和对应的 source map 对象。
 
 
+### 什么是Polyfill?
+
+[Polyfill](https://developer.mozilla.org/zh-CN/docs/Glossary/Polyfill)是一个js库，主要抚平不同浏览器之间对js实现的差异,实现浏览器并不支持的原生API的代码.
+
+### polyfill和babel的区别
+
+Babel 是一个 JavaScript 编译器，能够将新版本的 js语法编译成浏览器支持的旧版本js语法。
+Babel默认只转换新的JavaScript语法，而不转换新的API.
+
+而为了确保 Babel 转译的代码在旧版浏览器中仍旧正常运行，就需要使用 Polyfill 来填充这些缺失的API特性。这意味着 Polyfill 和 Babel 通常一起使用，让开发者能够使用新版 JavaScript 代码，而又不必担心它在旧版浏览器中无法正常运行。
+
+举例： Babel转换了ES6的箭头函数句法，但对于Array.of并没有转换，因为Array.of是ES6的API.
+## 结束语
+---
+总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
 参考链接:
 * [深入Babel原理系列（三）Tokenizer](https://sunra.top/2021/06/22/Babel-1/)
