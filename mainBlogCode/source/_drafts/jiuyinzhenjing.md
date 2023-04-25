@@ -3804,7 +3804,6 @@ LRU 是 Least Recently Used 的缩写，翻译为“最近最少使用”。它�
 
 
 less-loader和scss-loader的区别
-css-loader的原理
 
 webpack做的事情，仅仅是分析出各种模块的依赖关系，然后形成资源列表，最终打包生成到指定的文件中。 更多的功能需要借助loaders和plugins完成。比如说：在代码中有一张图片需要进行打包，webpack可以把图片读出来，但是不能将图片当做js代码来读，所以需要一个加载器loader来帮助我们把图片的二进制数据转变为js代码，loader的作用说白了就是将一种形式的代码通过逻辑转变成另一种形式的代码，转换后的代码webpack就能识别了。loader的功能定位是转换代码
 
