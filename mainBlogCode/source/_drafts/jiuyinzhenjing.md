@@ -3824,3 +3824,89 @@ webpack开始打包的时候，会加载所有plugin，那么如果plugin不支�
 
 
 模块化管理是指将代码按照功能或业务划分成一个个独立的模块，每个模块对外暴露出接口和实现细节，方便其他模块调用和使用。在前端开发中，模块化管理通常使用 ES6 模块化规范、CommonJS 规范或 AMD 规范等方式实现。
+
+
+前端杨村长学习顺序
+0:09的虚拟dom和10的diff算法，
+1:03-简述Vue生命周期
+2:07-Vue中如何做权限管理
+3:04-双向绑定使用原理
+4:01-组件通信
+5:25-Vue3组件优化
+6:03-【Vue面试专题】刷新后vuex状态丢失怎么解
+7:03-【Vue面试专题】vue3为什么用proxy替代defineProperty
+8:28-路由懒加载
+9:【Vue面试专题】history和hash模式有何区别
+10:15-nextTick
+11:02-v-for和v-if的优先级
+12:【Vue面试专题】如何监听vuex状态变化
+13:【Vue面试专题】你觉得vuex有什么缺点
+14:28 ref和reactive的异同
+15:05-Vue中如何扩展一个组件
+16:【Vue面试专题】56道详解
+17::【Vue面试专题】vue-loader是什么
+18:06-子组件能否修改父组件数据
+19:12-动态路由怎么使用
+20:08-说说对vue数据响应式的理解
+21:22-从template到render做了什么
+
+
+
+1、【Vue面试专题】刷新后vuex状态丢失怎么解？
+* 可以从localStorage中获取作为状态初始值
+在store创建的时候从localstorage获取并设置初始值
+```
+const store = creatStore({
+  state(){
+    return {
+      count:localStorage.getItem('count')
+    }
+  }
+})
+```
+在业务代码中，提交修改状态同时修改最新值：虽然实现了，但是每次还要手动刷新loacalstorage不优雅
+
+```
+store.commit('increment')
+localstorage.setItem('count', store.state.count)
+```
+
+回答思路：
+
+* 问题描述
+为什么要做持久化？
+* 解决方法
+* 个人理解
+* 三方库原理探讨
+
+
+* vuex只是在内存中保存状态，刷新之后就会丢失，如果有些状态要持久化就要存储起来。
+* localstorage || 数据库就很合适，提交mutation的同时可以存入到localstorage,store中把值取出来作为初始值就可以实现持久化了
+
+* 以上方法存在一些问题，首先：并非所有的状态都需要做持久化处理，如果需要保存的状态很多，通过localstorage存储就不够优雅，每个需要提交的地方都需要单独做保存处理。可以利用vuex提供的subscribe(订阅)方法做统一处理persistant属性，甚至可以封装一个vuex插件以便复用。
+
+* 类似的插件有vuex-persist vuex-persistedState 可以同步到localstorage|| 数据库， 内部的实现原理就是通过subscribe方法订阅mutation
+（的类型）变化做统一处理，通过插件的配置选项控制哪些需要持久化，存储到相应位置。
+
+持久化插件 的原理还是采用的 localstorage
+
+
+知其所以然
+
+vuex-persist内部实现是通过subscribe实现的
+
+源码中subscribe 接受store 实例，利用vuex的subscribe这个API，对所有的mutation进行统一处理，把用户的配置在handler中分门别类的操作，这就是它的原理
+
+https://github.com/championswimmer/vuex-persist/blob/master/src/index.ts#L277
+
+
+1.为什么有localstorage 还要搞个vuex? 2.数据放在localstorage，用户通过控制台就可以看到数据了，怎么解决？3.localstorage里面的数据，人为修改后，刷新页面，修改后的值就赋给vuex了，这个怎么解决？
+
+第一个问题我考虑的是，本地存储不是响应式的，本地数据发生改变，页面不会改变，后面的问题我也想知道办法
+
+这种方法有一个知名的问题就是如果我在Vuex里存储的是Map Set Function这种引用类型时就G了
+
+
+
+https://www.bilibili.com/video/BV1BK411f7e4/?spm_id_from=333.788&vd_source=7e84f4971831c93784b1e72b79163ef6
+

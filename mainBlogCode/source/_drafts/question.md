@@ -58,7 +58,7 @@ IdentityFile ~/.ssh/id_rsa
 #### 在jd的电脑提交代码到github上需要重定向密钥：
 
 eval $(ssh-agent -s)
-mac: ssh-add ~/.ssh/my-mac.github 
+mac: ssh-add ~/.ssh/my-mac 
 longfor mac: ssh-add ~/.ssh/github 
 ssh -T git@github.com
 https://blog.csdn.net/weixin_45434534/article/details/104567870

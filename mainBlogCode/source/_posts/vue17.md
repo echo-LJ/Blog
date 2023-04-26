@@ -9,19 +9,37 @@ tags: Vue.js
 <meta name="referrer" content="no-referrer"/>
 
 
+**面试回答思路：**
+* 总述知道的所有方法---描述vue3中的变化----vue3中废弃的几个API的原因
+
+* 按组件关系阐述使用场景-更有逻辑性
+
+vue3中废弃的几个API
+* https://v3-migration.vuejs.org/zh/breaking-changes/children.html
+* https://v3-migration.vuejs.org/zh/breaking-changes/listeners-removed.html
+* https://v3-migration.vuejs.org/zh/breaking-changes/events-api.html#overview
+
+*  1.eventbus为什么不建议用2.children被抛弃的原因3.listeners被抛弃的原因  吗
+
+1.反模式，且vue没有on方法了
+2.反模式
+3.简化
+
+
+
 ### 组件通信常用方式有以下九种
 
 ![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3b81aa2acb07446daaf97e001310c9ce~tplv-k3u1fbpfcp-watermark.image?)
 
 - `Props`: 父组件通过props向子组件传递数据和方法。
-- `$children/$parent`: 通过parent和children访问父组件和子组件的实例。
+- ~~`$children`~~`/$parent`: 通过parent和children访问父组件和子组件的实例。
 - `refs`: 通过refs访问子组件实例。
 - `$root`: 指访问根实例的方法。
 - `Vuex`: 使用状态管理模式Vuex，实现全局统一管理数据，组件之间状态的共享和管理，通过全局store的方式来实现组件间的通信。
 - `provide/inject`: 父组件提供数据和方法，子组件通过inject获取。
-- `$emit/$on`:子组件通过$emit触发自定义事件$on，并将数据传递给父组件（可以实现非父子组件之间的通信）。
-- `eventbus`: 通过事件总线EventBus，实现组件之间的通信。
-- `$attrs/$listener`: vue3中已经废弃
+- `$emit/`~~`$on`~~:子组件通过$emit触发自定义事件$on，并将数据传递给父组件（可以实现非父子组件之间的通信）。
+- `eventbus`: 通过事件总线EventBus，实现组件之间的通信。Vue3中推荐引入第三方的`mitt`代替eventbus.
+- `$attrs/`~~`$listener`~~: vue3中已经废弃
 
 
 
@@ -31,13 +49,13 @@ tags: Vue.js
 
 1、父子组件
 
--  `props`/`$emit`/`$parent`/`ref`/`$attrs`
+-  `props`/`$emit`/`$parent`/`ref`/`$attrs(爷孙之间透传)`
 
 2、兄弟组件
--   `$parent`/`$root`/`eventbus`/`vuex`
+-   `$parent(通过桥接)`/`$root(通过桥接)`/`eventbus`/`vuex`
 
 3、跨层级关系
--   `eventbus`/`vuex`/`provide`&`inject`
+-   `eventbus`/`vuex`/`provide`&`inject（从上倒下注入的方式）`
 
 ### 组件之间通信方式的用法和优缺点
 
@@ -294,3 +312,7 @@ export default {
 ## 结束语
 ---
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
+
+参考链接：
+
+*[VUE3迁移指南](https://v3-migration.vuejs.org)
