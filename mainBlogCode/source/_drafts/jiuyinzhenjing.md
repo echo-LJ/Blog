@@ -3900,3 +3900,8 @@ https://github.com/championswimmer/vuex-persist/blob/master/src/index.ts#L277
 
 https://www.bilibili.com/video/BV1BK411f7e4/?spm_id_from=333.788&vd_source=7e84f4971831c93784b1e72b79163ef6
 
+箭头函数 能 new吗？为什么？
+
+
+ 在使用 JavaScript 动态插入多个节点时, 可以使用`DocumentFragment`. 创建后一次插入. 就能避免多次的渲染性能。DocumentFragment是什么？
+ 
