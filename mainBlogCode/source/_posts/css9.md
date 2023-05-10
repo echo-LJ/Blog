@@ -203,7 +203,15 @@ inline-block、table-cell、table-caption、table、inline-table、flex、inline
 
 * BFC布局与普通文档流布局区别:
 
+## 扩展-IFC、GFC、FFC
 
+IFC（行级格式化上下文）- inline 内联
+GFC（网格布局格式化上下文）- display: grid
+FFC（自适应格式化上下文）- display: flex或display: inline-flex
+注意：同一个元素不能同时存在于两个 BFC 中。
+---
+总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
+参考链接：
 * [HTML/JS/CSS/SVG/画图在线工具](https://c.runoob.com/front-end/61/)
 
