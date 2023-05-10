@@ -7,35 +7,6 @@ tags: Css
 <meta name="referrer" content="no-referrer"/>
 
 
-## 1.什么是 BFC机制
----
-
-BFC(Block Formatting Context)，块级格式化上下文，是一个独立的渲染区域，让处于 BFC 内部的元素与外部的元素相互隔离，使内外元素的定位不会相互影响。
-* 触发条件 (以下任意一条)
-1. float的值不为none
-2. overflow的值不为visible
-3. display的值为table-cell、tabble-caption和inline-block之一
-4. position的值不为static或则releative中的任何一个
-`
-在IE下, Layout,可通过zoom:1 触发
-`
-* BFC布局与普通文档流布局区别:
-
-###### BFC布局规则:
-1. 浮动的元素会被父级计算高度(父级元素触发了BFC)
-2. 非浮动元素不会覆盖浮动元素的位置(非浮动元素触发了BFC)
-3. margin不会传递给父级(父级触发BFC)
-4. 属于同一个BFC的两个相邻元素上下margin会重叠
-1. 普通文档流布局: 浮动的元素是不会被父级计算高度
-2. 非浮动元素会覆盖浮动元素的位置
-3. margin会传递给父级元素
-4. 两个相邻元素上下的margin会重叠
-* 开发中的应用
-1. 阻止margin重叠
-2. 可以包含浮动元素 —— 清除内部浮动(清除浮动的原理是两个 div都位于同一个 BFC 区域之中)
-3. 自适应两栏布局
-4. 可以阻止元素被浮动元素覆盖
-
 ## 2. CSS3中新增的选择器以及属性
 ---
 
