@@ -65,6 +65,7 @@ import './style.css';
 4、等等
 
 
+可参考：[谈谈对前端CSS工程化的理解](https://echo-lj.github.io/2023/05/12/css11/)
 
 ### 3、处理文件中的@import、url()等链接；
 (css-loader)[https://webpack.docschina.org/loaders/css-loader/] 官方API: css-loader 会对 @import 和 url() 进行处理，就像 js 解析 import/require() 一样。
