@@ -3844,3 +3844,11 @@ https://www.bilibili.com/video/BV1BK411f7e4/?spm_id_from=333.788&vd_source=7e84f
 
 
 https://juejin.cn/post/7061588533214969892
+
+
+为什么？， null 值表示一个空对象指针，这也是给typeof传一个 null 会返回 "object" 的原因 
+
+正则表达式：可参考：https://youle.zhipin.com/articles/1f2eb19c13828defqxBy2d-5.html 去补充es6-1
+
+
+学习数组的方法： Array.entries()
