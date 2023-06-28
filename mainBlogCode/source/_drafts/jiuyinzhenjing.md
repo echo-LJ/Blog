@@ -365,17 +365,6 @@ vue路由要解决的问题：用户点击跳转链接内容切换，页面不�
 4.  一旦"执行栈"中的所有同步任务执行完毕，系统就会读取"任务队列"。那些对应的异步任务，结束等待状态，进入执行栈并开始执行。
 5.  **主线程不断重复上面的第三步**。
 
-### 宏任务与微任务:
-
-异步任务分为 宏任务（macrotask） 与 微任务 (microtask)，不同的API注册的任务会依次进入自身对应的队列中，然后等待 Event Loop 将它们依次压入执行栈中执行。
-
-**宏任务(macrotask)：** ：
-
-script(整体代码)、setTimeout、setInterval、UI 渲染、 I/O、postMessage、 MessageChannel、setImmediate(Node.js 环境)
-
-**微任务(microtask)：**
-
-Promise、 MutaionObserver、process.nextTick(Node.js环境）
 
 # 10、watch和computed的区别以及选择
 

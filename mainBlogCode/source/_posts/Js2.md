@@ -10,18 +10,18 @@ tags: Js
 几乎在每一本JS相关的书籍中，都会说JS是`单线程`的，JS是通过`事件队列(Event Loop)`的方式来实现异步回调的。 对很多初学JS的人来说，根本搞不清楚单线程的JS为什么拥有 `异步`的能力，所以，我试图从`进程`、`线程`的角度来解释这个问题。
 ## CPU
 ---
-![image](https://user-gold-cdn.xitu.io/2019/8/20/16caca3ddada3a3d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![img](https://upload-images.jianshu.io/upload_images/11846892-597a678e2c412005.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 计算机的核心是`CPU`，它承担了所有的计算任务。
 它就像一座工厂，时刻在运行。
 ## 进程
 ---
-![image](https://user-gold-cdn.xitu.io/2019/8/20/16caca3ddb1e54c7?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![image](https://upload-images.jianshu.io/upload_images/11846892-1cc5fad9ecc5826e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 假定工厂的电力有限，一次只能供给一个车间使用。也就是说，一个车间开工的时候，其他车间都必须停工。背后的含义就是，单个CPU一次只能运行一个任务。
 `进程`就好比工厂的车间，它代表CPU所能处理的单个任务。 `进程`之间相互独立，任一时刻，CPU总是运行一个`进程`，其他`进程`处于非运行状态。 CPU使用时间片轮转进度算法(这是个什么算法？？？？)来实现同时运行多个`进程`。
 ## 线程
 ---
-![image](https://user-gold-cdn.xitu.io/2019/8/20/16caca3ddb0197b8?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![image](https://upload-images.jianshu.io/upload_images/11846892-c7a3403a7da014a6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 一个车间里，可以有很多工人，共享车间所有的资源，他们协同完成一个任务。
 `线程`就好比车间里的工人，一个`进程`可以包括多个`线程`，多个`线程`共享`进程`资源。
 ### CPU、进程、线程之间的关系
@@ -30,13 +30,14 @@ tags: Js
 * `线程`是cpu调度的最小单位（线程是建立在进程的基础上的一次程序运行单位，一个进程中可以有多个线程）
 * 不同`进程`之间也可以通信，不过代价较大
 * `单线程`与`多线程`，都是指在一个`进程`内的单和多
+
 ## 浏览器是多进程的
 
 我们已经知道了`CPU`、`进程`、`线程`之间的关系，对于计算机来说，每一个应用程序都是一个`进程`，
 而每一个应用程序都会分别有很多的功能模块，这些功能模块实际上是通过`子进程`来实现的。
 对于这种子进程的扩展方式，我们可以称这个应用程序是多进程的。
 而对于浏览器来说，浏览器就是`多进程`的，我在Chrome浏览器中打开了多个tab，然后打开windows控制管理器：
-![image](https://user-gold-cdn.xitu.io/2019/8/21/16cb1f0a851c86b9?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![image](https://upload-images.jianshu.io/upload_images/11846892-0b46f50d34ad3601.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 如上图，我们可以看到一个Chrome浏览器启动了好多个进程。
 
 总结一下：
@@ -108,7 +109,7 @@ tags: Js
 * 同步任务都在JS引擎线程上执行，形成一个`执行栈`
 * 事件触发线程管理一个`任务队列`，异步任务触发条件达成，将回调事件放到`任务队列`中
 * `执行栈`中所有同步任务执行完毕，此时JS引擎线程空闲，系统会读取`任务队列`，将可运行的异步任务回调事件添加到`执行栈`中，开始执行
-![image](https://user-gold-cdn.xitu.io/2019/8/21/16cb1d70e5120bea?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![截屏2023-06-28 下午2.41.44.png](https://upload-images.jianshu.io/upload_images/11846892-5b770cd68a6ffc1d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 在前端开发中我们会通过`setTimeout/setInterval`来指定定时任务，会通过`XHR/fetch`发送网络请求， 接下来简述一下`setTimeout/setInterval`和`XHR/fetch`到底做了什么事
 
@@ -119,7 +120,7 @@ tags: Js
 当代码执行到`XHR/fetch`时，实际上是`JS引擎线程`通知`异步http请求线程`，发送一个网络请求，并制定请求完成后的回调事件， 而`异步http请求线程`在接收到这个消息后，会在请求成功后，将回调事件放入到由`事件触发线程`所管理的`事件队列`中。
 
 当我们的同步任务执行完，`JS引擎线程`会询问`事件触发线程`，在`事件队列`中是否有待执行的回调函数，如果有就会加入到执行栈中交给`JS引擎线程`执行
-![image](https://user-gold-cdn.xitu.io/2019/8/21/16cb1d7433f29c46?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![截屏2023-06-28 下午2.43.57.png](https://upload-images.jianshu.io/upload_images/11846892-5517a5a6eca376a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 再用代码来解释一下：
 ```
 let timerCallback = function() {
@@ -158,6 +159,8 @@ console.log('world');
 ## 宏任务、微任务
 ---
 当我们基本了解了什么是执行栈，什么是事件队列之后，我们深入了解一下事件循环中`宏任务`、`微任务`
+
+异步任务分为 宏任务（macrotask） 与 微任务 (microtask)，不同的API注册的任务会依次进入自身对应的队列中，然后等待 Event Loop 将它们依次压入执行栈中执行。
 #### 什么是宏任务
 我们可以将每次执行栈执行的代码当做是一个宏任务（包括每次从事件队列中获取一个事件回调并放到执行栈中执行），
 每一个宏任务会从头到尾执行完毕，不会执行其他。
@@ -165,7 +168,11 @@ console.log('world');
 我们前文提到过`JS引擎线程`和`GUI渲染线程`是互斥的关系，浏览器为了能够使`宏任务`和`DOM任务`有序的进行，会在一个`宏任务`执行结果后，在下一个`宏任务`执行前，`GUI渲染线程`开始工作，对页面进行渲染。
 >宏任务-->渲染-->宏任务-->渲染-->渲染．．．
 
-###### 主代码块，setTimeout，setInterval等，都属于宏任务
+###### 主代码块，setTimeout，setInterval、UI 渲染、 I/O、postMessage、 MessageChannel、setImmediate(Node.js 环境)
+，都属于宏任务
+
+
+
 第一个例子：
 ```
 document.body.style = 'background:black';
@@ -193,7 +200,8 @@ setTimeout(function(){
 我们已经知道`宏任务`结束后，会执行渲染，然后执行下一个`宏任务`， 而`微任务`可以理解成在当前`宏任务`执行后立即执行的任务。
 也就是说，当`宏任务`执行完，会在渲染前，将执行期间所产生的所有`微任务`都执行完。
 
-###### Promise，process.nextTick等，属于微任务。
+###### Promise、 MutaionObserver、process.nextTick(Node.js环境）等，属于微任务。
+
 第一个例子：
 ```
 document.body.style = 'background:blue'
@@ -239,7 +247,7 @@ setTimeout(() => {
 ---
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
-![image](https://user-gold-cdn.xitu.io/2019/8/21/16cb1d7bb4bd9fd2?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![image](https://upload-images.jianshu.io/upload_images/11846892-f6c419204bea0c9e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
 参考链接:

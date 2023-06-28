@@ -5,8 +5,6 @@ tags:
 promise.md
 #### promise
 
-jsTitle
-#### 宏任务、微任务
 
 
 
