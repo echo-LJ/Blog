@@ -19,26 +19,27 @@ vue3中废弃的几个API
 * https://v3-migration.vuejs.org/zh/breaking-changes/listeners-removed.html
 * https://v3-migration.vuejs.org/zh/breaking-changes/events-api.html#overview
 
-*  1.eventbus为什么不建议用2.children被抛弃的原因3.listeners被抛弃的原因  吗
-
-1.反模式，且vue没有on方法了
-2.反模式
-3.简化
-
-
-
+* 1.eventbus为什么不建议用？
+     在实际的项目操作中发现，如不能实现很好的`事件监听与发布`的管理，往往容易导致数据流的混乱，在多人协作的项目中，不利于项目的维护
+* 2.children被抛弃的原因？取消$children是为了提高性能和减少紧耦合
+    * 因为$children是一个响应式属性，当组件的子组件发生变化时，它会自动更新。这样一来，当组件树非常庞大时，对于每次更新都要遍历整个子组件树来保持$children的更新状态，会导致性能下降。
+    * $children属性的使用可能导致组件间的紧耦合。在Vue 2.x中，如果一个组件依赖于其子组件的顺序或具体实现细节，那么更改子组件结构就可能会破坏组件之间的约定。这样会使得代码难以维护和修改。
+* 3.listeners被抛弃的原因？ 取消$listeners是为了提高性能和可维护性
+    * $listeners是一个响应式属性，当父组件传递给子组件的事件监听器发生变化时，会触发组件的重新渲染。当父组件频繁更新监听器时，这可能会导致性能问题。
+    * $listeners的自动绑定行为可能会导致对组件行为的隐含依赖，使得代码变得难以维护和理解。当子组件的根元素上存在$listeners时，它会自动引入父组件传递的所有事件监听器，这样子组件的行为可以受到父组件的影响，而不是明确地声明事件。
+    
 ### 组件通信常用方式有以下九种
 
 ![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3b81aa2acb07446daaf97e001310c9ce~tplv-k3u1fbpfcp-watermark.image?)
 
 - `Props`: 父组件通过props向子组件传递数据和方法。
-- ~~`$children`~~`/$parent`: 通过parent和children访问父组件和子组件的实例。
 - `refs`: 通过refs访问子组件实例。
 - `$root`: 指访问根实例的方法。
 - `Vuex`: 使用状态管理模式Vuex，实现全局统一管理数据，组件之间状态的共享和管理，通过全局store的方式来实现组件间的通信。
 - `provide/inject`: 父组件提供数据和方法，子组件通过inject获取。
-- `$emit/`~~`$on`~~:子组件通过$emit触发自定义事件$on，并将数据传递给父组件（可以实现非父子组件之间的通信）。
 - `eventbus`: 通过事件总线EventBus，实现组件之间的通信。Vue3中推荐引入第三方的`mitt`代替eventbus.
+- `$emit/`~~`$on`~~:子组件通过$emit触发自定义事件$on，并将数据传递给父组件（可以实现非父子组件之间的通信）。
+- ~~`$children`~~`/$parent`: 通过parent和children访问父组件和子组件的实例。
 - `$attrs/`~~`$listener`~~: vue3中已经废弃
 
 

@@ -218,6 +218,7 @@ var reverseList = function(head) {  //  head： 1->2->3->4->5->null
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
 参考链接:
-https://juejin.cn/post/6844904058562543623
-https://blog.csdn.net/FX677588/article/details/72357389
-https://leetcode-cn.com/problems/reverse-linked-list/solution/dong-hua-yan-shi-206-fan-zhuan-lian-biao-by-user74/
+
+* [力扣-反转链表-初级](https://leetcode-cn.com/problems/reverse-linked-list/solution/dong-hua-yan-shi-206-fan-zhuan-lian-biao-by-user74/)
+* [看一遍就理解，图解单链表反转](https://juejin.cn/post/6844904058562543623)
+* [链表翻转的图文讲解（递归与迭代两种实现）](https://blog.csdn.net/FX677588/article/details/72357389)
