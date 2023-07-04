@@ -6,16 +6,44 @@ tags: Vue.js
 
 <meta name="referrer" content="no-referrer"/>
 
+
+
+
+
+
+
+**Vue2**
 ![vue.png](https://img2018.cnblogs.com/blog/1475079/201810/1475079-20181015102951341-1694919323.png)
+
+**Vue3**
+![lifecycle.16e4c08e.png](https://upload-images.jianshu.io/upload_images/11846892-faa34d5082e8ed41.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+
+### 回答思路
+1、给出概念
+2、列举生命周期各阶段
+3、阐述整体流程
+4、结合实践
+5、扩展：Vue3的变化
 
 1.每个Vue组件实例被创建后都会经过一系列初始化步骤，比如，它需要`数据观测`，`模板编译`，`挂载实例到DOM`上，以及`数据变化时更新DOM`。这个过程中会运行叫做生命周期钩子的函数，以便用户在特定阶段有机会添加他们自己的代码。
 
 2.Vue生命周期总共可以分为8个阶段：**创建前后, 载入前后, 更新前后, 销毁前后**，以及一些特殊场景的生命周期。vue3中新增了三个用于调试和服务端渲染场景。
 
+**3通过vue3的生命周期图解，阐述整体流程：** 
+1、通过Renderer渲染器去创建组件--调用(Compostion API)的setup
+2、创建完成之后--判断是否有预编译模版-没有：在运行时进行实时编译模版，得到Render函数。
+
+4、结合实践，描述table中的可执行
+
+
+
+
 
 | 阶段 | vue2 | vue3 | description | function | 可执行 |
 | --- | --- | --- | --- | --- | --- |
-| 创建阶段| beforeCreate | beforeCreate | 组件实例被创建之初 | 用于插件开发执行初始化任务 | ｜
+| 创建阶段| beforeCreate | beforeCreate | 组件实例被创建之初 | 用于插件开发执行初始化任务 | 例如写一个router插件，需要向app实例中注入$router、$store等全局变量、全局属性。｜
 | 创建阶段| created | created | 组件实例已经被完全创建 | 组件初始化完毕，可以访问各种数据、属性和方法都已完善 | ｜
 | 创建阶段| beforeMount | beforeMount | `组件挂载之前`（最后可以修改虚拟DOM的生命周期钩子函数，需谨慎操作，避免对组件渲染性能造成不利的影响） | `组件中的 DOM 操作都在虚拟 DOM 内完成，但尚未将其插入到真正的页面上`。 |在这个钩子函数中，我们可以对虚拟 DOM 进行一些操作，但不可以访问到实例的 `$el `属性。可以通过`vm.$el`获取虚拟DOM实例，我们可以进行一些比较耗时的操作（通过 axios 等工具发送请求，获取需要渲染到组件中的数据，完成一些基础但是必要的初始化工作），但是需要注意对组件渲染性能的影响。｜
 | 创建阶段| mounted | mounted | 组件挂载到实例上去之后 | `DOM已创建，可用于获取访问数据和dom元素；访问子组件等` |(保证操作dom的操作开销足够小，在 mounted 阶段完成后，Vue 会采用异步更新机制，如果在此生命钩子中进行的操作过于耗时，则可能会造成渲染性能的问题，甚至会使浏览器出现假死状态。) ｜
@@ -68,6 +96,23 @@ tags: Vue.js
 10、子组件 deactivated
 11、子组件 activated
 12、父组件 activated
+
+
+### setup中为什么没有beforeCreate 和 created?
+
+由于setup执行比较早、组件实例已经创建了，所以没有必要beforeCreate 和 created。
+
+在[vue3在线源码的生命周期派发时刻](https://github1s.com/vuejs/core/blob/HEAD/packages/runtime-core/src/componentOptions.ts#L610）中可以看到`applyOptions`方法是在setup函数完整处理完成之后才会触发的，而`applyOptions`中所调用的所有钩子函数都晚于setup。
+
+在[vue2在线源码的生命周期派发时刻](https://github1s.com/vuejs/vue/blob/HEAD/src/core/instance/init.ts)中 `newVue`函数内部可以执行一些beforeCreate之前的处理逻辑，
+* `initLifeCycle:` 组件本身的生命周期初始化：parent、children、root的初始化
+* `initEvents: `自定义事件的监听
+* `initRender` 挂载渲染函数等
+* `callback(beforeCreated)`: 调用beforeCreated
+* `initInjections` ： 初始化组件的props、data、等状态信息
+* `initState(vm)`
+* `initProvide(vm)` // resolve provide after data/props
+* `callHook(vm, 'created')`: 调用created钩子
 
 ### 路由切换时组件的 destroyed 钩子函数不会被调用?
 可能不会被调用,原因如下：

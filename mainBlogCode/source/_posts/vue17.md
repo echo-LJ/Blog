@@ -33,14 +33,14 @@ vue3中废弃的几个API
 ![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3b81aa2acb07446daaf97e001310c9ce~tplv-k3u1fbpfcp-watermark.image?)
 
 - `Props`: 父组件通过props向子组件传递数据和方法。
-- `refs`: 通过refs访问子组件实例。
-- `$root`: 指访问根实例的方法。
-- `Vuex`: 使用状态管理模式Vuex，实现全局统一管理数据，组件之间状态的共享和管理，通过全局store的方式来实现组件间的通信。
-- `provide/inject`: 父组件提供数据和方法，子组件通过inject获取。
-- `eventbus`: 通过事件总线EventBus，实现组件之间的通信。Vue3中推荐引入第三方的`mitt`代替eventbus.
 - `$emit/`~~`$on`~~:子组件通过$emit触发自定义事件$on，并将数据传递给父组件（可以实现非父子组件之间的通信）。
 - ~~`$children`~~`/$parent`: 通过parent和children访问父组件和子组件的实例。
+- `refs`: 通过refs访问子组件实例。
 - `$attrs/`~~`$listener`~~: vue3中已经废弃
+- `$root`: 指访问根实例的方法。
+- `eventbus`: 通过事件总线EventBus，实现组件之间的通信。Vue3中推荐引入第三方的`mitt`代替eventbus.
+- `Vuex`: 使用状态管理模式Vuex，实现全局统一管理数据，组件之间状态的共享和管理，通过全局store的方式来实现组件间的通信。
+- `provide/inject`: 父组件提供数据和方法，子组件通过inject获取。
 
 
 
