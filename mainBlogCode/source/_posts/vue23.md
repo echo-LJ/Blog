@@ -37,7 +37,7 @@ vue3中可以用参数形式指定多个不同的绑定，例如v-model:foo和v-
 ```
 <input type="text" v-model="foo">
 
-// 编译出的渲染函数如下：
+// vue2编译输出的渲染函数如下：
 
 _c('input', {
     directives: [{name: 'model', rawName: "v-model",value:(foo), expression: foo}],
