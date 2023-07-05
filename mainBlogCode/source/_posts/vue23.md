@@ -6,8 +6,55 @@ tags: Vue.js
 
 <meta name="referrer" content="no-referrer"/>
 
+
+## 思路分析
+1、给出双向绑定的定义
+2、双向绑定的好处
+3、在哪里使用双向绑定
+4、使用方式、使用细节、vue3的变化
+5、原理实现描述
+
+## 回答范例
+1、vue中双向绑定是一个指令：`v-model`, 可以绑定一个响应式数据到视图， 同时视图中变化能改变该数据值。
+2、`v-model`是语法糖，默认情况下相当于：value 和 @input。(根据当前绑定的元素的类型不同，事件行为不同，自定义事件则更不相同)。使用`v-model`可以减少大量繁琐的事件处理代码，以及属性的绑定，提高开发效率，提升开发体验。
+3、通常在表单上使用`v-model`,还可以在自定义组件中使用，表示某个值的输入和输出控制。
+4、通过`<input v-model="xxx">`的方式将`变量值`绑定到表单元素value上，
+    input类型不同，绑定方式有所不同：
+* 对于checkbox,可以使用`ture-value` 或`false-value`,指定特殊的值。
+* 对于radio可以使用value来指定特殊的值。
+* 对于select 可以通过options元素的value来设置特殊的值。
+* 还可以结合`.lazy`、`.number`、`.trim`来对v-model的行为作进一步限定。
+* `v-model`用在自定义组件上会有很大的不同，
+
+5、vue3中它类似于 vue2中的`sync`修饰符，最终展开的结果是`modelValue`属性的绑定和`update:modelValue`事件；（直接影响自定义使用，需要声明一个`modelValue`属性和派发类似`update:modelValue`的自定义事件）
+vue3中可以用参数形式指定多个不同的绑定，例如v-model:foo和v-modv-model：bar等，非常强大！
+
+6、 `v-model`是一个指令，他的神奇魔法是vue编译器完成的，看过源码，v-model会输出一个渲染函数，渲染函数实际上还是vulue属性的绑定以及input事件监听（类型不同，属性和事件有所不同，参考第4点。）
+
+## 扩展问题1: v-model和sync修饰符有什么区别
+在vue3中v-model类似于vue2中的修饰符，展开的就是model后面的参数，如果不设置就是`modelValue`和`update:modelValue`，如果设置就是自定义的值。 vue2中v-model的控制权在于自定义组件的自己的model选项，vue3中的控制权在于父组件，父组件中设置什么属性，子组件中就使用什么属性和派发什么事件。
+
+```
+<input type="text" v-model="foo">
+
+// 编译出的渲染函数如下：
+
+_c('input', {
+    directives: [{name: 'model', rawName: "v-model",value:(foo), expression: foo}],
+    attrs: {type: "text"},
+    domProps: {value: {foo}},
+    on: {
+        "input":function($event){
+            if($event.target.composing) return ;
+            foo = $event.target.value
+        }
+    }
+})
+```
+## 扩展问题2: 自定义组件使用v-model如果想要改变事件名和属性名应该怎么做
+
 ## 原理阐述
-vue数据双向绑定是通过数据劫持结合发布者-订阅者模式的方式来实现的
+vue数据双向绑定是通过`数据劫持结合发布者-订阅者模式`的方式来实现的
 
 1、首先要对数据进行劫持监听，所以我们需要设置一个监听器Observer，用来监听所有属性。
 2、如果属性发上变化了，就需要告诉订阅者Watcher看是否需要更新。
