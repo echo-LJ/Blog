@@ -96,8 +96,9 @@ var getIntersectionNode = function(headA, headB) {
    * 指针 A 先遍历完链表 headA ，再开始遍历链表 headB ，当走到 node 时，共走步数为： a + (b - c)
    * 指针 B 先遍历完链表 headB ，再开始遍历链表 headA ，当走到 node 时，共走步数为： b + (a - c)
    * 此时指针 A , B 重合，并有两种情况： a + (b - c) = b + (a - c)
-3、若两链表有公共尾部（即c>0）:指针 A , B 同时指向「第一个公共节点」node。
-4、若两链表 无 公共尾部 (即 c = 0c=0 ) ：指针 A , B 同时指向 nullnull 。
+
+3、若两链表 有 公共尾部（即c>0）:指针 A, B 同时指向「第一个公共节点」node。
+4、若两链表 无 公共尾部（即c=0）:指针 A, B 同时指向 null 。
 5、因此返回A即可。
 
 代码实现如下：
