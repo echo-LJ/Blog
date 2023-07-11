@@ -83,6 +83,37 @@ var longestCommonPrefix = function(strs) {
     return strs[0]
 };
 ```
+
+## 题解方法三： 分治
+**`解题思路`**
+* 用 LCP(S1…Sn)表示S1…Sn的最长公共前缀
+* 可以得到以下结论：LCP(S1…Sn) = LCP(LCP(S1...Sk),LCP(Sk+1...Sn))
+* 基于上述结论，可以使用分治法得到字符串数组中的最长公共前缀。
+* 对于问题 LCP(S1…Sn)可以分解成俩个子问题LCP(S1…Smid) 与LCP(Smid+1…Sn), 其中mid= (start +end)/2，对这两个子问题分别求解，然后计算两个子问题的最长公共前缀即可。
+
+```
+var longestCommonPrefix = function(strs) {
+    if(strs.length === 0 || strs === null) return ''
+    return getLongestCommonPrefix(strs, 0, strs.length-1)
+}
+
+var getLongestCommonPrefix = function(strs, start, end){
+    if(start === end) return strs[start]
+    let mid = Math.floor((start +end)/2)
+    let left = getLongestCommonPrefix(strs, start, mid)
+    let right = getLongestCommonPrefix(strs, mid+1, end)
+    return commonPrefix(left, right)
+}
+
+var commonPrefix = function(str1, str2){
+    var length = Math.min(str1.length,str2.length)
+    let index = 0
+    while(index < length & str1.charAt(index) === str2.charAt(index)){
+        index +=1
+    }
+    return str1.slice(0, index)
+}
+```
  ---
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
