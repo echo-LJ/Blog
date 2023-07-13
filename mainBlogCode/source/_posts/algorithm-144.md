@@ -185,7 +185,9 @@ public List<Integer> method3(TreeNode root) {
 ```
 
 
-参考地址：https://leetcode-cn.com/problems/binary-tree-preorder-traversal/solution/bao-ni-hui-de-dui-ge-lei-ti-jie-zhong-ge-mlgr/
+参考地址：
+* [二叉树的前序遍历](https://leetcode.cn/problems/binary-tree-preorder-traversal/description/)
+* https://leetcode-cn.com/problems/binary-tree-preorder-traversal/solution/bao-ni-hui-de-dui-ge-lei-ti-jie-zhong-ge-mlgr/
 
 
 

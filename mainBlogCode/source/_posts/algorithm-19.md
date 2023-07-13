@@ -133,7 +133,10 @@ var removeNthFromEnd = (head, n ) => {
         second = second.next;
     } 
     second.next = second.next.next;
-    let ans = dummyNode.next;
-    return ans
+     return dummyNode.next;
 }
 ```
+
+
+参考链接： 
+* [删除链表的倒数第 N 个结点： (链表长度、栈存储、双指针三种解法)-中等](https://leetcode.cn/problems/remove-nth-node-from-end-of-list/)
