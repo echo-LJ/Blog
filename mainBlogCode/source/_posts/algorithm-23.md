@@ -204,3 +204,8 @@ function merge(list1, list2) {
 ```
 
 ![截屏2022-04-18 下午6.57.54.png](https://upload-images.jianshu.io/upload_images/11846892-c78703db4610eb3b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+
+参考链接：
+* [合并K个升序链表： (顺序合并、分而治之两种解法)-困难](https://leetcode.cn/problems/merge-k-sorted-lists/)

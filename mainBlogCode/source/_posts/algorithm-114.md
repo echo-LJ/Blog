@@ -36,12 +36,8 @@ tags: 算法
 **`解题思路`**
 * 于当前节点，如果其左子节点不为空，则在其左子树中找到最右边的节点，作为前驱节点，将当前节点的右子节点赋给前驱节点的右子节点，然后将当前节点的左子节点赋给当前节点的右子节点，并将当前节点的左子节点设为空。对当前节点处理结束后，继续处理链表中的下一个节点，直到所有节点都处理结束。
 
-作者：LeetCode-Solution
-链接：https://leetcode-cn.com/problems/flatten-binary-tree-to-linked-list/solution/er-cha-shu-zhan-kai-wei-lian-biao-by-leetcode-solu/
-来源：力扣（LeetCode）
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
-代码实现如下
+递归代码实现如下
 
 ```
 var flatten = function(root) {
@@ -523,3 +519,5 @@ while(curr !== null) {  // curr = 3
  ---
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
+参考链接：
+* [二叉树展开为链表： (前序遍历两种解法+ 寻找前驱节点的一种解法)-中等]()

@@ -132,3 +132,5 @@ while (pA !== pB) {
 
 ![截屏2022-04-21 下午6.43.03.png](https://upload-images.jianshu.io/upload_images/11846892-94e50806b41df48e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
+参考链接：
+* [相交链表：(遍历、双指针两种解法)-中级](https://leetcode.cn/problems/intersection-of-two-linked-lists/)
