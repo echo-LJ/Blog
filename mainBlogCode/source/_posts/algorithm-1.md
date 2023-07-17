@@ -33,7 +33,7 @@ tags: 算法
 输出：[0,1]
 ```
 
-## 题解方法一：暴力枚举:超时了！！！！
+## 题解方法一：暴力枚举:
 
 **`解题思路`**
 * 最容易想到的方法是枚举数组中的每一个数 x，寻找数组中是否存在 target - x。
@@ -45,7 +45,7 @@ tags: 算法
 var twoSum = function(nums, target) {
     let len = nums.length
     for (let i = 0; i<len; i++) {
-        for (let j = i=1; j < len; j++) {
+        for (let j = i +1; j < len; j++) {
             if (nums[i]+nums[j] === target) {
                 return [i,j]
             }
@@ -83,4 +83,7 @@ var twoSum = function(nums, target) {
 
  ---
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
+
+参考链接：
+* [两数之和](https://leetcode.cn/problems/two-sum/)
 
