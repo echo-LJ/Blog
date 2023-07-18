@@ -191,5 +191,5 @@ pre.next = null;
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
 参考链接：
-* [leeCode-25： K 个一组翻转链表： (迭代解法)-困难]()
+* [leeCode-25： K 个一组翻转链表： (迭代解法)-困难](https://leetcode.cn/problems/reverse-nodes-in-k-group/description/)
 
