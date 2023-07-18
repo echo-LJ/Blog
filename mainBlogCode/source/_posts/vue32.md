@@ -6,18 +6,12 @@ tags: Vue.js
 
 <meta name="referrer" content="no-referrer"/>
 
-
-
-
 ## 思路分析
 
 1、给出结论，key的作用适用于优化patch性能
 2、key的必要性
 3、实际使用方式
 4、总结： 可以从源码层面描述一下vue如何判断两个节点是否相同
-
-
-
 
 ## 回答范例
 
