@@ -1,5 +1,5 @@
 ---
-title: leeCode-2： 两数相加： (暴力循环、哈希两种解法)-简单
+title: leeCode-2： 两数相加： (模拟解法)-简单
 date: 2022-04-28 11:08:44
 tags: 算法
 ---
@@ -70,3 +70,6 @@ var addTwoNumbers = function(l1, l2) {
     return dummyNode.next;
 }
 ```
+
+参考链接：
+* [两数相加： (模拟解法)](https://leetcode.cn/problems/add-two-numbers/)
