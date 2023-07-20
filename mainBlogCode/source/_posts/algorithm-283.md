@@ -75,3 +75,6 @@ var moveZeroes = function(nums) {
 }
 ```
 
+参考链接：
+
+* [移动零： (双指针双次循环、一次循环两种解法)](https://leetcode.cn/problems/move-zeroes/)
