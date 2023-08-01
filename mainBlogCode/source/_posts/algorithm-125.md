@@ -1,5 +1,5 @@
 ---
-title: leeCode-125：有效的回文-简单
+title: leeCode-125：验证回文串(双指针解法)-简单
 date: 2023-07-11 19:50:43
 tags: 算法
 ---
@@ -41,13 +41,14 @@ tags: 算法
 
 **`解题思路`**
 * 所以第一步先把大写转化成小写
-* 第二步就开始双指针滑动，这里写一个check函数检查这个字符是否合法，不合法就下一个，比较完了都没有return false，就代表这是个回文串。
+* 第二步就开始双指针滑动，这里写一个check函数检查这个字符是否合法，不合法就下一个，比较完了都没有`return false`，就代表这是个回文串。
 
 
 
 代码实现如下： 
-```var isPalindrome = function(s) {
-    let left = 0; let right = s.length -1
+```
+var isPalindrome = function(s) {
+    let left = 0, right = s.length -1
     s = s.toLowerCase()
     while(left < right){
       let l = s.charAt(left)
@@ -86,4 +87,4 @@ var isCheck  = function (c) {
 
 参考链接:
 
-* [力扣-回文数-简单](https://leetcode.cn/problems/palindrome-number/solutions/281686/hui-wen-shu-by-leetcode-solution/)
+* [验证回文串(双指针解法)-简单](https://leetcode.cn/problems/palindrome-number/solutions/281686/hui-wen-shu-by-leetcode-solution/)
