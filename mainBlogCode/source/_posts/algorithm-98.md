@@ -1,5 +1,5 @@
 ---
-title: leeCode-98： 二叉搜索树：(递归、中序遍历两种解法)-初级
+title: leeCode-98： 验证二叉搜索树：(递归、中序遍历两种解法)-初级
 date: 2022-06-04 17:32:26
 tags: 算法
 ---
@@ -91,3 +91,4 @@ var isValidBST = function(root) {
 
 参考链接:
 https://leetcode.cn/problems/symmetric-tree/solution/dui-cheng-er-cha-shu-by-leetcode-solution/
+* [验证二叉搜索树：(递归、中序遍历两种解法)](https://leetcode.cn/problems/validate-binary-search-tree/)

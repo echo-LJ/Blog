@@ -19,7 +19,7 @@ tags: 算法
 ### 题解方法一： 深度优先搜索
 
 **`题目分析：`**
-* *首先我们知道一条路径的长度为该路径经过的节点数减一，所以求直径（即求路径长度的最大值）等效于求路径经过节点数的最大值减一。
+* 首先我们知道一条路径的长度为该路径经过的节点数减一，所以求直径（即求路径长度的最大值）等效于求路径经过节点数的最大值减一。
 * 而任意一条路径均可以被看作由某个节点为起点，从其左儿子和右儿子向下遍历的路径拼接得到。
 
 ![ans.png](https://upload-images.jianshu.io/upload_images/11846892-175c74a1866db942.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -52,5 +52,5 @@ var diameterOfBinaryTree = function(root) {
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
 参考链接:
-https://leetcode.cn/problems/symmetric-tree/solution/dui-cheng-er-cha-shu-by-leetcode-solution/
 
+* [二叉树的直径：(深度优先搜索)](https://leetcode.cn/problems/diameter-of-binary-tree/)

@@ -111,3 +111,5 @@ var mergeTrees = function(root1, root2) {
 
 参考链接:
 https://leetcode.cn/problems/merge-two-binary-trees/solution/he-bing-er-cha-shu-by-leetcode-solution/
+
+* [合并二叉树：（深度优先搜索DFS、广度优先搜索BFS）](https://leetcode.cn/problems/merge-two-binary-trees/)

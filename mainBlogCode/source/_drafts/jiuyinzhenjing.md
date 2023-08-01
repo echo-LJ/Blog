@@ -3768,6 +3768,10 @@ webpack开始打包的时候，会加载所有plugin，那么如果plugin不支�
 
 
 
+了解uni-app
+
+
+
 1、【Vue面试专题】刷新后vuex状态丢失怎么解？
 * 可以从localStorage中获取作为状态初始值
 在store创建的时候从localstorage获取并设置初始值

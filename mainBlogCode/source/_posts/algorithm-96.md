@@ -1,7 +1,7 @@
 ---
 title: leeCode-96： 不同的二叉搜索树：(动态规划、数学-卡塔兰数)-中等
 date: 2022-06-06 14:20:58
-tags:
+tags: 算法
 ---
 <meta name="referrer" content="no-referrer"/>
 
@@ -36,7 +36,7 @@ tags:
 
 可见，G(n)是我们求解需要的函数。
 
-首先，根据解题的思路，不同的二叉搜索树的总数 G(n)，是对遍历所有 i(1≤i≤n) 的 F(i, n)F(i,n) 之和。换言之：
+首先，根据解题的思路，不同的二叉搜索树的总数 G(n)，是对遍历所有 i(1≤i≤n) 的 F(i, n) 之和。换言之：
 
 ![ans1.png](https://upload-images.jianshu.io/upload_images/11846892-c5b48f12d85d1ffb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
@@ -80,7 +80,7 @@ var numTrees = function(n) {
 ### 题解方法二： 数学-卡塔兰数
 
 **`题目思路：数学`**
-事实上我们在方法一中推导出的 G(n)G(n)函数的值在数学上被称为卡塔兰数 Cn。卡塔兰数更便于计算的定义如下:
+事实上我们在方法一中推导出的 G(n)函数的值在数学上被称为`卡塔兰数 Cn`。卡塔兰数更便于计算的定义如下:
 
 ![ans5.png](https://upload-images.jianshu.io/upload_images/11846892-eb444c7c6f90152b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
@@ -100,6 +100,7 @@ var numTrees = function(n) {
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
 参考链接:
-https://leetcode.cn/problems/unique-binary-search-trees/solution/bu-tong-de-er-cha-sou-suo-shu-by-leetcode-solution/
+* [不同的二叉搜索树](https://leetcode.cn/problems/unique-binary-search-trees/solution/bu-tong-de-er-cha-sou-suo-shu-by-leetcode-solution/)
+
 
 
