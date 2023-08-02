@@ -28,8 +28,6 @@ tags: 算法
 输出："bb"
 ```
 
-**`数组知识扩展String.substring():`** 返回开始索引（包含）到结束索引（不包含）之间的一个子集。
-**`数组知识扩展String.charAt():`** 返回给定索引的字符串。
 
 ## 题解方法一：暴力解法
 
@@ -76,3 +74,6 @@ var isPalindromic = function(s){
 参考链接:
 
 * [最长回文子串-中等](https://leetcode.cn/problems/longest-palindromic-substring/description/)
+
+**`JS知识扩展String.substring():`** 返回开始索引（包含）到结束索引（不包含）之间的一个子集。
+**`JS知识扩展String.charAt():`** 返回给定索引的字符串。

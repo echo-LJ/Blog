@@ -12,9 +12,16 @@ tags: 算法
 
 **示例1:**
 
+```
+输入：root = [3,9,20,null,null,15,7]
+输出：3
+```
 
-给定二叉树[3,9,20,null,null,15,7] 它的最大深度返回 3。
-
+**示例2:**
+```
+输入：root = [1,null,2]
+输出：2
+```
 
 
 ### 题解方法一： 深度优先搜索
@@ -77,5 +84,5 @@ var maxDepth = function (root) {
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
 参考链接:
-https://leetcode.cn/problems/symmetric-tree/solution/dui-cheng-er-cha-shu-by-leetcode-solution/
+* [二叉树的最大深度：(深度优先搜索)](https://leetcode.cn/problems/maximum-depth-of-binary-tree/)
 
