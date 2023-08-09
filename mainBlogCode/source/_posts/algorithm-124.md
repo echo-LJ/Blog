@@ -92,5 +92,6 @@ const maxPathSum = (root) => {
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
 参考链接:
-https://leetcode.cn/problems/binary-tree-maximum-path-sum/solution/shou-hui-tu-jie-hen-you-ya-de-yi-dao-dfsti-by-hyj8/
+* [二叉树中的最大路径和](https://leetcode.cn/problems/binary-tree-maximum-path-sum/description/)
+* https://leetcode.cn/problems/binary-tree-maximum-path-sum/solution/shou-hui-tu-jie-hen-you-ya-de-yi-dao-dfsti-by-hyj8/
 

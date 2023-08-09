@@ -87,6 +87,7 @@ const lowestCommonAncestor = (root, p, q) => {
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
 参考链接:
-https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/solution/236-er-cha-shu-de-zui-jin-gong-gong-zu-xian-hou-xu/
+* [leeCode-236： 二叉树的最近公共祖先：(深度优先搜索)](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/description/)
+* [K神解法](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/solution/236-er-cha-shu-de-zui-jin-gong-gong-zu-xian-hou-xu/)
 
 
