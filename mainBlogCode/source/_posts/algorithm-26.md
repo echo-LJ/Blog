@@ -26,25 +26,6 @@ tags: 算法
 ```
 
 ## 题解方法一：双指针
-```
-var removeDuplicates = function(nums) {
-    const n = nums.length;
-    if (n === 0) {
-        return 0;
-    }
-    let fast = 1, slow = 1;
-    while (fast < n) {
-        if (nums[fast] !== nums[fast - 1]) {
-            nums[slow] = nums[fast];
-            ++slow;
-        }
-        ++fast;
-    }
-    return slow;
-};
-```
-
-## 题解方法二：暴力循环（自己的成果）性能不好～！！
 
 `解题思路:`
 * 1、定义快指针和慢指针 fast、slow，快指针表示遍历数组到达的下标位置，慢指针表示下一个不同元素要填入的下标位置，初始时两个指针指向下标 fast = 1, slow = 0。
