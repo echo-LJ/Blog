@@ -1,5 +1,5 @@
 ---
-title: algorithm-39： 组合总和： (回溯+剪枝)-中等
+title: algorithm-40： 组合总和： (回溯+剪枝)-中等
 date: 2023-08-09 17:11:05
 tags: 算法
 ---
@@ -82,13 +82,12 @@ function combinationSum2(candidates, target) {
 
 ```
 
-![截屏2023-08-09 下午4.20.30.png](https://upload-images.jianshu.io/upload_images/11846892-4d981753f4ff3201.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
  ---
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
 参考链接:
 
-* [ algorithm-39： 组合总和： (回溯+剪枝)-中等](https://leetcode.cn/problems/combination-sum/description/)
+* [ algorithm-40： 组合总和： (回溯+剪枝)-中等](https://leetcode.cn/problems/combination-sum-ii/description/)
 
 

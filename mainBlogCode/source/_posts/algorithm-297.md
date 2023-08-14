@@ -180,6 +180,7 @@ const deserialize = (data) => {
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
 参考链接:
+* [leeCode-297： 二叉树的序列化与反序列化 (遍历、递归两种解法)-困难](https://leetcode.cn/problems/serialize-and-deserialize-binary-tree/description/)
 https://leetcode.cn/problems/serialize-and-deserialize-binary-tree/solution/shou-hui-tu-jie-gei-chu-dfshe-bfsliang-chong-jie-f/
 
 

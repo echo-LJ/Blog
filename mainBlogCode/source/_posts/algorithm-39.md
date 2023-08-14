@@ -33,8 +33,6 @@ tags: 算法
 
 ```
 
-![截屏2023-08-09 下午4.20.30.png](https://upload-images.jianshu.io/upload_images/11846892-4d981753f4ff3201.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
 
 ## 题解方法一：回溯+剪枝
 
