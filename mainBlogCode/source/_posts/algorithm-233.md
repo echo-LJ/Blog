@@ -1,7 +1,7 @@
 ---
-title: algorithm-233： 数字 1 的个数-中等
+title: algorithm-233： 数字 1 的个数-困难
 date: 22023-08-15 14:48:06
-tags: 算法
+tags: 算法-未解
 ---
 
 <meta name="referrer" content="no-referrer"/>
