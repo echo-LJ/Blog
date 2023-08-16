@@ -34,7 +34,7 @@ tags: 算法
 
 `简化一下这个问题:`一棵二叉树，树上的每个点都有对应的权值，每个点有两种状态（选中和不选中），问在不能同时选中有父子关系的点的情况下，能选中的点的最大权值和是多少
 
-我们可以用 f(o) 表示选择 o 节点的情况下，o 节点的子树上被选择的节点的最大权值和；g(o) 表示不选择 o 节点的情况下，o 节点的子树上被选择的节点的最大权值和；l 和 r 代表 oo 的左右孩子。
+我们可以用 f(o) 表示选择 o 节点的情况下，o 节点的子树上被选择的节点的最大权值和；g(o) 表示不选择 o 节点的情况下，o 节点的子树上被选择的节点的最大权值和；l 和 r 代表 o 的左右孩子。
 
 * 当 o 被选中时，o 的左右孩子都不能被选中，故 o 被选中情况下子树上被选中点的最大权值和为 l 和 r 不被选中的最大权值和相加，即 f(o) = g(l) + g(r)
 * 当 o 不被选中时，o 的左右孩子可以被选中，也可以不被选中。对于 o 的某个具体的孩子 x，它对 o 的贡献是 x 被选中和不被选中情况下权值和的较大值。故 g(o) = Math.max(f(l) , g(l))+Math.max(f(r) , g(r)) 
@@ -75,7 +75,9 @@ var rob = function(root) {
         }
         const l = dfs(node.left);
         const r = dfs(node.right);
+        // 父节点被选中，子节点不能被选中
         const selected = node.val + l[1] + r[1];
+        // 父节点不被选中，左右子节点是否被选中都可以
         const notSelected = Math.max(l[0], l[1]) + Math.max(r[0], r[1]);
         return [selected, notSelected];
     }
@@ -89,10 +91,8 @@ var rob = function(root) {
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
 参考链接:
-https://github.com/sisterAn/JavaScript-Algorithms/issues/41
-https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/solution/xiang-xi-tong-su-de-si-lu-fen-xi-duo-jie-fa-by--22/
 
-
+* [打家劫舍 III（动态规划）-中等](https://leetcode.cn/problems/house-robber-iii/)
 
 
 
