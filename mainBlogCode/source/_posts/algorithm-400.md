@@ -45,7 +45,6 @@ function findNthDigit(n) {
   }
     // 确定所求数位所在的数字
   let num = start + Math.floor((n - 1) / digit); // 2.
-  console.log(num)
   // 所求数位在 numnumnum 的哪一数位
   // 获得 num 的 第 (n - 1) % digit 个数位，并转化为 int
   return Number(String(num)[(n - 1) % digit]); // 3.
