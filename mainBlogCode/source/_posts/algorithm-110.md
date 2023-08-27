@@ -75,7 +75,9 @@ var helper = (root) => {
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
 
 参考链接:
-https://leetcode.cn/problems/balanced-binary-tree/solution/ping-heng-er-cha-shu-by-leetcode-solution/
+* [leeCode-110：平衡二叉树（自顶向下的递归、自底向上的递归）](https://leetcode.cn/problems/balanced-binary-tree/solution/ping-heng-er-cha-shu-by-leetcode-solution/)
+扩展知识:
+* **Math.abs(x)：** 函数返回一个数字的绝对值。
 
 
 
