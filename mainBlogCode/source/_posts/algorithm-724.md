@@ -57,9 +57,19 @@ tags: 算法
 
 **代码实现如下**
 ```
-function rotateString(s, goal) {
-  return s.length === goal.length && (goal + goal).includes(s);
-}
+pivotIndex(nums) {
+    let sumLeft = 0;
+    let sumRight = nums.reduce((sum, num) => sum + num, 0);
+    for (let i = 0; i < nums.length; i++) {
+      sumRight -= nums[i];
+      // 若左侧元素和等于右侧元素和，返回中心下标 i
+      if (sumLeft === sumRight) {
+        return i;
+      }
+      sumLeft += nums[i];
+    }
+    return -1;
+  }
 ```
 
  ---
