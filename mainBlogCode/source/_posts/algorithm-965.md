@@ -55,3 +55,6 @@ var isUnivalTree = function(root) {
 ## 结束语
 ---
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
+
+参考链接：
+* [leeCode-965： 单值二叉树： (深度优先搜索解法)-简单](https://leetcode.cn/problems/univalued-binary-tree/)

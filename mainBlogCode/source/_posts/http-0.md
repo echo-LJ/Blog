@@ -290,7 +290,7 @@ location / {
 
 * 反向代理通常用于：负载均衡、服务端缓存、流量隔离、日志、金丝雀发布
 
-![截屏2023-08-29 下午2.08.47.png](https://upload-images.jianshu.io/upload_images/11846892-a28b8c2c77831da4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)比如抓包工具Fiddler、Charles以及访问一些外网网站的代理工具都是正向代理。
+![截屏2023-08-29 下午2.08.47.png](https://upload-images.jianshu.io/upload_images/11846892-a28b8c2c77831da4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
  ---
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
