@@ -53,28 +53,19 @@ matrix[i][j]  →  matrix[j][n−1−i]
 
 **`代码实现如下`**
 ```
-function spiralOrder(matrix) {
-  if (matrix.length === 0) {
-    return [];
+function rotate(matrix) {
+  const n = matrix.length;
+  // 创建一个临时矩阵进行深拷贝
+  const tmp = matrix.map((row) => [...row]);
+  
+  // 根据元素旋转公式，遍历修改原矩阵 matrix 的各元素
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n; j++) {
+      matrix[j][n - 1 - i] = tmp[i][j];
+    }
   }
-  let l = 0,
-    r = matrix[0].length - 1,
-    t = 0,
-    b = matrix.length - 1,
-    x = 0;
-  let res = new Array((r + 1) * (b + 1));
-  while (true) {
-    for (let i = l; i <= r; i++) res[x++] = matrix[t][i]; // left to right
-    if (++t > b) break;
-    for (let i = t; i <= b; i++) res[x++] = matrix[i][r]; // top to bottom
-    if (l > --r) break;
-    for (let i = r; i >= l; i--) res[x++] = matrix[b][i]; // right to left
-    if (t > --b) break;
-    for (let i = b; i >= t; i--) res[x++] = matrix[i][l]; // bottom to top
-    if (++l > r) break;
-  }
-  return res;
 }
+
 ```
  ---
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
@@ -82,5 +73,12 @@ function spiralOrder(matrix) {
 参考链接:
 
 * [algorithm-48:旋转图像-中等](https://leetcode.cn/problems/rotate-image/solutions/)
+
+
+扩展知识：
+* 数组深拷贝方法：
+```
+const tmp = matrix.map((row) => [...row]);
+```
 
 
