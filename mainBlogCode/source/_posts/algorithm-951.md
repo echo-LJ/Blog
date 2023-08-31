@@ -99,3 +99,10 @@ var dfs = function(node, list){
 
 参考链接:
 * [翻转等价二叉树](https://leetcode.cn/problems/flip-equivalent-binary-trees/solution/fan-zhuan-deng-jie-er-cha-shu-by-leetcode/)
+
+
+扩展知识：
+* **`Array.prototype.every()`**： every() 方法测试一个数组内的所有元素是否都能通过指定函数的测试。它返回一个布尔值。
+```
+list.every((v, i) =>{return v === 1})
+```
