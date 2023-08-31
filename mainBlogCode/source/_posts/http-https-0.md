@@ -1,13 +1,11 @@
 ---
-title: http-https-0
+title: HTTP 版本
 date: 2023-08-29 15:04:22
-tags:
+tags: HTTP
 ---
 
 
-
-## http/https
-
+<meta name="referrer" content="no-referrer"/>
 ### HTTP 1.0(1996年)
 
 -   任意数据类型都可以发送
@@ -18,7 +16,7 @@ tags:
 ### HTTP 1.1(1997年)
 
 -   引入更多的请求方法类型`PUT`、`PATCH`、`DELETE`、`OPTIONS`、`TRACE`、`CONNECT`
--   引入长连接，就是TCP连接默认不关闭，可以被多个请求复用，通过请求头connection:keep-alive设置
+-   引入长连接，就是TCP连接默认不关闭，可以被多个请求复用，通过请求头`connection:keep-alive`设置
 -   引入管道连接机制，可以在同一TCP连接里，`同时发送`多个请求
 -   强化了缓存管理和控制`Cache-Control`、`ETag`/`If-None-Match`
 -   支持分块响应，断点续传，利于大文件传输，能过请求头中的`Range`实现
@@ -74,22 +72,7 @@ HTTPS = HTTP+ SSL/TLS
     身份认证：数字证书
     https://juejin.cn/post/6844904089495535624#heading-13
     
-  ## HTTPS 的性能优化
-
-### 访问速度优化
-
-1.  `会话复用`，上面说了，复用session可以减少 CPU 消耗，因为不需要进行非对称密钥交换的计算。可以提升访问速度，不需要进行完全握手阶段二，节省了一个 RTT 和计算耗时。
-1.  使用 `SPDY` 或者 `HTTP2`。SPDY 最大的特性就是多路复用，能将多个 HTTP 请求在同一个连接上一起发出去，不像目前的 HTTP 协议一样，只能串行地逐个发送请求。Pipeline 虽然支持多个请求一起发送，但是接收时依然得按照顺序接收，本质上无法解决并发的问题。HTTP2支持多路复用，有同样的效果。
-1.  设置`HSTS`，服务端返回一个 HSTS 的 http header，浏览器获取到 HSTS 头部之后，在一段时间内，不管用户输入www.baidu.com还是http://www.baidu.com ，都会默认将请求内部跳转成https://www.baidu.com。Chrome, firefox, ie 都支持了 HSTS。
-1.  `Nginx`设置`Ocsp stapling`。Ocsp 全称在线证书状态检查协议 (rfc6960)，用来向 CA 站点查询证书状态，比如是否撤销。通常情况下，浏览器使用 OCSP 协议发起查询请求，CA 返回证书状态内容，然后浏览器接受证书是否可信的状态。这个过程非常消耗时间，因为 CA 站点有可能在国外，网络不稳定，RTT 也比较大。如果不需要查询则可节约时间。
-1.  `False start`。简单概括 False start 的原理就是在 clientkeyexchange 发出时将应用层数据一起发出来，能够节省一个 RTT。
-
-### 计算性能优化
-
-1.  优先使用 ECC椭圆加密算术
-1.  使用最新版的 OpenSSL
-1.  TLS 远程代理计算
-1.  硬件加速方案
+  
 
 ### HTTP1 和 HTTP2
 
@@ -147,3 +130,14 @@ xhr.send();
 1、TCP三次握手时什么意思？
 2、什么是CPU?
 3、DNS域名查找的顺序
+
+ ---
+总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
+
+参考链接:
+* [20分钟助你拿下HTTP和HTTPS，巩固你的HTTP知识体系](https://juejin.cn/post/6994629873985650696)
+* [简单比较 http https http2](https://juejin.cn/post/6844903559952089102#heading-4)
+* [为什么每次请求之前要发送一个OPTIONS请求](https://blog.csdn.net/luanxiyuan/article/details/100137496)
+
+扩展知识：
+* RTT（Round-Trip Time）是指一个数据包从发送到接收并返回发送方所经历的时间。它表示在网络中发送数据包到达目的地并返回的总时间。
