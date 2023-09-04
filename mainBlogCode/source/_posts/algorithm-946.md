@@ -59,44 +59,6 @@ function validateStackSequences(pushed, popped) {
 ```
 
 
-## 题解方法二：标准态遍历
-
-**`解题思路`**
-让树中所有节点的左孩子都小于右孩子，如果当前不满足就翻转。我们把这种状态的二叉树称为 标准态。所有等价二叉树在转换成标准态后都是完全一样的。
-
-用深度优先遍历来对比这两棵树在标准态下是否完全一致。对于两颗等价树，在标准态下遍历的结果一定是一样的。
-
-
-代码实现如下：
-
-```
-
-var flipEquiv = function(root1, root2) {
-    let list1 = [] 
-    let list2 = []
-    dfs(root1, list1);
-    dfs(root2, list2);
-    return list1.length === list2.length && list1.every((v, i) =>{return v === list2[i]})
-}
-var dfs = function(node, list){
-    if(node !== null) {
-        list.push(node.val)
-        let l = node.left !== null ? node.left.val : -1
-        let r = node.right !== null ? node.right.val : -1
-        if(l<r){
-            dfs(node.left, list)
-            dfs(node.right, list)
-        } else {
-            dfs(node.right, list)
-            dfs(node.left, list)
-        }
-        list.push(null);
-    }
-}
-
-
-```
-
 ## 结束语
 ---
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
