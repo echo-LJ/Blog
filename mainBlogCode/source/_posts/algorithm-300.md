@@ -65,7 +65,7 @@ var lengthOfLIS = function(nums) {
 
 参考链接:
 
-* [打家劫舍 III（动态规划）-中等](https://leetcode.cn/problems/house-robber-iii/)
+* [最长递增子序列（动态规划）-中等](https://leetcode.cn/problems/longest-increasing-subsequence/description/)
 
 
 

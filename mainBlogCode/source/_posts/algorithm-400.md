@@ -33,23 +33,25 @@ tags: 算法
 ```
 
 function findNthDigit(n) {
+     // count = 9 * start * digit
+
   let digit = 1; // 位数
-  let start = 1; // 位数其实数字 1 10 100
+  let start = 1; // 位数开始数字 1 10 100
   let count = 9; // 位数数量
- // 确定所求数位的所在数字的位数
+  // count = 9 * start * digit
+ // 确定n的所在数字的位数
   while (n > count) { // 1.
     n -= count;
     start *= 10;
     digit += 1;
     count = 9 * start * digit;
   }
-    // 确定所求数位所在的数字
+  // 确定所求数位所在的数字
   let num = start + Math.floor((n - 1) / digit); // 2.
-  // 所求数位在 numnumnum 的哪一数位
+  // 所求数位在 num 的哪一数位
   // 获得 num 的 第 (n - 1) % digit 个数位，并转化为 int
   return Number(String(num)[(n - 1) % digit]); // 3.
 }
-
 
 ```
 
