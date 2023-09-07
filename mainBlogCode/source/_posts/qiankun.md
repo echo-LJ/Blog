@@ -944,15 +944,937 @@ export function getPathPrefix(path, prefix = '') {
 
 [ 更多的 keep-alive 解决方案](https://juejin.cn/post/6856569463950639117#heading-11)
 
-### 沙箱模式
 
-#### CSS沙箱
+
+
+### CSS沙箱
 
 微前端对于样式隔离问题，目前相关配套还不是很成熟
 
 ![截屏2023-09-05 下午5.29.06.png](https://upload-images.jianshu.io/upload_images/11846892-a820b5e1c5c1ae8b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
+* 由于微前端的场景下，不同技术栈的字应用会被集成到同一运行环境中，所以必须在框架层确保各个字应用之间不会出现样式互相干扰的问题。 不同Javascript的隔离，目前CSS的隔离，在行业内还不太成熟。每个方案都有不同的优势和劣势。
+* 样式隔离的方案
+    - BEM（Block Element Module）规范
+    - CSS-Moudles 构建时生成各自的作用域
+    - CSS in JS 使用JS编写CSS
+    - Shadow DOM 沙箱隔离
+    - experimentalStyleIsolation给所有的样式选择器前面都加上当前挂载容器
+    - Dynamic Stylesheet 动态样式表
+    - postcss 增加命名空间
+* 即使有多种多样的样式隔离方案，仍然还有一些问题会出现：
+    - 不同应用引入了同一个UI库，不同的版本情况
+    - 子应用样式丢失，或应用到了主应用的样式。
+    - 微应用构建运行时越界，例如：`body构建DOM的场景（弹窗、抽屉、popover等这种插入到主应用body的dom元素）`， 必然会导致构建出来的DOM无法应用子应用的样式的情况。
+> 本文采取的样式隔离的最佳实践是：采用约定式隔离，用CSS命名空间。备选：CSS-Moudles、CSS in JS等工程化手段，建立约束。 如，避免写全局样式，子应用不能侵入（动态增加全局样式）修改除本应用外的样式，子应用样式写在以子应用名作为命名空间的类里等。
 
+#### 默认沙箱
+
+qiankun是默认开启沙箱隔离的，默认情况下沙箱可以确保单实例场景子应用之间的样式隔离，但是无法确保主应用与子应用，或者多实例场景的子应用的样式隔离。
+
+#### 严格样式隔离的沙箱模式
+
+```
+start({
+  sandbox: {
+    strictStyleIsolation: true // 严格沙箱模式
+  }
+})
+
+```
+qiankun会为每个微应用的容器上包裹上一个`shadow dom`节点，从而确保微应用的样式不会对全局造成影响，基于ShadowDom的严格样式隔离并不是一个可以无脑使用的方案，大部分都需要接入应用做一些适配后才能正常在shadowDOM中运行起来。
+
+![截屏2023-09-06 下午1.46.42.png](https://upload-images.jianshu.io/upload_images/11846892-731634dc86928399.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+#### qiankun还提供了一个实验性的样式隔离特性experimentalStyleIsolation
+* 当experimentalStyleIsolation设置为true时，qiankun会改写子应用所添加的样式为所有样式规则增加一个特殊的选择器来限定其影响范围。
+![截屏2023-09-06 下午1.49.00.png](https://upload-images.jianshu.io/upload_images/11846892-ed1344aefff5261c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+#### BEM （Block Element Module）规范命名约束
+
+* **B** Block 一个独立的模块，一个本身就有意义的独立实体 比如：header、menu、container
+* **E**  Element 元素,块的一部分但是自身没有独立的含义 比如：header title、container input
+* **M** Modifier 修饰符，块或者元素的一些状态或者属性标志 比如：small、checked
+
+**`特定规则连接：`**
+
+* `-`中划线： 仅作为连字符使用， 表示某个块或某个子元素的多单词之间的连接。
+* `__`双下划线：双下划线用来连接块和块的子元素。
+* `_`单下划线：单下划线用来描述一个块或者块的子元素的一种状态。
+```
+模块：            .Block
+模块多单词：       .Header-Block
+模块_状态：        .Block_Modifier
+模块__子元素：     .Block__Element
+模块__子元素_状态： .Block__Element_Modifier
+
+```
+
+#### CSS Modules
+指像import JS 一样去引入了CSS代码，代码中每一个类名都是引入对象的一个属性，通过这种方式，即在可使用时明确指定所引用的CSS样式。并且CSS Modules 在打包时自动将类名转换成hash值，完全杜绝css类名冲突的问题。
+
+#### CSS In JS
+
+Css in js,意思就是使用JS语言去写CSS,完全不需要单独的css文件，所有的css代码完全放在组件内部，以实现css的模块化。
+#### postcss 增加命名空间
+
+```
+npm i postcss-plugin-namespace -D
+
+```
+* 配置postcss
+在项目的根目录下创建`postcss.config.js`文件
+    该插件会将全局的所有class前加上统一前缀， 并过滤掉ignore内的标签，ignore可以写字符串或正则表达式。但每次编译前都会运行，所以可能会增加编译时间。
+⚠️： 如果用/body/这样的正则，会将所有带body的class都过滤掉，比如el-drawer__body、el-dialog__body等。
+```
+module.exports = ctx => {
+    return {
+        plugins: [
+            require('postcss-plugin-namespace')('#your-prefix', {
+                ignore: ['html', /body/]
+            })
+        ]
+    }
+}
+# public/index.html
+<html id="your-prefix"></html>
+```
+### JavaScript 沙箱
+qiankun为了实现JavaScript 沙箱隔离，提供了三种不同场景使用的沙箱，分别是：`snapshotSandbox`、`proxySandbox`、`legacySandbox`。
+* 快照沙箱（snapshotSandbox）：qiankun的快照沙箱是基于diff来实现的，主要用于不支持window.proxy的低版本浏览器（IE浏览器），而且也只适用于单个子应用
+* 代理沙箱（proxySandbox）：qiankun基于es6的proxy实现了两种应用场景不同的沙箱，
+    - 一种是legacySandbox(单例)
+    - 一种是proxySandbox(多例)
+* qiankun 默认开启沙箱模式
+    - qiankun目前还有一些缺陷： `给某个内置对象添加属性或方法会突破沙箱限制，污染到全局的window属性。`
+    - 沙箱不是万能的，只有一层劫持，例如Date.prototype.xxx这样的改动是不会被还原的。
+```
+    // 示例
+    // 1. 子应用-改写了 setItem 方法
+    window.localStorage.setItem = function() {
+      console.log('Hi child')
+    }
+
+    // 2. 兄弟应用-调用 setItem
+    console.log(window.localStorage.setItem) // ƒ () {console.log('Hi child')} 污染了全局
+
+    // 3. 主应用-调用 setItem
+    console.log(window.localStorage.setItem) // ƒ () {console.log('Hi child')} 污染了全局
+```
+* 微应用挂载的window是proxy代理出来的window,并不是真实的window，所以修改会被隔离掉。
+```
+// 1. 主应用
+window.user = {
+    my: {
+        name: 'I m your father'
+    }
+}
+
+// 2. 微应用 这里第一次输出还是会继承父的 数据
+console.log(window.user)  // {my: {name: "I m your father"}}
+
+window.user = { // 改变数据
+    my: {
+        name: 'child'
+    }
+}
+
+console.log(window.user)  // {my: {name: "child"}}
+
+// 3. 兄弟应用 因为有沙箱隔离不会影响到 window
+console.log(window.user)  // {my: {name: "I m your father"}}
+
+```
+
+微前端最多的问题就是沙箱问题了，无论是 CSS 还是 JavaScript 沙箱都不是十全十美的，我们只能通过各种约束来避免沙箱出现问题的可能。例如：建立团队前缀，命名空间 CSS、事件、本地存储和 Cookie，以避免冲突并明确所有权。
+
+#### 出现问题的场景
+* 由于 qiankun 沙箱的缺陷，window 对象并不是完全隔离的，子应用的 window 又是基于父应用的，经常导致的是：父应用的依赖库已经挂到window上了，子应用再挂载的时候就报错了
+* 微前端海纳百川的特性，当不同技术栈的应用被集合在同一个”运行时环境“的时候，微应用之间会出现样式互扰的问题，依赖版本冲突的问题
+* 代码在沙箱内运行错误的问题，主要是 BOM，DOM 的 API 使用冲突，因为无法隔离所以会有改写的危机
+* qiankun 会将微应用的 JS/CSS 内容都记录在全局变量中，如果一直重复的挂载应用没有卸载，会导致内存占用过多，导致页面卡顿。
+* 给 body 、 document 等绑定的事件，必须在 unmount 周期清除，使用 document.body.addEventListener 或者 document.body.onClick 添加的事件并不会被沙箱移除，会对其他的页面产生影响
+* 第三方引入的 JS 不生效，有些 JS 文件本身是个立即执行函数，或者会动态的创建 scipt 标签，但是所有获取资源的请求是被乾坤劫持处理，所以都不会正常执行，也不会在 window 下面挂载相应的变量
+* 由于是相同的 window 对象，不会有应用之间的隔离，localStorage、sessionStorage、cookie 等对象互相冲突覆盖
+* 改变全局变量 window/location 的默认行为，通过 document 操作 Layout 的 DOM，这些本身都是一些不推荐的做法。
+
+### localStorage、sessionStorage应用之间的使用
+* 因为父子应用都是同一个 window，所以 localStorage、sessionStorage、cookie, 这些方法就会造成数据覆盖问题。
+* 正常读取即可，因为无论父子应用，存储的相关信息都以父应用的地址进行存储。
+* 需要注意微应用之间数据冲突、数据覆盖问题，这里改写一个 setItem getItme 解决这个问题。
+
+PS:
+
+* 此方案只是针对难以改动的老项目去做的，不推荐去改变 window 的方法，如果您有这个需求则应该去抽离成一个类或函数去做。
+* 子项目的改动原 window 的 prototype qiankun 的沙箱无法处理隔离
+* 目前不支持 sessionStorage[“keyName”] = value， sessionStorage.keyName =  value 这种写法，如果想使用以上方法可以使用 proxy or  defineProperty 改写本文不再赘述
+* 动态给 getItem、setItem方法加前缀，这样在接入旧项目的时候不会这么痛苦，取巧方式，不推荐
+```
+此方案只是针对难以改动的老项目去做的，不推荐去改变 window 的方法，如果您有这个需求则应该去抽离成一个类或函数去做。
+子项目的改动原 window 的 prototype qiankun 的沙箱无法处理隔离
+目前不支持 sessionStorage[“keyName”] = value， sessionStorage.keyName =  value 这种写法，如果想使用以上方法可以使用 proxy or  defineProperty 改写本文不再赘述
+动态给 getItem、setItem方法加前缀，这样在接入旧项目的时候不会这么痛苦，取巧方式，不推荐
+
+```
+
+### 资源共享
+![截屏2023-09-06 下午2.27.21.png](https://upload-images.jianshu.io/upload_images/11846892-394a97f542d9c8a7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+对于应用之间的资源共享，笔者认为这个与微前端的概念是有矛盾的。
+
+`微前端的概念：`
+* 「技术栈无关」： 主框架不限制接入应用的技术栈，子应用具备完全自主权
+* 「独立开发 独立部署」： 子应用仓库独立，可独立开发，部署完成后主框架自动完成同步更新
+* 「独立运行」： 每个子应用之间状态隔离，运行时状态不共享，不要共享运行时，即使所有团队都使用相同的框 架。构建自包含的独立应用程序。不要依赖共享状态或全局变量
+
+`矛盾思考：`
+* 「技术栈无关」是架构上的准绳，具体到实现时，对应的就是：应用之间不应该有任何直接或间接的技术栈、依赖、以及实现上的耦合
+* 按照理想的情况：我们希望微前端尽可能独立解耦，但是不同微应用之间可能存在大量相同的重复的资源依赖，在分秒必争的今天，每一个资源的开销都不容小觑，如果把一些可复用的资源直接共享出去，那岂不是可以高效降低资源的开销了吗。
+* 当我们把资源共享出去的时，也给应用带来了依赖冗余，微应用把公共资源引入的同时，也把未来的复杂性也给引入进来了。
+
+#### 共享模块方式
+
+> npm依赖
+
+* 抽离相关代码（utils、组件..) 将其打包并上传 npm 库，然后在需要的微应用中以本地依赖或 npm link 的方式安装依赖，以 npm 的方式达到资源共享的目的。但是其本质只是代码层面的共享与复用，每个应用构建的的时候还是会把依赖包一起打包
+* 并且 npm 管理，每次 npm 更新的时候都要在各微应用进行重新构建发布。
+
+> git submodule or git subtree
+
+* [git submodule](https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E5%AD%90%E6%A8%A1%E5%9D%97)
+* subtree 和 submodule 的目的都是用于 git 子仓库管理，二者的主要区别在于，subtree 属于拷贝子仓库，而 submodule 属于引用子仓库。
+* 他们允许你将一个 Git 仓库当作另外一个 Git 仓库的子目录。这允许你克隆另外一个仓库到你的项目中并且保持你的提交相对独立
+* 创建一个 libs 的项目进行管理维护，里面存放各种公用的方法，组件，图片等，并且同步到gitlab上
+* git submodule 和 git subtree 都是很好的子仓库管理方案，但缺点是每次子应用变更后，聚合库还得同步一次变更，考虑到并不是所有人都会使用该聚合仓库，子仓库独立开发时往往不会主动同步到聚合库，使用聚合库的同学就得经常做同步的操作，比较耗时耗力，不算特别完美。
+
+> webpack Externals
+* [webpack Externals](https://webpack.docschina.org/configuration/externals/)
+* 配置 webpack 输出的 bundle 中排除依赖，换句话说通过在 Externals 定义的依赖，最终输出的 bundle 不存在该依赖
+* externals 前提是依赖都要有 cdn 或 找到它对应的 JS 文件，例如：jQuery.min.js 之类的，也就是说这些依赖插件得要是支持 umd 格式的才行。
+* 通过这种形式在微前端基座应用加载公共模块，并将微应用引用同样模块的Externals 移除掉，就可以实现模块共享了 但是存在微应用技术栈多样化不统一的情况，可能有的使用 Vue3，有的使用 React 开发，但 externals 并无法支持多版本共存的情况
+
+**`qiankun不建议共享依赖，担心原型链污染等问题，如果一定要使用：推荐使用webpack的 Externals 来共享依赖库。`**
+
+> **使用场景**
+
+* 如果主子应用使用的是相同的库或者包！！！ (vue、axios、vue-router、element 等) 可以用 externals 的方式来引入，减少加载重复包导致资源浪费，一个项目使用了之后，另一个项目使用不再重复加载，可以直接复用这个文件
+> **使用原理**
+*qiankun 将子项目的外链 script 标签，内容请求到之后，会记录到一个全局变量中，下次再次使用，他会先从这个全局变量中取。这样就会实现内容的复用，只要保证两个链接的 url 一致即可。
+> **使用方式**
+
+* 微应用之间使用：只要子项目配置了webpack 的 externals，并在 index.html 中使用外链 script 引入这些公共依赖，只要这些公共依赖URL一致即可，请求的时候会优先从缓存中读取，类似HTTP缓存
+* 微应用使用基座依赖
+    - 给微应用的公共依赖的加上 ignore 属性（这是自定义的属性，非标准属性）。
+    - qiankun 在入口解析的时候会判断如果有这个属性就忽略。子项目独立运行，这些 js/css 仍能被加载，如此，便实现了“子项目复用主项目的依赖”。
+
+```
+module.exports = { 
+    configureWebpack: { 
+        externals: { 
+            'vue': 'Vue', 
+            'vue-router': 'VueRouter', 
+            'vuex': 'Vuex', 
+            'element-ui': 'ELEMENT' 
+        }
+    }
+}
+
+<link ignore rel="stylesheet" href="//cnd.com/antd.css">
+<script ignore src="//cnd.com/antd.js"></script>
+```
+
+⚠️： 主项目使用externals 后，子项目可以复用它的依赖，但是不复用依赖的子项目会报错。
+
+[Bug公共依赖提取的时候，qiankun，代理window访问并没有先访问微应用的window，再访问主应用的window](https://github.com/umijs/qiankun/issues/718)
+
+> webpack DLL
+* [webpack DLL](https://webpack.docschina.org/plugins/dll-plugin/)
+* dll 插件可以帮助我们直接将已安装好的依赖在 node_module 中打包出来，结合 add-asset-html-webpack-plugin 插件帮助我们将生成打包好的 js 文件插入到 html 中
+* 因为使用公共依赖，意味着所有使用公共依赖的应用，必须使用同版本的依赖，并且 qiankun 使用 dllplugin 提取公共依赖后，导致不同子应用中的全局 filter、component、mixin 相互影响
+
+> 使用lerna管理
+* [Lerna 是一个管理工具，用于管理包含多个软件包（package）的 JavaScript 项目](https://www.lernajs.cn/)
+> 通过聚合目录
+* 聚合目录相当于是一个空目录，在该目录下 clone 所有子仓库，并 .gitignore，子仓库的代码提交都在各自的仓库目录下进行操作，这样聚合库可以避免做同步的操作。
+
+上面的方案都是业内比较成熟的方案，还需开发者深入了解，笔者采用的是：NPM、webpack external。对外的且稳定的组件或封装，推荐 npm 包方式。
+
+
+#### 通过主应用共享资源给微应用
+
+主应用的下发资源的核心就是：注册的时候通过 props 下发
+
+> props 方式
+
+* `父应用注册时或加载时，将依赖通过 props 传递给子应用，子应用在 bootstrap 或者 mount 钩子函数中获取`
+* 主应用注册下发，任何你想要的资源，但是切勿无脑下发资源，需要考虑日后解耦或独立运行的问题。
+
+```
+// 主应用/src/const/micro/application-list.js
+import { layout, assets, config, layout, public } from '/lib'
+
+export default [{
+    name: 'you-app-name', // 应用的名字
+    entry: '//localhost:7286/', // 默认会加载这个html 解析里面的js 动态的执行 （子应用必须支持跨域）fetch
+    container: '#you-app-name-container', // 容器id
+    activeRule: '/you-app-name', // 根据路由激活的路径，这里注意要与子应用对应的 package ==> name 文件一致
+    props: { // 下发微应用的入口, 如果是固定确认的资源可以维护在应用注册列表
+        hideLayout: true, // 是否隐藏子应用侧边栏、导航栏
+        defaultPath: '', // 默认跳转地址
+        commonComponent: {}, // 下发的组件
+        public: public, // 父亲应用公共文件
+        assets: assets, // 父应用资源文件
+        config: config, // 父应用配置文件
+        layout: layout  // 父应用布局组件
+    }
+}]
+
+
+```
+
+如果是动态数据可以注册的时候传递下发
+```
+import store from '@/store/index'
+import router from '@/router'
+
+// 在微应用 props 属性 动态下发配置。
+currentApp.props = {
+  ...currentApp.props,
+  router: router, // 下发父应用路由
+  store: store // 下发父应用vuex
+}
+
+loadMicroApp(currentApp) // 注册应用的时候在子应用可以在微应用的生命周期中获取
+
+```
+
+微应用接收
+```
+// 微应用 mount 中接收
+import childStore from '@/store/index'
+import childRouter from '@/router'
+
+export async function mount(props) {
+    render(props)
+}
+
+// 动态挂载 通过 this.$root.xxx 使用 data 的数据
+function render(props = {}) {
+    // 获取父应用下发的资源，并存储在 data 上
+    const { container, router，store，layout, config, assets, public, commonComponent } = props
+    instance = new Vue({
+        childRouter,
+        childStore,
+        data() {
+            return {
+                parentRouter: router, // 父应用路由
+                parentVuex: store, // 父应用 vuex
+                parentLayout: layout, // 父应用布局组件
+                parentConfig: config, // 父应用配置文件
+                parentAssets: assets, // 父应用资源文件
+                parentPublic: public, // 父亲应用公共文件
+                parentCommonComponent: commonComponent // 下发的组件
+            }
+        },
+        render: h => h(App)
+    }).$mount(container ? container.querySelector('#you-micro') : '#you-micro')
+}
+
+```
+
+> window 方式
+* 因为主项目会先加载，然后才会加载子项目，所以一般是子项目复用主项目的组件，做法也很简单，主项目加载时，将组件挂载到 window 上，子项目直接注册即可
+* 但是笔者这里不推荐任何修改 window 的方式，因为沙箱缺陷的缘故，不打扰就是最好的安排～
+```
+// 主项目入口文件：
+
+import HelloWorld from '@/components/HelloWorld.vue'
+window.commonComponent = { HelloWorld };
+
+// 子项目直接使用
+components: {
+  HelloWorld: window.__POWERED_BY_QIANKUN__ ? window.commonComponent.HelloWorld : import('@/components/HelloWorld.vue'))
+}
+
+```
+> 项目间的组件共享
+**子项目本身自己也有这个组件，当别的子项目已经加载过了，就复用别人的组件，如果别的子项目未加载，就使用自己的这个组件**
+
+适用场景就是避免组件的重复加载，这个组件可能并不是全局的，只是某个页面使用。做法分三步：
+
+* 1.由于子项目之间的全局变量不共享，主项目提供一个全局变量，用来存放组件
+    - 通过 props 传给需要共享组件的子项目。
+```
+// 主应用
+import HelloWorld from '@/components/HelloWorld.vue'
+
+props: {
+  commonComponent: {
+    HelloWorld
+  }
+}
+```
+
+* 2.子项目拿到这个变量挂载到 window 上
+```
+export async function mount(props) {
+  window.commonComponent = props.data.commonComponent
+  render(props.data)
+}
+
+```
+
+* 3. 子项目中的共享组件写成异步组件，异步组件需要返回 Promise.resolve()
+```
+components: {
+   HelloWorld: async () => {
+      if (!window.commonComponent) {
+        window.commonComponent = {} // 独立运行时
+      }
+      const HelloWorld = window.commonComponent.HelloWorld
+      return HelloWorld || (window.commonComponent.HelloWorld = import('@/components/HelloWorld.vue'))
+   }
+}
+
+```
+
+
+### 应用通信
+
+#### 通信设计原则
+* 跨应用通信：解耦易接入
+* 开放但不失约束：通信收口，统一管理
+* 简单易用：学习成本低，接口尽可能少
+* 易于维护：分模块管理，避免通信冲突
+* 容易排查：链路监控性强，及时跟踪问题
+
+#### 微前端通信方式
+* 基于 URL
+    - 使用简单、通用性强，但能力较弱，不适用复杂的业务场景
+* 基于 Props
+    - 应用给子应用传值。适用于主子应用共享组件、公共方法调用等。
+* 发布/订阅模式
+    - 一对多关系，观察者和被观察者是抽象耦合的。但是数据链路难跟踪。
+* 状态管理模式
+    - 能够统一管理，链路清晰，易维护
+* 基于 localStorage、sessionStorage 实现的通信方式
+    - 不推荐，因为 JSON.stringify() 会造成数据丢失，它只会对Number、String、Booolean、Array转换，对于undefined、function、NaN、 regExp、Date 都会丢失本身的值
+基于URL、Props 、LocalStorage 的方式就不讲述了上文都有对应的说明，以下只对 发布/订阅模式，状态管理模式进行讲解
+#### 发布/订阅模式 EventBus
+
+这里的设计模式是，主应用注册 EventBus，然后通过 props 下发微应用，这样微应用既有主应用的EventBus 也可以有自己的 EventBus
+
+* 主应用注册 EventBus
+```
+Vue.prototype.$eventBus = new Vue()
+
+export const parentEventBus = Vue.prototype.$eventBus
+
+```
+
+* 通过 props 下发
+```
+// 在微应用 props 属性 动态下发配置。
+import { parentEventBus } from '@/main'
+
+currentApp.props = {
+    ...currentActiveMicroConfig.props,
+    parentEventBus: parentEventBus // 下发主应用的 EventBus
+}
+
+loadMicroApp(currentApp)
+
+```
+
+* 子应用接受并注册
+```
+// 微应用 mount 中接收
+export async function mount(props) {
+    render(props)
+}
+
+// 动态挂载 通过 this.$root.xxx 使用data的数据
+function render(props = {}) {
+    const { parentEventBus } = props
+    Vue.prototype.$eventBus = new Vue() // 子应用的独享的 EventBus
+    Vue.prototype.$parentEventBus = parentEventBus // 主应用下发的 EventBus
+    // 注册操作省略 ...
+}
+
+```
+
+* 使用 还是正常使用
+```
+this.$parentEventBus.$off('you-event') // 关闭
+
+this.$parentEventBus.$on('you-event', data => { // 监听
+  // xxxx code action
+})
+
+this.$parentEventBus.$emit('you-event', {...}) // 发布
+
+```
+
+#### 使用 qiankun initGlobalState
+* 主应用
+
+```
+// src/const/micro/actions.js
+import { initGlobalState } from 'qiankun'
+
+export const initialState = {}
+
+const actions = initGlobalState(initialState)
+
+export default actions
+```
+
+* 主应用使用
+
+```
+import actions from '@/const/micro/actions'
+
+// 设置
+actions.setGlobalState({
+   xxxxDataKey: xxxValue
+})
+
+// 监听全局
+actions.onGlobalStateChange((state, prev) => {
+  console.log(state, prev, '子应用的 state: 变更后的状态; prev 变更前的状态')
+})
+
+```
+
+* 微应用
+```
+// src/const/micro/actions.js 封装一下到时候引入使用方便
+function emptyAction() {
+    // 警告：提示当前使用的是空 Action
+    console.warn('Current execute action is empty!')
+}
+
+class Actions {
+    // 默认值为空 Action
+    actions = {
+        onGlobalStateChange: emptyAction,
+        setGlobalState: emptyAction
+    }
+
+    // 设置 actions
+    setActions(actions) {
+        this.actions = actions
+    }
+
+    // 映射监听
+    onGlobalStateChange(...args) {
+        return this.actions.onGlobalStateChange(...args)
+    }
+
+    // 映射设置
+    setGlobalState(...args) {
+        return this.actions.setGlobalState(...args)
+    }
+}
+
+const actions = new Actions()
+export default actions
+
+```
+
+* 微应用使用
+
+```
+import actions from './const/micro/actions'
+
+export async function mount(props) {
+    actions.setActions(props) // 设置一下 actions 对象
+}
+
+actions.onGlobalStateChange((state, prev) => {
+  // 监听公共应用下发 state: 变更后的状态; prev 变更前的状态
+})
+
+```
+
+#### 状态管理模式
+
+* 基于父应用的 vuex store 传给子应用
+
+```
+// 在微应用 props 属性 动态下发配置。
+import store from '@/store/index'
+
+currentApp.props = {
+    ...currentActiveMicroConfig.props,
+    store: store // 下发主应用的 store
+}
+
+loadMicroApp(currentApp)
+
+```
+
+* 子应用接受并使用
+```
+// 微应用 mount 中接收
+export async function mount(props) {
+    render(props)
+}
+
+// 动态挂载 通过 this.$root.xxx 使用data的数据
+function render(props = {}) {
+    const { container, store } = props
+    instance = new Vue({
+        childStore,
+        data() {
+            return {
+                parentVuex: store, // 父应用 vuex
+            }
+        },
+        render: h => h(App)
+    }).$mount(container ? container.querySelector('#you-micro') : '#you-micro')
+}
+
+```
+* 使用
+```
+this.$root.parentVuex.state.xxxx // 读
+
+this.$root.parentVuex.commit('xxxx', {}) // 写
+
+```
+
+### 微应用内存溢出思考
+![截屏2023-09-06 下午3.28.41.png](https://upload-images.jianshu.io/upload_images/11846892-0c16899b6d3135ec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+* qiankun 会将微应用的 JS/CSS 内容都记录在全局变量中，如果一直重复的挂载应用没有卸载，会导致内存占用过多，导致页面卡顿
+* 虽然官方没有明确说名内存的溢出问题，但是笔者在开发的过程中，在重复加载应用的时候崩溃过几次，出于安全性思考还是使用一些手段来约束变量的开销吧～
+    - 微应用卸载的时候清空微应用注册的附加内容及 DOM 元素等
+    - 设置自动销毁时间，去销毁那些长时间挂载的应用，
+    - 设置最大运行应用数量，超过规定的数量的时候吧第一个应用销毁
+
+#### 1.卸载时清空无用实例
+```
+export async function unmount() { 
+    instance.$destroy() 
+    instance.$el.innerHTML = '' // 关键
+    instance = null 
+    route = null
+    // ... more
+}
+
+```
+#### 2. 设置过期时间与最大运行数，这里的的内容可以结合上面的内容来看，上文有对应的说明
+```
+// src/const/micro/index.js
+export const MAX_RUN_MICRO_NUMBER = 5 // 最大运行微应用数量
+
+```
+
+```
+// 主应用/src/const/micro/application-list.js
+
+export default [{
+    name: 'you-app-name', // 应用的名字
+    // ... micro app config
+    // 自动销毁时间 单位：3000（ms） or (Infinity = 永久不会销毁）
+    unmountTime: '300000'
+}]
+
+
+```
+
+* 注册的时候记录时间
+
+```
+// src/const/micro/qianun-utils.js
+// 注册应用的方法
+export function loadRouterMicroApp(currentApp) {
+    // 1. 返回注册应用对象
+    const micro = loadMicroApp(currentApp)
+    // 2. 微应用挂载完成
+    micro.mountPromise.then(() => {
+        // 3. 在应用对象，增加开始时间字段，记录微应用挂载时间
+        micro.createTime = new Date().getTime()
+        // 4. 在应用对象，增加卸载时间字段 记录应用卸载时间，如果时间是空默认 永不销毁
+        micro.unmountTime = currentApp.unmountTime || 'Infinity'
+        // 5. 设置当前应用列表, 记录挂载应用挂载信息，后期路由会匹配是否是否需要卸载
+        store.dispatch('d2admin/micro/SET_MICRO_APPLICATION_LIST', {
+            key: currentApp.activeRule,
+            value: micro
+        })
+    })
+}
+
+```
+* 路由守卫的时候判断是否需要卸载
+```
+router.afterEach(to => {
+    microApplicationLoading(to.path)
+})
+```
+```
+// 主应用/src/const/micro/qianun-utils.js
+
+// 加载微应用方法
+export async function microApplicationLoading(path) {
+    // 1. 根据路由地址加载当前应用配置
+    let currentActiveMicroConfig = await store.dispatch('d2admin/micro/GET_FIND_MICRO_CONFIG', path)
+
+    // 2. 获取微应用列表
+    const microApplicationList = store.getters['d2admin/micro/microApplicationList']
+
+    // 3. 判断应用运行时间销毁应用
+    store.dispatch('d2admin/micro/CHECK_UNMOUNT_MICRO', { microApplicationList, currentActiveMicroConfig })
+
+    // ... code 后面注册判断操作就省略了
+}
+
+
+```
+* 判断是否最大堆栈、判断是否超时销毁
+```
+// 主应用/src/store/modules/d2admin/modules/micro.js
+
+export default {
+    state: {
+        microApplicationList: new Map([]),
+    },
+    actions: {
+        // 检查一下是否需要卸载微应用 依据时间来判断 microApplicationList：缓存微应用列表，currentActiveMicroConfig：当前URL匹配的微应用配置
+        CHECK_UNMOUNT_MICRO({ state, dispatch }, { microApplicationList, currentActiveMicroConfig }) {
+            // 1. 判断时候有缓存列表
+            if (!microApplicationList.size) {
+                return
+            }
+            
+            // 2. 获取当前时间
+            const currentTime = new Date().getTime()
+
+            // 3. 遍历缓存应用列表，判断应用是否需要销毁了～
+            Array.from(microApplicationList).forEach(([key, item]) => {
+                // 4. 获取应用运行时间
+                const runningTime = currentTime - item.createTime
+                // 5. 获取应用卸载时间
+                const unmountTime = item.unmountTime
+
+                // 6. 如果有微应用配置，这说明跳转就是已经挂载过的微应用了，刷新应用时间与取消应用销毁（续费一下，避免销毁有激活重复开销）
+                if (currentActiveMicroConfig) {
+                    item.createTime = new Date().getTime()
+                    // ！！！设置一下当前缓存应用列表，更新应用时间，判断是否达到最大堆栈，是否需要清除应用！！！
+                    dispatch('SET_MICRO_APPLICATION_LIST', {
+                        key: item.activeRule,
+                        value: item
+                    })
+                    return
+                }
+                
+                // 7. 如果运行时大于销毁时间则销毁对应应用，并且不是 Infinity 关键字
+                if (runningTime >= unmountTime && unmountTime !== 'Infinity') {
+                    dispatch('DELETE_MICRO_APPLICATION_LIST', key)
+                }
+            })
+        },
+        
+        // 删除微应用程序列表
+        DELETE_MICRO_APPLICATION_LIST({ state }, key) {
+            const micro = state.microApplicationList.get(key)
+            micro && micro.unmount()
+            state.microApplicationList.delete(key)
+        },
+        
+        // 设置微应用程序列表
+        SET_MICRO_APPLICATION_LIST({ state, dispatch }, { key, value }) {
+            // 判断是否达到最大堆栈，清除应用
+            dispatch('CLEAR_MICRO_STACK')
+            state.microApplicationList.set(key, value)
+        },
+        
+        // 检查是否需要清空堆栈
+        CLEAR_MICRO_STACK({ state, dispatch }) {
+            // 判断是否是 Infinity 无堆栈限制
+            if (MAX_RUN_MICRO_NUMBER === 'Infinity') {
+                return
+            }
+
+            // 判断是否达到最大堆栈
+            if (state.microApplicationList.size < MAX_RUN_MICRO_NUMBER) {
+                return
+            }
+
+            // 获取MAP的第一个应用销毁并删除vuex信息
+            const key = state.microApplicationList.keys().next().value
+            dispatch('DELETE_MICRO_APPLICATION_LIST', key)
+        }
+    }
+}
+
+```
+
+
+### 同一路由多应用共存
+* 如果一个页面同时展示多个微应用，需要使用 loadMicroApp 来加载。
+* 如果这些微应用都有路由跳转的需求，要保证这些路由能互不干扰，需要使用 momery 路由。
+* vue-router 使用 abstract 模式，react-router 使用 memory history 模式，angular-router 不支持。
+* Vue Router 的导航方法 (push、 replace、 go) 在各类路由模式(history、 hash 和 abstract) 下表现一致。
+* abstract 是vue路由中的第三种模式，本身是用来在不支持浏览器API的环境中，充当fallback，无论 hash还是history模式都会对浏览器上的url产生作用，于是我们利用到了abstract这种与浏览器分离的路由模式解决多应用路由冲突的问题。
+```
+function render({ data = {} , container, defaultPath } = {}) {
+    router = new VueRouter({
+        mode: 'abstract', // 不会被URL所影响
+        routes
+    })
+
+    instance = new Vue({
+        router,
+        store,
+        render: h => h(App)
+    }).$mount(container ? container.querySelector('#appVueHash') : '#appVueHash')
+
+    if (defaultPath) {
+        router.push(defaultPath)
+    }
+}
+
+```
+### 微应用开发与部署
+
+#### 开发与部署目录建议
+
+建议在开发与部署的时候，所有的微应用都放在一个目录，虽然qiankun的应用只需提供微应用URL地址即可，从理论上来说项目放在那里都是没有影响的。但是出于管理维护的目的，我们还是推荐：
+
+* 相关应用都在同一个目录下，统一管理
+* 所有微应用都是独立项目、独立仓库、独立部署
+
+```
+└── micro-app-container       # 根文件夹
+    ├── main/                 # 基座应用/主应用
+    ├── child/                # 存放所有微应用的文件夹
+    |   ├── vue-hash/         # 存放微应用 vue-hash 的文件夹
+    |   ├── vue-history/      # 存放微应用 vue-history 的文件夹
+    ├── package.json          # 公共文件的 index.html 执行命令
+    ├── node_modules/         # 公共文件依赖
+
+```
+
+#### 使用[npm-run-all](https://github.com/mysticatea/npm-run-all) 简化script配置
+
+根据上面的结构一个一个 启动or打包应用太麻烦了，使用npm-run-all 命令 解决npm run 命令无法同时运行多个脚本的问题
+
+`npm-run-all`的三个特点：
+* 顺序执行 、并行执行、混合执行
+* --parallel: 并行运行多个命令，例如：npm-run-all --parallel lint build
+* --serial: 多个命令按排列顺序执行，例如：npm-run-all --serial clean lint build:
+* --continue-on-error: 是否忽略错误，添加此参数 npm-run-all 会自动退出出错的命令，继续运行正常的
+* --race: 添加此参数之后，只要有一个命令运行出错，那么 npm-run-all 就会结束掉全部的命令
+
+> 安装依赖
+```
+npm install npm-run-all --save-dev
+// or
+yarn add npm-run-all --dev
+
+```
+
+>配置命令 package.json, 一键给所有应用安装依赖
+```
+// 执行 install: 的命令～ 可以批量执行相同命令的前缀，可以异步、同步执行命令
+// 例如： npm run install-all 就给所有项目安装依赖
+"scripts": {
+    "install:child-hash": "cd child/child-hash && yarn",
+    "install:child-history": "cd child/child-history && yarn",
+    "install:main": "cd main && yarn",
+    "install-all": "npm-run-all install:*", // 全局安装依赖
+
+    "start:child-hash": "cd child/child-hash && npm run serve",
+    "start:child-history": "cd child/child-history && npm run serve",
+    "start:main": "cd main && npm run serve",
+    "serve-all": "npm-run-all --parallel start:*", // 全局启动
+
+    "build:child-hash": "cd child/child-hash && npm run build",
+    "build:child-history": "cd child/child-history && npm run build",
+    "build:main": "cd main && npm run build",
+    "build-all": "npm-run-all --parallel build:*" // 全局打包
+}
+
+```
+* 或者配合脚本可以自己写一写简单的 shell 脚本
+```
+# script/clone-all.sh
+# 相关项目地址
+
+# xxx 项目
+git clone http:/xxxxxxx.git
+
+# xxx 项目
+git clone http://xxxxxxxx.git
+
+```
+* package.json 中增加命令执行
+```
+"clone:all": "bash ./scripts/clone-all.sh" // npm run clone:all 便可以批量克隆项目了 
+```
+* 部署的时候也和开发的时候一样，不过可以直接放在基座应用里面使用
+```
+└── html/                     # 根文件夹
+    |
+    ├── child/                # 存放所有微应用的文件夹
+    |   ├── vue-hash/         # 存放微应用 vue-hash 的文件夹
+    |   ├── vue-history/      # 存放微应用 vue-history 的文件夹
+    ├── index.html            # 主应用的index.html
+    ├── css/                  # 主应用的css文件夹
+    ├── js/                   # 主应用的js文件夹
+
+```
+
+**此时需要设置微应用构建时的 publicPath 和 history 模式的路由 base，然后才能打包放到对应的目录里。构建的时候切记要修改 webpack 中的 publicPath 地址！！！**
+
+|  项目   | 路由 base  |  publicPath   | 真实访问路径  |
+|  ----  | ----  |  ----  | ----  |
+| vue-hash  | 无 |/child/vue-hash/ | 	http://localhost:8080/child/vue-hash/ | 
+| vue-history  | 	/child/vue-history/ | 	/child/vue-history/| http://localhost:8080/child/vue-history/ | 
+
+
+> vue-history 微应用
+* 微应用路由设置：
+```
+base: window.__POWERED_BY_QIANKUN__ ? '/app-vue-history/' : '/child/vue-history/',
+
+```
+
+* 微应用 webpack 打包 publicPath 配置（vue.config.js）：
+```
+module.exports = {
+  publicPath: '/child/vue-history/',
+};
+
+```
+
+* 同时主应用的配置文件 entry 入口也要和当前环境一样需要动态更改
+```
+// 主应用 src/const/micro/application-list.js
+// 获取不同环境的入口
+function getEentry({ prodPath, devPath }) {
+    const isProduction = process.env.NODE_ENV === 'production'
+    return isProduction ? prodPath : devPath
+}
+
+// 注册微应用列表
+export default [
+    {
+        name: 'your-name', // 应用的名字
+        // 默认会加载这个html 解析里面的js 动态的执行 （子应用必须支持跨域）fetch
+        entry: getEentry({
+            devPath: '//localhost:7286/', // 开发环境地址
+            prodPath: `/child/your-name/` // 生产环境地址
+        }),
+        props: { // 下发微应用的入口
+            routeBase: '/app-vue-history/', // 动态下发路由前缀
+        }
+    }
+]
+
+```
 ---
 
 总结：大功告成✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️✌️
