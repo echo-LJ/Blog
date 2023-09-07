@@ -1882,3 +1882,7 @@ export default [
 
 参考链接:
 * [万字长文-落地微前端 qiankun 理论与实践指北](https://juejin.cn/post/7069566144750813197)
+* [微前端](https://tech.meituan.com/2018/09/06/fe-tiny-spa.html)
+* [不懂qiankun原理?这篇文章五张图片带你迅速通晓](https://juejin.cn/post/7202246519080304697#heading-2)
+* [Qiankun原理——JS沙箱是怎么做隔离的](https://juejin.cn/post/7148075486403362846)
+* [深入解析微前端乾坤原理](https://zhuanlan.zhihu.com/p/414468874)
