@@ -71,7 +71,7 @@ var rob = (nums) =>  {
 
 参考链接:
 
-* [algorithm-LCR90： 打家劫舍 II（动态规划）-中等](https://leetcode.cn/problems/PzWKhm/description//)
+* [algorithm-LCR90： 打家劫舍 II（动态规划）-中等](https://leetcode.cn/problems/PzWKhm/description/)
 
 
 
