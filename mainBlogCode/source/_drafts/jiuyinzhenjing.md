@@ -1400,9 +1400,6 @@ https://zhuanlan.zhihu.com/p/420238372
 2、Node.js 在渲染层集成是否开启？
 
 
-# 11、v8垃圾回收
-
-https://juejin.cn/post/6981588276356317214#heading-6
 
 # 11、webpack
 
