@@ -6,7 +6,6 @@ tags: 面经
 
 <meta name="referrer" content="no-referrer"/>
 
-# 10086、快应用和轻应用的区别
 
 
 # created中定义a = 1，使用Vue.observable实现响应式，实现监听
